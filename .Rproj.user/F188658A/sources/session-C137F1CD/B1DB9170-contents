@@ -1,0 +1,484 @@
+---
+title: "Difference-in-Differences"
+linktitle: "Difference-in-Differences"
+date: "2022-10-01"
+output:
+  blogdown::html_page:
+    toc: true
+menu:
+  example:
+    parent: Toolbox
+    weight: 9
+type: docs
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 6, fig.asp = 0.618, fig.align = "center", fig.retina = 3, out.width = "75%")
+set.seed(11)
+options("digits" = 2, "width" = 150)
+options(dplyr.summarise.inform = FALSE)
+
+# custom ggplot theme
+# colors from TUHH brand identitiy
+tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
+                 "#FFDE36", "#143BFF", "#FF7E15", "#FFAEA2")
+
+# initialise theme
+cds_theme <- ggthemr::define_palette(
+  swatch = tuhh_colors,
+  gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
+  background = "#1C1C1C",
+  line = c("#d0cfcf", "#d0cfcf"),
+  text = c("#d0cfcf", "#d0cfcf"),
+  gridline = c("#7a7d7d", "#7a7d7d")
+)
+
+# set theme
+ggthemr::ggthemr(cds_theme, type = "outer")
+```
+
+# Introduction
+
+The most popular research design in quantitative and social sciences is the **difference-in-differences (DiD)** approach. As it name suggests, the method **captures differences by observing a treatment and a control group over time** to estimate causal average effects.
+
+DiD provides a nonexperimental technique that, in its simplest form, compares two groups (control and treatment) at two points in time (before treatment and after) by observing if and how different both group's outcome evolve.
+
+By taking two differences, two different kind of biases should be avoided. First, by comparing both groups at both points in time, any external effect that affects the outcome through time should play no role as it affects both groups. Secondly, taking only the difference of change in consideration, selection bias is eliminated and potential outcomes can vary.
+
+As can be seen in the table, the difference in outcome for the treatment group before and after treatment is $D + T$, while for the control group it is only $T$. The difference of these two differences then reduces to only $D$, which is the treatment effect we want to estimate.
+
+| Group           | Time | Outcome                   | 1st Difference | DiD |
+|-----------------|------|---------------------------|----------------|-----|
+| Treatment (D=1) | 0    | $Y= Y_{T=0, D=1}$         |                |     |
+|                 | 1    | $Y = Y_{T=0,D=1} + T + D$ | $T +D$         |     |
+|                 |      |                           |                | $D$ |
+| Control (D=0)   | 0    | $Y = Y_{T=0, D=0}$        |                |     |
+|                 | 1    | $Y = Y_{T=0, D=0} + T$    | $T$            |     |
+
+We can also break it down in our known notation:
+
+$$
+ATE = \bigg(E[Y_{D=1}|T=1] - E[Y_{D=1}|T=0] \bigg)- \bigg(E[Y_{D=0}|T=1] - E[Y_{D=0}|T=0]\bigg)
+$$
+
+Because there are a lot of subscripts, it can also help to write down the formula in pseudo-math:
+
+$$
+ATE = (Y_{Treatment, After} - Y_{Treatment, before}) - (Y_{Control, After} - Y_{Control, Before})
+$$
+
+Opposed to methods where we just know one outcome - the "after" outcome, regardless of whether a unit received or did not receive treatment - we do not have to assume that the potential otucomes $E[Y_0|D=1] = E[Y_0|D=1]$ are equal. That is a big difference, because do not have to assume that observation units are similar in all their characteristics.
+
+Instead DiD hinges on a different assumption, the **parallel trends assumption.** It says that, in absence of treatment for both groups, they would be expected to evolve similarly over time. In other words, we do not expect the potential outcome to be similar, but the change of outcomes from before to after. It implies that there is no other factor that has only an impact on just one of the groups. If units differ in characteristics, they are only allowed to have a constant effect. If the effect varies with time, the paralell trends assumption is violated.
+
+# Application
+
+To understand DiD and the parallel trends assumption becomes easier when using plots. Therefore, we will now use an application to go through all steps from stating assumptions to estimation. We create two scenarios:
+
+-   **Scenario A**: parallel trends assumption fulfilled
+
+-   **Scenario B**: parallel trends assumption violated
+
+Let's imagine, you are manager of a company that has two stores, one of them being in City 1 and the other being in City 2. You want to test the effectiveness of a local ad campaign on sales. Therefore, you will run a campaign at the store in City 1 but not in City 2 and keep track of sales in the periods before and after the treatment.
+
+We generate a data set for two scenarios according to the following relationships:
+
+Scenario A:
+
+$Y = D + P + X + U_y$
+
+Scenario B:
+
+$X = S + U_x$
+
+$Y = D + P + X + XP + U_y$
+
+$Y$ - sales
+
+$D$ true treatment effect
+
+$P$ is periods
+
+$S$ store index
+
+$X$ covariate, e.g. ecosystem
+
+$U_y, U_x$ error terms
+
+With the function *generate_data()* we generate data with arbitrary values for the number of stores, number of observed periods, the size of the true treatment effect, the timing of treatment and level of noise in the data generating process. Data is generated for both scenarios as can be seen at the suffixes.
+
+```{r}
+library(tidyverse)
+
+generate_data <- function(
+  S = 2, # number of groups
+  P = 10, # number of periods
+  D_size = 1, # effect of treatment
+  D_time = NULL, # time of treatment
+  y_0 = 50, # base value for y
+  sd = 1 # standard deviations for randomly generated sequences
+){
+  # create group period dyads
+  s <- rep(0:1, each = P)
+  p <- rep(1:P, S)
+  
+  # timing and size of treatment (effect)
+  D     <- D_size
+  if (missing(D_time)) D_time <- P/2
+  after <- as.numeric(ifelse(p, p > D_time))
+  
+  # create relation between independent variables and treatment (actually
+  # other way round, but easier to simulate this way)
+  x1 <- rnorm(S*P, s, sd)
+  
+  # create dependent variable ...
+  # ... for scenario (a)
+  y_a <- y_0 + D*s*after + 1/5*p + x1 + rnorm(S*P, 0, sd)
+  
+  # ... for scenario (b)
+  y_b <- y_0 + D*s*after + 1/5*p + x1 + s*x1 + 1/3*p*x1 + rnorm(S*P, 0, sd)
+  
+  # add variables to table
+  df <- tibble(
+    store   = s,
+    period  = p,
+    after   = after,
+    x1      = x1,
+    sales_a = y_a,
+    sales_b = y_b
+  )
+  
+  # return table
+  return(df)
+}
+```
+
+We choose to generate a data set with a true treatment effect of 1 and 10 observed periods. For now, we just have one store as a treated unit and one store as a non-treated unit. Later, we will extend it to a larger number of stores per group, but for demonstration purpose, we restrict it to two stores, initially. We have 10 periods with 5 periods before and 5 after treatment. Lastly, we add a little bit of noise.
+
+```{r}
+# Generate one sample
+P <- 10 # number of periods
+D <- 1  # true treatment effect
+df <- generate_data(P = P, D_size = D, sd = 0.01)
+```
+
+## Parallel trends
+
+### Scenario A
+
+To compute an estimated treatment effect, we filter the data to the two periods just around treatment and implement the formulas as in the introduction. Not surprisingly, we get an estimate that is very close to our true treatment effect.
+
+```{r}
+# [1.1.1] (a) Fulfillment ----
+# Scenario (a)
+# Only show last data point before and first data point after treatment.
+df_zoom_in_a <- df %>% 
+  filter(period %in% (P/2):(P/2+1)) %>%
+  mutate(store_discrete = as.factor(store)) %>% 
+  rename(sales = sales_a)
+
+# Manually compute differences
+# Difference between treatment and control group BEFORE treatment
+before_control_a <- df_zoom_in_a %>%
+  filter(store == 0, after == 0) %>% 
+  pull(sales)
+before_treatment_a <- df_zoom_in_a %>%
+  filter(store == 1, after == 0) %>% 
+  pull(sales)
+
+diff_before_a <- before_treatment_a - before_control_a
+
+# Difference between treatment and control group AFTER treatment
+after_control_a <- df_zoom_in_a %>%
+  filter(store == 0, after == 1) %>% 
+  pull(sales)
+after_treatment_a <- df_zoom_in_a %>%
+  filter(store == 1, after == 1) %>% 
+  pull(sales)
+
+diff_after_a <- after_treatment_a - after_control_a
+
+# Difference-in-differences. Unbiased estimate if parallel trends is correctly
+# assumed and there is no hidden confounding. Estimate may vary from true
+# treatment effect, as we also include some noise in the data generating 
+# process.
+diff_diff_a <- diff_after_a - diff_before_a
+sprintf("Estimate: %.2f, True Effect: %.2f", diff_diff_a, D)
+```
+
+Looking at the last period before and the first period after treatment, the impact of treatment can clearly be seen. The dashed line represents the counterfactual value for the treated group, i.e. the value it would have if it had not been treated. This value is not observed, but by the paralell trends assumptions, it would have developed like the value for the untreated group.
+
+```{r}
+# Plot
+ggplot(df_zoom_in_a, aes(x = period, y = sales, color = store_discrete)) +
+  geom_line(size = .95) +
+  scale_x_continuous(name ="", 
+                   breaks=c(5, 5.5, 6),
+                   labels = c("Before Treatment", 
+                              "Treatment",
+                              "After Treatment")) +
+  scale_y_continuous(name = "Sales", labels = scales::number_format(accuracy = 0.1)) +
+  scale_color_discrete(labels = c("Control Group", "Treatment Group")) +
+  guides(colour = guide_legend(reverse = T)) +
+  geom_vline(xintercept = P/2 + .5, color = ggthemr::swatch()[4]) + 
+  annotate(geom = "segment", x = (P/2), xend = (P/2+1),
+           y = before_treatment_a, yend = after_treatment_a - diff_diff_a,
+           linetype = "dashed", color = ggthemr::swatch()[2], size = .95) +
+  annotate(geom = "segment", x = (P/2+1), xend = (P/2+1),
+           y = after_treatment_a, yend = after_treatment_a - diff_diff_a,
+           linetype = "dashed", color = "black") +
+  annotate(geom = "label", x = (P/2+.98), y = after_treatment_a - (diff_diff_a / 2), 
+           label = "Treatment effect", size = 3) +
+  annotate(geom = "text", x = (P/2) + 0.6, y = before_control_a + 1.1*diff_before_a + .1, 
+            label = "Counterfactual", size = 4, 
+           #angle = atan(after_control_a - before_control_a) * 180/pi
+           angle = 3) +
+  theme(panel.grid.minor.x = element_blank(),
+        legend.title = element_blank(), legend.position = "bottom") +
+  ggtitle("Parallel Trends Assumption")
+```
+
+### Scenario B
+
+Repeating the steps for scenario B yields an unexpected result. The estimated treatment effect is different from what we would have expected.
+
+```{r}
+# [1.1.2] (b) Violation ----
+# Scenario (b)
+# Only show last data point before and first data point after treatment.
+df_zoom_in_b <- df %>% 
+  filter(period %in% (P/2):(P/2+1)) %>%
+  mutate(store_discrete = as.factor(store)) %>% 
+  rename(sales = sales_b)
+
+# Manually compute differences
+# Difference between treatment and control group BEFORE treatment
+before_control_b <- df_zoom_in_b %>%
+  filter(store == 0, after == 0) %>% 
+  pull(sales)
+before_treatment_b <- df_zoom_in_b %>%
+  filter(store == 1, after == 0) %>% 
+  pull(sales)
+diff_before_b <- before_treatment_b - before_control_b
+
+# Difference between treatment and control group AFTER treatment
+after_control_b <- df_zoom_in_b %>%
+  filter(store == 0, after == 1) %>% 
+  pull(sales)
+after_treatment_b <- df_zoom_in_b %>%
+  filter(store == 1, after == 1) %>% 
+  pull(sales)
+diff_after_b <- after_treatment_b - after_control_b
+
+# Difference-in-differences. Unbiased estimate if parallel trends is correctly
+# assumed and there is no hidden confounding. Estimate varies from true
+# treatment effect due to confounding and added noise.
+diff_diff_b <- diff_after_b - diff_before_b
+sprintf("Estimate: %.2f, True Effect: %.2f", diff_diff_b, D)
+```
+
+Again, the picture is very similar. Having only four data points, treatment before and after and control before and after, there is no way to test the paralell trends assumption which leaves room for doubt. So how can we check whether we made a mistake or the paralell trends assumption is violated?
+
+```{r}
+# Plot
+ggplot(df_zoom_in_b, aes(x = period, y = sales, color = store_discrete)) +
+  geom_line(size = .95) +
+  scale_x_continuous(name ="", 
+                     breaks=c(5, 5.5, 6),
+                     labels = c("Before Treatment", 
+                                "Treatment",
+                                "After Treatment")) +
+  scale_y_continuous(name = "Sales") +
+  scale_color_discrete(labels = c("Control Group", "Treatment Group")) +
+  guides(colour = guide_legend(reverse = T)) +
+  geom_vline(xintercept = P/2 + .5, color = ggthemr::swatch()[4]) + 
+  annotate(geom = "segment", x = (P/2), xend = (P/2+1),
+           y = before_treatment_b, yend = after_treatment_b - diff_diff_b,
+           linetype = "dashed", color = "#00bfc4", size = .95) +
+  annotate(geom = "segment", x = (P/2+1), xend = (P/2+1),
+           y = after_treatment_b, yend = after_treatment_b - diff_diff_b,
+           linetype = "dashed", color = "black") +
+  annotate(geom = "label", x = (P/2+.98), y = after_treatment_b - (diff_diff_b / 2), 
+           label = "Treatment effect", size = 3) +
+  annotate(geom = "text", x = (P/2) + 0.6, y = before_control_b + 1.1*diff_before_b, 
+           label = "Counterfactual", size = 4, 
+           #angle = atan(after_control_b - before_control_b) * 180/pi
+           angle = 3) +
+  theme(panel.grid.minor.x = element_blank(),
+        legend.title = element_blank(), legend.position = "bottom") +
+  ggtitle("Parallel Trends Assumption")
+```
+
+## Event Study
+
+### Scenario A
+
+Many researchers therefore try to increase the validity of their results by providing an event study. Not surprisingly (as we created the data ourselves), both groups develop same before the treatment. It cannot rule out all unobserved behavior but an event study lends credibility to the causal interpretation of treatment effects.
+
+```{r}
+# [1.2.1] (a) Fulfillment ----
+# Zoom out and show that parallel trend assumption is fulfilled in scenario (a)
+df_zoom_out_a <- df %>% 
+  mutate(store_discrete = as.factor(store)) %>% 
+  filter(period <= (P/2 + 1)) %>% 
+  rename(sales = sales_a)
+
+diff_control <- after_control_a - before_control_a
+
+ggplot(df_zoom_out_a, aes(x = period, y = sales, color = store_discrete)) +
+  geom_line(size = .95) +
+  scale_x_continuous(name   = "Period", breaks = 1:(P/2+1)) +
+  scale_y_continuous(name = "Sales") +
+  scale_color_discrete(labels = c("Control Group", "Treatment Group")) +
+  guides(colour = guide_legend(reverse = T)) +
+  geom_vline(xintercept = P/2 + .5, color = ggthemr::swatch()[4]) + 
+  annotate(geom = "segment", x = (P/2),
+           xend = (P/2 + 1),
+           y = before_treatment_a,
+           yend = before_treatment_a + 1*(diff_control),
+           linetype = "dashed", color = "#00bfc4", size = .95) +
+  annotate(geom = "segment", x = (P/2+1), xend = (P/2+1),
+           y = after_treatment_a, yend = after_treatment_a - diff_diff_a,
+           linetype = "dashed", color = "black") +
+  annotate(geom = "label", x = (P/2+.78), y = after_treatment_a - (diff_diff_a / 2), 
+           label = "Treatment effect", size = 3) +
+  annotate(geom = "text", x = (P/2) + .5, y = before_control_a + 1.1*diff_before_a - .1, 
+           label = "Counterfactual", size = 4, 
+           angle = atan(after_control_a - before_control_a) * 180/pi) +
+  theme(panel.grid.minor.x = element_blank(),
+        legend.title = element_blank(), legend.position = "bottom") +
+  ggtitle("Parallel Trends Assumption")
+```
+
+### Scenario B
+
+Performing the same steps for scenario B, you see the usefulness of an event study. Other than in scenario A, the paralell trends assumption does not seem to hold. It can be seen from the plot, that the estimated treatment effect is larger than the actual treatment effect. This is due to different trends in both groups. The treatment group has a more positive trend even without treatment and the groups would have further diverged after treatment (see green line). Some of the increase in sales after treatment is therefore attributable to this trends but not the treatment effect.
+
+```{r}
+# [1.2.2] (b) Violation----
+# Zoom out and show that parallel trend assumption is violated in scenario (b)
+df_zoom_out_b <- df %>% 
+  mutate(store_discrete = as.factor(store)) %>% 
+  #filter(period <= (P/2 + 1)) %>% 
+  rename(sales = sales_b)
+
+treatment_period_1 <- df_zoom_out_b %>% 
+  filter(store == 1, period == 1) %>% 
+  pull(sales)
+treatment_period_5 <- df_zoom_out_b %>% 
+  filter(store == 1, period == P/2) %>%
+  pull(sales)
+
+diff_treatment <- (treatment_period_5 - treatment_period_1) / (P/2)
+
+ggplot(df_zoom_out_b, aes(x = period, y = sales, color = store_discrete)) +
+  geom_line(size = .95) +
+  scale_x_continuous(name   = "Period", breaks = 1:P) +
+  scale_y_continuous(name = "Sales") +
+  scale_color_discrete(labels = c("Control Group", "Treatment Group")) +
+  guides(colour = guide_legend(reverse = T)) +
+  geom_vline(xintercept = P/2 + .5, color = ggthemr::swatch()[4]) + 
+  annotate(geom = "segment", x = (P/2),
+           xend = P,
+           y = before_treatment_b,
+           yend = before_treatment_b + (P/2)*(after_control_b - before_control_b),
+           linetype = "dashed", color = "#00bfc4", size = .95) +
+  annotate(geom = "segment", x = (P/2),
+           xend = P,
+           y = before_treatment_b,
+           yend = before_treatment_b + (P/2)*(diff_treatment),
+           linetype = "dashed", color = "green", size = .95) +
+  annotate(geom = "segment", x = (P/2), xend = (P/2+1),
+           y = before_treatment_b, yend = after_treatment_b - diff_diff_b,
+           linetype = "dashed", color = "#00bfc4", size = .95) +
+  annotate(geom = "segment", x = (P/2+1), xend = (P/2+1),
+           y = after_treatment_b, yend = after_treatment_b - diff_diff_b,
+           linetype = "dashed", color = "black") +
+  annotate(geom = "label", x = (P/2+.98), y = after_treatment_b - (diff_diff_b / 2),
+           label = "Estimated Treatment effect", size = 3) +
+  annotate(geom = "text", x = (P/2) + 3, y = before_control_b + 1*diff_before_b,
+           label = "Counterfactual", size = 4,
+           #angle = atan(after_control_b - before_control_b) * 180/pi
+           angle = 3) +
+  theme(panel.grid.minor.x = element_blank(),
+        legend.title = element_blank(), legend.position = "bottom") +
+  ggtitle("Parallel Trends Assumption")
+```
+
+## Modeling
+
+A more typical situation is usually that there is more than one unit in the treatment and control group. You could e.g. imagine that you are managing more than two stores and are implementing an ad campaign in a specific region.
+
+To simulate such a scenario, we generate data for 3'000 stores that are split evenly into two regions. In one region, the ad campaign will be run (treatment region) and in the other there will be no campaign (control region). The variable relationships as defined in the previous section still hold.
+
+```{r}
+# [1.4] Linear regression ----
+# Now assume that there are more than two stores and treatment is performed
+# e.g. in a specific region which are, depending on scenario (a) and (b) 
+# different.
+# Generate a bunch of samples and combine in one table. Here, we choose a higher
+# standard deviation.
+n_stores <- 3e+3
+df_lm    <- lapply(1:n_stores, function(R) generate_data(sd = 1)) %>% bind_rows()
+df_lm    <- df_lm %>% filter(period %in% (P/2):(P/2+1))
+```
+
+### Scenario A
+
+So how do we compute the average treatment effect? Previously in this chapter, we just used basic math calculations (particularly subtraction). But there is an easier way: we can use regression again. This is because the average treatment effect is the coefficient of the interaction of group and time.
+
+$$
+y_i = \beta_0 + \beta_1 * Period_i + \beta_2 * Treatment_i + \beta_3 * (Time_i * Treatment_i) + \epsilon_i
+$$
+
+$Time$ indicates whether the period is before or after the treatment and $Treatment$ whether an observation was treated or not. Then, the coefficient we are interested in is $\beta_3$, because its term is only active for the treated group after treatment.
+
+!!! x1: maybe purchase power in region
+
+For scenario A, we can see that there is no need to adjust for the covariate $x1$. If you check the formulas again, your will notice that $x1$ has a constant and time-invariant effect on sales and therefore it does not violate the paralell trends assumption.
+
+Including or leaving out $x1$ in the regression yields the a similar unbiased estimate (close to defined true size) for our variable of interest $store:after$, the parameter of interest.
+
+```{r}
+# [1.4.1] (a) ----
+# (a): Due to the construction of the data set, we expect interaction
+# coefficient to be significant as well as the covariate and period. However, as
+# the covariate does not have a time-varying effect, it is not a confounder and
+# interaction coefficient should be unbiased even if not adjusting for the
+# covariate.
+summary(lm(sales_a ~ store * after , data = df_lm))
+summary(lm(sales_a ~ store * after + x1, data = df_lm))
+```
+
+### Scenario B
+
+In scenario B, the effect of *x1* is different because it has a time-varying effect. Therefore it violates the parallel trends assumption, leading to a biased estimate if *x1* is not included (e.g. because it is unobserved).
+
+Because we constructed the data set ourselves, we are able to see that the bias in fact is quite large and the treatment effect seems to include the actual treatment effect plus the effect of *x1*. Even with including $x1$ and as a main effect and moderator, we cannot fully reconstruct the true treatment effect.
+
+```{r}
+# [1.4.2] (b) ----
+# (b): Due to the construction of the data set, we expect interaction coefficient
+# to be significant and accurate only when adjusting for the time-varying effect
+# of the covariate and main effects for period and covariate.
+summary(lm(sales_b ~ store*after, data = df))
+summary(lm(sales_b ~ store*after + after*x1 + store*x1, data = df_lm))
+```
+
+# Conclusion
+
+DiD is a useful nonexperimental method that relies on the parallel trends assumption which is untestable. We can't prove it but try to justify it by for example showing prior trends. If both groups were evolving similarly before the treatment, that supports the plausibility and appropriateness of using DiD.
+
+Additionally, there are many extensions to the simple DiD approach we have discussed here like the synthetic control method, that is able to deal with one treated and multiple untreated groups. By matching and weighting the untreated groups, a synthetic group is composed, that is similar in the leadup to the treatment period.
+
+# Assignment
+
+Imagine, you are manager of a large health provider that manages many hospitals and you want to test how a new admission procedure affects patient satisfaction.
+
+You randomly selected 18 hospitals that introduced the new method and compare them to 28 other hospitals that did not introduce the method. For both groups of hospitals you collected data from before and after the introduction. The data you have collected is from patient surveys where they were asked how satisfied they are.
+
+Apply the DiD methodology to this application and also account for group and time fixed effects. You can do that by including these as factors into the regression equation.
+
+<https://www.stata.com/new-in-stata/difference-in-differences-DID-DDD/>

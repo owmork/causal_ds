@@ -1,0 +1,32 @@
+{
+    "id": "2D6580E9",
+    "path": "~/MyDrive/TUHH/03_github/causal_ds/content/fundamentals/02_reg.qmd",
+    "project_path": "content/fundamentals/02_reg.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1668771070840.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "chunk_output_type": "console",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "2:0",
+        "cursorPosition": "0,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1668761423,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1668761423,
+    "read_only": false,
+    "read_only_alternatives": []
+}

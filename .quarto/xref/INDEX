@@ -1,0 +1,41 @@
+{
+  "index.qmd": {
+    "index.html": "6de49e27"
+  },
+  "about.qmd": {
+    "about.html": "0b3981b8"
+  },
+  "content/part_i/01_prob.qmd": {
+    "01_prob.html": "24d77a2f"
+  },
+  "content/fundamentals/01_prob.qmd": {
+    "01_prob.html": "3809567f"
+  },
+  "content/fundamentals/04_dag.qmd": {
+    "04_dag.html": "828be2cc"
+  },
+  "content/index.qmd": {
+    "index.html": "9a1b7157"
+  },
+  "content/fundamentals/03_caus.qmd": {
+    "03_caus.html": "17db9c00"
+  },
+  "content/fundamentals/02_reg.qmd": {
+    "02_reg.html": "94b49562"
+  },
+  "content/toolbox/05_rct.qmd": {
+    "05_rct.html": "1521f610"
+  },
+  "content/toolbox/09_rdd.qmd": {
+    "09_rdd.html": "860a6caf"
+  },
+  "content/toolbox/06_match.qmd": {
+    "06_match.html": "eec8e04a"
+  },
+  "content/toolbox/07_did.qmd": {
+    "07_did.html": "afe4d1fd"
+  },
+  "content/toolbox/08_iv.qmd": {
+    "08_iv.html": "e3ec8b0b"
+  }
+}
