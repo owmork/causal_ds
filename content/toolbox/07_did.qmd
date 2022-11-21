@@ -29,14 +29,18 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  background = "#1C1C1C",
-  line = c("#d0cfcf", "#d0cfcf"),
-  text = c("#d0cfcf", "#d0cfcf"),
-  gridline = c("#7a7d7d", "#7a7d7d")
+  #background = "#1C1C1C",
+  background = "#011627",
+  line = c("#FFFFFF", "#FFFFFF"),
+  text = c("#FFFFFF", "#FFFFFF"),
+  gridline = c("#D0D0CE", "#D0D0CE")
 )
 
 # set theme
 ggthemr::ggthemr(cds_theme, type = "outer")
+
+# source custom DAG theme
+source("../../code/dag_theme.R")
 ```
 
 # Introduction
@@ -111,7 +115,6 @@ With the function *generate_data()* we generate data with arbitrary values for t
 
 ```{r}
 library(tidyverse)
-
 generate_data <- function(
   S = 2, # number of groups
   P = 10, # number of periods
@@ -178,7 +181,6 @@ df_zoom_in_a <- df %>%
   filter(period %in% (P/2):(P/2+1)) %>%
   mutate(store_discrete = as.factor(store)) %>% 
   rename(sales = sales_a)
-
 # Manually compute differences
 # Difference between treatment and control group BEFORE treatment
 before_control_a <- df_zoom_in_a %>%
@@ -187,9 +189,7 @@ before_control_a <- df_zoom_in_a %>%
 before_treatment_a <- df_zoom_in_a %>%
   filter(store == 1, after == 0) %>% 
   pull(sales)
-
 diff_before_a <- before_treatment_a - before_control_a
-
 # Difference between treatment and control group AFTER treatment
 after_control_a <- df_zoom_in_a %>%
   filter(store == 0, after == 1) %>% 
@@ -197,9 +197,7 @@ after_control_a <- df_zoom_in_a %>%
 after_treatment_a <- df_zoom_in_a %>%
   filter(store == 1, after == 1) %>% 
   pull(sales)
-
 diff_after_a <- after_treatment_a - after_control_a
-
 # Difference-in-differences. Unbiased estimate if parallel trends is correctly
 # assumed and there is no hidden confounding. Estimate may vary from true
 # treatment effect, as we also include some noise in the data generating 
@@ -252,7 +250,6 @@ df_zoom_in_b <- df %>%
   filter(period %in% (P/2):(P/2+1)) %>%
   mutate(store_discrete = as.factor(store)) %>% 
   rename(sales = sales_b)
-
 # Manually compute differences
 # Difference between treatment and control group BEFORE treatment
 before_control_b <- df_zoom_in_b %>%
@@ -262,7 +259,6 @@ before_treatment_b <- df_zoom_in_b %>%
   filter(store == 1, after == 0) %>% 
   pull(sales)
 diff_before_b <- before_treatment_b - before_control_b
-
 # Difference between treatment and control group AFTER treatment
 after_control_b <- df_zoom_in_b %>%
   filter(store == 0, after == 1) %>% 
@@ -271,7 +267,6 @@ after_treatment_b <- df_zoom_in_b %>%
   filter(store == 1, after == 1) %>% 
   pull(sales)
 diff_after_b <- after_treatment_b - after_control_b
-
 # Difference-in-differences. Unbiased estimate if parallel trends is correctly
 # assumed and there is no hidden confounding. Estimate varies from true
 # treatment effect due to confounding and added noise.
@@ -324,9 +319,7 @@ df_zoom_out_a <- df %>%
   mutate(store_discrete = as.factor(store)) %>% 
   filter(period <= (P/2 + 1)) %>% 
   rename(sales = sales_a)
-
 diff_control <- after_control_a - before_control_a
-
 ggplot(df_zoom_out_a, aes(x = period, y = sales, color = store_discrete)) +
   geom_line(size = .95) +
   scale_x_continuous(name   = "Period", breaks = 1:(P/2+1)) +
@@ -363,16 +356,13 @@ df_zoom_out_b <- df %>%
   mutate(store_discrete = as.factor(store)) %>% 
   #filter(period <= (P/2 + 1)) %>% 
   rename(sales = sales_b)
-
 treatment_period_1 <- df_zoom_out_b %>% 
   filter(store == 1, period == 1) %>% 
   pull(sales)
 treatment_period_5 <- df_zoom_out_b %>% 
   filter(store == 1, period == P/2) %>%
   pull(sales)
-
 diff_treatment <- (treatment_period_5 - treatment_period_1) / (P/2)
-
 ggplot(df_zoom_out_b, aes(x = period, y = sales, color = store_discrete)) +
   geom_line(size = .95) +
   scale_x_continuous(name   = "Period", breaks = 1:P) +

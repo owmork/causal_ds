@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2022-10-01">
 
-<title>Causal Data Science for Business Analytics - Regression and Statistical Inference</title>
+<title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Regression and Statistical Inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,6 +95,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <meta name="quarto:offset" content="../../">
 <link href="../../content/fundamentals/03_caus.html" rel="next">
 <link href="../../content/fundamentals/01_prob.html" rel="prev">
+<link href="../../images/favicon_cds_16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -139,8 +140,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/icon_cds_text.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Causal Data Science for Business Analytics</span>
+    <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -149,16 +153,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../content/index.html" aria-current="page">
- <span class="menu-text">Content</span></a>
+    <a class="nav-link active" href="../../content/index.html" aria-current="page">Content</a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">About</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+</i> 
+ </a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -296,7 +299,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <p class="date">October 1, 2022</p>
     </div>
   </div>
-  
     
   </div>
   
@@ -378,7 +380,7 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="02_reg_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -387,10 +389,14 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 <p>The goal of linear regression is now to find a line that goes through the points. But not any line, in fact, it has to be the line with the best fit. Differently put, it has to be the line that is - on average - as close to the observation points as possible.</p>
 <p>Let’s have a look at some random lines.</p>
 <div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="02_reg_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -400,7 +406,7 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="02_reg_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -408,12 +414,24 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 <p>!!! should be same lines in both plots</p>
 <p>The resulting line is highlighted in blue.</p>
 <p>If we want to mathematically compute the line in R, we have to use the <code>lm()</code> function and provide data and the assumed functional relationship as arguments. <code>lm()</code> is a function you will see a lot and it is used to fit linear models. It returns a fitted object (here: <code>lm_mod</code>), which we can interpret best when using <code>summary()</code> to show the resulting coefficients and other statistical information.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>lm()</code> is a function that fits a linear model. You have to provide data and a regression equation in the form of for example <code>outcome ~ regressor_1 + regressor_2</code> or <code>outcome ~ .</code>, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call <code>summary()</code>.</p>
+</div>
+</div>
 <p>Looking at the regression summary, we see that the line is modeled by <span class="math inline">\(y = -0.11797 + 0.3466*x\)</span>. It means that for the fitted model, an increase of one unit in <span class="math inline">\(x\)</span> is related to an 0.3466 increase in <span class="math inline">\(y\)</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model and print summary</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, lm_dat)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model and print summary</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, lm_dat)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -437,36 +455,36 @@ F-statistic: 57.3 on 1 and 8 DF,  p-value: 6.48e-05</code></pre>
 </div>
 <p>Now, let’s check how far we are off with our predictions by plotting the regression line against the actual observations. There are two ways to to do it, by either plotting the observations <span class="math inline">\(y_i\)</span> and predictions <span class="math inline">\(\hat{y_i}\)</span> for each <span class="math inline">\(i\)</span> or plotting the residuals <span class="math inline">\(r_i = y_i - \hat{y_i}\)</span> and comparing it to the <span class="math inline">\(x\)</span>-axis.</p>
 <div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add fitted values and residuals to data</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lm_dat_fit <span class="ot">&lt;-</span> lm_dat <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y_fit =</span> <span class="fu">predict</span>(lm_mod),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">r   =</span> y <span class="sc">-</span> y_fit)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot distance of actual to fit</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lm_dat_fit, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula=</span> y <span class="sc">~</span> x, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> x, <span class="at">yend =</span> y_fit), <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Predicted observations vs actual observations"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot residuals</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lm_dat_fit, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> r)) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula=</span> y <span class="sc">~</span> x, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> x, <span class="at">yend =</span> <span class="dv">0</span>), <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residuals vs zero"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add fitted values and residuals to data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lm_dat_fit <span class="ot">&lt;-</span> lm_dat <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y_fit =</span> <span class="fu">predict</span>(lm_mod),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">r   =</span> y <span class="sc">-</span> y_fit)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot distance of actual to fit</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lm_dat_fit, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula=</span> y <span class="sc">~</span> x, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> x, <span class="at">yend =</span> y_fit), <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Predicted observations vs actual observations"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot residuals</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lm_dat_fit, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> r)) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula=</span> y <span class="sc">~</span> x, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> x, <span class="at">yend =</span> <span class="dv">0</span>), <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residuals vs zero"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img"></p>
+<p><img src="02_reg_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img"></p>
+<p><img src="02_reg_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -524,64 +542,64 @@ E\Big(x[y-\beta_0-\beta_1x]\Big)=0
 <div class="cell" data-layout-align="center">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [0] Data ----</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data for a multivariate linear regression. Introduction, therefore</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># disregarding causality of effects.</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Application: Health insurance company wants to estimate expected annual cost </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># of potential customer based on various characteristics such as sex, age, BMI,</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># children, smoking status, region, salary</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># empirical distributions to draw from</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>income_sample <span class="ot">&lt;-</span> <span class="fl">1e+4</span> <span class="sc">*</span> <span class="fu">rbeta</span>(<span class="fl">1e+6</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>bmi_sample <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="sc">+</span> <span class="dv">50</span> <span class="sc">*</span> <span class="fu">rbeta</span>(<span class="fl">1e+6</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># custom function to generate correlated variables based on given variable</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># and empirical sample</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>draw_custom <span class="ot">&lt;-</span> <span class="cf">function</span>(data, quantile_y) {</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(data, quantile_y)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabricatr)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># sex, age, BMI, children, smoking status, region, salary</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">fabricate</span>(</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fl">1e+3</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign a region</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">region =</span> <span class="fu">draw_categorical</span>(<span class="at">prob =</span> <span class="fu">rep</span>(<span class="fl">0.25</span>, <span class="dv">4</span>), </span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                            <span class="at">N =</span> N,</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                            <span class="at">category_labels =</span> <span class="fu">c</span>(<span class="st">"N"</span>, <span class="st">"E"</span>, <span class="st">"S"</span>, <span class="st">"W"</span>)),</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign sex</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">draw_binary</span>(<span class="fl">0.5</span>, <span class="at">N =</span> N),</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign smoking (yes/no)</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">smoking =</span> <span class="fu">draw_binary</span>(<span class="at">prob =</span> <span class="fl">0.25</span>, <span class="at">N =</span> N),</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># age distribution (18-70): younger or older people would not sign up for an</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># insurance as they are either already insured or insured via their parents</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> (<span class="dv">100</span><span class="sc">*</span><span class="fu">rbeta</span>(<span class="dv">1000</span>, <span class="fl">1.4</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="at">to =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">70</span>)),</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate income based on age and income sample distribution</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">income =</span> <span class="fu">correlate</span>(draw_custom,</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> income_sample,</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                      <span class="at">given =</span> age,</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rho =</span> <span class="fl">0.4</span>),</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate BMI based on age and BMI sample distribution</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi =</span> <span class="fu">correlate</span>(draw_custom,</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> bmi_sample,</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>                  <span class="at">given =</span> age,</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>                  <span class="at">rho =</span> <span class="fl">0.3</span>),</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate children (yes/no) based on age</span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">children =</span> <span class="fu">draw_ordered</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(N,age, <span class="at">sd =</span> <span class="dv">20</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">35</span>)) <span class="sc">-</span> <span class="dv">1</span>,</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute expected cost based on income, smoking, bmi and age</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">expected_cost =</span> <span class="dv">100</span> <span class="sc">+</span> <span class="sc">-</span><span class="fl">0.05</span><span class="sc">*</span>income <span class="sc">+</span> <span class="dv">200</span><span class="sc">*</span>smoking <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>((bmi<span class="dv">-30</span>) <span class="sc">+</span> (bmi<span class="dv">-30</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span><span class="sc">*</span>age <span class="sc">+</span> <span class="fu">rnorm</span>(N, <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">100</span>)</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [0] Data ----</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data for a multivariate linear regression. Introduction, therefore</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># disregarding causality of effects.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Application: Health insurance company wants to estimate expected annual cost </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># of potential customer based on various characteristics such as sex, age, BMI,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># children, smoking status, region, salary</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># empirical distributions to draw from</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>income_sample <span class="ot">&lt;-</span> <span class="fl">1e+4</span> <span class="sc">*</span> <span class="fu">rbeta</span>(<span class="fl">1e+6</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>bmi_sample <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="sc">+</span> <span class="dv">50</span> <span class="sc">*</span> <span class="fu">rbeta</span>(<span class="fl">1e+6</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># custom function to generate correlated variables based on given variable</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># and empirical sample</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>draw_custom <span class="ot">&lt;-</span> <span class="cf">function</span>(data, quantile_y) {</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(data, quantile_y)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabricatr)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># sex, age, BMI, children, smoking status, region, salary</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">fabricate</span>(</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fl">1e+3</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign a region</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">region =</span> <span class="fu">draw_categorical</span>(<span class="at">prob =</span> <span class="fu">rep</span>(<span class="fl">0.25</span>, <span class="dv">4</span>), </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                            <span class="at">N =</span> N,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>                            <span class="at">category_labels =</span> <span class="fu">c</span>(<span class="st">"N"</span>, <span class="st">"E"</span>, <span class="st">"S"</span>, <span class="st">"W"</span>)),</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign sex</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">draw_binary</span>(<span class="fl">0.5</span>, <span class="at">N =</span> N),</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign smoking (yes/no)</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">smoking =</span> <span class="fu">draw_binary</span>(<span class="at">prob =</span> <span class="fl">0.25</span>, <span class="at">N =</span> N),</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># age distribution (18-70): younger or older people would not sign up for an</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># insurance as they are either already insured or insured via their parents</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> (<span class="dv">100</span><span class="sc">*</span><span class="fu">rbeta</span>(<span class="dv">1000</span>, <span class="fl">1.4</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="at">to =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">70</span>)),</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate income based on age and income sample distribution</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">income =</span> <span class="fu">correlate</span>(draw_custom,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> income_sample,</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>                      <span class="at">given =</span> age,</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rho =</span> <span class="fl">0.4</span>),</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate BMI based on age and BMI sample distribution</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi =</span> <span class="fu">correlate</span>(draw_custom,</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> bmi_sample,</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>                  <span class="at">given =</span> age,</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>                  <span class="at">rho =</span> <span class="fl">0.3</span>),</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate children (yes/no) based on age</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">children =</span> <span class="fu">draw_ordered</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(N,age, <span class="at">sd =</span> <span class="dv">20</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">35</span>)) <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute expected cost based on income, smoking, bmi and age</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">expected_cost =</span> <span class="dv">100</span> <span class="sc">+</span> <span class="sc">-</span><span class="fl">0.05</span><span class="sc">*</span>income <span class="sc">+</span> <span class="dv">200</span><span class="sc">*</span>smoking <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>((bmi<span class="dv">-30</span>) <span class="sc">+</span> (bmi<span class="dv">-30</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span><span class="sc">*</span>age <span class="sc">+</span> <span class="fu">rnorm</span>(N, <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">100</span>)</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Often, you will deal with large data sets that do not fit on a single page and thus are not easy comprehensible. To still get a good understanding, there are some functions to get an idea of how your data looks like.</p>
 <p>Most data scientists start by using the <code>head()</code> command, which returns the first part of the table and shows you the data structure. Also, if something is wrong with your data, because you did not load it correctly or headers do not fit the data, you were able to see it here already.</p>
 <p>Here, we see that our table consists of different column types, such as integers, doubles and factors.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -593,7 +611,7 @@ E\Big(x[y-\beta_0-\beta_1x]\Big)=0
 </div>
 <p>An option not available in RStudio, but in documents like this one here, is to view a paged table by just typing in the name of the object. In RStudio, the best way to look at a table is <code>View()</code> or <code>view()</code>, which opens the table in a readable format.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -605,8 +623,8 @@ E\Big(x[y-\beta_0-\beta_1x]\Big)=0
 </div>
 <p>If you have too many columns to fit on one page, you could also use <code>glimpse()</code>, which lists columns and their first values row by row.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get glimpse of data</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get glimpse of data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,000
 Columns: 8
@@ -626,9 +644,9 @@ $ expected_cost &lt;dbl&gt; 579, 170, 759, 806, 531, 476, 968, 635, 660, 815, 10
 <p>Logical variables, which take either the value <code>TRUE</code> or <code>FALSE</code> are in fact discrete, or to be more precise binary values. So you can change the value of <code>TRUE</code> to 1 and <code>FALSE</code> to 0. Then, they behave like discrete variables.</p>
 <p>For categorical variables, in R they are called factors, it is a bit more complicated. If they follow a natural order e.g.&nbsp;like <em>low, medium, high</em>, they could be coded as discrete variables as well with e.g.&nbsp;the values <span class="math inline">\(0,1,2\)</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show summary statistics: various types of variables (continuous, discrete,</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># binary/logical, categorical/factor)</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show summary statistics: various types of variables (continuous, discrete,</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># binary/logical, categorical/factor)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> region       sex          smoking          age         income          bmi        children    expected_cost 
  N:252   Min.   :0.00   Min.   :0.00   Min.   :18   Min.   : 115   Min.   :13   Min.   :0.00   Min.   : 112  
@@ -640,14 +658,26 @@ $ expected_cost &lt;dbl&gt; 579, 170, 759, 806, 531, 476, 968, 635, 660, 815, 10
 </div>
 </div>
 <p>Let’s also check how the variables are correlated with each other. In case variables were fully linearly dependent, we could already see it here. Then, we were not able to run a linear regression or at least it would be meaningless.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>To compute correlation, variance and covariance, respectively, you can use <code>cor()</code>, <code>var()</code> and <code>cov()</code>.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show correlation</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>region) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  Matrix<span class="sc">::</span><span class="fu">tril</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show correlation</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>region) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  Matrix<span class="sc">::</span><span class="fu">tril</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>7 x 7 Matrix of class "dtrMatrix"
                 sex smoking   age income   bmi children expected_cost
@@ -665,9 +695,9 @@ expected_cost  0.03    0.36  0.40  -0.17  0.04     0.18          1.00</code></pr
 <h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
 <p>So let’s run the first regression. We will start by using all available characteristics as independent variables. That is what you will often find in studies. All variables that are available are included in the regression. We will see in later chapters why that might be dangerous.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include all potential regressors</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>lm_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> ., <span class="at">data =</span> df)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include all potential regressors</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>lm_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> ., <span class="at">data =</span> df)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -710,9 +740,9 @@ F-statistic: 71.9 on 9 and 990 DF,  p-value: &lt;2e-16</code></pre>
 <p>An estimate with a p-value less than <span class="math inline">\(\alpha\)</span> is considered statistically significant. Expressed in statistical jargon, we reject the null hypothesis of random results when the respective p-value is lower than our significance level <span class="math inline">\(\alpha\)</span>. Rejecting the null hypothesis indicates support for the alternative hypothesis (our observed estimate). Looking at the summary above, we see that <span class="math inline">\(age\)</span>, <span class="math inline">\(income\)</span>, <span class="math inline">\(bmi\)</span>, and <span class="math inline">\(smoking\)</span> are statistically significant (at different levels though, indicated by the number of stars).</p>
 <p>Another way to look at the significance of our estimates is to compute is to look at confidence intervals which derive from the estimate, standard error and the t-distribution - the same inputs as needed for p-values. A <span class="math inline">\((1-\alpha)\)</span> confidence interval has a probability of <span class="math inline">\((1-\alpha)*100 \%\)</span> to contain the true value of our estimated coefficient. That means, if we would sample <span class="math inline">\(100\)</span> times, <span class="math inline">\(\beta_i\)</span> would be contained in the sample <span class="math inline">\((1-\alpha)*100\)</span> times.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show CIs at different levels of alpha</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 0.05</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_all, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show CIs at different levels of alpha</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 0.05</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_all, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              2.5 %  97.5 %
 (Intercept) 400.744 512.810
@@ -728,8 +758,8 @@ children    -39.701  17.569</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 0.9</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_all, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 0.9</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_all, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                5 %    95 %
 (Intercept) 409.766 503.788
@@ -751,13 +781,13 @@ children    -35.090  12.958</code></pre>
 <p>There is variety of measures to check the model fit. Some models better suit the observed data than others and it is the researchers task to find the best model for his/her data.</p>
 <p>Looking at the spread of residuals (<span class="math inline">\(\widehat{u}_i = y_i - \widehat{y}_i\)</span>) we want them to be spread evenly around zero.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">res =</span> lm_all<span class="sc">$</span>residuals), <span class="fu">aes</span>(<span class="at">x =</span> res)) <span class="sc">+</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">binwidth =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"residuals"</span>, <span class="at">y =</span> <span class="st">"frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">res =</span> lm_all<span class="sc">$</span>residuals), <span class="fu">aes</span>(<span class="at">x =</span> res)) <span class="sc">+</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">binwidth =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"residuals"</span>, <span class="at">y =</span> <span class="st">"frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="02_reg_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -775,9 +805,9 @@ R^2 = \frac{\text{Explained variatoin}}{\text{Total variation}}
 <p>where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(p\)</span> the number of independent variables. This way, you can compare models and account for their scarcity.</p>
 <p>Let’s build a second regression model, where we only include variables that were statistically significant in the previous model.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include only significant regressors</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>lm_imp <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> age <span class="sc">+</span> bmi <span class="sc">+</span> smoking, <span class="at">data =</span> df)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_imp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include only significant regressors</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>lm_imp <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> age <span class="sc">+</span> bmi <span class="sc">+</span> smoking, <span class="at">data =</span> df)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_imp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -804,24 +834,24 @@ F-statistic:  134 on 3 and 996 DF,  p-value: &lt;2e-16</code></pre>
 <p>Except for <span class="math inline">\(bmi\)</span>, coefficients are very similar. We’ll look into that in just a second. But first let us compare both models with regard to <span class="math inline">\(\text{(Adjusted)} \, R^2\)</span>.</p>
 <p>To elegantly print variables in a specified format, you can use <code>sprintf()</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare R^2</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Adjusted R^2: %.2f"</span>, broom<span class="sc">::</span><span class="fu">glance</span>(lm_all)<span class="sc">$</span>adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare R^2</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Adjusted R^2: %.2f"</span>, broom<span class="sc">::</span><span class="fu">glance</span>(lm_all)<span class="sc">$</span>adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adjusted R^2: 0.39"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Adjusted R^2: %.2f"</span>, broom<span class="sc">::</span><span class="fu">glance</span>(lm_imp)<span class="sc">$</span>adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Adjusted R^2: %.2f"</span>, broom<span class="sc">::</span><span class="fu">glance</span>(lm_imp)<span class="sc">$</span>adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adjusted R^2: 0.29"</code></pre>
 </div>
 </div>
 <p>Other metrics used to select the best model out of a class of models tackling the same problem (with the same data) are Akaike’s Information Criteria (AIC) and Bayesian Information Criteria (BIC). Both AIC and BIC penalize the inclusion of additional parameters. The exact computation we will disregard for now.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AIC</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"AIC: %.2f"</span>, <span class="fu">AIC</span>(lm_all))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AIC</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"AIC: %.2f"</span>, <span class="fu">AIC</span>(lm_all))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AIC: 13298.62"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"AIC: %.2f"</span>, <span class="fu">AIC</span>(lm_imp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"AIC: %.2f"</span>, <span class="fu">AIC</span>(lm_imp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AIC: 13451.17"</code></pre>
 </div>
@@ -831,13 +861,13 @@ F-statistic:  134 on 3 and 996 DF,  p-value: &lt;2e-16</code></pre>
 <p>For example, is it correct to assume a linear relationship between <span class="math inline">\(bmi\)</span> and the outcome <span class="math inline">\(expected\text{_}cost\)</span>? One could say, that a health insurance expects higher costs for individuals with a very low and a very high BMI. We can plot both variables and see whether the graph indicates some form of non-linearity.</p>
 <p>And actually (not surprisingly, because we simulated the data ourselves), there is a non-linear relationship between the variables. As hypothesized, individuals with a low and a high BMI are expected to be more costly. However, this analysis disregards all other variables and should be just an indication. We still need to model this indicated relationship in our model.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot relationship between BMI and expected cost</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">y =</span> expected_cost)) <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot relationship between BMI and expected cost</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">y =</span> expected_cost)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="02_reg_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -845,9 +875,9 @@ F-statistic:  134 on 3 and 996 DF,  p-value: &lt;2e-16</code></pre>
 <p>But can we include non-linear terms in our linear regression? In its name, there is the term “linear”, so what can we do about it?</p>
 <p>In fact, it is quite simple to include non-linear terms into the regression equation. When the relationship is assumed to be like depicted in the graph above, a squared term is usually included, i.e.&nbsp;<span class="math inline">\(bmi^2\)</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include quadratic term for BMI</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>lm_sq <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> age <span class="sc">+</span> bmi <span class="sc">+</span> <span class="fu">I</span>(bmi<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> smoking, <span class="at">data =</span> df)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include quadratic term for BMI</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>lm_sq <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> age <span class="sc">+</span> bmi <span class="sc">+</span> <span class="fu">I</span>(bmi<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> smoking, <span class="at">data =</span> df)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -881,7 +911,7 @@ F-statistic:  685 on 4 and 995 DF,  p-value: &lt;2e-16</code></pre>
 <li><p><strong>Linearity</strong>: Relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is linear.</p></li>
 <li><p><strong>Homoscedasticity</strong>: Variance of residual is the same for any value of <span class="math inline">\(X\)</span>.</p></li>
 <li><p><strong>Independence</strong>: Observations are independent of each other. Residuals are independent of each other.</p></li>
-<li><p>Normality: For any fixed value of <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> is normally distributed. Residuals of the model are normally distributed.</p></li>
+<li><p><strong>Normality</strong>: For any fixed value of <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> is normally distributed. Residuals of the model are normally distributed.</p></li>
 </ol>
 </section>
 </section>
@@ -935,24 +965,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -988,42 +1001,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
@@ -1040,6 +1035,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+  </div>
+</footer>
 
 
 

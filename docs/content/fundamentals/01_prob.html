@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2022-10-01">
 
-<title>Causal Data Science for Business Analytics - Probability Theory and Statistics</title>
+<title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Probability Theory and Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,6 +95,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <meta name="quarto:offset" content="../../">
 <link href="../../content/fundamentals/02_reg.html" rel="next">
 <link href="../../content/index.html" rel="prev">
+<link href="../../images/favicon_cds_16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -139,8 +140,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/icon_cds_text.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Causal Data Science for Business Analytics</span>
+    <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -156,9 +160,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link active" href="../../content/index.html" aria-current="page">
  <span class="menu-text">Content</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">About</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+</i> 
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -272,6 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#random-variable" id="toc-random-variable" class="nav-link" data-scroll-target="#random-variable">Random Variable</a></li>
   <li><a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value">Expected value</a></li>
+  <li><a href="#conditional-expected-value" id="toc-conditional-expected-value" class="nav-link" data-scroll-target="#conditional-expected-value">Conditional Expected Value</a></li>
   <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance"><strong>Variance</strong></a></li>
   <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance"><strong>Covariance</strong></a></li>
   </ul></li>
@@ -351,51 +357,119 @@ P(A \cap B) = P(A) \ P(B)
 <p>An extremely useful tool to visualize the occurrence and relationship between events are Venn diagrams from set theory.</p>
 <p>Let’s use an example to understand the rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices, smartphones, tables and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.</p>
 <p>But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current distribution.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>library()</code> loads external packages/libraries containing functions that are not built in base <code>R</code>.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>tibble()</code> is the most convenient way to create tables. You specify column name and content and assign your <code>tibble</code> to an object to store it.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>ifelse(test, yes, no)</code> is a short function for if…else statements. The first argument is a condition that is either <code>TRUE</code> or <code>FALSE</code> and determines whether the second or third argument is returned.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>rbinom(n, size, prob)</code> samples <code>n</code> values from a binomial distribution of a given <code>size</code> and with given probabilities <code>prob</code>.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>mutate()</code> is one of the most important functions for data manipulation in tables. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, <code>mutate(table, new_variable = existing_var / 100)</code>, which is equivalent to <code>table %&gt;% mutate(new_variable = existing_var / 100)</code>.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load tidyverse package</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-✔ tibble  3.1.6     ✔ dplyr   1.0.8
-✔ tidyr   1.2.0     ✔ stringr 1.4.0
-✔ readr   2.1.2     ✔ forcats 0.5.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nmber of obervations</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tibble</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>app_usage <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create user_id in increasing order</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">user_id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Randomly sample if smartphone was used</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">smartphone =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.6</span>),</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample if tablet was used. More likely if smartphone was not used.</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">tablet =</span> <span class="fu">ifelse</span>(smartphone <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>), <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.7</span>)),</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample if computer was used. More likely if tablet was not used.</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">computer =</span> <span class="fu">ifelse</span>(tablet <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>))</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># If no device has value of 1, we set smartphone to 1</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>app_usage <span class="ot">&lt;-</span> app_usage <span class="sc">%&gt;%</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smartphone =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(smartphone, tablet, computer) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, smartphone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nmber of obervations</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tibble</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>app_usage <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create user_id in increasing order</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">user_id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Randomly sample if smartphone was used</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">smartphone =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.6</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample if tablet was used. More likely if smartphone was not used.</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">tablet =</span> <span class="fu">ifelse</span>(smartphone <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>), <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.7</span>)),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample if computer was used. More likely if tablet was not used.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">computer =</span> <span class="fu">ifelse</span>(tablet <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># If no device has value of 1, we set smartphone to 1</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>app_usage <span class="ot">&lt;-</span> app_usage <span class="sc">%&gt;%</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smartphone =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(smartphone, tablet, computer) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, smartphone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here, we simulated some artificial data. Seeing the formulas used for constructing the data, we already know that e.g.&nbsp;customers tend not to use the app on both tablet and computer.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>To see the first lines of a table (for example a <code>tibble()</code> or a <code>data.frame()</code>, you can use the <code>head(table, n)</code> function, where <code>n</code> specifies how many rows you want to see.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(app_usage, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(app_usage, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -406,50 +480,86 @@ P(A \cap B) = P(A) \ P(B)
 </div>
 </div>
 <p>A general overview of total customers per device category shows that in the smartphone category there are the most users and in the computer category there are the least.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Summing all values by column is done by <code>colSums(table)</code>. For rows, you would use <code>rowSums(table)</code>.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user_id smartphone     tablet   computer 
     500500       1000        399        334 </code></pre>
 </div>
 </div>
 <p>Summing the <span class="math inline">\(user\_id\)</span> does not make any sense. We could ignore it, but we can also just access the columns we want to sum. There are several ways.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>To access only specified columns, you can provide the location or names in square brackets or you can use the <code>select()</code> function.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage[, <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage[, <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>smartphone     tablet   computer 
       1000        399        334 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage[, <span class="fu">c</span>(<span class="st">"smartphone"</span>, <span class="st">"tablet"</span>, <span class="st">"computer"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage[, <span class="fu">c</span>(<span class="st">"smartphone"</span>, <span class="st">"tablet"</span>, <span class="st">"computer"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>smartphone     tablet   computer 
       1000        399        334 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>app_usage <span class="sc">%&gt;%</span> <span class="fu">select</span>(smartphone, tablet, computer) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>app_usage <span class="sc">%&gt;%</span> <span class="fu">select</span>(smartphone, tablet, computer) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>smartphone     tablet   computer 
       1000        399        334 </code></pre>
 </div>
 </div>
 <p>Now let’s see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>which()</code> checks a condition and returns the indices.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>set_phon <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>smartphone <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>set_tabl <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>tablet <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>set_comp <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>computer <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>sets_all <span class="ot">&lt;-</span> <span class="fu">list</span>(set_phon, set_tabl, set_comp)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggVennDiagram)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(sets_all, <span class="at">category.names =</span> <span class="fu">c</span>(<span class="st">"Smartphone"</span>, <span class="st">"Tablet"</span>, <span class="st">"Computer"</span>)) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>),</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>set_phon <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>smartphone <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>set_tabl <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>tablet <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>set_comp <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>computer <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sets_all <span class="ot">&lt;-</span> <span class="fu">list</span>(set_phon, set_tabl, set_comp)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggVennDiagram)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(sets_all, <span class="at">category.names =</span> <span class="fu">c</span>(<span class="st">"Smartphone"</span>, <span class="st">"Tablet"</span>, <span class="st">"Computer"</span>)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01_prob_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="01_prob_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -521,14 +631,14 @@ P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline
 \]</span></p>
 <p>Now we can see, that we have all the information we need to compute the desired probabilities. <span class="math inline">\(P(A|B)\)</span> (2) is calculated by</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.97</span> <span class="sc">*</span> <span class="fl">0.04</span>) <span class="sc">/</span> ((<span class="fl">0.97</span> <span class="sc">*</span> <span class="fl">0.04</span>) <span class="sc">+</span> (<span class="fl">0.01</span> <span class="sc">*</span> <span class="fl">0.96</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.97</span> <span class="sc">*</span> <span class="fl">0.04</span>) <span class="sc">/</span> ((<span class="fl">0.97</span> <span class="sc">*</span> <span class="fl">0.04</span>) <span class="sc">+</span> (<span class="fl">0.01</span> <span class="sc">*</span> <span class="fl">0.96</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8</code></pre>
 </div>
 </div>
 <p>and <span class="math inline">\(P(\overline{A}|B)\)</span> (1) by</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.01</span> <span class="sc">*</span> <span class="fl">0.96</span>) <span class="sc">/</span> ((<span class="fl">0.01</span> <span class="sc">*</span> <span class="fl">0.96</span>) <span class="sc">+</span> (<span class="fl">0.97</span> <span class="sc">*</span> <span class="fl">0.04</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.01</span> <span class="sc">*</span> <span class="fl">0.96</span>) <span class="sc">/</span> ((<span class="fl">0.01</span> <span class="sc">*</span> <span class="fl">0.96</span>) <span class="sc">+</span> (<span class="fl">0.97</span> <span class="sc">*</span> <span class="fl">0.04</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2</code></pre>
 </div>
@@ -573,16 +683,28 @@ E(X) = x_1*p_1 + x_2*p_2 + ... + x_k*p_k = \sum_{j}^{k} x_i*p_i
 <p><span class="math display">\[
 E(X) = \frac{1}{6}*1 + \frac{1}{6}*2 + ... + \frac{1}{6}*6 = \frac{1}{6} \sum (1 + 2 + ... + 6)
 \]</span></p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>To replicate values and create a vector <code>rep()</code> can be used. It takes the value and number of times it should be replicated.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector of probabilities (all equal)</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector of possible outcomes</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected value</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p<span class="sc">*</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector of probabilities (all equal)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector of possible outcomes</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected value</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p<span class="sc">*</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.5</code></pre>
 </div>
@@ -594,22 +716,82 @@ E(W+H) = E(W)+E(H) \\E\Big(W - E(W)\Big) = 0
 \]</span></p>
 <p>Knowing how to compute the expected value of a random variable is essential for computing other statistics such as variance, standard deviation, covariance, correlation etc.</p>
 </section>
+<section id="conditional-expected-value" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-expected-value">Conditional Expected Value</h2>
+<p>The conditional expected value is the expected value conditioned on some other value. Given the value <span class="math inline">\(x\)</span> of <span class="math inline">\(X\)</span>, the expected value for <span class="math inline">\(Y\)</span> obtains as</p>
+<p><span class="math display">\[
+E[Y|X = x]
+\]</span></p>
+<p>and is a function of <span class="math inline">\(x\)</span>. In other words, the conditional expected value is the best guess for <span class="math inline">\(Y\)</span> knowing only that <span class="math inline">\(X=x\)</span>.</p>
+<p>As a simple example, consider we take a representative random sample from the world population and want to compute the expected value for <span class="math inline">\(height\)</span>. Denoting height with <span class="math inline">\(Y\)</span>, the expected value for the whole population is the expected value <span class="math inline">\(E[Y]\)</span> over all individuals in your sample.</p>
+<p>The conditional expected value, however, differs. For example, conditioned on individuals being younger than ten years or older than than that we expect different values.</p>
+<p><span class="math display">\[
+E[Y] \neq E[Y|age &lt; 10] \neq E[Y|age &gt;= 10]
+\]</span></p>
+</section>
 <section id="variance" class="level2">
 <h2 class="anchored" data-anchor-id="variance"><strong>Variance</strong></h2>
 <p>Before we define variance, let’s see why it is important to know it. On both graphs we see almost the same line (small difference because of sampling) going through the data points. It is the line that fits the data best. However, there is a difference in how the data points are distributed. On the left graph, there is high variance compared to the right graph. That means, the data is more dispersed.</p>
-<p>!!! conditional expectation</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>seq(from, to, by)</code> or <code>seq(from, to, length.out)</code> returns a vectors with a sequence as specified by the arguments.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>rnorm(n, mean, sd)</code> samples values from the normal distribution. <code>n</code> specifies the number of values, <code>mean</code> and <code>sd</code> define the parameters of the normal distribution.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>map()</code> is a very useful function when you want to apply a function to each element of a list or a vector.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>pivot_longer()</code> changes the format of a table by pivoting columns into rows. To pivot rows into columns, you need <code>pivot_wider()</code>.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01_prob_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="01_prob_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -642,15 +824,49 @@ Var(X+Y)=Var(X)+Var(Y)+2\Big(E(XY) - E(X)E(Y)\Big)
 <section id="covariance" class="level2">
 <h2 class="anchored" data-anchor-id="covariance"><strong>Covariance</strong></h2>
 <p>Covariance determines the relationship between two or more random variables, i.e.&nbsp;how they behave to each other. For example, when the weather is hot, there are more ice cream sales, so these two random variables move in the same direction. Others do not have any statistical association or move into opposite direction.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>as_tibble()</code> or <code>as.data.frame()</code> can be used to change e.g.&nbsp;matrices or lists into tables.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><code>rbind()</code> or <code>bind_rows()</code> are used to bind rows, vectors or tables to one table. They behave slightly different, so you should know both functions. The counterparts for columns are <code>cbind()</code> and <code>bind_cols()</code>.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>To rename columns, you can use <code>rename(new_name = old_name)</code>.</p>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
-Using compatibility `.name_repair`.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+ℹ Using compatibility `.name_repair`.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
@@ -664,7 +880,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01_prob_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="01_prob_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -860,6 +1076,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+  </div>
+</footer>
 
 
 

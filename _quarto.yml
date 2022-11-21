@@ -3,17 +3,21 @@ project:
   output-dir: docs
 
 website:
-  title: "Causal Data Science for Business Analytics"
+  title: "<b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b>"
   page-navigation: true
+  favicon: images/favicon_cds_16x16.png
   navbar:
     background: "#005E73"
     pinned: true
+    logo: images/icon_cds_text.png
     right:
       - href: index.qmd
         text: Home
       - text: Content
         file: content/index.qmd
-      - about.qmd
+      - icon: chat-left-text-fill
+        href: https://communicating.tuhh.de/w-11-students/channels/test_intro
+        aria-label: Mattermost
   
   sidebar:
     - title: "Contents"
@@ -36,7 +40,9 @@ website:
             - content/toolbox/08_iv.qmd
             - content/toolbox/09_rdd.qmd
     - title: "Home"
-      
+
+  page-footer: 
+    left: "Winter term 2022/2023 - Causal Data Science for Business Analytics" 
 
 format:
   html:

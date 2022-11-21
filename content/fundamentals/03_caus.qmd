@@ -19,6 +19,28 @@ knitr::opts_chunk$set(fig.width = 6, fig.asp = 0.618, fig.align = "center", fig.
 set.seed(11)
 options("digits" = 2, "width" = 150)
 options(dplyr.summarise.inform = FALSE)
+
+# custom ggplot theme
+# colors from TUHH brand identitiy
+tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
+                 "#FFDE36", "#143BFF", "#FF7E15", "#FFAEA2")
+
+# initialise theme
+cds_theme <- ggthemr::define_palette(
+  swatch = tuhh_colors,
+  gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
+  #background = "#1C1C1C",
+  background = "#011627",
+  line = c("#FFFFFF", "#FFFFFF"),
+  text = c("#FFFFFF", "#FFFFFF"),
+  gridline = c("#D0D0CE", "#D0D0CE")
+)
+
+# set theme
+ggthemr::ggthemr(cds_theme, type = "outer")
+
+# source custom DAG theme
+source("../../code/dag_theme.R")
 ```
 
 # Introduction
@@ -32,6 +54,8 @@ However, there are many other **contexts, where prediction is not the main focus
 Instead of throwing a lot of data to a black box searching for patterns between independent variables and outcome to get a model that predicts very well, in this course, we will try to **understand characteristics of the data-generating process, i.e. the system of cause and effect and extract useful information from the data**. That is what science is about, explaining why things are happening.
 
 !!! Illustration Prediction vs Explanation
+
+!!! Illustration Dependent and Independent Variable
 
 ## Illustrative Examples
 
@@ -237,3 +261,7 @@ There are very few scenarios where we can actually be confident not to take meas
 
 The history of causal inference dates back to Splawa-Neyman (1923) who proposed the physical randomization of treatments to units as a basis for causal inference and developed a the powerful potential outcomes notation. Fisher (1925) also suggested the explicit use of randomization in experimental design to obtain valid causal estimates. However, it was in 1974 when Rubin promoted the topic again and its importance in social sciences begun to grow.
 :::
+
+# Assignment
+
+!!!

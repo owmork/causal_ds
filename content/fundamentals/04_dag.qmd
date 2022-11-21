@@ -40,7 +40,7 @@ cds_theme <- ggthemr::define_palette(
 ggthemr::ggthemr(cds_theme, type = "outer")
 
 # source custom DAG theme
-source("../../dag_theme.R")
+source("../../code/dag_theme.R")
 ```
 
 # Introduction

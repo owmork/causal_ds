@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Causal Data Science for Business Analytics - causal_ds_ws22</title>
+<title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,6 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./images/favicon_cds_16x16.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -38,6 +39,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -58,6 +61,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -69,8 +73,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/icon_cds_text.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Causal Data Science for Business Analytics</span>
+    <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -86,9 +93,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./content/index.html">
  <span class="menu-text">Content</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">About</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+</i> 
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -97,34 +105,58 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">causal_ds_ws22</h1>
+<div class="grid title-block">
+    <div class="course-details-title-block g-col-12 g-col-sm-8 order-2 order-sm-1 text-center text-sm-start">
+        <h1 class="course-title">
+            <b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b>
+        </h1>
+        <div class="course-subtitle">
+            <p></p>
+        </div>
+        <div class="course-meta">
+            <p><i>lv3060<br>Winter term 2022/2023<br>Institute of Entrepreneurship<br>TUHH</i></p>
+        </div>
+    </div>
+    <div class="g-col-12 g-col-sm-4 order-1 order-sm-2">
+      <div class="grid" style="--bs-columns: 5;">
+        <div class="g-col-1 g-col-sm-0"></div>
+        <div class="g-col-3 g-col-sm-5"><img src="images/icon_cds_text.png" class="img-fluid"></div>
+        <div class="g-col-1 g-col-sm-0"></div>
+      </div>
+    </div>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<hr>
+<div class="course_description">
+<p><strong>Distinguishing causal relationships from simple correlation</strong> is what commonly used approaches in business analytics often fall short of. In this course, we will provide you with the <strong>skill set to answer questions like</strong></p>
+<ul>
+<li><p><em>what happens to</em> <span class="math inline">\(Y\)</span> <em>if we do</em> <span class="math inline">\(X\)</span><em>?</em></p></li>
+<li><p><em>was it</em> <span class="math inline">\(X\)</span> <em>that caused</em> <span class="math inline">\(Y\)</span> <em>to change?</em></p></li>
+</ul>
+<p>Introducing you to <strong>causal inference with the help of data science</strong> will allow you to <strong>carry out state-of-the-art causal analyses</strong> by yourself and <strong>extrapolate causal knowledge</strong> <strong>across different business contexts and various management areas</strong>.</p>
+</div>
+<hr>
+<div class="grid">
+<section id="instructor" class="level2 g-col-6">
+<h2 class="anchored" data-anchor-id="instructor">INSTRUCTOR</h2>
+<p><i class="fa-solid fa-user" aria-label="user"></i> Oliver Mork</p>
+<p><i class="fa-solid fa-envelope" aria-label="envelope"></i> oliver.mork@tuhh.de</p>
+<p><i class="fa-solid fa-university" aria-label="university"></i> https://www.startupengineer.io/</p>
+</section>
+<section id="course-details" class="level2 g-col-6">
+<h2 class="anchored" data-anchor-id="course-details">COURSE DETAILS</h2>
+<p><i class="fa-solid fa-calendar-alt" aria-label="calendar-alt"></i> 23.11. / 30.11. / 07.12.</p>
+<p><i class="fa-solid fa-clock" aria-label="clock"></i> 09:00 - 17:00</p>
+<p><i class="fa-solid fa-location-dot" aria-label="location-dot"></i> HS28 - 1.006</p>
+</section>
+</div>
 
 
 
@@ -263,6 +295,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+  </div>
+</footer>
 
 
 

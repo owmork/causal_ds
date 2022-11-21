@@ -29,14 +29,18 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  background = "#1C1C1C",
-  line = c("#d0cfcf", "#d0cfcf"),
-  text = c("#d0cfcf", "#d0cfcf"),
-  gridline = c("#7a7d7d", "#7a7d7d")
+  #background = "#1C1C1C",
+  background = "#011627",
+  line = c("#FFFFFF", "#FFFFFF"),
+  text = c("#FFFFFF", "#FFFFFF"),
+  gridline = c("#D0D0CE", "#D0D0CE")
 )
 
 # set theme
 ggthemr::ggthemr(cds_theme, type = "outer")
+
+# source custom DAG theme
+source("../../code/dag_theme.R")
 ```
 
 ```{r warning=FALSE, message=FALSE}
@@ -76,7 +80,6 @@ Z -> D
 Z -> Y
 D -> Y
 }'
-
 ggdag(confounder) + theme_dag()
 ```
 
@@ -98,34 +101,28 @@ matched_stuff <- tibble(education = rnorm(50, 20, 3)) %>%
   mutate(outcome = 15 + education * rnorm(n(), -0.2, 0.05), 
          treatment = as.logical(rbinom(n(), 1, 0.5)),
          type = "Matched")
-
 # Observations control (low education)
 unmatched_stuff_low <- tibble(education = rnorm(20, 12, 2),
                           outcome = rnorm(20, 5, 2),
                           treatment = FALSE, 
                           type = "Unmatched")
-
 # Observations control (high education)
 unmatched_stuff_high <- tibble(education = rnorm(5, 28, 1),
                                outcome = rnorm(5, 5, 0.5),
                                treatment = FALSE,
                                type = "Unmatched")
-
 # All observations
 all_data <- bind_rows(matched_stuff, 
                       unmatched_stuff_low,
                       unmatched_stuff_high) %>%
   mutate(treatment = factor(treatment, 
                             labels = c("Untreated", "Treated")))
-
 # Part of data that has matches (with factor treatment)
 matched_stuff_real <- filter(all_data, type == "Matched")
-
 # Wrong model
 model_wrong <-
   lm(outcome ~ education + treatment, data = all_data) %>% 
   broom::tidy()
-
 # Wrong model with square term
 model_wrong1 <- lm(outcome ~ education + treatment + I(education^2), 
                    data = all_data)
@@ -133,11 +130,9 @@ model_wrong1_fitted <-
   expand_grid(education = seq(8, 30, 0.1),
               treatment = c("Treated", "Untreated")) %>% 
   broom::augment(model_wrong1, newdata = .)
-
 # Better model
 model_better <- lm(outcome ~ education + treatment, data = matched_stuff_real) %>% 
   broom::tidy()
-
 # Better model with square term
 model_better1 <- lm(outcome ~ education + treatment + I(education^2), data = matched_stuff_real)
 model_better1_fitted <- expand_grid(education = seq(8, 30, 0.1),
@@ -237,19 +232,16 @@ Z -> D
 Z -> Y
 D -> Y
 }'
-
 ggdag(confounder) + theme_dag()
 ```
 
 ```{r}
 # number of observations
 n <- 1e+3
-
 # variables
 Z <- rbernoulli(n, 0.5) # 0 => Male, 1 => Female
 D <- rbernoulli(n, p = if_else(Z, 0.65, 0.35)) # 1 => Treat, 0 => Control
 Y <- 0.2*D - 0.1*Z + rnorm(n, 5, 0.1) # => e.g. Salary
-
 df <- tibble(
   Z = Z,
   D = D,
@@ -266,7 +258,6 @@ Let's see what a naive comparison would return, where we would just compare aver
 #broom::tidy(lm(Y ~ D, df))
 E_0 <- mean(df[df$D==F, ]$Y)
 E_1 <- mean(df[df$D==T, ]$Y)
-
 E_1 - E_0
 ```
 
@@ -279,7 +270,6 @@ E_00 <- mean(df[(df$Z==F & df$D==F), ]$Y)
 E_10 <- mean(df[(df$Z==T & df$D==F), ]$Y)
 E_01 <- mean(df[(df$Z==F & df$D==T), ]$Y)
 E_11 <- mean(df[(df$Z==T & df$D==T), ]$Y)
-
 # Weighted by K
 K <- mean(Z)
 K*(E_11-E_10) + (1-K)*(E_01 - E_00)
@@ -308,12 +298,10 @@ df <- tibble(
   m  = as.factor(c(0, 1, 0, 0, 0)),
   w  = c()
 )
-
 treated <- tibble(
   x1 = 2.2,
   x2 = 2.2
 )
-
 p1 <- ggplot(df, aes(x = x1, y = x2)) +
   geom_point(size = 4) +
   geom_point(aes(x = treated$x1, treated$x2),
@@ -321,7 +309,6 @@ p1 <- ggplot(df, aes(x = x1, y = x2)) +
   coord_cartesian(xlim = c(0, 4),
                   ylim = c(0, 4)) +
   theme(legend.position = "none")
-
 p2 <- ggplot(df, aes(x = x1, y = x2, color = m)) +
   geom_point(size = 4) +
     geom_point(aes(x = treated$x1, treated$x2),
@@ -329,18 +316,14 @@ p2 <- ggplot(df, aes(x = x1, y = x2, color = m)) +
   coord_cartesian(xlim = c(0, 4),
                   ylim = c(0, 4)) +
   theme(legend.position = "none")
-
 euclidean <- function(a, b) sqrt(sum((a - b)^2))
-
 distance <- lapply(1:nrow(df), function(row) {
   vec_df <- c(df$x1[row], df$x2[row])
   vec_tr <- as_vector(treated)
   
   euclidean(vec_df, vec_tr)
 }) %>% unlist()
-
 df$w <- 1/distance
-
 p3 <- ggplot(df, aes(x = x1, y = x2, size = w)) +
   geom_point() +
     geom_point(aes(x = treated$x1, treated$x2),
@@ -348,7 +331,6 @@ p3 <- ggplot(df, aes(x = x1, y = x2, size = w)) +
   coord_cartesian(xlim = c(0, 4),
                   ylim = c(0, 4)) +
   theme(legend.position = "none")
-
 gridExtra::grid.arrange(p1, p2, p3, ncol=3)
 ```
 
@@ -377,7 +359,6 @@ Z -> D
 Z -> Y
 D -> Y
 }'
-
 ggdag(confounder) + 
   annotate("text", x = 0.5, y = 1, label = "Z fixed at constant level") +
   theme_dag()
@@ -439,12 +420,10 @@ dag_model <- 'dag {
   Age -> "Initial Health Status"
   Age -> "Sick Days"
 }'
-
 # Directed Acyclic Graph
 ggdag_status(dag_model, text = FALSE, use_labels = "name") +
   guides(color = "none") +
   theme_dag()
-
 # Directed Acyclic Graph with adjustment sets
 ggdag_adjustment_set(dag_model, shadow = T, use_labels = "name", text = F) +
   guides(color = "none") +  # Turn off legend
@@ -461,15 +440,12 @@ adjustmentSets(dag_model)
 # [3] Generate synthetic data ----
 # Number of observations
 n <- 1e+4
-
 # Z_1: age
 age <- scales::rescale(
   rbeta(n, shape1 = 3, shape2 = 2), 
   to = c(18, 65))
-
 # Z_2: initial health status (sick days before)
 sick_days_before <- round(rexp(n, 25/age) + rnorm(n, 2, 0.5))
-
 # D: participation in health program
 d_cont <- 0.04*age + sick_days_before + rnorm(n)
 health_program <- if_else(
@@ -483,7 +459,6 @@ mean(health_program)
 sick_days <- round(
   0.04*age + sick_days_before + 0.5*health_program + rnorm(n, 2, 1)
   )
-
 # Add variables to tibble
 df <- tibble(
   age              = age,
@@ -491,7 +466,6 @@ df <- tibble(
   health_program   = health_program,
   sick_days        = sick_days
 )
-
 ```
 
 A naive estimate would be
@@ -518,7 +492,6 @@ cem <- matchit(health_program ~ age + sick_days_before,
                data = df, 
                method = 'cem', 
                estimand = 'ATE')
-
 # Covariate balance
 summary(cem)
 ```
@@ -527,7 +500,6 @@ We are already closer to our true treatment effect.
 
 ```{r}
 df_cem <- match.data(cem)
-
 # (2) Estimation
 model_cem <- lm(sick_days ~ health_program, data = df_cem, weights = weights)
 broom::tidy(model_cem)
@@ -544,7 +516,6 @@ cem_coars <- matchit(health_program ~ age + sick_days_before,
                      method = 'cem', 
                      estimand = 'ATE',
                      cutpoints = cutpoints)
-
 # Covariate balance
 summary(cem_coars)
 ```
@@ -553,7 +524,6 @@ We can also visualize the subsamples and see how data points are weighted.
 
 ```{r}
 df_cem_coars <- match.data(cem_coars)
-
 # Plot grid
 ggplot(df_cem_coars, aes(x = age, y = sick_days_before,
                          size = weights, color = as.factor(health_program))) +
@@ -588,7 +558,6 @@ nn <- matchit(health_program ~ age + sick_days_before,
               method = "nearest",
               distance = "mahalanobis",
               replace = T)
-
 # Covariate Balance
 summary(nn)
 ```
@@ -597,7 +566,6 @@ This method also brings us closer to the true treatment effect.
 
 ```{r}
 df_nn <- match.data(nn)
-
 # (2) Estimation
 model_nn <- lm(sick_days ~ health_program, data = df_nn, weights = weights)
 broom::tidy(model_nn)
@@ -657,7 +625,6 @@ where only one of the terms is always active as $D_i$ is either one or zero. Now
 ```{r}
 df_ipw <- df_aug %>% mutate(
   ipw = (health_program/propensity) + ((1-health_program) / (1-propensity)))
-
 df_ipw %>% 
   select(health_program, age, sick_days_before, propensity, ipw)
 ```
@@ -682,8 +649,6 @@ Some propensity values are very extreme and therefore obtain an extreme weight. 
 df_ipw %>% 
   select(health_program, age, sick_days_before, propensity, ipw) %>% 
   arrange(desc(ipw))
-
-
 model_ipw_trim <- lm(sick_days ~ health_program,
                 data = df_ipw %>% filter(propensity %>% between(0.15, 0.85)),
                 weights = ipw)

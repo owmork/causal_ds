@@ -29,14 +29,18 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  background = "#1C1C1C",
-  line = c("#d0cfcf", "#d0cfcf"),
-  text = c("#d0cfcf", "#d0cfcf"),
-  gridline = c("#7a7d7d", "#7a7d7d")
+  #background = "#1C1C1C",
+  background = "#011627",
+  line = c("#FFFFFF", "#FFFFFF"),
+  text = c("#FFFFFF", "#FFFFFF"),
+  gridline = c("#D0D0CE", "#D0D0CE")
 )
 
 # set theme
 ggthemr::ggthemr(cds_theme, type = "outer")
+
+# source custom DAG theme
+source("../../code/dag_theme.R")
 ```
 
 # Introduction
@@ -56,10 +60,11 @@ $X$ is called the **running variable** and is a continuous variable assigning un
 -   Cut-off/threshold: ...
 
 ```{r}
+#| message: false
+
 library(tidyverse)
 library(ggdag)
 library(dagitty)
-
 # Initial situation
 dag_model_1 <- dagitty(
   'dag {
@@ -80,7 +85,6 @@ X -> Y
 dag_1 <- ggdag_status(dag_model_1) +
   guides(color = "none") +
   theme_dag()
-
 # Exploiting cut-off
 dag_model_2 <- dagitty(
   'dag {
@@ -99,7 +103,6 @@ X_c -> D
 dag_2 <- ggdag_status(dag_model_2) +
   guides(color = "none") +
   theme_dag()
-
 gridExtra::grid.arrange(dag_1, dag_2, ncol = 2)
 ```
 
@@ -135,7 +138,7 @@ The continuity assumption is crucial for conducting a valid RDD and that is why 
 
 -   nonrandom heaping along running variable
 
-![](images/paste-3209D5B2.png)
+![Nonrandom heaping - Example Marathon](/images/09_heaping.png){fig-align="center" width="400"}
 
 # Estimation and Inference
 
@@ -150,30 +153,23 @@ You might already see how we can use RDD in this application to identify the eff
 ```{r include=FALSE}
 # [0] Generate Data ----
 # Scenario: no confounder, sharp cut-off
-
 # Choose total number of restaurants to generate
 n <- 5e+3
-
 # Simulate seats
 size <- round(runif(n, 10, 100))
-
 # Simulate "management" including things like marketing and other revenue-
 # increasing measure.
 management <- rbinom(n, 1, size/100)
-
 # Simulate raw rating between 8 and 10 sampling from a uniform distribution.
 # Restaurants with management tend to have higher scores.
 user_rating <- (runif(n, 8, 10) + rnorm(5, 5)) %>% 
   scales::rescale(to = c(8, 10))
-
 # Define cutoff at 9. Ratings below cutoff value are labeled "good" (F) and 
 # ratings above cutoff are labeled "very good" (T).
 c0 <- 9
 label <- ifelse(user_rating >= c0, T, F) 
-
 # Center running variable (not necessary but very common in practice).
 user_rating_centered <- user_rating - c0
-
 # Define how revenue is generated. Add a noise term.
 revenue <- 2*user_rating +
   #12*((user_rating_centered+1)^(1/2)) +
@@ -184,7 +180,6 @@ revenue <- 2*user_rating +
   10*(size/20)^1/4 +
   #(management*rnorm(n, 0.2, 0.1)*size)^2 +
   rnorm(n, 10, 20)
-
 # Create table
 df <- tibble(
   user_rating = user_rating,
@@ -272,7 +267,6 @@ There is no safe rule how to best select the bandwidth, although there are algor
 # Plot regression lines for full and specified bandwidth.
 # Specify bandwidth
 bw <- c0 + c(-0.15, 0.15)
-
 # Subsets below and above threshold in specified bandwidth
 df_bw_below <- df %>% filter(user_rating %>% between(bw[1], c0))
 df_bw_above <- df %>% filter(user_rating %>% between(c0, bw[2]))
@@ -314,10 +308,8 @@ Then, using the resulting coefficients, we compute what both models predict for 
 # Extract values for vertical lines to visualize local average treatment effect
 model_bw_below <- lm(revenue ~ user_rating, df_bw_below)
 model_bw_above <- lm(revenue ~ user_rating, df_bw_above)
-
 y0 <- predict(model_bw_below, tibble(user_rating = c0))
 y1 <- predict(model_bw_above, tibble(user_rating = c0))
-
 late <- y1 - y0
 late
 ```
@@ -328,7 +320,6 @@ It's a bit messy when we plot all observations, so let's zoom in to see if we ca
 # Minimum and maximum for y-axis limits
 min_y <- min(df_bw$revenue)
 max_y <- max(df_bw$revenue)
-
 # Add lines for vertical distance and change limits of x-axis.
 dep_var_bw <- 
   ggplot(df_bw, aes(x = user_rating, y = revenue, color = rating_label)) +

@@ -29,7 +29,8 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  background = "#1C1C1C",
+  #background = "#1C1C1C",
+  background = "#011627",
   line = c("#FFFFFF", "#FFFFFF"),
   text = c("#FFFFFF", "#FFFFFF"),
   gridline = c("#D0D0CE", "#D0D0CE")
@@ -37,6 +38,9 @@ cds_theme <- ggthemr::define_palette(
 
 # set theme
 ggthemr::ggthemr(cds_theme, type = "outer")
+
+# source custom DAG theme
+source("../../code/dag_theme.R")
 ```
 
 # **Introduction**
@@ -216,7 +220,9 @@ The resulting line is highlighted in blue.
 
 If we want to mathematically compute the line in R, we have to use the `lm()` function and provide data and the assumed functional relationship as arguments. `lm()` is a function you will see a lot and it is used to fit linear models. It returns a fitted object (here: `lm_mod`), which we can interpret best when using `summary()` to show the resulting coefficients and other statistical information.
 
+::: callout-note
 | `lm()` is a function that fits a linear model. You have to provide data and a regression equation in the form of for example `outcome ~ regressor_1 + regressor_2` or `outcome ~ .`, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call `summary()`.
+:::
 
 Looking at the regression summary, we see that the line is modeled by $y = -0.11797 + 0.3466*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.3466 increase in $y$.
 
@@ -420,7 +426,9 @@ summary(df, digits = 3)
 
 Let's also check how the variables are correlated with each other. In case variables were fully linearly dependent, we could already see it here. Then, we were not able to run a linear regression or at least it would be meaningless.
 
+::: callout-note
 | To compute correlation, variance and covariance, respectively, you can use `cor()`, `var()` and `cov()`.
+:::
 
 ```{r}
 # Show correlation
@@ -566,7 +574,7 @@ From the summary, we can see that including the square term significantly improv
 
 3.  **Independence**: Observations are independent of each other. Residuals are independent of each other.
 
-4.  Normality: For any fixed value of $X$, $Y$ is normally distributed. Residuals of the model are normally distributed.
+4.  **Normality**: For any fixed value of $X$, $Y$ is normally distributed. Residuals of the model are normally distributed.
 
 # Assignment
 

@@ -37,5 +37,11 @@
   },
   "content/toolbox/08_iv.qmd": {
     "08_iv.html": "e3ec8b0b"
+  },
+  "content/fundamentals/01_prob.knit.md": {
+    "01_prob.knit.html": "0c932057"
+  },
+  "content/fundamentals/02_reg.knit.md": {
+    "02_reg.knit.html": "9f22f500"
   }
 }

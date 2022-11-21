@@ -29,14 +29,17 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  background = "#1C1C1C",
-  line = c("#d0cfcf", "#d0cfcf"),
-  text = c("#d0cfcf", "#d0cfcf"),
-  gridline = c("#7a7d7d", "#7a7d7d")
+  #background = "#1C1C1C",
+  background = "#011627",
+  line = c("#FFFFFF", "#FFFFFF"),
+  text = c("#FFFFFF", "#FFFFFF"),
+  gridline = c("#D0D0CE", "#D0D0CE")
 )
 
-# set theme
-ggthemr::ggthemr(cds_theme, type = "outer")
+# set themeggthemr::ggthemr(cds_theme, type = "outer")
+
+# source custom DAG theme
+source("../../code/dag_theme.R")
 ```
 
 # Introduction
@@ -111,16 +114,13 @@ Let's see what that means. We assume that we have a population of 100'000 indivi
 
 ```{r message=FALSE}
 library(tidyverse)
-
 # population size
 n <- 1e+5 
-
 # create population with two characteristics
 X <- tibble(
   age = runif(n, 18, 65), # draw random values from uniform distribution
   sex = rbinom(n, 1, 0.5) # draw random values from binomial distribution
 )
-
 # show first values
 head(X)
 ```
@@ -140,12 +140,10 @@ As we have 100'000 people in our population, we will vary sample sizes from 100 
 ```{r}
 # vector of sample sizes
 sss <- c(50, 100, 500, seq(1000, 1e+5, 1000))
-
 # empty list to store average tables in
 avg_tbl_age_lst <- list()
 avg_tbl_sex_lst <- list()
 tbl_sampled_lst <- list()
-
 # for sample size in sample sizes
 for (ss in sss) {
   # sample from population
@@ -202,9 +200,7 @@ As you can see in the plot, group average characteristics converge with increasi
 # combine tables to one larger table
 avg_age <- avg_tbl_age_lst %>% bind_rows()
 avg_sex <- avg_tbl_sex_lst %>% bind_rows()
-
 avgs_tbl <- avg_age %>% bind_rows(avg_sex)
-
 # plot convergence
 ggplot(avgs_tbl, aes(x = sample_size, y = delta_abs)) +
   geom_line() +
@@ -221,7 +217,6 @@ Let's just use a sample size of 40'000 units. That means there should be about \
 # Sample selection ----
 ss_selected <- 40000
 df <- tbl_sampled_lst[[paste(ss_selected)]]
-
 # DO NOT INCLUDE
 df_out <- df %>%
   mutate(outcome = 0.2*treatment 
@@ -271,7 +266,6 @@ compare_age <-
                fun.args = list(mult=1.96),
                show.legend = F) +
   labs(x = NULL, y = "Age", title = "Difference in age")
-
 compare_sex <- 
   ggplot(df_out, 
          aes(x = treatment, 
@@ -282,7 +276,6 @@ compare_sex <-
                fun.args = list(mult=1.96),
                show.legend = F) +
   labs(x = NULL, y = "Sex", title = "Difference in sex")
-
 compare_outcome <- 
   ggplot(df_out, 
          aes(x = treatment, 
@@ -293,7 +286,6 @@ compare_outcome <-
                fun.args = list(mult=1.96),
                show.legend = F) +
   labs(x = NULL, y = "Outcome", title = "Difference in outcome")
-
 # plot age, sex and outcome differences for both groups
 ggpubr::ggarrange(compare_age, compare_sex, compare_outcome, ncol = 3) 
 ```
@@ -352,14 +344,12 @@ In such cases, researchers need to rely on observational studies to estimate eff
 
 ```{r}
 library(ggdag)
-
 # observational studies
 # define coordinates
 obs_coords <- list(
   x = c(D = 0, Z = 0.5, Y = 1),
   y = c(D = 0, Z = 1, Y = 0)
   )
-
 # define dependencies
 obs_topic_DAG <- dagify(
   Y ~ D,
@@ -368,10 +358,8 @@ obs_topic_DAG <- dagify(
   exposure = "D",
   outcome  = "Y",
   coords = obs_coords)
-
 # arrow descriptions
 obs_type <- c(NA, NA, NA, NA)
-
 # plot DAG
 obs_dag <- ggdag(obs_topic_DAG, node_size = 10) +
   geom_dag_edges_link(
@@ -380,14 +368,12 @@ obs_dag <- ggdag(obs_topic_DAG, node_size = 10) +
     label_dodge = grid::unit(2.5, "mm"),
     arrow = grid::arrow(length = grid::unit(4, 'mm'))) +
   theme_dag()
-
 # experimental studies
 # define coordinates
 exp_coords <- list(
   x = c(D = 0, Z = 0.5, Y = 1),
   y = c(D = 0, Z = 1, Y = 0)
   )
-
 # define dependencies
 exp_topic_DAG <- dagify(
   Y ~ D,
@@ -395,10 +381,8 @@ exp_topic_DAG <- dagify(
   exposure = "D",
   outcome  = "Y",
   coords = exp_coords)
-
 # arrow descriptions
 exp_type <- c(NA, NA, NA)
-
 # plot DAG
 exp_dag <- ggdag(exp_topic_DAG, node_size = 10) +
   geom_dag_edges_link(
@@ -407,7 +391,6 @@ exp_dag <- ggdag(exp_topic_DAG, node_size = 10) +
     label_dodge = grid::unit(2.5, "mm"),
     arrow = grid::arrow(length = grid::unit(4, 'mm'))) +
   theme_dag()
-
 # plot both DAGs side-by-side
 gridExtra::grid.arrange(obs_dag, exp_dag, ncol = 2)
 ```

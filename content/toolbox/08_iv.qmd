@@ -29,14 +29,17 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  background = "#1C1C1C",
-  line = c("#d0cfcf", "#d0cfcf"),
-  text = c("#d0cfcf", "#d0cfcf"),
-  gridline = c("#7a7d7d", "#7a7d7d")
+  #background = "#1C1C1C",
+  background = "#011627",
+  line = c("#FFFFFF", "#FFFFFF"),
+  text = c("#FFFFFF", "#FFFFFF"),
+  gridline = c("#D0D0CE", "#D0D0CE")
 )
 
-# set theme
-ggthemr::ggthemr(cds_theme, type = "outer")
+# set themeggthemr::ggthemr(cds_theme, type = "outer")
+
+# source custom DAG theme
+source("../../code/dag_theme.R")
 ```
 
 # Introduction
@@ -61,7 +64,6 @@ As you can see on the right, now $D$ mediates between an instrument $Z$ and outc
 library(tidyverse)
 library(ggdag)
 library(dagitty)
-
 # Omitted variable bias
 ovb <- dagify(
   D ~ Y,
@@ -76,12 +78,10 @@ ovb <- dagify(
              "Y" = "Outcome", 
              "U" = "Unobserved Variable")
 )
-
 ovb_dag <- ggdag_status(ovb, use_labels = "label", text = T) +
   guides(color = "none") +
   theme_dag() + 
   ggtitle("Omitted Variable Bias")
-
 # Instrumental Variable Estimation
 iv <- dagify(
   D ~ Y,
@@ -98,12 +98,10 @@ iv <- dagify(
              "U" = "Unobserved Variable",
              "Z" = "Instrument")
 )
-
 iv_dag <- ggdag_status(iv, use_labels = "label", text = T) +
   guides(color = "none") +
   theme_dag() + 
   ggtitle("Instrumental Variable Estimation")
-
 # Plot both DAGS
 ggpubr::ggarrange(ovb_dag,
   iv_dag,
@@ -152,7 +150,6 @@ iv_expl <- dagify(
              "U" = "Motivation",
              "Z" = "Distance to training location")
 )
-
 ggdag_status(iv_expl, use_labels = "label", text = T) +
   guides(color = "none") +
   theme_dag()
@@ -189,24 +186,17 @@ For the sake of explanation, we generate a synthetic data set with the variables
 ```{r include=FALSE}
 # Number of observations
 n <- 6e+3
-
 # U -> Unobserved factor: e.g. motivation
 motivation <- rnorm(n, mean = 10, sd = 2.5) %>% scales::rescale()
-
 # Z -> Instrument: Distance to closest training location
 distance <- rbeta(n, shape1 = 7, shape2 = 4) %>% scales::rescale()
-
 # D -> Treatment: Participation in training.
 # First compute unscaled score based on distance and motivation (and noise)
-
 prop_score <- motivation - distance + rnorm(n) %>% scales::rescale()
-
 # Generate a 0/1 variable using the propensity score
 program <- ifelse(prop_score >= median(prop_score), 1, 0)
-
 # Y -> Outcome: Work efficiency (KPI)
 kpi_score <- program + motivation + rnorm(n)
-
 # Add variables to tibble
 df <- tibble(
   distance   = distance,

@@ -1,7 +1,49 @@
 ---
-title: "causal_ds_ws22"
+title: "<b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b>"
+subtitle: ""
+details: "<i>lv3060<br>Winter term 2022/2023<br>Institute of Entrepreneurship<br>TUHH</i>"
+sidebar: false
+toc: false
+page-layout: full
+format:
+  html:
+    template-partials:
+      - html/title-block.html
+course-logo: images/icon_cds_text.png
 ---
 
-This is a Quarto website.
+------------------------------------------------------------------------
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+::: course_description
+**Distinguishing causal relationships from simple correlation** is what commonly used approaches in business analytics often fall short of. In this course, we will provide you with the **skill set to answer questions like**
+
+-   *what happens to* $Y$ *if we do* $X$*?*
+
+-   *was it* $X$ *that caused* $Y$ *to change?*
+
+Introducing you to **causal inference with the help of data science** will allow you to **carry out state-of-the-art causal analyses** by yourself and **extrapolate causal knowledge** **across different business contexts and various management areas**.
+:::
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-6
+## INSTRUCTOR
+
+{{< fa user >}} Oliver Mork
+
+{{< fa envelope >}} oliver.mork@tuhh.de
+
+{{< fa university >}} https://www.startupengineer.io/
+:::
+
+::: g-col-6
+## COURSE DETAILS
+
+{{< fa calendar-alt >}} 23.11. / 30.11. / 07.12.
+
+{{< fa clock >}} 09:00 - 17:00
+
+{{< fa location-dot >}} HS28 - 1.006
+:::
+:::

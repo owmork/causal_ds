@@ -29,14 +29,18 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  background = "#1C1C1C",
-  line = c("#d0cfcf", "#d0cfcf"),
-  text = c("#d0cfcf", "#d0cfcf"),
-  gridline = c("#7a7d7d", "#7a7d7d")
+  #background = "#1C1C1C",
+  background = "#011627",
+  line = c("#FFFFFF", "#FFFFFF"),
+  text = c("#FFFFFF", "#FFFFFF"),
+  gridline = c("#D0D0CE", "#D0D0CE")
 )
 
 # set theme
 ggthemr::ggthemr(cds_theme, type = "outer")
+
+# source custom DAG theme
+source("../../code/dag_theme.R")
 ```
 
 # Introduction
@@ -97,15 +101,25 @@ Let's use an example to understand the rules mentioned above using a Venn diagra
 
 But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current distribution.
 
+::: callout-note
 | `library()` loads external packages/libraries containing functions that are not built in base `R`.
+:::
 
+::: callout-note
 | `tibble()` is the most convenient way to create tables. You specify column name and content and assign your `tibble` to an object to store it.
+:::
 
+::: callout-note
 | `ifelse(test, yes, no)` is a short function for if...else statements. The first argument is a condition that is either `TRUE` or `FALSE` and determines whether the second or third argument is returned.
+:::
 
+::: callout-note
 | `rbinom(n, size, prob)` samples `n` values from a binomial distribution of a given `size` and with given probabilities `prob`.
+:::
 
+::: callout-note
 | `mutate()` is one of the most important functions for data manipulation in tables. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, `mutate(table, new_variable = existing_var / 100)`, which is equivalent to `table %>% mutate(new_variable = existing_var / 100)`.
+:::
 
 ```{r}
 # Load tidyverse package
@@ -133,7 +147,9 @@ app_usage <- app_usage %>%
 
 Here, we simulated some artificial data. Seeing the formulas used for constructing the data, we already know that e.g. customers tend not to use the app on both tablet and computer.
 
+::: callout-note
 | To see the first lines of a table (for example a `tibble()` or a `data.frame()`, you can use the `head(table, n)` function, where `n` specifies how many rows you want to see.
+:::
 
 ```{r}
 head(app_usage, 10)
@@ -141,7 +157,9 @@ head(app_usage, 10)
 
 A general overview of total customers per device category shows that in the smartphone category there are the most users and in the computer category there are the least.
 
+::: callout-note
 | Summing all values by column is done by `colSums(table)`. For rows, you would use `rowSums(table)`.
+:::
 
 ```{r}
 colSums(app_usage)
@@ -149,7 +167,9 @@ colSums(app_usage)
 
 Summing the $user\_id$ does not make any sense. We could ignore it, but we can also just access the columns we want to sum. There are several ways.
 
+::: callout-note
 | To access only specified columns, you can provide the location or names in square brackets or you can use the `select()` function.
+:::
 
 ```{r}
 colSums(app_usage[, 2:4])
@@ -159,7 +179,9 @@ app_usage %>% select(smartphone, tablet, computer) %>% colSums()
 
 Now let's see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.
 
+::: callout-note
 | `which()` checks a condition and returns the indices.
+:::
 
 ```{r}
 set_phon <- which(app_usage$smartphone == 1)
@@ -335,7 +357,9 @@ $$
 E(X) = \frac{1}{6}*1 + \frac{1}{6}*2 + ... + \frac{1}{6}*6 = \frac{1}{6} \sum (1 + 2 + ... + 6)
 $$
 
+::: callout-note
 | To replicate values and create a vector `rep()` can be used. It takes the value and number of times it should be replicated.
+:::
 
 ```{r}
 # Vector of probabilities (all equal)
@@ -357,19 +381,43 @@ $$
 
 Knowing how to compute the expected value of a random variable is essential for computing other statistics such as variance, standard deviation, covariance, correlation etc.
 
+## Conditional Expected Value
+
+The conditional expected value is the expected value conditioned on some other value. Given the value $x$ of $X$, the expected value for $Y$ obtains as
+
+$$
+E[Y|X = x]
+$$
+
+and is a function of $x$. In other words, the conditional expected value is the best guess for $Y$ knowing only that $X=x$.
+
+As a simple example, consider we take a representative random sample from the world population and want to compute the expected value for $height$. Denoting height with $Y$, the expected value for the whole population is the expected value $E[Y]$ over all individuals in your sample.
+
+The conditional expected value, however, differs. For example, conditioned on individuals being younger than ten years or older than than that we expect different values.
+
+$$
+E[Y] \neq E[Y|age < 10] \neq E[Y|age >= 10]
+$$
+
 ## **Variance**
 
 Before we define variance, let's see why it is important to know it. On both graphs we see almost the same line (small difference because of sampling) going through the data points. It is the line that fits the data best. However, there is a difference in how the data points are distributed. On the left graph, there is high variance compared to the right graph. That means, the data is more dispersed.
 
-!!! conditional expectation
-
+::: callout-note
 | `seq(from, to, by)` or `seq(from, to, length.out)` returns a vectors with a sequence as specified by the arguments.
+:::
 
+::: callout-note
 | `rnorm(n, mean, sd)` samples values from the normal distribution. `n` specifies the number of values, `mean` and `sd` define the parameters of the normal distribution.
+:::
 
+::: callout-note
 | `map()` is a very useful function when you want to apply a function to each element of a list or a vector.
+:::
 
+::: callout-note
 | `pivot_longer()` changes the format of a table by pivoting columns into rows. To pivot rows into columns, you need `pivot_wider()`.
+:::
 
 ```{r echo=FALSE}
 # 100 step-wise values from 1 to 5
@@ -435,11 +483,17 @@ which in case of independence reduces to the sum of the individual variances due
 
 Covariance determines the relationship between two or more random variables, i.e. how they behave to each other. For example, when the weather is hot, there are more ice cream sales, so these two random variables move in the same direction. Others do not have any statistical association or move into opposite direction.
 
+::: callout-note
 | `as_tibble()` or `as.data.frame()` can be used to change e.g. matrices or lists into tables.
+:::
 
+::: callout-note
 | `rbind()` or `bind_rows()` are used to bind rows, vectors or tables to one table. They behave slightly different, so you should know both functions. The counterparts for columns are `cbind()` and `bind_cols()`.
+:::
 
+::: callout-note
 | To rename columns, you can use `rename(new_name = old_name)`.
+:::
 
 ```{r echo=FALSE}
 # Create the variance covariance matrix
