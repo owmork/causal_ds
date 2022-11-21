@@ -16,34 +16,27 @@ According to a large global survey conducted among data science practitioners in
 
 In the course of the next chapters, we will do a lot of coding and errors will occur all the time. That is nothing you should be afraid of and in fact, dealing with errors is an elementary component in programming in data science.
 
-In  most cases, other people from around the world have had similar problems and you will find the right solution to your problem by just googling it. Two great resources to help you are [StackOverflow](https://stackoverflow.com/) and [RStudio Community](https://community.rstudio.com/). Please try to do that as a first step when you run into an error.
+In most cases, other people from around the world have had similar problems and you will find the right solution to your problem by just googling it. Two great resources to help you are [StackOverflow](https://stackoverflow.com/) and [RStudio Community](https://community.rstudio.com/). Please try to do that as a first step when you run into an error.
 
-If you don't find a solution and feel you are stuck, don't hesitate to use our Mattermost channel. Follow these steps to join the channel:
+If you have any questions about the class content, coding problems and other challenges, please use our Mattermost channel, so that everyone can benefit from the discussions. Please help each other, try to answer emerging questions and actively engage in the channel. Questions, that are not directly related to the class content, can be sent to me.
 
-You have to do the following steps to join our Mattermost channel:\
-\
+Follow these steps to join the channel:
 
-1. <https://communicating.tuhh.de/>\
+1.  Go on <https://communicating.tuhh.de/>
 
-2. Click \"Click here to sign in\"\
+2.  Click **Click here to sign in**
 
-3. Click the Button GitLab\
+3.  Click the Button **GitLab**
 
-4. You may need to login to GitLab <https://collaborating.tuhh.de/>
-with your Kerberos/LDAP data (e.g. abc1020 and your password) on the
-following page and/or authorize once for Mattermost to access GitLab.
-You may also need to accept the terms.\
+4.  *You may need to login to GitLab with your Kerberos/LDAP data (e.g. cba1020 and your password) on the following page and/or authorize once for Mattermost to access GitLab. You may also need to accept the terms.*
 
-5. After accessing Mattermost, join the team W-11 students via this link:
+5.  After accessing Mattermost, join the [team W-11 students](https://communicating.tuhh.de/signup_user_complete/?id=8f44fef8tifj5rripq8zya4s7w)
 
-1.  Sign-up for GitLab/Mattermost
-2.  To join W-11 students: https://communicating.tuhh.de/signup_user_complete/?id=8f44fef8tifj5rripq8zya4s7w
-3.  Join Channel !!! https://communicating.tuhh.de/w-11-students/channels/test_intro
+6.  Join [Causal Data Science Channel](https://communicating.tuhh.de/w-11-students/channels/discussion)
 
-There, and in the classes of course, I will try to help you as much as possible. But in order to keep it efficient and manageable it is necessary that we all follow some basic rules:
+There, and in the classes of course, I will try to help you as much as possible.
 
-If you have any questions about the class content, coding problems and other challenges, please ask them first in the Mattermost channel, so that everyone can benefit from the discussions. Please help each other, try to answer emerging questions and actively engage in the channel. Questions, that are not directly related to the class content, can be
-sent to me.
+In order to keep the discussion efficient and manageable it is necessary that we all follow some basic rules:
 
 -   Post error message: if you run into an error it is necessary that I know what the error is. Often reading the error message very carefully can also help you to understand where the problem comes from.
 
@@ -68,7 +61,7 @@ Error in x %>% sum() : could not find function "%>%"
 </code></pre>
 ````
 
-[![Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read.](/images/00_mattermost.png){width="400"}](https://docs.mattermost.com/channels/format-messages.html)
+![Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read.](/images/00_mattermost.png){alt="Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read." width="400"}
 
 ## Installing R & RStudio IDE
 
@@ -173,7 +166,7 @@ install.packages("vctrs", repos = "https://packagemanager.rstudio.com/cran/lates
 
 At the end of each chapter, you will find an assignment. These assignments are related to the same chapter and with your acquired knowledge, you should be able to solve it.
 
-You have to **submit your solutions to the assignments by 31/01/2023** in order to pass the course.
+You have to **submit your solutions to the assignments by 31/01/2023** in order to pass the course. I will provide details how to submit your assignments in our second class on 01/12/2022 (and of course, also here on this website).
 
 !!! TUNE?
 

@@ -28,7 +28,8 @@ website:
           file: content/index.qmd
         - section: "Fundamentals"
           contents:
-            - content/fundamentals/01_prob.qmd
+            - content/fundamentals/01_a_prob.qmd
+            - content/fundamentals/01_b_stats.qmd
             - content/fundamentals/02_reg.qmd
             - content/fundamentals/03_caus.qmd
             - content/fundamentals/04_dag.qmd

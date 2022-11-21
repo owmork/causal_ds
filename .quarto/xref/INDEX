@@ -43,5 +43,11 @@
   },
   "content/fundamentals/02_reg.knit.md": {
     "02_reg.knit.html": "9f22f500"
+  },
+  "content/fundamentals/01_b_stats.qmd": {
+    "01_b_stats.html": "a0a707b0"
+  },
+  "content/fundamentals/01_a_prob.qmd": {
+    "01_a_prob.html": "3001e5ff"
   }
 }

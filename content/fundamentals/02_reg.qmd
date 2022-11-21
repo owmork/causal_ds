@@ -1,7 +1,7 @@
 ---
 title: "Regression and Statistical Inference"
 linktitle: "Regression and Statistical Inference"
-date: "2022-10-01"
+date: "2022-11-23"
 output:
   blogdown::html_page:
     toc: true
@@ -29,11 +29,11 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  #background = "#1C1C1C",
-  background = "#011627",
+  background = "#0F2231",
   line = c("#FFFFFF", "#FFFFFF"),
   text = c("#FFFFFF", "#FFFFFF"),
-  gridline = c("#D0D0CE", "#D0D0CE")
+  gridline = c(ggplot2::alpha("#D0D0CE", 0.2), 
+               ggplot2::alpha("#D0D0CE", 0.4))
 )
 
 # set theme
@@ -144,17 +144,21 @@ Let's have a look at some random lines.
 #| echo: false
 
 # Function to create a random line
-random_line <- function(){
+rline <- function(){
   tibble(x = c(min(lm_dat$x), max(lm_dat$x)),
-         y = c(runif(1, min(lm_dat$y), max(lm_dat$y)),
-               runif(1, min(lm_dat$y), max(lm_dat$y))))
+         y = c(runif(1, -0.3, 0.3) + min(lm_dat$y),
+               runif(1, -0.3, 0.3) + max(lm_dat$y)))
 }
 
+# Create 10 random lines
+rlines <- map(1:10, ~rline())
+
+# Change line color
 line_color <- ggthemr::swatch()[1]
 
 # Scatter plot of x and y with random lines
 ggplot(lm_dat, aes(x = x, y = y)) + 
-  geom_point(alpha = .8, size = 3) +
+  geom_point(size = 3) +
   # LM line
   geom_line(stat = "smooth",
             method='lm',
@@ -162,23 +166,18 @@ ggplot(lm_dat, aes(x = x, y = y)) +
             alpha = .5,
             se = F, 
             color = line_color,
-            size = 1) +
+            linewidth = 1) +
   # Random lines
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1)
+  geom_line(data = rlines[[1]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[2]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[3]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[4]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[5]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[6]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[7]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[8]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[9]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[10]], color = line_color, alpha = .5, linewidth = 1)
 ```
 
 You can see there is an infinite amount of potential lines that could be chosen to go through the data. But only one of them is the line minimizing the sum of squares. The residual, which is the distance between the line and an observation, should be minimized. This also means that on average, the error is zero.
@@ -188,33 +187,26 @@ You can see there is an infinite amount of potential lines that could be chosen 
 
 # Scatter plot of x and y with random lines
 ggplot(lm_dat, aes(x = x, y = y)) + 
-  geom_point(alpha = .8, size = 3) +
+  geom_point(size = 3) +
   # LM line
   geom_line(stat = "smooth",
             method='lm',
             formula= y~x,
             alpha = .9,
             se = F, 
-            size = 3) +
+            linewidth = 3) +
   # Random lines
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1) +
-  geom_line(data = random_line(), color = line_color, alpha = .5, size = 1)
+  geom_line(data = rlines[[1]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[2]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[3]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[4]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[5]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[6]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[7]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[8]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[9]], color = line_color, alpha = .5, linewidth = 1) +
+  geom_line(data = rlines[[10]], color = line_color, alpha = .5, linewidth = 1)
 ```
-
-!!! should be same lines in both plots
 
 The resulting line is highlighted in blue.
 
@@ -224,7 +216,7 @@ If we want to mathematically compute the line in R, we have to use the `lm()` fu
 | `lm()` is a function that fits a linear model. You have to provide data and a regression equation in the form of for example `outcome ~ regressor_1 + regressor_2` or `outcome ~ .`, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call `summary()`.
 :::
 
-Looking at the regression summary, we see that the line is modeled by $y = -0.11797 + 0.3466*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.3466 increase in $y$.
+Looking at the regression summary, we see that the line is modeled by $y = -0.1918 + 0.3354*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.33354 increase in $y$.
 
 ```{r}
 # Fit model and print summary
@@ -383,6 +375,31 @@ df <- fabricate(
   ) %>%
   as_tibble() %>%
   select(-ID)
+```
+
+Let's also save the data.
+
+```{r}
+#| include: false 
+# Save data set
+saveRDS(df, "../../datasets/02_reg/health_ins.rds")
+```
+
+If you don't want to create the data yourself, you could instead download it from [here](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm). All data sets that you are going to need for replicating examples and solving the assignments is stored there.
+
+Loading data is generally referred to as "reading" the data and can be done for a variety of formats. One format, that is particularly convenient in `R` is the `.rds` format. An `.rds` file can be read with `readRDS(path)` and saved with `saveRDS(df, path)`. Note that the `path` argument depends on where you want to save an object or where you want to load it from. It is probably different from the path I used (by the way, `..` moves you a one folder upwards).
+
+::: callout-note
+Reading/saving commands for other file formats are for example
+
+-   `read_csv()` and `write_csv()` from the `readr` package
+
+-   `read_delim()` and `write_delim()` from the `readr` package
+:::
+
+```{r}
+#| include: false
+df <- readRDS("../../datasets/02_reg/health_ins.rds")
 ```
 
 Often, you will deal with large data sets that do not fit on a single page and thus are not easy comprehensible. To still get a good understanding, there are some functions to get an idea of how your data looks like.
@@ -578,6 +595,26 @@ From the summary, we can see that including the square term significantly improv
 
 # Assignment
 
-Load the data (find more information here: <https://www.kaggle.com/datasets/hellbuoy/car-price-prediction?datasetId=383055&language=R>) and perform a linear regression on all available regressors. You will get an error. Try to understand why the error occurs and then fix it (hint: use `df %>% select(-variable_name)`).
+In the [data folder](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm) you find a data set `car_prices.rds`. It is slightly modified of the data set you could also find on [Kaggle](https://www.kaggle.com/datasets/hellbuoy/car-price-prediction?datasetId=383055), the largest data science community worldwide hosting published code and data for a whole variety of applications. Check it out if you are interested!
 
-Afterwards, run the regression and look out for important variables. Take one variable and explain the statistical output given.
+Again, open a new `.R` script/file and name it `02_reg.R`. Then, you should accomplish the following tasks.
+
+::: callout-tip
+You can copy parts of the code from the example. Also keep in mind, that not all functions are built in base `R` but you might have to load a package.
+:::
+
+1.  Read the data and check the dimensions. How many rows and how many columns does the data have? You could use e.g. the `dim()` command.
+
+2.  Use appropriate commands to get a more detailed look at the data. What data types do you see? How do numbers differ from strings regarding their data type?
+
+3.  Run a linear regression. You want to explain what factors are relevant for the pricing of a car.
+
+4.  Choose one regressor and
+
+    1.  explain what data type it is and what values it can take on
+
+    2.  what effect is has on the price and what changing the value would have as a result
+
+    3.  whether its effect is statistically significant.
+
+5.  Add a variable $seatheating$ to the data and assign a value `TRUE` for all observations. You can use e.g. `df %>% mutate(new_variable = value)`. Assign it to a new object and run a regression. What coefficient do you get for the new variable $seatheating$ and how can you explain it?

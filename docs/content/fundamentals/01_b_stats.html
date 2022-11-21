@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-11-23">
+
+<title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Statistical Concepts</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/fundamentals/02_reg.html" rel="next">
+<link href="../../content/fundamentals/01_a_prob.html" rel="prev">
+<link href="../../images/favicon_cds_16x16.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/icon_cds_text.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../content/index.html" aria-current="page">
+ <span class="menu-text">Content</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Statistical Concepts</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Fundamentals</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link">Probability Theory</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link active">Statistical Concepts</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">Regression and Statistical Inference</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">Causal Inference</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link">Directed Acyclic Graphs</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Toolbox</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">Randomized Controlled Trials</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">Matching and Subclassification</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link">Difference-in-Differences</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">Instrumental Variables</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">Regression Discontinuity</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#random-variable" id="toc-random-variable" class="nav-link active" data-scroll-target="#random-variable">Random Variable</a></li>
+  <li><a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value">Expected value</a></li>
+  <li><a href="#conditional-expected-value" id="toc-conditional-expected-value" class="nav-link" data-scroll-target="#conditional-expected-value">Conditional Expected Value</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance"><strong>Variance</strong></a></li>
+  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance"><strong>Covariance</strong></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Statistical Concepts</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 23, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Now we will talk about some statistical concepts, that are the foundation for modeling processes in both statistical and causal inference.</p>
+<section id="random-variable" class="level1">
+<h1>Random Variable</h1>
+<p>For starters, let’s again define what a random variable is. Often represented by letters such as <span class="math inline">\(X\)</span>, a random variable has a set of values, also called sample space, of which any could be the outcome if we draw a random sample from this random variable. Think for example about a die (six possible outcomes). The likelihood of outcomes are defined by a probability distribution that assigns each outcome a probability (for a die, 1/6 for each outcome). A random variable can either take on discrete (e.g.&nbsp;die) or continuous values (e.g.&nbsp;average height of individuals).</p>
+</section>
+<section id="expected-value" class="level1">
+<h1>Expected value</h1>
+<p>A random variable is a real-valued function and can with more than one possible outcomes. This is why we cannot represent it as a scalar. The expected value of random variable, however, is a scalar and represents something like a “summary” of the random variable. Knowing the possible values (from the sample space) and the probability distribution, we can compute the expected value.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The summation operator <span class="math inline">\(\sum\)</span>, denoted by the Greek capital Sigma is used to reduce the sum of a sequence of numbers, like sampled values from a random variable, <span class="math inline">\(x_1, x_2, …, x_n\)</span> to a shorter and more readable form</p>
+<p><span class="math display">\[
+\sum_{i=1}^nx_i \equiv x_1+x_2+\ldots+x_n
+\]</span></p>
+<p>with the arbitrary index of summation <span class="math inline">\(i\)</span> being the lower limit and <span class="math inline">\(n\)</span> the upper limit.</p>
+<p>By basic math rules, the following simplifications are possible, where <span class="math inline">\(c\)</span> is a constant:</p>
+<p><span class="math display">\[
+\sum_{i=1}^nc=nc
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\sum_{i=1}^ncx_i=c\sum_{i=1}^nx_i  
+\]</span></p>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>expected value</em>, also called <em>population mean</em>, of a variable <span class="math inline">\(X\)</span> is defined as the weighted average of possible values the random variable can take, where the weight is equal to the probability of the random variable taking on a specific value.</p>
+</div>
+</div>
+<p>If we want to compute it for a discrete random variable, we make use of the summation operator. Considering a finite list of potential values <span class="math inline">\(x_1, x_2, …, x_k\)</span> with probabilities <span class="math inline">\(p_1, p_2, …, p_k\)</span>, the expectation of <span class="math inline">\(X\)</span> can be computed by</p>
+<p><span class="math display">\[
+E(X) = x_1*p_1 + x_2*p_2 + ... + x_k*p_k = \sum_{j}^{k} x_i*p_i
+\]</span></p>
+<p>As an example, the expected value of a roll of a fair six-sided die, i.e.&nbsp;all outcomes are equally probable with probability of 1/6, is:</p>
+<p><span class="math display">\[
+E(X) = \frac{1}{6}*1 + \frac{1}{6}*2 + ... + \frac{1}{6}*6 = \frac{1}{6} \sum (1 + 2 + ... + 6)
+\]</span></p>
+<p>Probabilities could also be different, as long as they sum to 1. For continuous random variables, we need a function returning the probabilities for each value. We leave that out here as we are only interested in understanding the intuition behind the expected value. However, it is very similar.</p>
+<p>Let’s type in the probabilities and outcomes of rolling a die and see what the expected value is.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To replicate values and create a vector <code>rep()</code> can be used. It takes the value and number of times it should be replicated.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector of probabilities (all equal)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector of possible outcomes</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected value</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(p<span class="sc">*</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.5</code></pre>
+</div>
+</div>
+<p>As you might have expected, it’s 3.5.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Additional rules regarding the calculation of expected values that can be useful are:</p>
+<p><span class="math display">\[
+E(aW+b) = aE(W)+b\ \text{for any constants $a$, $b$} \\
+E(W+H) = E(W)+E(H) \\E\Big(W - E(W)\Big) = 0
+\]</span></p>
+</div>
+</div>
+<p>Knowing how to compute the expected value of a random variable is essential for computing other statistics such as variance, standard deviation, covariance, correlation etc.</p>
+</section>
+<section id="conditional-expected-value" class="level1">
+<h1>Conditional Expected Value</h1>
+<p>The conditional expected value is the expected value conditioned on some other value. Given the value <span class="math inline">\(x\)</span> of <span class="math inline">\(X\)</span>, the expected value for <span class="math inline">\(Y\)</span> obtains as</p>
+<p><span class="math display">\[
+E[Y|X = x]
+\]</span></p>
+<p>and is a function of <span class="math inline">\(x\)</span>. In other words, the conditional expected value is the best guess for <span class="math inline">\(Y\)</span> knowing only that <span class="math inline">\(X=x\)</span>.</p>
+<p>As a simple example, consider we take a representative random sample from the world population and want to compute the expected value for <span class="math inline">\(height\)</span>. Denoting height with <span class="math inline">\(Y\)</span>, the expected value for the whole population is the expected value <span class="math inline">\(E[Y]\)</span> over all individuals in your sample.</p>
+<p>The conditional expected value, however, differs. For example, conditioned on individuals being younger than ten years or older than than that we expect different values.</p>
+<p><span class="math display">\[
+E[Y] \neq E[Y|age &lt; 10] \neq E[Y|age &gt;= 10]
+\]</span></p>
+</section>
+<section id="variance" class="level1">
+<h1><strong>Variance</strong></h1>
+<p>Before we define variance, let’s see why it is important to know. On both graphs we see almost the same line (small difference because of sampling) going through the data points. It is the line that fits the data best. However, there is a difference in how the data points are distributed. On the left graph, there is high variance compared to the right graph. That means, the data is more dispersed.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>seq(from, to, by)</code> or <code>seq(from, to, length.out)</code> returns a vectors with a sequence as specified by the arguments.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>rnorm(n, mean, sd)</code> samples values from the normal distribution. <code>n</code> specifies the number of values, <code>mean</code> and <code>sd</code> define the parameters of the normal distribution.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>map()</code> is a very useful function when you want to apply a function to each element of a list or a vector.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>pivot_longer()</code> changes the format of a table by pivoting columns into rows. To pivot rows into columns, you need <code>pivot_wider()</code>.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="center" data-warnings="false">
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01_b_stats_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Mathematically, the <em>variance</em> is defined as the expectation of the squared deviation of a random variable from its population or sample mean. The <em>sample variance</em> indicates how far a set of observed values spread out from their average value and is an estimate of the full <em>population variance</em>, that in most cases cannot be directly observed due to lack of data of the whole population.</p>
+<p>Mathematically, the <em>population variance</em> is defined as</p>
+<p><span class="math display">\[
+Var(W)=\sigma^2=E\Big[\big(W-E(W)\big)^2\Big]\
+\]</span></p>
+<p>and the <em>sample variance</em> results as</p>
+<p><span class="math display">\[
+\widehat{\sigma}^2=(n-1)^{-1}\sum_{i=1}^n(x_i - \overline{x})^2
+\]</span></p>
+<p>You might have noticed the term <span class="math inline">\((n-1)^{-1}\)</span> is different from what you probably expected (<span class="math inline">\(n^{-1}\)</span>). This is due to a correction, which at this point you should not have to worry about. However, the larger the sample is, the less important this correction is.</p>
+<p>A related measure is the standard deviation, which does not have as many desirable properties for computational purposes but is often reported after all calculations to show the spread of distribution.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># High variance</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Y_hv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.8</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Low variance</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Y_lv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.5</code></pre>
+</div>
+</div>
+<p>The <strong>standard deviation</strong> obtains as the square root of the variance:</p>
+<p><span class="math display">\[
+\sigma = \sqrt{\sigma^2}
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># High standard deviation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Y_hv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Low standard deviation</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># High standard deviation</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Y_lv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.2</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A useful and convenient properties of the variance is that constants have a variance of 0. But if you want to scale a random variable by a constant factor of <span class="math inline">\(a\)</span>, then the variance will increase by <span class="math inline">\(a^2\)</span>.</p>
+<p><span class="math display">\[
+Var(aX+b)=a^2V(X)
+\]</span></p>
+<p>You can also conveniently compute a variance for the sum of two random variables</p>
+<p><span class="math display">\[
+Var(X+Y)=Var(X)+Var(Y)+2\Big(E(XY) - E(X)E(Y)\Big)
+\]</span></p>
+<p>which in case of independence reduces to the sum of the individual variances due to the fact that <span class="math inline">\(E(XY) = E(X)E(Y)\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="covariance" class="level1">
+<h1><strong>Covariance</strong></h1>
+<p>Covariance determines the relationship between two or more random variables, i.e.&nbsp;how they behave to each other. For example, when the weather is hot, there are more ice cream sales, so these two random variables move in the same direction. Others do not have any statistical association or move into opposite direction.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>as_tibble()</code> or <code>as.data.frame()</code> can be used to change e.g.&nbsp;matrices or lists into tables.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>rbind()</code> or <code>bind_rows()</code> are used to bind rows, vectors or tables to one table. They behave slightly different, so you should know both functions. The counterparts for columns are <code>cbind()</code> and <code>bind_cols()</code>.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To rename columns, you can use <code>rename(new_name = old_name)</code>.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
+ℹ Using compatibility `.name_repair`.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]  1.0  0.8  0.0
+[2,]  0.8  1.0 -0.5
+[3,]  0.0 -0.5  1.0</code></pre>
+</div>
+</div>
+<p>From left to right, the graph shows a positive covariance, a negative covariance and no covariance at all.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01_b_stats_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If the equality <span class="math inline">\(E(XY) = E(X)E(Y)\)</span> holds, then it implies a <em>covariance</em> of 0 between the variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. <em>Covariance</em> is a measure of linear dependency and hence, independence implies a covariance of 0. Looking back at the formula of the variance of the sum of two random variables, it thus can be said that it is the sum of variances of both random variables plus two times their covariance.</p>
+<p>As a matter of form, the formula for the covariance of the random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is</p>
+<p><span class="math display">\[
+Cov(X,Y) = E(XY) - E(X)E(Y)
+\]</span></p>
+<p>But, similar to variance, the interpretation of a covariance is not very easy and in most cases, for the purpose of interpretation, it is preferred to look at the <em>correlation</em> which can be derived from the covariance if the individual variances are known.</p>
+<p><span class="math display">\[
+\text{Corr}(X,Y) = \dfrac{C(X,Y)}{\sqrt{V(X)V(Y)}}
+\]</span></p>
+<p>The <em>correlation</em> is a standardized measure and is by construction bound between -1 and 1. High values in magnitude (close to 1 or -1) indicate a very strong linear relationship, while the direction of this relationship is represented by the algebraic sign.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Many of the rules and concepts that you have just learned will play a crucial in the upcoming chapters. Their understanding will guide you through and let you understand why we need to put a particular emphasis on causality, how we can isolate causal effects and build the foundation for many methods from our toolbox.</p>
+</section>
+<section id="assignments" class="level1">
+<h1>Assignments</h1>
+<p>From the <a href="https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm">data folder</a>, load the table <code>random_vars.rds</code>. It contains draws from two random variables, <span class="math inline">\(age\)</span> and <span class="math inline">\(income\)</span>.</p>
+<ol type="1">
+<li>For each variable, compute the following values. You can use the built-in functions or use the mathematical formulas.
+<ol type="1">
+<li><p>expected value</p></li>
+<li><p>variance</p></li>
+<li><p>standard deviation</p></li>
+</ol></li>
+<li>Explain, if it makes sense to compare the standard deviations.</li>
+<li>Then, examine the relationship between both variables and compute:
+<ol type="1">
+<li><p>covariance</p></li>
+<li><p>correlation</p></li>
+</ol></li>
+<li>What measure is easier to interpret? Please discuss your interpretation.</li>
+<li>Compute the conditional expected value for:
+<ol type="1">
+<li><p><span class="math inline">\(E[income|age &lt;= 18]\)</span></p></li>
+<li><p><span class="math inline">\(E[income|age \in [18, 65)]\)</span></p></li>
+<li><p><span class="math inline">\(E[income|age &gt;= 65]\)</span></p></li>
+</ol></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../content/fundamentals/01_a_prob.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability Theory</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../content/fundamentals/02_reg.html" class="pagination-link">
+        <span class="nav-page-text">Regression and Statistical Inference</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+  </div>
+</footer>
+
+
+
+</body></html>
