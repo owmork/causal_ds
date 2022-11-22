@@ -161,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -187,7 +187,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Now we will talk about some statistical concepts, that are the foundation for modeling processes in both statistical and causal inference.</p>
+<p>Now we will talk about some statistical concepts, that are the foundation for modeling processes in both statistical and causal inference. If you sometimes prefer to see additional visual explanations, I can also recommend you to show <a href="https://seeing-theory.brown.edu/basic-probability/index.html">here</a>.</p>
 <section id="random-variable" class="level1">
 <h1>Random Variable</h1>
 <p>For starters, let’s again define what a random variable is. Often represented by letters such as <span class="math inline">\(X\)</span>, a random variable has a set of values, also called sample space, of which any could be the outcome if we draw a random sample from this random variable. Think for example about a die (six possible outcomes). The likelihood of outcomes are defined by a probability distribution that assigns each outcome a probability (for a die, 1/6 for each outcome). A random variable can either take on discrete (e.g.&nbsp;die) or continuous values (e.g.&nbsp;average height of individuals).</p>
@@ -476,6 +476,11 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center" data-warnings="false">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load tidyverse package</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.2 ──
 ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
@@ -484,8 +489,32 @@ Note
 ✔ readr   2.1.3      ✔ forcats 0.5.2 
 ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-`geom_smooth()` using formula = 'y ~ x'</code></pre>
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 100 step-wise values from 1 to 5</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For each value x_i of X sample from normal distribution with mean equal to x_i</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the different values for standard deviation</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Y_lv <span class="ot">&lt;-</span> <span class="fu">map</span>(X, <span class="cf">function</span>(i) <span class="fu">rnorm</span>(<span class="dv">1</span>, i, <span class="fl">0.25</span>)) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>Y_hv <span class="ot">&lt;-</span> <span class="fu">map</span>(X, <span class="cf">function</span>(i) <span class="fu">rnorm</span>(<span class="dv">1</span>, i, <span class="fl">1.5</span>)) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tibble with X and YY values for low and high variance</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">X =</span> X, </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">Y_low_variance =</span> Y_lv,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">Y_high_variance =</span> Y_hv) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Y_low_variance, Y_high_variance))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot both X~Y relations as scatter plot</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(X, value)) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -507,15 +536,15 @@ Var(W)=\sigma^2=E\Big[\big(W-E(W)\big)^2\Big]\
 <p>You might have noticed the term <span class="math inline">\((n-1)^{-1}\)</span> is different from what you probably expected (<span class="math inline">\(n^{-1}\)</span>). This is due to a correction, which at this point you should not have to worry about. However, the larger the sample is, the less important this correction is.</p>
 <p>A related measure is the standard deviation, which does not have as many desirable properties for computational purposes but is often reported after all calculations to show the spread of distribution.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># High variance</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Y_hv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># High variance</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Y_hv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.8</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Low variance</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Y_lv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Low variance</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Y_lv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.5</code></pre>
 </div>
@@ -525,16 +554,16 @@ Var(W)=\sigma^2=E\Big[\big(W-E(W)\big)^2\Big]\
 \sigma = \sqrt{\sigma^2}
 \]</span></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># High standard deviation</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Y_hv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># High standard deviation</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Y_hv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Low standard deviation</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># High standard deviation</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Y_lv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Low standard deviation</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># High standard deviation</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Y_lv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.2</code></pre>
 </div>
@@ -603,11 +632,28 @@ Note
 <p>To rename columns, you can use <code>rename(new_name = old_name)</code>.</p>
 </div>
 </div>
+<p>If you’re interested in how to create correlated variable, you can open the following code chunk.</p>
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the variance covariance matrix</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.8</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.5</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="dv">1</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mean vector</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>) </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the multivariate normal distribution</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="fl">1e+3</span>, <span class="at">mu =</span> mu, <span class="at">Sigma =</span> sigma)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">X1 =</span> V1, <span class="at">X2 =</span> V2, <span class="at">X3 =</span> V3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
 ℹ Using compatibility `.name_repair`.</code></pre>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show variance-covariance matrix</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>sigma</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
 [1,]  1.0  0.8  0.0
@@ -616,12 +662,45 @@ Note
 </div>
 </div>
 <p>From left to right, the graph shows a positive covariance, a negative covariance and no covariance at all.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="at">level =</span> .<span class="dv">99</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Positive correlation"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> X2, <span class="at">y =</span> X3)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="at">level =</span> .<span class="dv">99</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Negative correlation"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X3)) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="at">level =</span> .<span class="dv">99</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"No correlation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="01_b_stats_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="01_b_stats_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></p>
 </figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01_b_stats_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01_b_stats_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -635,6 +714,19 @@ Cov(X,Y) = E(XY) - E(X)E(Y)
 \text{Corr}(X,Y) = \dfrac{C(X,Y)}{\sqrt{V(X)V(Y)}}
 \]</span></p>
 <p>The <em>correlation</em> is a standardized measure and is by construction bound between -1 and 1. High values in magnitude (close to 1 or -1) indicate a very strong linear relationship, while the direction of this relationship is represented by the algebraic sign.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To compute correlation, variance and covariance, respectively, you can use <code>cor()</code>, <code>var()</code> and <code>cov()</code>.</p>
+</div>
+</div>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>

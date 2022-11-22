@@ -47,6 +47,12 @@ source("../../code/dag_theme.R")
 
 Before we dive into topics of causal inference, we review some basic concepts of probability and statistics. All methods that we will use later in this course are based on statistical models and these require probability theory. But we will keep it as short as possible as our focus and learning goal lies more on applications and coding than on the theoretical part.
 
+::: callout-caution
+## Assignments
+
+Please note: in this chapter, there are two assignments in between. In the other chapters, you'll usually find the assignments at the end.
+:::
+
 # Probability
 
 First, we will review some basic concepts of probability theory.
@@ -145,12 +151,6 @@ Consider the following example: you are project manager and based on your are in
 
 ![Probability tree](/images/01_tree.png){fig-align="center" width="450"}
 
-https://www.mashupmath.com/blog/probability-tree-diagrams
-
-https://en.wikipedia.org/wiki/Tree_diagram\_%28probability_theory%29#/media/File:Probability_tree_diagram.svg
-
-*https://eight2late.wordpress.com/2010/03/11/bayes-theorem-for-project-managers/*
-
 ## Assignment 1
 
 Define being on time as event $T$, being not on time as $\overline{T}$, having a change in scope as $S$ and having no change in scope as $\overline{S}$. Then, compute the following probabilities:
@@ -165,6 +165,8 @@ Define being on time as event $T$, being not on time as $\overline{T}$, having a
 
 What is the sum of all four probabilities?
 
+*Hint: Check [here](https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg), if you are not sure what is shown in the probability tree.*
+
 ## **Set Theory**
 
 Another useful tool to visualize the occurrence and relationship between events are Venn diagrams building on set theory. A very simple one we actually already used above to illustrate the difference of mutually exclusive and non-mutually exclusive events.
@@ -172,6 +174,8 @@ Another useful tool to visualize the occurrence and relationship between events 
 Let's use an example to understand the other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices, smartphones, tables and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.
 
 But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current distribution.
+
+We simulate the collection process here. If you are interested how to do it in `R`, check out the code. But you don't have to. And don't worry, if it looks too complicated at this point, just move on.
 
 ::: callout-note
 | `library()` loads external packages/libraries containing functions that are not built in base `R`.
@@ -193,9 +197,9 @@ But now you want to review your pricing plan and evaluate whether it could make 
 | `mutate()` is one of the most important functions for data manipulation in tables. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, `mutate(table, new_variable = existing_var / 100)`, which is equivalent to `table %>% mutate(new_variable = existing_var / 100)`.
 :::
 
-!!! exclude creation and move R explanations
-
 ```{r}
+#| code-fold: true
+
 # Load tidyverse package
 library(tidyverse)
 
@@ -227,6 +231,7 @@ Here, we simulated some artificial data. Seeing the formulas used for constructi
 :::
 
 ```{r}
+# Show first ten lines
 head(app_usage, 10)
 ```
 
@@ -237,6 +242,7 @@ A general overview of total customers per device category shows that in the smar
 :::
 
 ```{r}
+# Show column sums
 colSums(app_usage)
 ```
 
@@ -247,7 +253,7 @@ Summing the $user\_id$ does not make any sense. We could ignore it, but we can a
 :::
 
 ```{r}
-# equivalent commands
+# Equivalent commands to select specific columns
 #colSums(app_usage[, 2:4])
 #colSums(app_usage[, c("smartphone", "tablet", "computer")])
 app_usage %>% select(smartphone, tablet, computer) %>% colSums()
@@ -255,26 +261,33 @@ app_usage %>% select(smartphone, tablet, computer) %>% colSums()
 
 Now let's see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.
 
+![Generic Venn diagram with three sets](/images/01_venn_diag.png){alt="Generic Venn diagram" fig-align="center" width="450"}
+
 ::: callout-note
 | `which()` checks a condition and returns the indices.
 :::
 
 ```{r}
+# Set of phone, tablet and computer users
 set_phon <- which(app_usage$smartphone == 1)
 set_tabl <- which(app_usage$tablet == 1)
 set_comp <- which(app_usage$computer == 1)
+
+# List of all sets
 sets_all <- list(set_phon, set_tabl, set_comp)
 
+# Load additional package for plotting Venn diagrams
 library(ggVennDiagram)
+
+# Plot Venn diagram
 ggVennDiagram(sets_all, category.names = c("Smartphone", "Tablet", "Computer"),
               label_percent_digit = 2) +
+  # Customizing appearance
   theme(legend.position = "none", 
         panel.background = element_rect("grey"),
         strip.background = element_rect("grey")) +
   scale_x_continuous(expand = expansion(mult = .24))
 ```
-
-![Generic Venn diagram](/images/01_venn_diag.png){fig-align="center" width="350"}
 
 Using the Venn diagram, we are able to answer questions like the following:
 

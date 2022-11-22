@@ -29,11 +29,11 @@ tuhh_colors <- c("#D0D0CE", "#00C1D4", "#FF4F4F", "#5AFFC5",
 cds_theme <- ggthemr::define_palette(
   swatch = tuhh_colors,
   gradient = c(lower = "#FFAEA2", upper = "#00C1D4"),
-  #background = "#1C1C1C",
-  background = "#011627",
+  background = "#0F2231",
   line = c("#FFFFFF", "#FFFFFF"),
   text = c("#FFFFFF", "#FFFFFF"),
-  gridline = c("#D0D0CE", "#D0D0CE")
+  gridline = c(ggplot2::alpha("#D0D0CE", 0.2), 
+               ggplot2::alpha("#D0D0CE", 0.4))
 )
 
 # set theme
@@ -72,10 +72,11 @@ Besides being helpful in guiding your analysis and identification strategy, DAGs
 A simple example of a DAG could be the effect of having an university degree on future salary: at first, it might be intuitive to say that future salary increases when you get an university degree.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 #| warning: false
 #| layout-nrow: 1
 
+# Load packages
 library(tidyverse)
 library(dagitty)
 library(ggdag)
@@ -87,6 +88,7 @@ schooling_1 <- dagify(
                 y = c(uni_degree = 1, salary = 1))
 )
 
+# Plot DAG
 ggdag(schooling_1, use_labels = "name", text = F) +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
@@ -102,6 +104,7 @@ schooling_2 <- dagify(
                 y = c(uni_degree = 1, salary = 1, ability = 2))
 )
 
+# Plot DAG
 ggdag(schooling_2, use_labels = "name", text = F) +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
@@ -118,8 +121,9 @@ It is very likely that the truth is that both ability and university degree are 
 Let's have a look at a generic DAG to dive into the notation.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
+# Confounder
 confounding <- dagify(
   X ~ Z,
   Y ~ Z,
@@ -128,6 +132,7 @@ confounding <- dagify(
                 y = c(Y = 0, Z = 1, X = 0))
 )
 
+# Plot DAG
 ggdag(confounding) +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
@@ -164,8 +169,9 @@ It is important to understand (conditional) (in-)dependencies between $X$, $Y$ a
 One element is a chain of random variables where the causal effect flows in one direction.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
+# Chain
 chain <- dagify(
   Y ~ Z,
   Z ~ X,
@@ -173,6 +179,7 @@ chain <- dagify(
                 y = c(Y = 0, Z = 0, X = 0))
 )
 
+# Plot DAG
 ggdag(chain) +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
@@ -207,8 +214,9 @@ In terms of dependencies,
 Another mechanism is the fork, also called common cause.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
+# Fork
 fork <- dagify(
   X ~ Z,
   Y ~ Z,
@@ -216,6 +224,7 @@ fork <- dagify(
                 y = c(Y = 0, Z = 1, X = 0))
 )
 
+# Plot DAG
 ggdag(fork) +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
@@ -248,8 +257,9 @@ Again, let's check in term of dependencies:
 The last mechanism is the collision, which is also called common effect.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
+# Collider
 collider <- dagify(
   Z ~ X,
   Z ~ Y,
@@ -257,6 +267,7 @@ collider <- dagify(
                 y = c(Y = 1, Z = 0, X = 1))
 )
 
+# Plot DAG
 ggdag(collider) +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
@@ -303,8 +314,9 @@ Again, to understand the theory we will rely on simple examples and you will see
 A very common problem when trying to prove causal effects is confounding.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
+# Confounder
 confounding <- dagify(
   X ~ Z,
   Y ~ Z,
@@ -316,6 +328,7 @@ confounding <- dagify(
                 Z = "ability")
 )
 
+# Plot DAG
 ggdag(confounding, use_labels = "label") +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
@@ -359,15 +372,22 @@ It is neither wrong or right to always include or exclude variables, but it depe
 #| code-fold: true
 
 # Simpson's paradox ----
+
+# Simulate data
+# number of observations
 n <- 1e+03
+
+# draw and create variables with specific dependencies
 education <- rbinom(n, 2, 0.5)
 character <- rnorm(n) + education
 salary <- education * 2 + rnorm(n) - character * 0.3
 
+# rescale to realistic values
 salary <- sample(10000:11000,1) + scales::rescale(salary, to = c(0, 100000))
 character <- scales::rescale(character, to = c(0, 7))
 education <- factor(education, labels = c("Low", "Medium", "High"))
 
+# create tibble
 df <- tibble(
   salary,
   character,
@@ -395,9 +415,10 @@ simps_cond
 You probably noticed that the confounding example was related to the common cause in the previous section. The next example is related to the common effect mechanism.
 
 ```{r}
-#| echo: false
-   
-endogeneity <- dagify(
+#| code-fold: true
+
+# Collider   
+collider <- dagify(
   Z ~ X,
   Z ~ Y,
   Y ~ X,
@@ -408,7 +429,8 @@ endogeneity <- dagify(
                 Z = "accepted")
 )
 
-ggdag(endogeneity, use_labels = "label") +
+# Plot DAG
+ggdag(collider, use_labels = "label") +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
@@ -432,11 +454,16 @@ Collider bias often arises when your sample is not very representative of the po
 #| warning: false
 
 # Berkson's paradox ----
+
+# Simulate data
+# number of observations
 n <- 1e+03
+# draw and create data with specific dependencies
 ability     <- rnorm(n)
 motivation  <- rnorm(n)
 aptitude    <- 1/2 * ability + 1/2 * motivation + rnorm(n, 0, .1)
 
+# create tibble
 df <- tibble(
   ability    = ability,
   motivation = motivation,
@@ -518,6 +545,7 @@ One application to help in such cases is [http://](http://dagitty.net/dags.html#
 First, let's just plot the DAG. When we define exposure, which is a different term for intervention or treatment, and the outcome, they are highlighted in another color.
 
 ```{r}
+# Load packages
 library(dagitty)
 library(ggdag)
 
@@ -598,6 +626,18 @@ Implicitly, DAGs always base on some form of counterfactual reasoning as we pres
 
 # Assignment
 
-1)  Think about example from previous chapter (parking spots) and draw DAG
+1)  Think about example from previous chapter (parking spots) and draw the DAG.
 
-2)  Load the data and compute what the click-through-rate (CTR, clicks / impressions) is for male and female. Then, compute the CTR for male and female on country level. Then, check what is surprising about the CTRs and explain how that could happen.
+2)  Load the data file `customer_sat.rds`. A company sells a SaaS (Software as a service) to business clients that chose to subscribe to one of the three subscription levels, *Starter*, *Premium* or *Elite*, which provide different features at different price points (more storage and other capabilities). *Starter* has the least functionality, while *Elite* includes the most features.
+
+    Now imagine, you are working as an analyst for that company and are asked to examine the relationship between follow-up calls to the clients and their satisfaction with the product and service. Follow-up calls are voluntary and are just to help the client with possible problems and so on. Satisfaction is measured on a weekly basis by surveying the clients.
+
+    In the data, you find three variables: $satisfaction$, $follow\_ups$ and $subscription$. Perform the following steps:
+
+    1.  regress $satisfaction$ on $follow\_ups$
+
+    2.  regress $satisfaction$ on $follow\_ups$ and account for $subscription$
+
+3)  Compare the coefficients and find a possible explanation.
+
+4)  Plot the data. You'll find a similar plot in this chapter, that you can copy some lines from.

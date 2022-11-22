@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-10-01">
+<meta name="dcterms.date" content="2022-11-23">
 
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Regression Discontinuity</title>
 <style>
@@ -21,69 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -124,10 +61,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -160,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -186,7 +119,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -264,28 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#continuity-assumption" id="toc-continuity-assumption" class="nav-link" data-scroll-target="#continuity-assumption">Continuity assumption</a></li>
-  <li><a href="#estimation-and-inference" id="toc-estimation-and-inference" class="nav-link" data-scroll-target="#estimation-and-inference">Estimation and Inference</a>
-  <ul class="collapse">
-  <li><a href="#research-design" id="toc-research-design" class="nav-link" data-scroll-target="#research-design">Research Design</a></li>
-  <li><a href="#random-assignment" id="toc-random-assignment" class="nav-link" data-scroll-target="#random-assignment">Random assignment</a></li>
-  <li><a href="#plot-treatment-effect" id="toc-plot-treatment-effect" class="nav-link" data-scroll-target="#plot-treatment-effect">Plot Treatment Effect</a></li>
-  <li><a href="#estimate-treatment-effect" id="toc-estimate-treatment-effect" class="nav-link" data-scroll-target="#estimate-treatment-effect">Estimate Treatment Effect</a>
-  <ul class="collapse">
-  <li><a href="#parametric-estimation" id="toc-parametric-estimation" class="nav-link" data-scroll-target="#parametric-estimation">Parametric Estimation</a></li>
-  <li><a href="#non-parametric-estimation" id="toc-non-parametric-estimation" class="nav-link" data-scroll-target="#non-parametric-estimation">Non-parametric Estimation</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#bandwidth-robustness-test-or-sensitivity" id="toc-bandwidth-robustness-test-or-sensitivity" class="nav-link" data-scroll-target="#bandwidth-robustness-test-or-sensitivity">Bandwidth robustness test or sensitivity</a></li>
-  <li><a href="#kernel-robustness-test" id="toc-kernel-robustness-test" class="nav-link" data-scroll-target="#kernel-robustness-test">Kernel robustness test</a></li>
-  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -303,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 1, 2022</p>
+      <p class="date">November 23, 2022</p>
     </div>
   </div>
   
@@ -313,470 +225,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>The next tool we introduce is called <strong>regression discontinuity design (RDD)</strong>. Fist used in 1960 (Campbell), it did not play a large role until 1999 and since then has experienced growing acceptance due to the advance of more rigorous requirements regarding credibility and causality in social sciences. Another factor that made many researchers use RDDs is the increased availability of digitized administrative data that is often linked to arbitrary rules that can be exploited to capture “as-if” randomization processes for treatment assignment.</p>
-<p>Assuming a data-generating process, where we have a variable <span class="math inline">\(X\)</span> that is a confounder as it has an impact on treatment assignment <span class="math inline">\(D\)</span> and the outcome <span class="math inline">\(Y\)</span>. Additionally, we could have an unobserved confounders between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
-<p>Then, as can be seen in the second DAG, the regression discontinuity design exploits the fact that <span class="math inline">\(X\)</span> determines <span class="math inline">\(D\)</span> and data is filtered such that there are only observations that were close to a cut-off value determining their treatment status. This way, treated and untreated units are very similar and comparable and RDD is able to eliminate selection bias for that subpopulation. Note that the treatment effect you calculate using this method is an average treatment effect for a subgroup rather than for the whole population.</p>
-<p><span class="math inline">\(X\)</span> is called the <strong>running variable</strong> and is a continuous variable assigning units to treatment <span class="math inline">\(D\)</span> based on a cut-off score <span class="math inline">\(c_0\)</span>. Because it has an impact on <span class="math inline">\(Y\)</span> as well, it is a confounder and opens a backdoor path. Now, the problem is that due to the cut-off determining the treatment <span class="math inline">\(D\)</span>, the backdoor cannot be closed with regular ways like e.g.&nbsp;matching as there is no overlap, i.e.&nbsp;there are no treated and untreated units for all levels of <span class="math inline">\(X\)</span>.</p>
-<p>!!! Summarizing:</p>
-<ul>
-<li><p>Running/forcing variable: …</p></li>
-<li><p>Cut-off/threshold: …</p></li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdag)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dagitty)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial situation</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dag_model_1 <span class="ot">&lt;-</span> <span class="fu">dagitty</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'dag {</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">bb="0,0,1,1"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">D [exposure,pos="0.2,0.25"]</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">U [pos="0.4,0.1"]</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">X [pos="0.15,0.1"]</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">Y [outcome,pos="0.45,0.25"]</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">D -&gt; Y</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">U -&gt; X</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">U -&gt; Y</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">X -&gt; D</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">X -&gt; Y</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">'</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Directed Acyclic Graph</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>dag_1 <span class="ot">&lt;-</span> <span class="fu">ggdag_status</span>(dag_model_1) <span class="sc">+</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>()</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Exploiting cut-off</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>dag_model_2 <span class="ot">&lt;-</span> <span class="fu">dagitty</span>(</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">'dag {</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="st">bb="0,0,1,1"</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="st">D [exposure,pos="0.2,0.25"]</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="st">U [pos="0.4,0.1"]</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="st">X_c [pos="0.15,0.1"]</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="st">Y [outcome,pos="0.45,0.25"]</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="st">D -&gt; Y</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="st">U -&gt; Y</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="st">X_c -&gt; D</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="st">'</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Directed Acyclic Graph</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>dag_2 <span class="ot">&lt;-</span> <span class="fu">ggdag_status</span>(dag_model_2) <span class="sc">+</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>()</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(dag_1, dag_2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="09_rdd_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Therefore, as the second graph shows, the causal effect is identified by analyzing only observations that are in close neighborhood to <span class="math inline">\(c_0\)</span>. The identified treatment effect is the <strong>local average treatment effect (LATE)</strong>.</p>
-<p><span class="math display">\[
-LATE_{RDD} = E[Y_1 - Y_0| X \rightarrow c_0]
-\]</span></p>
-</section>
-<section id="continuity-assumption" class="level1">
-<h1>Continuity assumption</h1>
-<p>RDD relies heavily on the continuity assumption, which implies that the cut-off value is exogenous, i.e.&nbsp;there is no logic why the cut-off has to be at that particular level of <span class="math inline">\(X\)</span>. In other words, the rule was chosen arbitrary. Only if that is fulfilled, expected potential outcomes are almost the same for units just below and just above the cut-off (the only units that are analyzed). Even across the cut-off threshold, both <span class="math inline">\(E[Y_0|X \rightarrow c_0]\)</span> and <span class="math inline">\(E[Y_1|X \rightarrow c_0]\)</span> are <strong>continuous functions</strong> of <span class="math inline">\(X\)</span>.</p>
-<p>Smooth and continuous functions of potential outcomes at the cut-off also implies that there are no other interventions or variables that occur at the cut-off and rules out omitted variable bias.</p>
-<p>Graphically, we have illustrated the continuity assumption by removing the arrow from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>. As all units have about the same value for <span class="math inline">\(X\)</span>, no effect from <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> can be expected from those specific units. For <span class="math inline">\(X \rightarrow c_0\)</span>, there is no direct effect from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>.</p>
-<p>There are two different designs of RDD. Both have in common that the probability of treatment changes <strong>discontinuously</strong> at the threshold, but how strict the probability changes differs.</p>
-<ul>
-<li><p><strong>Sharp design:</strong> at the cut-off, probability changes from 0 to 1. All units below cut-off belong to control group, while all units above cut-off belong to treatment group (or the other way around).</p></li>
-<li><p><strong>Fuzzy design:</strong> at the cut-off, probability discontinuously increases. Most units below cut-off belong to control group, while most units above cut-off belong to control group (or the other way around). Here, cut-off is used as an instrumental variable.</p></li>
-</ul>
-<p>The continuity assumption is crucial for conducting a valid RDD and that is why you have to ensure it is fulfilled. Violations can potentially happen when:</p>
-<ul>
-<li><p>units know assignment rule in advance</p></li>
-<li><p>units are interested in adjusting behavior according to assignment rule</p></li>
-<li><p>units have enough time to adjust</p></li>
-<li><p>other factors cause potential outcomes to shift at cut-off</p></li>
-<li><p>nonrandom heaping along running variable</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/09_heaping.png" class="img-fluid figure-img" width="400"></p>
-<p></p><figcaption class="figure-caption">Nonrandom heaping - Example Marathon</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="estimation-and-inference" class="level1">
-<h1>Estimation and Inference</h1>
-<section id="research-design" class="level2">
-<h2 class="anchored" data-anchor-id="research-design">Research Design</h2>
-<p>RDDs are quite intuitive and very graphical. For this reason, we will go through estimation and inference using an application and explain at each step what has to be considered.</p>
-<p>In the application, we want to analyze the effect of being graded “very good” instead of “good” on a restaurant review site. Customers leave reviews at this site for restaurants they have visited and the resulting average score (from 1 to 10) is phrased with a label. Restaurants with a score <span class="math inline">\([8,9)\)</span> will receive the label “good”, while restaurants with a score of <span class="math inline">\([9, 10]\)</span> receive the label “very good”.We will only focus on restaurants with a score larger than 8.</p>
-<p>You might already see how we can use RDD in this application to identify the effect of a “very good” label on revenue. We can exploit the rule that there is a sharp cut-off for restaurants having a score just above or below 9. That means our cut-off value is <span class="math inline">\(c0 = 9\)</span>.</p>
-<p>Let’s have a look at what the data looks like.</p>
-<p>!!! INCLUDE COVARIATES?</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["user_rating"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["user_rating_ct"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rating_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["management"],"name":[4],"type":["int"],"align":["right"]},{"label":["size"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["revenue"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"9.1","2":"0.12","3":"TRUE","4":"1","5":"65","6":"119"},{"1":"8.6","2":"-0.37","3":"FALSE","4":"0","5":"23","6":"52"},{"1":"8.3","2":"-0.75","3":"FALSE","4":"0","5":"15","6":"33"},{"1":"8.7","2":"-0.30","3":"FALSE","4":"1","5":"90","6":"166"},{"1":"9.7","2":"0.72","3":"TRUE","4":"1","5":"84","6":"173"},{"1":"9.4","2":"0.42","3":"TRUE","4":"1","5":"81","6":"151"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>!!! DAG?</p>
-<p>At first glance, it looks like all restaurants below the cut-off don’t have a “very good” label (indicated by FALSE) and the restaurants above cut-off do have it. We can visualize if that applies to all restaurants. As we have expected, to the left of the cut-off and to the right of the cut-off, there is always just one label type. It means, we are dealing with a sharp cut-off.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [2] Visualization ----</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [2.1] Compliance ----</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># As expected, perfect "compliance" and sharp cutoff. All </span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># restaurants below the cutoff get a "good" rating, while all restaurants above</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the cutoff get a "very good" rating.</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>compl <span class="ot">&lt;-</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> user_rating, <span class="at">y =</span> rating_label, <span class="at">color =</span> rating_label)) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> c0, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">4</span>]) <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">1000</span><span class="sc">/</span>n, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">height =</span> <span class="fl">0.05</span>)) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">scale =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Good"</span>, <span class="st">"Very Good"</span>))<span class="sc">+</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Good"</span>, <span class="st">"Very Good"</span>)) <span class="sc">+</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"user rating"</span>) <span class="sc">+</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>compl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="09_rdd_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="random-assignment" class="level2">
-<h2 class="anchored" data-anchor-id="random-assignment">Random assignment</h2>
-<p>As already mentioned, for RDD to deliver valid results we have to make sure there is no non-random heaping at the cut-off, i.e.&nbsp;no manipulation because for example the effect is known and units attempt to move to one side of the cut-off. We can plot the distribution around the cut-off to check for violations of the continuity assumption.</p>
-<p>We can see that there is no decline or incline at the cut-off and therefore can assume that the continuity assumption holds.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [2.2] Random assignment test ----</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># identifying assumption: random assignment to either side of cut-off</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual plot</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> user_rating, <span class="at">fill =</span> label)) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">boundary =</span> c0, <span class="at">alpha =</span> .<span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> c0, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>], <span class="at">size =</span> <span class="dv">2</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="09_rdd_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>To check the continuity assumption more thoroughly, we can also use functions of the <code>rddensity</code> package. It relies on a test to check the assumption. as the p-value is large, we can reject the null hypothesis that the number of units at either side are different.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density test</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for continuous density along running variable. Manipulations could </span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># lead to running variable being "crowded" right after cutoff.</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rddensity)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>rddd <span class="ot">&lt;-</span> <span class="fu">rddensity</span>(df<span class="sc">$</span>user_rating, <span class="at">c =</span> c0)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rddd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Manipulation testing using local polynomial density estimation.
-
-Number of obs =       5000
-Model =               unrestricted
-Kernel =              triangular
-BW method =           estimated
-VCE method =          jackknife
-
-c = 9                 Left of c           Right of c          
-Number of obs         2488                2512                
-Eff. Number of obs    709                 840                 
-Order est. (p)        2                   2                   
-Order bias (q)        3                   3                   
-BW est. (h)           0.178               0.199               
-
-Method                T                   P &gt; |T|             
-Robust                0.5829              0.5599              
+<p><strong>This chapter will be unlocked on <u>30/11/22</u></strong>.</p>
 
 
-P-values of binomial tests (H0: p=0.5).
-
-Window Length / 2          &lt;c     &gt;=c    P&gt;|T|
-0.003                       8      12    0.5034
-0.006                      18      22    0.6358
-0.008                      27      35    0.3742
-0.011                      37      46    0.3800
-0.014                      50      58    0.5008
-0.017                      60      72    0.3384
-0.019                      79      85    0.6963
-0.022                      89      96    0.6592
-0.025                     100     111    0.4913
-0.028                     118     122    0.8465</code></pre>
-</div>
-</div>
-<p>It can also be shown graphically, where you can see that the confidence intervals overlap. If they did not overlap, we would have to suspect some kind of manipulation around the cut-off and could not use RDD to get valid results.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visually check continuity at running variable</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rdd_plot <span class="ot">&lt;-</span> <span class="fu">rdplotdensity</span>(rddd, df<span class="sc">$</span>user_rating, <span class="at">plotN =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-ℹ Please use `after_stat(density)` instead.
-ℹ The deprecated feature was likely used in the lpdensity package.
-  Please report the issue to the authors.</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="09_rdd_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="plot-treatment-effect" class="level2">
-<h2 class="anchored" data-anchor-id="plot-treatment-effect">Plot Treatment Effect</h2>
-<p>Having checked potential violations of the continuity assumptions, we can move on and estimate the treatment effect. We start with selecting a bandwidth, i.e.&nbsp;we select what and how many observations should be compared. The larger the bandwidth, the more observations are taken into consideration but it also reduces the comparability. On the other hand, choosing a small bandwidth results in a lower number of observations while ensuring similarity and comparability.</p>
-<p>There is no safe rule how to best select the bandwidth, although there are algorithms attempting to look for the optimal bandwidth. For now, we just use common sense and select a bandwidth of 0.15, resulting in an analysis window <span class="math inline">\([8.85, 9.15]\)</span>, which still leaves us with about 1000 observations.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [3] Dependent variable ----</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [3.1] Average Treatment Effect ----</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot regression lines for full and specified bandwidth.</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify bandwidth</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>bw <span class="ot">&lt;-</span> c0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.15</span>, <span class="fl">0.15</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsets below and above threshold in specified bandwidth</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>df_bw_below <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(user_rating <span class="sc">%&gt;%</span> <span class="fu">between</span>(bw[<span class="dv">1</span>], c0))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>df_bw_above <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(user_rating <span class="sc">%&gt;%</span> <span class="fu">between</span>(c0, bw[<span class="dv">2</span>]))</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>df_bw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_bw_above, df_bw_below)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df_bw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1268    6</code></pre>
-</div>
-</div>
-<p>To illustrate the difference between using only a small window and all data, we plot the resulting regression lines. You can see that both approaches would lead to different results.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dependent variable vs running variable</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dep_var <span class="ot">&lt;-</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> user_rating, <span class="at">y =</span> revenue, <span class="at">color =</span> rating_label)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> c0, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>]) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> bw[<span class="dv">1</span>], <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>], <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> bw[<span class="dv">2</span>], <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>], <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">1000</span><span class="sc">/</span>n, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add lines for the full range</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(df, user_rating <span class="sc">&lt;=</span> c0), </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(df, user_rating <span class="sc">&gt;</span> c0), </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add lines for specified bandwidth</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> df_bw_below, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> df_bw_above, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Good"</span>, <span class="st">"Very Good"</span>)) <span class="sc">+</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"user rating"</span>) <span class="sc">+</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"revenue"</span>) <span class="sc">+</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>dep_var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="09_rdd_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>From the plot above, it is hard to see what the difference between observations close to the cut-off is. So what we can do is to compute to regressions, one for the observations in <span class="math inline">\([8.85, 9)\)</span> and another one for the observations in <span class="math inline">\([9,9.15]\)</span>.</p>
-<p>Then, using the resulting coefficients, we compute what both models predict for the cut-off value <span class="math inline">\(c0\)</span> and take the difference. The difference is the local average treatment effect (LATE).</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [3.2] Local Average treatment effect (LATE) ----</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract values for vertical lines to visualize local average treatment effect</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>model_bw_below <span class="ot">&lt;-</span> <span class="fu">lm</span>(revenue <span class="sc">~</span> user_rating, df_bw_below)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>model_bw_above <span class="ot">&lt;-</span> <span class="fu">lm</span>(revenue <span class="sc">~</span> user_rating, df_bw_above)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_bw_below, <span class="fu">tibble</span>(<span class="at">user_rating =</span> c0))</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_bw_above, <span class="fu">tibble</span>(<span class="at">user_rating =</span> c0))</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>late <span class="ot">&lt;-</span> y1 <span class="sc">-</span> y0</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>late</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> 1 
-25 </code></pre>
-</div>
-</div>
-<p>It’s a bit messy when we plot all observations, so let’s zoom in to see if we can detect the local average treatment effect graphically. Not surprisingly, it is equal to what we have just computed.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimum and maximum for y-axis limits</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>min_y <span class="ot">&lt;-</span> <span class="fu">min</span>(df_bw<span class="sc">$</span>revenue)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>max_y <span class="ot">&lt;-</span> <span class="fu">max</span>(df_bw<span class="sc">$</span>revenue)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add lines for vertical distance and change limits of x-axis.</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>dep_var_bw <span class="ot">&lt;-</span> </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df_bw, <span class="fu">aes</span>(<span class="at">x =</span> user_rating, <span class="at">y =</span> revenue, <span class="at">color =</span> rating_label)) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> c0, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>]) <span class="sc">+</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> df_bw_below, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> df_bw_above, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> bw[<span class="dv">1</span>], <span class="at">xend =</span> c0, <span class="at">y =</span> y0, <span class="at">yend =</span> y0),</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">7</span>], <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> bw[<span class="dv">1</span>], <span class="at">xend =</span> c0, <span class="at">y =</span> y1, <span class="at">yend =</span> y1),</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">7</span>], <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> c0 <span class="sc">-</span> <span class="fl">0.05</span>, <span class="at">y =</span> <span class="fu">mean</span>(<span class="fu">c</span>(y1, y0)),</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">sprintf</span>(<span class="st">"Difference: %.2f"</span>, late), <span class="at">fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(min_y, max_y)) <span class="sc">+</span> </span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Good"</span>, <span class="st">"Very Good"</span>)) <span class="sc">+</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"user rating"</span>) <span class="sc">+</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"revenue"</span>) <span class="sc">+</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>dep_var_bw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="09_rdd_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="estimate-treatment-effect" class="level2">
-<h2 class="anchored" data-anchor-id="estimate-treatment-effect">Estimate Treatment Effect</h2>
-<section id="parametric-estimation" class="level3">
-<h3 class="anchored" data-anchor-id="parametric-estimation">Parametric Estimation</h3>
-<p>What you will see most in studies is a regression to compute the LATE. Here, we prefer to use <code>user_rating_ct</code>, which is the raw <code>user_rating</code> variable centered, i.e.&nbsp;subtracted by the cut-off value <span class="math inline">\(c0\)</span>. That simplifies the interpretation, however, it does not change the coefficient of interest, the LATE.</p>
-<p>The coefficient we are most interested in is the one for <code>rating_labelTRUE</code>. It is equal to the effect in the plot above, but the regression summary also yields additional statistical information. We see that the LATE is statistically significant.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [4] Estimation ----</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [4.1] Parametric ----</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute coefficients for specified bandwidth.</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>param_bw <span class="ot">&lt;-</span> <span class="fu">lm</span>(revenue <span class="sc">~</span> user_rating_ct <span class="sc">+</span> rating_label, df_bw)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(param_bw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = revenue ~ user_rating_ct + rating_label, data = df_bw)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--106.67  -28.59    0.19   28.25  103.00 
-
-Coefficients:
-                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         90.00       2.36   38.18  &lt; 2e-16 ***
-user_rating_ct       2.84      25.62    0.11     0.91    
-rating_labelTRUE    24.96       4.31    5.80  8.5e-09 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 38 on 1265 degrees of freedom
-Multiple R-squared:   0.1,  Adjusted R-squared:  0.0987 
-F-statistic: 70.4 on 2 and 1265 DF,  p-value: &lt;2e-16</code></pre>
-</div>
-</div>
-</section>
-<section id="non-parametric-estimation" class="level3">
-<h3 class="anchored" data-anchor-id="non-parametric-estimation">Non-parametric Estimation</h3>
-<p>You can also use non-parametric estimation techniques, i.e.&nbsp;we do not fit a line through the data but instead a curve. The <code>R</code> package <code>rdrobust</code> is a good resource that is easy to use. We just have to provide the dependent variable, the running variable and the cut-off value.</p>
-<p>By default, the <code>rdrobust()</code> function automatically selects a bandwidth and uses a kernel weighting function (triangular kernel).</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [4.2] Non-parametric ----</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rdrobust)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>nparam_bw <span class="ot">&lt;-</span> <span class="fu">rdrobust</span>(<span class="at">y =</span> df_bw<span class="sc">$</span>revenue, <span class="at">x =</span> df_bw<span class="sc">$</span>user_rating, <span class="at">c =</span> c0)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nparam_bw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Sharp RD estimates using local polynomial regression.
-
-Number of Obs.                 1268
-BW type                       mserd
-Kernel                   Triangular
-VCE method                       NN
-
-Number of Obs.                  636          632
-Eff. Number of Obs.             214          207
-Order est. (p)                    1            1
-Order bias  (q)                   2            2
-BW est. (h)                   0.048        0.048
-BW bias (b)                   0.076        0.076
-rho (h/b)                     0.634        0.634
-Unique Obs.                     636          632
-
-=============================================================================
-        Method     Coef. Std. Err.         z     P&gt;|z|      [ 95% C.I. ]       
-=============================================================================
-  Conventional    29.892     8.322     3.592     0.000    [13.582 , 46.203]    
-        Robust         -         -     3.111     0.002    [11.487 , 50.600]    
-=============================================================================</code></pre>
-</div>
-</div>
-<p>To check how the curve goes through the data, we can use <code>rdplot()</code>, which splits the data into bins and for each bin shows an average data point. We see that the curve fits the data very well.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rdplot</span>(<span class="at">y =</span> df<span class="sc">$</span>revenue, <span class="at">x =</span> df<span class="sc">$</span>user_rating, <span class="at">c =</span> c0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="09_rdd_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>There are a lot of options with the <code>rdrobust()</code> function, e.g.&nbsp;we can change the kernel and see how it affects the result.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use other kernel</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>nparam_bw_kernel <span class="ot">&lt;-</span> <span class="fu">rdrobust</span>(<span class="at">y =</span> df_bw<span class="sc">$</span>revenue, <span class="at">x =</span> df_bw<span class="sc">$</span>user_rating, </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">c =</span> c0, <span class="at">kernel =</span> <span class="st">"epanechnikov"</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nparam_bw_kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Sharp RD estimates using local polynomial regression.
-
-Number of Obs.                 1268
-BW type                       mserd
-Kernel                   Epanechnikov
-VCE method                       NN
-
-Number of Obs.                  636          632
-Eff. Number of Obs.             204          199
-Order est. (p)                    1            1
-Order bias  (q)                   2            2
-BW est. (h)                   0.046        0.046
-BW bias (b)                   0.075        0.075
-rho (h/b)                     0.606        0.606
-Unique Obs.                     636          632
-
-=============================================================================
-        Method     Coef. Std. Err.         z     P&gt;|z|      [ 95% C.I. ]       
-=============================================================================
-  Conventional    30.892     8.286     3.728     0.000    [14.652 , 47.132]    
-        Robust         -         -     3.257     0.001    [12.846 , 51.681]    
-=============================================================================</code></pre>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="bandwidth-robustness-test-or-sensitivity" class="level1">
-<h1>Bandwidth robustness test or sensitivity</h1>
-</section>
-<section id="kernel-robustness-test" class="level1">
-<h1>Kernel robustness test</h1>
-</section>
-<section id="assignment" class="level1">
-<h1>Assignment</h1>
-<ol type="1">
-<li><p>There are a lot of parameters that can be changed when using RDD. Change the bandwidth (for example only half the bandwidth or double the bandwidth) and compare how sensitive the original estimate is to those changes.</p></li>
-<li><p>Load this data set and check for potential violations of the continuity assumption. Find possible explanations for violations.</p></li>
-</ol>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

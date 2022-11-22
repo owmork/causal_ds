@@ -43,7 +43,7 @@ ggthemr::ggthemr(cds_theme, type = "outer")
 source("../../code/dag_theme.R")
 ```
 
-Now we will talk about some statistical concepts, that are the foundation for modeling processes in both statistical and causal inference.
+Now we will talk about some statistical concepts, that are the foundation for modeling processes in both statistical and causal inference. If you sometimes prefer to see additional visual explanations, I can also recommend you to show [here](https://seeing-theory.brown.edu/basic-probability/index.html).
 
 # Random Variable
 
@@ -161,9 +161,11 @@ Before we define variance, let's see why it is important to know. On both graphs
 | `pivot_longer()` changes the format of a table by pivoting columns into rows. To pivot rows into columns, you need `pivot_wider()`.
 :::
 
-```{r echo=FALSE}
+```{r}
+#| code-fold: true
 #| warnings: false
 
+# Load tidyverse package
 library(tidyverse)
 
 # 100 step-wise values from 1 to 5
@@ -264,7 +266,11 @@ Covariance determines the relationship between two or more random variables, i.e
 | To rename columns, you can use `rename(new_name = old_name)`.
 :::
 
-```{r echo=FALSE}
+If you're interested in how to create correlated variable, you can open the following code chunk.
+
+```{r}
+#| code-fold: true
+
 # Create the variance covariance matrix
 sigma <- rbind(c(1, 0.8, 0), c(0.8, 1, -0.5), c(0, -0.5, 1))
 # Create the mean vector
@@ -280,23 +286,24 @@ sigma
 
 From left to right, the graph shows a positive covariance, a negative covariance and no covariance at all.
 
-```{r echo=FALSE}
-p12 <- ggplot(df, aes(x = X1, y = X2)) +
+```{r}
+#| code-fold: true
+#| layout-nrow: 1 
+
+ggplot(df, aes(x = X1, y = X2)) +
   geom_point() +
   stat_ellipse(level = .99, color = ggthemr::swatch()[3]) +
   labs(title = "Positive correlation")
 
-p23 <- ggplot(df, aes(x = X2, y = X3)) +
+ggplot(df, aes(x = X2, y = X3)) +
   geom_point() +
   stat_ellipse(level = .99, color = ggthemr::swatch()[3]) +
   labs(title = "Negative correlation")
 
-p13 <- ggplot(df, aes(x = X1, y = X3)) +
+ggplot(df, aes(x = X1, y = X3)) +
   geom_point() +
   stat_ellipse(level = .99, color = ggthemr::swatch()[3]) +
   labs(title = "No correlation")
-
-ggpubr::ggarrange(p12, p23, p13, ncol = 3)
 ```
 
 If the equality $E(XY) = E(X)E(Y)$ holds, then it implies a *covariance* of 0 between the variables $X$ and $Y$. *Covariance* is a measure of linear dependency and hence, independence implies a covariance of 0. Looking back at the formula of the variance of the sum of two random variables, it thus can be said that it is the sum of variances of both random variables plus two times their covariance.
@@ -314,6 +321,10 @@ $$
 $$
 
 The *correlation* is a standardized measure and is by construction bound between -1 and 1. High values in magnitude (close to 1 or -1) indicate a very strong linear relationship, while the direction of this relationship is represented by the algebraic sign.
+
+::: callout-note
+| To compute correlation, variance and covariance, respectively, you can use `cor()`, `var()` and `cov()`.
+:::
 
 # Conclusion
 

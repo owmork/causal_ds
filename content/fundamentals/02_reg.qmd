@@ -57,6 +57,8 @@ In this course, we will use linear regression in combination with other methods 
 
 It builds upon many of the statistical concepts that were explained in the previous chapter, such as conditional expectations, variance, covariance, correlation etc. Formally, we want to explain an outcome $Y$ (also called response or dependent variable) using an explanatory variable $X$ (also called predictor or independent variable). A popular example, that has been studied extensively, is to explain the effect of smoking on lung cancer. Here, smoking is the explanatory variable $X$ and lung cancer $Y$ is the outcome.
 
+![Cause and Effect in Regression](/images/02_xy.png){fig-align="center" width="350"}
+
 Let's use a simple example to show how linear regression works and how we can implement it in R. First, we consider a model with one explanatory variable:
 
 $$
@@ -102,6 +104,7 @@ We start using a simple example to get an intuition of how the linear regression
 Before we start, we load the `R` package `tidyverse`, which actually is collection of several useful packages for data manipulation, visualization and other data science purposes. Throughout the course, we will almost always load it.
 
 ```{r warning=FALSE, message=FALSE}
+# Load tidyerse package
 library(tidyverse)
 ```
 
@@ -117,12 +120,19 @@ Let's have a look at how the data is presented. We have a table containing 100 r
 
 ```{r}
 # Simluate data
+
+# number of observations
 n <- 10
+
+# Create tibble
 lm_dat <- tibble(
+  # draw from normal distribution
   x = rnorm(n, mean = 3, sd = 1),
+  # y depends on x and noise from normal distribution
   y = 0.3*x + rnorm(n, 0, 0.2)
 )
 
+# Show data
 lm_dat
 ```
 
@@ -216,7 +226,7 @@ If we want to mathematically compute the line in R, we have to use the `lm()` fu
 | `lm()` is a function that fits a linear model. You have to provide data and a regression equation in the form of for example `outcome ~ regressor_1 + regressor_2` or `outcome ~ .`, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call `summary()`.
 :::
 
-Looking at the regression summary, we see that the line is modeled by $y = -0.1918 + 0.3354*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.33354 increase in $y$.
+Looking at the regression summary, we see that the line is modeled by $y = -0.1918 + 0.3354*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.3354 increase in $y$.
 
 ```{r}
 # Fit model and print summary
@@ -399,6 +409,8 @@ Reading/saving commands for other file formats are for example
 
 ```{r}
 #| include: false
+
+# Read data set
 df <- readRDS("../../datasets/02_reg/health_ins.rds")
 ```
 
@@ -409,12 +421,14 @@ Most data scientists start by using the `head()` command, which returns the firs
 Here, we see that our table consists of different column types, such as integers, doubles and factors.
 
 ```{r}
+# Show first lines
 head(df)
 ```
 
 An option not available in RStudio, but in documents like this one here, is to view a paged table by just typing in the name of the object. In RStudio, the best way to look at a table is `View()` or `view()`, which opens the table in a readable format.
 
 ```{r}
+# Show table
 df
 ```
 
@@ -482,7 +496,7 @@ The other values are also concerned with the level of uncertainty there is in th
 
 Most widely used is the p-value, or probability value. It tests the so called null hypothesis against the observed data. The null hypothesis states that there is no correlation between the dependent variable $y$ and the independent variable $x_1$. The p-value shows, based on the observed data, how likely it is that your data would have occurred just by random chance. Thus, a low p-value provides support for the claim that the alternative hypothesis is true instead of the null hypothesis. Here, the alternative hypothesis states, that there is indeed a correlation between the independent and the dependent variable.
 
-Statistical significance can directly be derived from the p-value and an arbitrary significance level \$\\alpha\$. However, the most widely used level of $\alpha$ is $0.05$. Less often used are levels of $.1$, $.01$ or $.001$.
+Statistical significance can directly be derived from the p-value and an arbitrary significance level $\alpha$. However, the most widely used level of $\alpha$ is $0.05$. Less often used are levels of $.1$, $.01$ or $.001$.
 
 An estimate with a p-value less than $\alpha$ is considered statistically significant. Expressed in statistical jargon, we reject the null hypothesis of random results when the respective p-value is lower than our significance level $\alpha$. Rejecting the null hypothesis indicates support for the alternative hypothesis (our observed estimate). Looking at the summary above, we see that $age$, $income$, $bmi$, and $smoking$ are statistically significant (at different levels though, indicated by the number of stars).
 
@@ -508,6 +522,7 @@ There is variety of measures to check the model fit. Some models better suit the
 Looking at the spread of residuals ($\widehat{u}_i = y_i - \widehat{y}_i$) we want them to be spread evenly around zero.
 
 ```{r}
+# Plot histogram of residuals
 ggplot(tibble(res = lm_all$residuals), aes(x = res)) + 
   geom_histogram(color="white", alpha = 0.8, binwidth = 30) +
   labs(x = "residuals", y = "frequency")
@@ -561,7 +576,7 @@ For both criteria, the model with the lowest value is preferred.
 
 In many applications, it is not advisable to include all potential independent variables but to go through steps of theoretical consideration and model selection to find the best model. Throughout the course we wills stress the importance of theoretical knowledge to build valid models that allow to draw the right conclusion.
 
-For example, is it correct to assume a linear relationship between $bmi$ and the outcome $expected\text{_}cost$? One could say, that a health insurance expects higher costs for individuals with a very low and a very high BMI. We can plot both variables and see whether the graph indicates some form of non-linearity.
+For example, is it correct to assume a linear relationship between $bmi$ and the outcome $expected\_cost$? One could say, that a health insurance expects higher costs for individuals with a very low and a very high BMI. We can plot both variables and see whether the graph indicates some form of non-linearity.
 
 And actually (not surprisingly, because we simulated the data ourselves), there is a non-linear relationship between the variables. As hypothesized, individuals with a low and a high BMI are expected to be more costly. However, this analysis disregards all other variables and should be just an indication. We still need to model this indicated relationship in our model.
 

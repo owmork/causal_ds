@@ -98,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -124,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -254,28 +254,38 @@ ul.task-list li input[type="checkbox"] {
 <section id="why-causality" class="level2">
 <h2 class="anchored" data-anchor-id="why-causality">Why causality?</h2>
 <p>Data science has gained extreme popularity in the last years and particularly in the field of machine learning, a large number of new methods and algorithms has been developed. Many of the methods are built to perform well at prediction tasks like predicting whether a customer is likely to churn, natural language processing (extracting sentiments, translating etc.), guiding self-driving cars, recognizing objects and many other applications. Those algorithms belong to the category of supervised learning and are highly data-driven (on historical data) and optimized to predict as accurate as possible. Due to increased computing power, these models have proven to be very successful in many contexts.</p>
-<p>However, there are many other <strong>contexts, where prediction is not the main focus but instead making sense of the data, understanding mechanism and processes</strong> or guiding decisions and policies plays the most important role. For example, you are not only interested in whether a customer is likely to churn, but you want to know why he/she is likely to churn. Then, we find ourselves in the realm of causality. Here, many of the newer methods are likely to fail due to their prediction-centric structure</p>
+<p>However, there are many other <strong>contexts, where prediction is not the main focus but instead making sense of the data, understanding mechanism and processes</strong> or guiding decisions and policies plays the most important role. For example, you are not only interested in whether a customer is likely to churn, but you want to know why he/she is likely to churn. Then, we find ourselves in the realm of causality. Here, many of the newer methods are likely to fail due to their prediction-centric structure.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/03_pred_expl.png" class="img-fluid figure-img" width="350"></p>
+<p></p><figcaption class="figure-caption">Difference between Prediction and Explanation</figcaption><p></p>
+</figure>
+</div>
 <p>Instead of throwing a lot of data to a black box searching for patterns between independent variables and outcome to get a model that predicts very well, in this course, we will try to <strong>understand characteristics of the data-generating process, i.e.&nbsp;the system of cause and effect and extract useful information from the data</strong>. That is what science is about, explaining why things are happening.</p>
-<p>!!! Illustration Prediction vs Explanation</p>
-<p>!!! Illustration Dependent and Independent Variable</p>
 </section>
 <section id="illustrative-examples" class="level2">
 <h2 class="anchored" data-anchor-id="illustrative-examples">Illustrative Examples</h2>
+<p><u>Example 1 - confounding factors:</u></p>
 <p>A simple application, where a data-driven machine learning model would fail to improve our understanding is a naive examination of relationship between hotel room prices and hotel room bookings. Imagine, having a sample of historical data about prices and number of bookings at your hand and you would train/fit a model to that data. A prediction-focused model would now look for correlations and patterns in the data and would conclude that in times of high prices there were more bookings.</p>
-<p>But what can we derive from such a model? That higher prices lead to higher bookings? This is most certainly not a correct causal relationship. Because we know that is not true and it is actually the other way around. People are more likely to book when prices are low. There are other factors playing a role like for example tourist seasons, particular events or economic factors. Only if we take these other factors into account, we will be able to obtain a valid estimate of the causal effect. And being able to understand the underlying mechanism will help us in taking the right actions and decisions.</p>
-<p>Another example is the direction of causation. In models based solely on correlations, we can’t be sure in which direction the causation works. A classic example is the strong correlation between roosters crowing and the sun rising. Without knowing anything about how the world works, we could come to the conclusion that the rooster causes the sun to rise. Obviously, this is wrong.</p>
-<p>Based on these small examples, you should already understand the risk of relying on purely data-driven approaches. In domains, particularly in complex domains that demand a lot of theoretical consideration, data-driven approaches are not sufficient to help us in understanding and guiding our decisions. In business, management and economics, which we put our focus on, wrong conclusions might come with costly consequences. We will therefore explore how putting emphasis on causality is beneficial to business analytics and how we can move from correlation to causation.</p>
+<p>But what can we derive from such a model? That higher prices lead to higher bookings? This is most certainly not a correct causal relationship. Because we know that is not true and it is actually the other way around. People are more likely to book when prices are low. There are other factors playing a role like for example tourist seasons, particular events or economic factors. Only if we take these other factors into account, we will be able to obtain a valid estimate of the causal effect. Ideally, we would want to look at a hotel at one specific point in time where all factors are fixed and then observe the number of bookings for different prices. In practice, this is impossible but causal methods try to get as close as possible to that scenario. Only then, we can extract valid estimates and are able to understand the underlying mechanism which help us and businesses to take the right actions and decisions.</p>
+<p><u>Example 2 - direction of causation:</u></p>
+<p>Another example is the direction of causation. In models based solely on correlations, we can’t be sure in which direction the causation works. A classic example is the strong correlation between roosters crowing and the sun rising. Without knowing anything about how the world works, we could come to the conclusion that the rooster causes the sun to rise. Obviously, this is wrong. Many machine learning models cannot take such prior knowledge into consideration when building models and will therefore yield wrong estimates. Causal methods, however, built on a research and identification strategy to include prior knowledge.</p>
+<p>Based on these small examples, you should already understand the risk of relying on purely data-driven approaches. In domains, particularly in complex domains, that demand a lot of theoretical consideration, <strong>data-driven approaches are not sufficient to help us in understanding and guiding our decisions</strong>. In business, management and economics, which we put our focus on, wrong conclusions might come with costly consequences. We will therefore explore how putting emphasis on <strong>causality is beneficial to business analytics</strong> and how we can <strong>move from correlation to causation</strong>.</p>
 </section>
 </section>
 <section id="definition" class="level1">
 <h1>Definition</h1>
 <p>So let’s move a step back and think about what causality actually means before we find out how to estimate causal effects.</p>
 <p>Hume (1993) defined a causal effect as:</p>
-<p>“…if the first object had not been, the second never had existed.”</p>
+<blockquote class="blockquote">
+<p>…if the first object had not been, the second never had existed.</p>
+</blockquote>
 <p>Mille (2010) approaches it with an example:</p>
-<p>“If a person eats of a particular dish, and dies in consequence, that is, would not have died if he had not eaten it, people would be apt to say that eating of that dish was the source of his death.”</p>
+<blockquote class="blockquote">
+<p>If a person eats of a particular dish, and dies in consequence, that is, would not have died if he had not eaten it, people would be apt to say that eating of that dish was the source of his death.</p>
+</blockquote>
 <p>Both quotes show that for an action to be the cause of an outcome, the outcome needs to have happened only when there was the cause.</p>
-<p>But how do you ensure that this is what happened in a study or analysis task? Unfortunately, <strong>data alone is never sufficient to make causal claims</strong>. In addition, you need to have some kind of domain knowledge to <strong>make necessary (and often non-testable) assumptions</strong>. Thus, causality goes beyond statistical modeling. Using the example from above, the actual problem is not “Are sales high when the price is high?” but rather “What happens to our sales if we decrease/increase the price?”.</p>
+<p>But how do you ensure that this is what happened in a study or analysis task? Unfortunately, <strong>data alone is never sufficient to make causal claims</strong>. In addition, you need to have some kind of domain knowledge to <strong>make necessary (and often non-testable) assumptions</strong>. Thus, causality goes beyond statistical modeling. Using the example from above, the actual problem is not <em>Are sales high when the price is high</em>? but rather <em>What happens to our sales if we decrease/increase the price?</em>.</p>
 <p>Other questions that arise in businesses could be:</p>
 <ul>
 <li><p>Does the advertising campaign increase sales?</p></li>
@@ -288,39 +298,52 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="../../images/03_ladder.png" class="img-fluid figure-img" width="600"></p>
 </figure>
 </div>
-<p>The first rung deals with associations based only on observations. Most machine learning models are at the first rung, only observing patterns and predicting the future based on the past.</p>
-<p>The second rung also performs exogenous (random or as-if-random) interventions in a system. It actually “does” something by changing the potential cause in e.g.&nbsp;an experiment. It is very important to understand the difference between “seeing” (rung 1) and “doing” (rung 2) to distinguish causation from correlation.</p>
-<p>On the third rung, the highest level of causality, we are imagining what would have happened, thus we are in a hypothetical world. It considers an alternate state of a past event.</p>
-<p>What is important to do when dealing with causal inference, is to understand what cause and effect really means. <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span>, if we change <span class="math inline">\(X\)</span> but nothing else and therefore <span class="math inline">\(Y\)</span> changes. You could also imagining it as <span class="math inline">\(Y\)</span> “listening” to <span class="math inline">\(X\)</span> and adapting. A causal effect is temporarily bound, which means that the change of <span class="math inline">\(X\)</span> has to happen before <span class="math inline">\(Y\)</span>. But note, only because <span class="math inline">\(X\)</span> happens before <span class="math inline">\(Y\)</span> does not necessarily prove a causal effect.</p>
-<p>In summary, to define a causal effect, we need:</p>
+<p>The <span style="color: #00C2D5">first rung</span> deals with associations based only on observations. Most machine learning models are at the first rung, only observing patterns and predicting the future based on the past.</p>
+<p>The <span style="color: #FFDF33">second rung</span> also performs exogenous (random or as-if-random) interventions in a system. It actually “does” something by changing the potential cause in e.g.&nbsp;an experiment. It is very important to understand the difference between “seeing” (rung 1) and “doing” (rung 2) to distinguish causation from correlation.</p>
+<p>On the <span style="color: #FF4E4E">third rung</span>, the highest level of causality, we are imagining what would have happened, thus we are in a hypothetical world. It considers an alternate state of a past event.</p>
+<p>When dealing with causal inference, it is important to understand what cause and effect really means. <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span>, if we change <span class="math inline">\(X\)</span> but nothing else and therefore <span class="math inline">\(Y\)</span> changes. You could also imagining it as <span class="math inline">\(Y\)</span> “listening” to <span class="math inline">\(X\)</span> and adapting. A causal effect is temporarily bound, which means that the change of <span class="math inline">\(X\)</span> has to happen before <span class="math inline">\(Y\)</span>. But note, only because <span class="math inline">\(X\)</span> happens before <span class="math inline">\(Y\)</span> does not necessarily prove a causal effect.</p>
+<p>In summary, <u>to define a causal effect</u>, we need:</p>
 <ul>
 <li><p><strong>Temporal sequence</strong>: For <span class="math inline">\(X\)</span> to cause <span class="math inline">\(Y\)</span>, <span class="math inline">\(X\)</span> has to happen before <span class="math inline">\(Y\)</span>.</p></li>
 <li><p><strong>Non-spurious association</strong>: <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> did not just happen by chance alone and there is no other factor that accounts for the association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p></li>
 <li><p><strong>Concomitant variation</strong>: Only if <span class="math inline">\(X\)</span> has happened, it can cause <span class="math inline">\(Y\)</span>. Otherwise, it is no causal effect.</p></li>
 </ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Probabilistic vs Deterministic Causation
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>There is also a difference between probabilistic and deterministic causation. Considering deterministic causation, <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span> every time and there are no exemptions. However, when we talk about probabilistic causation, we don’t mean that <span class="math inline">\(X\)</span> definitely causes <span class="math inline">\(Y\)</span> but rather increases the likelihood of <span class="math inline">\(Y\)</span> happening. E.g. a drug generally increases the likelihood of fighting a specific disease but will not work in 100% of the cases. So in almost all applications in business, social sciences, economics and many other domains, causal inference usually deals with probabilistic causation. Also in this course, we will focus only on probabilistic causation.</p>
+</div>
+</div>
 </section>
 <section id="notation-and-terminology" class="level1">
 <h1><strong>Notation and terminology</strong></h1>
-<p>Now, we will go through an example to introduce the notation and terminology. Both is crucial to understand issues of causality and find solutions to causal problems.</p>
+<p>Now, we will go through an example to introduce the notation and terminology. Speaking the language of causal inference is crucial to understand causal issues and their solutions.</p>
+<p><u>Example - problem description:</u></p>
 <p>Imagine you are a business owner of four stores and you want to investigate if there is a benefit of having own parking spots in front of your store. And if there is a benefit, you would also like to know what size it has.</p>
-<p>At stores <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, which are located in the city center, you don’t have any parking spots but at stores <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> located outside the city you do. Except for location and parking spots, the stores are very similar, i.e.&nbsp;they sell exactly the same goods, have the same size etc. So our research question is:</p>
+<p>At stores <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, which are located <strong>in the city center, you don’t have any parking spots</strong> but at stores <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> located <strong>outside the city you do</strong>. Except for location and parking spots, the stores are very similar, i.e.&nbsp;they sell exactly the same goods, have the same size etc. So our research question is:</p>
 <p><strong>How do sales increase/decrease, when a store is equipped with parking spots?</strong></p>
 <p>In causal inference, we are always interested in analyzing the effect of a specific variable on the <strong>outcome variable</strong>. This specific variable is called <strong>treatment variable</strong> and to understand the effect of this treatment variable, it needs to vary across <strong>observations units</strong>. Otherwise, if the treatment variable was constant across all observation units, we could not see how changing it translates to a change in the outcome. <strong>Manipulating the treatment variable is called treatment or intervention</strong>. It might remind you of a clinical setting, but in causal inference the term has a very general meaning and a treatment can be a lot of things.</p>
 <p>Applied to our example:</p>
 <ul>
 <li><p><strong>Observation unit</strong>: stores</p></li>
-<li><p><strong>Treatment variable</strong>: parking spots</p></li>
-<li><p><strong>Outcome variable</strong>: sales</p></li>
+<li><p><strong>Treatment variable</strong>: having parking spots (yes/no)</p></li>
+<li><p><strong>Outcome variable</strong>: sales (continuous)</p></li>
 </ul>
 <p>For each store <span class="math inline">\(i\)</span>, we denote whether it has parking spots with <span class="math inline">\(D_i\)</span>, the treatment assignment:</p>
 <p><span class="math display">\[
 D_i=\begin{cases}1 \ \text{if unit i received treatment}\\0 \ \text{otherwise}\\\end{cases}
 \]</span></p>
-<p>Here, we focus on a binary variable, but treatment could also be assigned for different levels or sizes (imagine a dose of medicine for example). But here, we just say the variable takes on a value of 1 if a unit receives the treatment and 0 if it does not. A store with <span class="math inline">\(D_i = 1\)</span> has parking spots while a store with <span class="math inline">\(D_i=0\)</span> has no parking spots.</p>
+<p>Here, we focus on a binary variable, but treatment could also be assigned for different levels or sizes (for example, the number of parking spots). But here, we just say the variable takes on a value of 1 if a unit receives the treatment and 0 if it does not. A store with <span class="math inline">\(D_i = 1\)</span> has parking spots while a store with <span class="math inline">\(D_i=0\)</span> has no parking spots.</p>
 <section id="fundamental-problem-of-causal-inference" class="level2">
 <h2 class="anchored" data-anchor-id="fundamental-problem-of-causal-inference">Fundamental Problem of Causal Inference</h2>
-<p>Now, let’s think again about the research question. How can we find out what the benefit of having parking spots is? Ideally, we would be able to compute the individual treatment effect (ITE) of each store <span class="math inline">\(i\)</span>. That means, for each store, we would know what the sales would be with and without parking spots. Then we could take the difference of those two outcomes and we would know what part of the sales would be only attributable to having parking spots. This is called the <strong>individual treatment effect (ITE):</strong></p>
+<p>Now, let’s think again about the research question. How can we find out what the benefit of having parking spots is? Ideally, we would be able to compute the individual treatment effect (<span class="math inline">\(ITE\)</span>) of each store <span class="math inline">\(i\)</span>. That means, for each store, we would know what the <strong>sales</strong> would be <strong>with and without parking spots</strong>. Then we could take the difference of those two outcomes and we would know what part of the sales would be only attributable to having parking spots. This is called the <strong>individual treatment effect (</strong><span class="math inline">\(ITE\)</span><strong>):</strong></p>
 <p><span class="math display">\[
 \text{ITE}_i = Y_{i1} - Y_{i0}
 \]</span></p>
@@ -335,16 +358,15 @@ Y_A &amp;= D_AY_{A1} + (1-D_A)Y_{A0} \\
 \end{align}
 \]</span></p>
 <p>We are able to observe <span class="math inline">\(Y_{A0}\)</span>, the sales for store <span class="math inline">\(A\)</span> having no parking spots, but we are not able to observe <span class="math inline">\(Y_{A1}\)</span>, the state in which store <span class="math inline">\(A\)</span> would have parking spots. But to estimate a individual causal effect, we would have to know what happens when we intervene and when we don’t intervene.</p>
-<p>!!! VIZ: Potential outcomes</p>
 <p><span class="math inline">\(Y_{A1}\)</span> and <span class="math inline">\(Y_{A0}\)</span> are <strong>potential outcomes</strong>, of which the one actually happened is called <strong>factual</strong> and the one that did not happen is called <strong>counterfactual</strong>. Note, that they describe outcomes for the same unit and although we cannot observe one of them, we can still define it mathematically.</p>
 </section>
 <section id="average-treatment-effect" class="level2">
 <h2 class="anchored" data-anchor-id="average-treatment-effect">Average Treatment Effect</h2>
-<p>For now, we will leave the ITE behind and focus on a metric that is more accessible in analyses, the <strong>average treatment effect (ATE)</strong>. The average treatment effect is defined as</p>
+<p>For now, we will leave the ITE behind and focus on a metric that is more accessible in analyses, the <strong>average treatment effect (ATE)</strong>. The average treatment is defined as</p>
 <p><span class="math display">\[
 \text{ATE} = E[Y_1 - Y_0] \,\,,
 \]</span></p>
-<p>the expected difference in outcomes under both states. So the causal effect is defined as a comparison between two states of the world, the “actual” or “factual” state compared to the never observed “counterfactual” world.</p>
+<p>the expected difference in outcomes under both states. So the causal effect is defined as a comparison between two states of the world, the <em>actual</em> or <em>factual</em> state compared to the never observed <em>counterfactual</em> world.</p>
 <p>Other forms of average treatment effects are the <strong>average treatment effect on the treated (ATT)</strong> and the <strong>average effect on the untreated (ATU)</strong>.</p>
 <p><span class="math display">\[
 \begin{align}
@@ -352,7 +374,7 @@ ATT = E[Y_1 - Y_0|D = 1] \\
 ATU = E[Y_1 - Y_0|D = 0]
 \end{align}
 \]</span></p>
-<p>Now let’s ignore the fundamental problem of causal inference for a minute and imagine the impossible scenario that we would be able to observe all outcomes for all stores for all different states. That means, we would be able to magically know the sales of each stores with and without parking spots. Just for illustration, the unobserved outcomes are crossed out, but we’ll still use them for computation.</p>
+<p>Now let’s ignore the fundamental problem of causal inference for a minute and imagine the <strong>impossible scenario that we would be able to observe all outcomes for all stores for all different states</strong>. That means, we would be able to magically know the sales of each stores with and without parking spots. Just for illustration, the unobserved outcomes are crossed out, but we’ll still use them for computation.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -399,7 +421,7 @@ ATU = E[Y_1 - Y_0|D = 0]
 </tr>
 </tbody>
 </table>
-<p>Knowing all states, we would be able to easily compute the average treatment effect by averaging the last column <span class="math inline">\(\Delta y\)</span>,</p>
+<p>Knowing all states, we would be able to easily compute the average treatment effect by averaging the last column <span class="math inline">\(ITE\)</span>. The <span class="math inline">\(ATE\)</span> is the average of all <span class="math inline">\(ITE\)</span> and in this impossible scenario, we actually know the true estimate:</p>
 <p><span class="math display">\[
 \text{ATE} = \frac{1}{4}(28 + 26 + 10 + 4)= 17
 \]</span></p>
@@ -459,14 +481,14 @@ ATU = \frac{1}{2}(10+4) = 7
 <p><span class="math display">\[
 \text{ATE} = E[Y|D=1] -E[Y|D=0] = \frac{102+94}{2} - \frac{135+121}{2} = -30
 \]</span></p>
-<p>This would leave us with an average treatment effect of <span class="math inline">\(-30\)</span>, which is is very far away from our true estimate of <span class="math inline">\(+27\)</span>. In fact, it even goes in the other direction. This is why we need to be extremely careful when attempting to prove causal effects. Naive estimations and simple methods might not only under- or overestimate the effect or not identify a true effect, but they could get it even completely wrong.</p>
+<p>This would leave us with an average treatment effect of <span class="math inline">\(-30\)</span>, which is is <strong>very far away from our true estimate</strong> of <span class="math inline">\(+27\)</span>. In fact, it <strong>even goes in the other direction</strong>. This is why we need to be extremely careful when attempting to prove causal effects. Naive estimations and simple methods might not only under- or overestimate the effect or not identify a true effect, but they could get it even completely wrong.</p>
 </section>
 </section>
 <section id="bias" class="level1">
 <h1><strong>Bias</strong></h1>
 <p>But what is the reason for this difference and reversing of signs? When we think again about the problem description, there was one more detail we haven’t really cared about so far. It was said that two of the stores are located in the city center and two stores are located outside the city center. What difference could that make for the potential outcomes and the individual treatment effect?</p>
-<p>If we think about it, stores outside the city are more dependent on having parking spots as there are no people just walking by and entering spontaneously. In the city, there are people on their shopping trip walking and not by car, so there is no need for a parking sport. Customers visiting stores outside the city center are more likely to have planned their trip and come by car. Also, stores in the city center are more likely to have more customers and therefore more sales.</p>
-<p>So there is another factor, namely the location, that plays an important role that we did not include in our analysis which biases our estimate. Such variables are called <strong>confounders</strong> and in many scenarios, they are completely unobserved. In this case, <strong>treated and untreated stores are not comparable</strong>. In potential outcomes notation, we can say that <span class="math inline">\(Y_0\)</span> is different for treated and untreated stores due to their different location causing a different level of sales in the untreated status.</p>
+<p>If we think about it, stores outside the city are more dependent on having parking spots as there are no people just walking by and entering spontaneously. In the city, there are people on their shopping trip randomly walking by, so there is no need for a parking sport. Customers visiting stores outside the city center are more likely to have planned their trip and come by car as opposed to people walking by in the city without prior intent to visit a store. Also, stores in the city center are more likely to have more customers and therefore more sales.</p>
+<p>So there is <strong>another relevant factor</strong>, namely the location, that plays an important role that we <strong>did not include in our analysis</strong> which biases our estimate. Such variables are called <strong>confounders</strong> and in many scenarios, they are completely unobserved. In this case, <strong>treated and untreated stores are not comparable</strong> and when we do not compare apples to apples, our estimate is biased. In potential outcomes notation, we can say that <span class="math inline">\(Y_0\)</span> is different for treated and untreated stores due to their different location causing a different level of sales in the untreated status.</p>
 <p>This means, that the <strong>negative association between parking and sales that we observe does not translate into causation</strong>. Mathematically, we can prove that our naive estimate of the ATE can be biased when <span class="math inline">\(Y_0\)</span> differs for both treated and untreated group as we just reasoned. Note that <span class="math inline">\(E[Y_1 - Y_0]\)</span> is the causal average treatment effect.</p>
 <p><span class="math display">\[
 \begin{align}
@@ -475,7 +497,7 @@ E[Y_1 - Y_0] &amp;= E[Y|D=1] - E[Y|D=0] \\ &amp;= E[Y_1|D=1] - E[Y_0|D=0] + E[Y_
 \end{align}
 \]</span></p>
 <p>The formula shows where the <strong>bias</strong> comes from: the <strong>difference in outcomes for both groups had they not been treated</strong>. Mathematically, it looks simple to arrive at an unbiased estimate, we just have to make sure the last part of the formula equals zero: <span class="math inline">\(E[Y_0|D=0] = E[Y_0|D=0]\)</span></p>
-<p>But how do we achieve it in practice? How can we go from association to causation by eliminating the bias? We need treatment and control group to be comparable before treatment. This also implies that the ATT is equal to the ATE and the difference in means is equal to the causal effect we want to estimate.</p>
+<p>But how do we achieve it in practice? How can we go from association to causation by eliminating this bias? We need <strong>treatment and control group to be comparable before treatment</strong>. By the way, this implies that the ATT is equal to the ATE and the difference in means is equal to the causal effect we want to estimate.</p>
 </section>
 <section id="outlook" class="level1">
 <h1>Outlook</h1>
@@ -498,7 +520,10 @@ If you’re interested: evolution of causal inference.
 </section>
 <section id="assignment" class="level1">
 <h1>Assignment</h1>
-<p>!!!</p>
+<p>In this chapter, there is no typical assignment but we will use it to get familiar with plotting functions in <code>R</code>.</p>
+<p>Having read this chapter, you have already understood the risk of confusing correlation with causation. On the internet, you can find many examples of spurious correlations. Spurious correlations are correlations that appear to be causal but are in fact not. The reason could be that there is a confounding factor or that two variables happen to be statistically associated just by coincidence. A <a href="https://www.tylervigen.com/spurious-correlations">list of particularly obvious spurious</a> correlations has been compiled by Tyler Virgen. Have a look at them!</p>
+<p>Then, try to replicate one of these graphs in R using <code>ggplot2</code>. <a href="https://meghan.rbind.io/slides/neair/neair.html#/ggplot2">Here</a> you can find a well written introduction to <code>ggplot2</code> and the <a href="https://ggplot2.tidyverse.org/">official documentation</a> also contains a lot of useful tips. It does not to be exactly the same plot but it should convey the message that both variables correlate.</p>
+<p><em>Hint: make sure to have the data in the correct (long) format! Either create it that way or you could use for example <code>pivot_longer()</code>.</em></p>
 
 
 </section>

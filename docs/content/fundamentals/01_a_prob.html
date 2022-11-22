@@ -161,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -187,7 +187,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -315,6 +315,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Before we dive into topics of causal inference, we review some basic concepts of probability and statistics. All methods that we will use later in this course are based on statistical models and these require probability theory. But we will keep it as short as possible as our focus and learning goal lies more on applications and coding than on the theoretical part.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Assignments
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please note: in this chapter, there are two assignments in between. In the other chapters, you’ll usually find the assignments at the end.</p>
+</div>
+</div>
 </section>
 <section id="probability" class="level1">
 <h1>Probability</h1>
@@ -420,9 +433,6 @@ P(A \cap B) = P(A) \ P(B)
 <p></p><figcaption class="figure-caption">Probability tree</figcaption><p></p>
 </figure>
 </div>
-<p>https://www.mashupmath.com/blog/probability-tree-diagrams</p>
-<p>https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg</p>
-<p><em>https://eight2late.wordpress.com/2010/03/11/bayes-theorem-for-project-managers/</em></p>
 </section>
 <section id="assignment-1" class="level2">
 <h2 class="anchored" data-anchor-id="assignment-1">Assignment 1</h2>
@@ -434,12 +444,14 @@ P(A \cap B) = P(A) \ P(B)
 <li><p><span class="math inline">\(P(\overline{T} \cap \overline{S})\)</span></p></li>
 </ul>
 <p>What is the sum of all four probabilities?</p>
+<p><em>Hint: Check <a href="https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg">here</a>, if you are not sure what is shown in the probability tree.</em></p>
 </section>
 <section id="set-theory" class="level2">
 <h2 class="anchored" data-anchor-id="set-theory"><strong>Set Theory</strong></h2>
 <p>Another useful tool to visualize the occurrence and relationship between events are Venn diagrams building on set theory. A very simple one we actually already used above to illustrate the difference of mutually exclusive and non-mutually exclusive events.</p>
 <p>Let’s use an example to understand the other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices, smartphones, tables and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.</p>
 <p>But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current distribution.</p>
+<p>We simulate the collection process here. If you are interested how to do it in <code>R</code>, check out the code. But you don’t have to. And don’t worry, if it looks too complicated at this point, just move on.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -505,10 +517,12 @@ Note
 <p><code>mutate()</code> is one of the most important functions for data manipulation in tables. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, <code>mutate(table, new_variable = existing_var / 100)</code>, which is equivalent to <code>table %&gt;% mutate(new_variable = existing_var / 100)</code>.</p>
 </div>
 </div>
-<p>!!! exclude creation and move R explanations</p>
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load tidyverse package</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.2 ──
 ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
@@ -519,6 +533,8 @@ Note
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nmber of obervations</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -538,6 +554,7 @@ Note
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>app_usage <span class="ot">&lt;-</span> app_usage <span class="sc">%&gt;%</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smartphone =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(smartphone, tablet, computer) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, smartphone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Here, we simulated some artificial data. Seeing the formulas used for constructing the data, we already know that e.g.&nbsp;customers tend not to use the app on both tablet and computer.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
@@ -554,7 +571,8 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(app_usage, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first ten lines</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(app_usage, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -579,7 +597,8 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show column sums</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user_id smartphone     tablet   computer 
     500500        589        389        226 </code></pre>
@@ -600,7 +619,7 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalent commands</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent commands to select specific columns</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#colSums(app_usage[, 2:4])</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#colSums(app_usage[, c("smartphone", "tablet", "computer")])</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>app_usage <span class="sc">%&gt;%</span> <span class="fu">select</span>(smartphone, tablet, computer) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -610,6 +629,12 @@ Note
 </div>
 </div>
 <p>Now let’s see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/01_venn_diag.png" class="img-fluid figure-img" alt="Generic Venn diagram" width="450"></p>
+<p></p><figcaption class="figure-caption">Generic Venn diagram with three sets</figcaption><p></p>
+</figure>
+</div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -624,18 +649,25 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>set_phon <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>smartphone <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>set_tabl <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>tablet <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>set_comp <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>computer <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sets_all <span class="ot">&lt;-</span> <span class="fu">list</span>(set_phon, set_tabl, set_comp)</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set of phone, tablet and computer users</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>set_phon <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>smartphone <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>set_tabl <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>tablet <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>set_comp <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>computer <span class="sc">==</span> <span class="dv">1</span>)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggVennDiagram)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(sets_all, <span class="at">category.names =</span> <span class="fu">c</span>(<span class="st">"Smartphone"</span>, <span class="st">"Tablet"</span>, <span class="st">"Computer"</span>),</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_percent_digit =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>),</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>)) <span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> .<span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># List of all sets</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sets_all <span class="ot">&lt;-</span> <span class="fu">list</span>(set_phon, set_tabl, set_comp)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load additional package for plotting Venn diagrams</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggVennDiagram)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Venn diagram</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(sets_all, <span class="at">category.names =</span> <span class="fu">c</span>(<span class="st">"Smartphone"</span>, <span class="st">"Tablet"</span>, <span class="st">"Computer"</span>),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_percent_digit =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customizing appearance</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>),</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>)) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> .<span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -643,12 +675,6 @@ Note
 </figure>
 </div>
 </div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/01_venn_diag.png" class="img-fluid figure-img" width="350"></p>
-<p></p><figcaption class="figure-caption">Generic Venn diagram</figcaption><p></p>
-</figure>
 </div>
 <p>Using the Venn diagram, we are able to answer questions like the following:</p>
 <ul>
@@ -658,7 +684,7 @@ Note
 </ul>
 <p>Try to answer these questions yourself.</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -667,7 +693,7 @@ Answers
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>0.5%</p></li>
@@ -900,7 +926,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../content/index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Overview</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

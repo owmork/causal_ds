@@ -16,7 +16,7 @@ website:
       - text: Content
         file: content/index.qmd
       - icon: chat-left-text-fill
-        href: https://communicating.tuhh.de/w-11-students/channels/test_intro
+        href: https://communicating.tuhh.de/w-11-students/channels/discussion
         aria-label: Mattermost
   
   sidebar:
@@ -24,7 +24,7 @@ website:
       style: "docked"
       background: "#011627"
       contents:
-        - text: "Overview"
+        - text: "Introduction"
           file: content/index.qmd
         - section: "Fundamentals"
           contents:

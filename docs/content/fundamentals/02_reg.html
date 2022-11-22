@@ -161,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -187,7 +187,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -323,6 +323,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It is undisputed that the <strong>most important method in statistical inference</strong> is the <strong>linear regression</strong>, which has been used extensively in practical and scientific applications due to its desirable mathematical properties and its convenient interpretation.</p>
 <p>In this course, we will use linear regression in combination with other methods to explain and interpret relationships and effects between random variables, in general: how does changing one variable affect another variable? There are also other purposes that linear regression could be used for, namely as prediction method. However, prediction is not the focus of this course and in fact, there are actually many other methods that surpass linear regression for prediction tasks. On the other hand, for explanation and interpretation purpose, which are fundamental for causal reasoning, linear regression is still one of the sophisticated methods.</p>
 <p>It builds upon many of the statistical concepts that were explained in the previous chapter, such as conditional expectations, variance, covariance, correlation etc. Formally, we want to explain an outcome <span class="math inline">\(Y\)</span> (also called response or dependent variable) using an explanatory variable <span class="math inline">\(X\)</span> (also called predictor or independent variable). A popular example, that has been studied extensively, is to explain the effect of smoking on lung cancer. Here, smoking is the explanatory variable <span class="math inline">\(X\)</span> and lung cancer <span class="math inline">\(Y\)</span> is the outcome.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/02_xy.png" class="img-fluid figure-img" width="350"></p>
+<p></p><figcaption class="figure-caption">Cause and Effect in Regression</figcaption><p></p>
+</figure>
+</div>
 <p>Let’s use a simple example to show how linear regression works and how we can implement it in R. First, we consider a model with one explanatory variable:</p>
 <p><span class="math display">\[
 y=\beta_0+\beta_1x+u
@@ -354,7 +360,8 @@ E(y\mid x)=\beta_0+\beta_1x
 <p>We start using a simple example to get an intuition of how the linear regression is estimated and how it is implemented in <code>R</code>. For presentation purposes, we sample the data ourselves and also define the relationship between the variables.</p>
 <p>Before we start, we load the <code>R</code> package <code>tidyverse</code>, which actually is collection of several useful packages for data manipulation, visualization and other data science purposes. Throughout the course, we will almost always load it.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load tidyerse package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We create a tibble, which is a table containing data, with two columns, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. For <span class="math inline">\(x\)</span>, we draw ten random samples from the normal distribution with a mean of 3 and a standard deviation of 1. The outcome variable <span class="math inline">\(y\)</span>, we make dependent from <span class="math inline">\(x\)</span>, i.e.&nbsp;for each unit <span class="math inline">\(i\)</span>, we create a <span class="math inline">\(y_i\)</span> as</p>
 <p><span class="math display">\[
@@ -364,13 +371,20 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 <p>Let’s have a look at how the data is presented. We have a table containing 100 rows and two columns. Each row is an observation for a different unit, which could be a person, a point in time or another kind of measurement. It is only important that the values in a particular row belong together.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simluate data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lm_dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fl">0.3</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.2</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>lm_dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># number of observations</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tibble</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>lm_dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw from normal distribution</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># y depends on x and noise from normal distribution</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fl">0.3</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.2</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show data</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>lm_dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -430,7 +444,7 @@ Note
 <p><code>lm()</code> is a function that fits a linear model. You have to provide data and a regression equation in the form of for example <code>outcome ~ regressor_1 + regressor_2</code> or <code>outcome ~ .</code>, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call <code>summary()</code>.</p>
 </div>
 </div>
-<p>Looking at the regression summary, we see that the line is modeled by <span class="math inline">\(y = -0.1918 + 0.3354*x\)</span>. It means that for the fitted model, an increase of one unit in <span class="math inline">\(x\)</span> is related to an 0.33354 increase in <span class="math inline">\(y\)</span>.</p>
+<p>Looking at the regression summary, we see that the line is modeled by <span class="math inline">\(y = -0.1918 + 0.3354*x\)</span>. It means that for the fitted model, an increase of one unit in <span class="math inline">\(x\)</span> is related to an 0.3354 increase in <span class="math inline">\(y\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model and print summary</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, lm_dat)</span>
@@ -622,7 +636,8 @@ Note
 <p>Most data scientists start by using the <code>head()</code> command, which returns the first part of the table and shows you the data structure. Also, if something is wrong with your data, because you did not load it correctly or headers do not fit the data, you were able to see it here already.</p>
 <p>Here, we see that our table consists of different column types, such as integers, doubles and factors.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first lines</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -634,7 +649,8 @@ Note
 </div>
 <p>An option not available in RStudio, but in documents like this one here, is to view a paged table by just typing in the name of the object. In RStudio, the best way to look at a table is <code>View()</code> or <code>view()</code>, which opens the table in a readable format.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show table</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -759,7 +775,7 @@ F-statistic: 74.4 on 9 and 990 DF,  p-value: &lt;2e-16</code></pre>
 <p>The standard error indicates the variation around the estimated coefficient. A high standard error indicates a lot of variation and high uncertainty while low standard errors provide more confidence in the estimate.</p>
 <p>The other values are also concerned with the level of uncertainty there is in the estimation. They are related to the coefficient and standard error.</p>
 <p>Most widely used is the p-value, or probability value. It tests the so called null hypothesis against the observed data. The null hypothesis states that there is no correlation between the dependent variable <span class="math inline">\(y\)</span> and the independent variable <span class="math inline">\(x_1\)</span>. The p-value shows, based on the observed data, how likely it is that your data would have occurred just by random chance. Thus, a low p-value provides support for the claim that the alternative hypothesis is true instead of the null hypothesis. Here, the alternative hypothesis states, that there is indeed a correlation between the independent and the dependent variable.</p>
-<p>Statistical significance can directly be derived from the p-value and an arbitrary significance level $\alpha$. However, the most widely used level of <span class="math inline">\(\alpha\)</span> is <span class="math inline">\(0.05\)</span>. Less often used are levels of <span class="math inline">\(.1\)</span>, <span class="math inline">\(.01\)</span> or <span class="math inline">\(.001\)</span>.</p>
+<p>Statistical significance can directly be derived from the p-value and an arbitrary significance level <span class="math inline">\(\alpha\)</span>. However, the most widely used level of <span class="math inline">\(\alpha\)</span> is <span class="math inline">\(0.05\)</span>. Less often used are levels of <span class="math inline">\(.1\)</span>, <span class="math inline">\(.01\)</span> or <span class="math inline">\(.001\)</span>.</p>
 <p>An estimate with a p-value less than <span class="math inline">\(\alpha\)</span> is considered statistically significant. Expressed in statistical jargon, we reject the null hypothesis of random results when the respective p-value is lower than our significance level <span class="math inline">\(\alpha\)</span>. Rejecting the null hypothesis indicates support for the alternative hypothesis (our observed estimate). Looking at the summary above, we see that <span class="math inline">\(age\)</span>, <span class="math inline">\(income\)</span>, <span class="math inline">\(bmi\)</span>, and <span class="math inline">\(smoking\)</span> are statistically significant (at different levels though, indicated by the number of stars).</p>
 <p>Another way to look at the significance of our estimates is to compute is to look at confidence intervals which derive from the estimate, standard error and the t-distribution - the same inputs as needed for p-values. A <span class="math inline">\((1-\alpha)\)</span> confidence interval has a probability of <span class="math inline">\((1-\alpha)*100 \%\)</span> to contain the true value of our estimated coefficient. That means, if we would sample <span class="math inline">\(100\)</span> times, <span class="math inline">\(\beta_i\)</span> would be contained in the sample <span class="math inline">\((1-\alpha)*100\)</span> times.</p>
 <div class="cell" data-layout-align="center">
@@ -804,9 +820,10 @@ children    -33.221  14.703</code></pre>
 <p>There is variety of measures to check the model fit. Some models better suit the observed data than others and it is the researchers task to find the best model for his/her data.</p>
 <p>Looking at the spread of residuals (<span class="math inline">\(\widehat{u}_i = y_i - \widehat{y}_i\)</span>) we want them to be spread evenly around zero.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">res =</span> lm_all<span class="sc">$</span>residuals), <span class="fu">aes</span>(<span class="at">x =</span> res)) <span class="sc">+</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">binwidth =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"residuals"</span>, <span class="at">y =</span> <span class="st">"frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram of residuals</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">res =</span> lm_all<span class="sc">$</span>residuals), <span class="fu">aes</span>(<span class="at">x =</span> res)) <span class="sc">+</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">binwidth =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"residuals"</span>, <span class="at">y =</span> <span class="st">"frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -881,7 +898,7 @@ F-statistic:  140 on 3 and 996 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 <p>For both criteria, the model with the lowest value is preferred.</p>
 <p>In many applications, it is not advisable to include all potential independent variables but to go through steps of theoretical consideration and model selection to find the best model. Throughout the course we wills stress the importance of theoretical knowledge to build valid models that allow to draw the right conclusion.</p>
-<p>For example, is it correct to assume a linear relationship between <span class="math inline">\(bmi\)</span> and the outcome <span class="math inline">\(expected\text{_}cost\)</span>? One could say, that a health insurance expects higher costs for individuals with a very low and a very high BMI. We can plot both variables and see whether the graph indicates some form of non-linearity.</p>
+<p>For example, is it correct to assume a linear relationship between <span class="math inline">\(bmi\)</span> and the outcome <span class="math inline">\(expected\_cost\)</span>? One could say, that a health insurance expects higher costs for individuals with a very low and a very high BMI. We can plot both variables and see whether the graph indicates some form of non-linearity.</p>
 <p>And actually (not surprisingly, because we simulated the data ourselves), there is a non-linear relationship between the variables. As hypothesized, individuals with a low and a high BMI are expected to be more costly. However, this analysis disregards all other variables and should be just an indication. We still need to model this indicated relationship in our model.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot relationship between BMI and expected cost</span></span>

@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/test_intro"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/index.html" class="sidebar-item-text sidebar-link active">Overview</a>
+  <a href="../content/index.html" class="sidebar-item-text sidebar-link active">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Welcome!</h1>
 <p>Welcome to “Causal Data Science for Business Analytics”!</p>
 <p>In this course, you will learn about causality in data science with a particular emphasis on business applications. Causal data science methods are increasingly recognized and developed to understand causes and effects. Moving beyond a prediction-based approach in data science, the purpose of causal methods is to understand underlying processes and mechanisms to guide strategic decision-making. Causal methods allow us to answer questions that otherwise could not be addressed.</p>
-<p>According to a large global survey conducted among data science practitioners in industry in 2020, 83% of respondents consider causal inference increasingly important for data-driven decision making. Moreover, 44% state that, in their data science projects, causal inference already is important (<a href="https://www.causalscience.org/blog/causal-data-science-in-practice/" class="uri">https://www.causalscience.org/blog/causal-data-science-in-practice/</a>).</p>
+<p>According to a large global survey<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> conducted among data science practitioners in industry in 2020, 83% of respondents consider causal inference increasingly important for data-driven decision making. Moreover, 44% state that, in their data science projects, causal inference already is important.</p>
 </section>
 <section id="setup" class="level1">
 <h1>Setup</h1>
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Click the Button <strong>GitLab</strong></p></li>
 <li><p><em>You may need to login to GitLab with your Kerberos/LDAP data (e.g.&nbsp;cba1020 and your password) on the following page and/or authorize once for Mattermost to access GitLab. You may also need to accept the terms.</em></p></li>
 <li><p>After accessing Mattermost, join the <a href="https://communicating.tuhh.de/signup_user_complete/?id=8f44fef8tifj5rripq8zya4s7w">team W-11 students</a></p></li>
-<li><p>Join <a href="https://communicating.tuhh.de/w-11-students/channels/discussion">Causal Data Science Channel</a></p></li>
+<li><p>Join <a href="https://communicating.tuhh.de/w-11-students/channels/discussion">Causal Data Science Channel</a> (you might need to wait a bit, as I first have to add you)</p></li>
 </ol>
 <p>There, and in the classes of course, I will try to help you as much as possible.</p>
 <p>In order to keep the discussion efficient and manageable it is necessary that we all follow some basic rules:</p>
@@ -351,8 +351,7 @@ Error in x %&gt;% sum() : could not find function "%&gt;%"
 <section id="installing-r-rstudio-ide" class="level2">
 <h2 class="anchored" data-anchor-id="installing-r-rstudio-ide">Installing R &amp; RStudio IDE</h2>
 <p>Before we dive deep into the methods that help us to make critical data-driven business decisions, we start with a <strong>brief introduction to R</strong>, the programming language most suited to solve problems of causality. Don’t worry, if you have never heard of it! We’ll go through some very concise courses that will familiarize you with its functions very quickly. Essentially, you have to tell R what to do for you in a specific language. But step by step, first, we have to do the installation.</p>
-<p>R is only fun to use in combination with RStudio, a graphical integrated development environment (IDE) that makes the use of R more convenient and interactive. Please follow the steps as outlined in the instructions (note, that you have to install both R and RStudio):</p>
-<p>https://rstudio-education.github.io/hopr/starting.html</p>
+<p>R is only fun to use in combination with RStudio, a graphical integrated development environment (IDE) that makes the use of R more convenient and interactive. Please follow the steps as outlined in the <a href="https://rstudio-education.github.io/hopr/starting.html">instructions</a> (note, that you have to install both R and RStudio):</p>
 <p>When you have successfully installed R and RStudio, open RStudio and you should see a screen similar to this one. By the way, if you want to change the default withe theme to something else, you can do that by going to <code>Tools</code> -&gt; <code>Global options</code> -&gt; <code>Appearance</code> and switch theme in -&gt; <code>Editor theme</code>.</p>
 <p><img src="../images/00_rstudio.png" class="img-fluid"><br>
 RStudio is split into four panes that have the following functions:</p>
@@ -363,8 +362,7 @@ RStudio is split into four panes that have the following functions:</p>
 </section>
 <section id="introduction-to-r" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-r">Introduction to R</h2>
-<p>One last note before you start coding: <strong>don’t be intimidated by the errors, warnings and other messages</strong> that you (and everyone else) will without doubt receive.</p>
-<p>There is no reason to panic just because you see red text in your console and in fact, what is returned will help you to reach your goal.</p>
+<p>One last note before you start coding: <strong>don’t be intimidated by the errors, warnings and other messages</strong> that you (and everyone else) will without doubt receive. There is no reason to panic just because you see red text in your console and in fact, what is returned will often times already help you to solve the problem.</p>
 <p>There are <u>three different types</u> of texts:</p>
 <ul>
 <li><p><strong>Errors</strong>: this is a legitimate error and most likely your code did not run due to the error. Many of the error messages are very concise and you will directly see what was wrong, what is missing etc. If you do not see what you did wrong at first glance, you can copy the error message and google it. It is very likely someone else has run into the same error before.</p></li>
@@ -372,14 +370,10 @@ RStudio is split into four panes that have the following functions:</p>
 <li><p><strong>Messages</strong>: these are just friendly texts that provide you with useful information.</p></li>
 </ul>
 <p><u><strong>Interactive Tutorials</strong></u><strong>:</strong></p>
-<p>The best way to get familiar with R and to code is to just start.&nbsp;</p>
-<p>In the following chapters, you will learn to code along the way, but to start you will go through some very concise tutorials from the R package <code>swirl</code>. The package provides a whole bunch of tutorials in the console (http://swirlstats.com/scn/title.html).</p>
-<p>Feel free to complete as many tutorials as you want, but for this class, the following tutorials are of particular use:</p>
-<ol type="1">
-<li><p>The R Programming Environment (Chapter 2-12)</p></li>
-<li><p>ggplot (!!!) / https://meghan.rbind.io/slides/neair/neair.html#/ggplot2</p></li>
-</ol>
-<p><code>swirl()</code>does not come with R by default but is an optional package. <strong>R packages</strong> are extensions of the base functionality that is implemented by default when you download R. Written by users around the world, packages provide additional features and are crucial for data science tasks in practice as you will later see.</p>
+<p>But let’s no more talk about it but instead start coding because the best way to get familiar with R and to code is to just start.</p>
+<p>In the following chapters, you will learn to code along the way, but to start you will go through some very concise tutorials from the R package <code>swirl</code>. The package provides a <a href="http://swirlstats.com/scn/title.html">whole bunch of tutorials</a> in the console.</p>
+<p>Feel free to complete as many tutorials as you want, but for this class, the following tutorial is of particular use: <strong>The R Programming Environment</strong> (Chapter 2-12)</p>
+<p><code>swirl()</code>does not come with R by default but is an optional package. <strong>R packages</strong> are extensions of the base functionality implemented by default when you download R. Written by users around the world, packages provide additional features and are crucial for data science tasks in practice as you will later see.</p>
 <p>You need to follow two steps to use an R package:</p>
 <ol type="1">
 <li><p><strong>Install the package (one)</strong>. As already mentioned, packages are not installed by default and you have to download it and add it to your library. Once you’ve installed it, you don’t have to repeat this step.</p></li>
@@ -402,18 +396,18 @@ RStudio is split into four panes that have the following functions:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>!!! Assignment?</p>
 <p>swirl will ask you to install packages for you that are needed for the tutorial. Please confirm when asked. If you computer is struggling with installing a package named “vctrs”, please type in the following command. If you don’t get such an error, you can ignore it.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"vctrs"</span>, <span class="at">repos =</span> <span class="st">"https://packagemanager.rstudio.com/cran/latest"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>You don’t need to submit anything from this step. Just focus on getting familiar with <code>R</code> by completing the tutorial!</p>
 </section>
 </section>
 <section id="assignments" class="level1">
 <h1>Assignments</h1>
 <p>At the end of each chapter, you will find an assignment. These assignments are related to the same chapter and with your acquired knowledge, you should be able to solve it.</p>
-<p>You have to <strong>submit your solutions to the assignments by 31/01/2023</strong> in order to pass the course. I will provide details how to submit your assignments in our second class on 01/12/2022 (and of course, also here on this website).</p>
-<p>!!! TUNE?</p>
+<p>You have to <strong>submit your solutions to the assignments by 31/01/2023</strong> in order to pass the course. I will provide details how to submit your assignments in our second class on 30/11/2022 (and of course, also here on this website).</p>
+<p>To successfully complete the course, you also have to <strong>register on TUNE</strong>.</p>
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
@@ -433,7 +427,13 @@ RStudio is split into four panes that have the following functions:</p>
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://www.causalscience.org/blog/causal-data-science-in-practice/" class="uri">https://www.causalscience.org/blog/causal-data-science-in-practice/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
