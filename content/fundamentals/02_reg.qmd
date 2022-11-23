@@ -57,7 +57,7 @@ In this course, we will use linear regression in combination with other methods 
 
 It builds upon many of the statistical concepts that were explained in the previous chapter, such as conditional expectations, variance, covariance, correlation etc. Formally, we want to explain an outcome $Y$ (also called response or dependent variable) using an explanatory variable $X$ (also called predictor or independent variable). A popular example, that has been studied extensively, is to explain the effect of smoking on lung cancer. Here, smoking is the explanatory variable $X$ and lung cancer $Y$ is the outcome.
 
-![Cause and Effect in Regression](/images/02_xy.png){fig-align="center" width="350"}
+![Cause and Effect in Regression](/images/02_xy.png){fig-align="center" width="470"}
 
 Let's use a simple example to show how linear regression works and how we can implement it in R. First, we consider a model with one explanatory variable:
 
@@ -190,7 +190,7 @@ ggplot(lm_dat, aes(x = x, y = y)) +
   geom_line(data = rlines[[10]], color = line_color, alpha = .5, linewidth = 1)
 ```
 
-You can see there is an infinite amount of potential lines that could be chosen to go through the data. But only one of them is the line minimizing the sum of squares. The residual, which is the distance between the line and an observation, should be minimized. This also means that on average, the error is zero.
+You can see there is an infinite amount of potential lines that could be chosen to go through the data. But only one of them is the line minimizing the sum of squares. The residual, which is the distance between the line and an observation, should be minimized. This also means that on average, the residuals are zero.
 
 ```{r}
 #| echo: false
@@ -226,7 +226,7 @@ If we want to mathematically compute the line in R, we have to use the `lm()` fu
 | `lm()` is a function that fits a linear model. You have to provide data and a regression equation in the form of for example `outcome ~ regressor_1 + regressor_2` or `outcome ~ .`, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call `summary()`.
 :::
 
-Looking at the regression summary, we see that the line is modeled by $y = -0.1918 + 0.3354*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.3354 increase in $y$.
+Looking at the regression summary, we see that the line is modeled by $y = -0.1918 + 0.3354*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.3354 increase in $y$. That is relatively close to what we simulated (0.3) and deviates due to the added random noise.
 
 ```{r}
 # Fit model and print summary
@@ -273,21 +273,24 @@ $$
 
 and together with our assumptions $E(u) = 0$ and $E(u|x)=0$ we obtain the equations to be solved to retrieve estimates for $\beta_0$ and $\beta_1$.
 
-From the independence of $x$ and $u$ and our understanding of probabilities and expectations, we also know that the expected value of the product of $x$ and $u$ has to be zero: $E(xu)=0$. Substituting $u$ with \$y-\\beta_0-\\beta_1\$, we obtain the two conditions that when being solved give us the optimal estimates for our $\beta$ parameters.
+From the independence of $x$ and $u$ and our understanding of probabilities and expectations, we also know that the expected value of the product of $x$ and $u$ has to be zero: $E(xu)=0$. Substituting $u$ with $y-\beta_0-\beta_1$, we obtain the two conditions that when being solved give us the optimal estimates for our $\beta$ parameters.
 
 $$
-E(y-\beta_0-\beta_1x) =0 \\  
-E\Big(x[y-\beta_0-\beta_1x]\Big)=0
+\begin{align}
+E(y-\beta_0-\beta_1x) = E\Big(x[y-\beta_0-\beta_1x]\Big) = 0
+\end{align}
 $$
 
 Translated into its sample counterpart:
 
 $$
+\begin{align}
 \dfrac{1}{n}\sum_{i=1}^n\Big(y_i-\widehat{\beta_0}-\widehat{\beta_1}x_i\Big) = 0 \\
 \dfrac{1}{n}\sum_{i=1}^n  \Big(x_i \Big[y_i - \widehat{\beta_0} - \widehat{\beta_1} x_i \Big]\Big) =0
+\end{align}
 $$
 
-Looking at the sample equations, we know our sample size $n$, our sampled values $y_i$ and \$x_i\$. The coefficients $\hat{\beta}_0$ and $\hat{\beta}_1$, where the hat denotes that the parameter is not the population parameters but coming from a sample, are unknown. However, two unknowns and two equations makes the problem algebraically feasible.
+Looking at the sample equations, we know our sample size $n$, our sampled values $y_i$ and $x_i$. The coefficients $\hat{\beta}_0$ and $\hat{\beta}_1$, where the hat denotes that the parameter is not the population parameters but coming from a sample, are unknown. However, two unknowns and two equations makes the problem algebraically feasible.
 
 Skipping a few transformation steps, we obtain
 
@@ -295,7 +298,7 @@ $$
 \widehat{\beta}_1 = \dfrac{\sum_{i=1}^n (x_i-\overline{x}) (y_i-\overline{y})}{\sum_{i=1}^n(x_i-\overline{x})^2 } =\dfrac{\widehat{Cov}(x_i,y_i) }{\widehat{Var}(x_i)}
 $$
 
-What is very interesting to see (although we actually know it from the previous chapter) is that the OLS estimate for our $\beta_1$ is defined as the covariance of $X$ and $Y$ divided by the variance of \$X\$. It also shows that the variance of $X$ has to be greater than zero, which means that not all values of $x_i$ can be the same. You need to observe different values to be able to estimate how $y_i$ reacts to $x_i$.
+What is very interesting to see (although we actually know it from the previous chapter) is that the OLS estimate for our $\beta_1$ is defined as the covariance of $X$ and $Y$ divided by the variance of $X$. It also shows that the variance of $X$ has to be greater than zero, which means that not all values of $x_i$ can be the same. You need to observe different values to be able to estimate how $y_i$ reacts to $x_i$.
 
 $\beta_0$ follows directly by plugging $\beta_1$ into $\widehat{\beta}_0=\overline{y} - \widehat{\beta}1\overline{x}$*.* A bar above a variable always represents the sample value of that particular variable. Thus,$\beta_0$ is (as expected) constant and linear in $\beta_1$.
 
@@ -311,7 +314,11 @@ What should we already know about the residuals? As already mentioned and visual
 
 A slightly different perspective, but with the exact same implications, is therefore to look at the sum of squared residuals and bring their sum as close to zero as possible by changing the coefficients for the regression line.
 
-Info: Squares are used to avoid that positive and negative errors balance each other out. You could also use absolute deviations from the fitted line, but squares have some desirable properties when doing calculus.
+::: callout-tip
+## Info
+
+Squares are used to avoid that positive and negative errors balance each other out. You could also use absolute deviations from the fitted line, but squares have some desirable properties when doing calculus.
+:::
 
 $$
 \sum_{i=1}^n \widehat{u_i}^2 =\sum_{i=1}^n (y_i - \widehat{y_i})^2                                 \\= \sum_{i=1}^n \Big(y_i-\widehat{\beta_0}-\widehat{\beta_1}x_i\Big)^2
@@ -390,7 +397,8 @@ df <- fabricate(
 Let's also save the data.
 
 ```{r}
-#| include: false 
+#| eval: false
+
 # Save data set
 saveRDS(df, "../../datasets/02_reg/health_ins.rds")
 ```
@@ -408,7 +416,7 @@ Reading/saving commands for other file formats are for example
 :::
 
 ```{r}
-#| include: false
+#| eval: false
 
 # Read data set
 df <- readRDS("../../datasets/02_reg/health_ins.rds")
@@ -596,7 +604,9 @@ lm_sq <- lm(expected_cost ~ age + bmi + I(bmi^2) + smoking, data = df)
 summary(lm_sq)
 ```
 
-From the summary, we can see that including the square term significantly improves the model fit. We can take from it, that it is extremely important to rely on theoretical considerations when building models.
+From the summary, we can see that including the square term significantly improves the model fit.Check for yourself the metrics $R^2$ and $AIC$ and plot the histogram of residuals.
+
+We can take from it, that it is extremely important to rely on theoretical considerations when building models.
 
 ## Assumptions
 

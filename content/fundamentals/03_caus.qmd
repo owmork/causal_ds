@@ -1,7 +1,7 @@
 ---
-title: "Causal Inference"
-linktitle: "Causal Inference"
-date: "2022-10-01"
+title: "Causality"
+linktitle: "Causality"
+date: "2022-11-23"
 output:
   blogdown::html_page:
     toc: true
@@ -51,7 +51,7 @@ Data science has gained extreme popularity in the last years and particularly in
 
 However, there are many other **contexts, where prediction is not the main focus but instead making sense of the data, understanding mechanism and processes** or guiding decisions and policies plays the most important role. For example, you are not only interested in whether a customer is likely to churn, but you want to know why he/she is likely to churn. Then, we find ourselves in the realm of causality. Here, many of the newer methods are likely to fail due to their prediction-centric structure.
 
-![Difference between Prediction and Explanation](/images/03_pred_expl.png){fig-align="center" width="350"}
+![Difference between Prediction and Explanation](/images/03_pred_expl.png){fig-align="center" width="480"}
 
 Instead of throwing a lot of data to a black box searching for patterns between independent variables and outcome to get a model that predicts very well, in this course, we will try to **understand characteristics of the data-generating process, i.e. the system of cause and effect and extract useful information from the data**. That is what science is about, explaining why things are happening.
 
@@ -275,5 +275,3 @@ In this chapter, there is no typical assignment but we will use it to get famili
 Having read this chapter, you have already understood the risk of confusing correlation with causation. On the internet, you can find many examples of spurious correlations. Spurious correlations are correlations that appear to be causal but are in fact not. The reason could be that there is a confounding factor or that two variables happen to be statistically associated just by coincidence. A [list of particularly obvious spurious](https://www.tylervigen.com/spurious-correlations) correlations has been compiled by Tyler Virgen. Have a look at them!
 
 Then, try to replicate one of these graphs in R using `ggplot2`. [Here](https://meghan.rbind.io/slides/neair/neair.html#/ggplot2) you can find a well written introduction to `ggplot2` and the [official documentation](https://ggplot2.tidyverse.org/) also contains a lot of useful tips. It does not to be exactly the same plot but it should convey the message that both variables correlate.
-
-*Hint: make sure to have the data in the correct (long) format! Either create it that way or you could use for example `pivot_longer()`.*

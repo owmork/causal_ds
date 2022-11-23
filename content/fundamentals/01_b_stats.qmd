@@ -164,6 +164,7 @@ Before we define variance, let's see why it is important to know. On both graphs
 ```{r}
 #| code-fold: true
 #| warnings: false
+#| message: false
 
 # Load tidyverse package
 library(tidyverse)
@@ -270,6 +271,7 @@ If you're interested in how to create correlated variable, you can open the foll
 
 ```{r}
 #| code-fold: true
+#| warning: false
 
 # Create the variance covariance matrix
 sigma <- rbind(c(1, 0.8, 0), c(0.8, 1, -0.5), c(0, -0.5, 1))
@@ -279,7 +281,11 @@ mu <- c(0, 0, 0)
 # Generate the multivariate normal distribution
 df <- as_tibble(MASS::mvrnorm(n = 1e+3, mu = mu, Sigma = sigma)) %>% 
   rename(X1 = V1, X2 = V2, X3 = V3)
+```
 
+We defined the following covariance matrix:
+
+```{r}
 # Show variance-covariance matrix
 sigma
 ```

@@ -261,7 +261,7 @@ app_usage %>% select(smartphone, tablet, computer) %>% colSums()
 
 Now let's see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.
 
-![Generic Venn diagram with three sets](/images/01_venn_diag.png){alt="Generic Venn diagram" fig-align="center" width="450"}
+![Generic Venn diagram with three sets](/images/01_venn_diag.png){alt="Generic Venn diagram" fig-align="center" width="520"}
 
 ::: callout-note
 | `which()` checks a condition and returns the indices.
@@ -388,7 +388,7 @@ $P(B|\overline{A}) = 0.01$ and consequently $P(\overline{B}|\overline{A}) = 0.99
 
 $P(A) = 0.04$ and consequently $P(\overline{A}) = 0.96$
 
-Note, that what we are looking for is not the same as what the manufacturer states in his/her specifications. What we are looking for is $P(\overline{A}|B$ (1) and $P(A|B)$ (2) and we will need Bayes theorem to obtain those probabilities.
+Note, that what we are looking for is not the same as what the manufacturer states in his/her specifications. What we are looking for is $P(\overline{A}|B)$ (1) and $P(A|B)$ (2) and we will need Bayes theorem to obtain those probabilities.
 
 Let's recall Bayes theorem:
 

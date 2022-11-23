@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-10-01">
+<meta name="dcterms.date" content="2022-11-23">
 
-<title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Causal Inference</title>
+<title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Causality</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Causal Inference</h1>
+      <h1 class="quarto-secondary-nav-title">Causality</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -152,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link active">Causal Inference</a>
+  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link active">Causality</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -228,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Causal Inference</h1>
+<h1 class="title d-none d-lg-block">Causality</h1>
 </div>
 
 
@@ -239,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 1, 2022</p>
+      <p class="date">November 23, 2022</p>
     </div>
   </div>
   
@@ -257,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
 <p>However, there are many other <strong>contexts, where prediction is not the main focus but instead making sense of the data, understanding mechanism and processes</strong> or guiding decisions and policies plays the most important role. For example, you are not only interested in whether a customer is likely to churn, but you want to know why he/she is likely to churn. Then, we find ourselves in the realm of causality. Here, many of the newer methods are likely to fail due to their prediction-centric structure.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/03_pred_expl.png" class="img-fluid figure-img" width="350"></p>
+<p><img src="../../images/03_pred_expl.png" class="img-fluid figure-img" width="480"></p>
 <p></p><figcaption class="figure-caption">Difference between Prediction and Explanation</figcaption><p></p>
 </figure>
 </div>
@@ -523,7 +523,6 @@ If you’re interested: evolution of causal inference.
 <p>In this chapter, there is no typical assignment but we will use it to get familiar with plotting functions in <code>R</code>.</p>
 <p>Having read this chapter, you have already understood the risk of confusing correlation with causation. On the internet, you can find many examples of spurious correlations. Spurious correlations are correlations that appear to be causal but are in fact not. The reason could be that there is a confounding factor or that two variables happen to be statistically associated just by coincidence. A <a href="https://www.tylervigen.com/spurious-correlations">list of particularly obvious spurious</a> correlations has been compiled by Tyler Virgen. Have a look at them!</p>
 <p>Then, try to replicate one of these graphs in R using <code>ggplot2</code>. <a href="https://meghan.rbind.io/slides/neair/neair.html#/ggplot2">Here</a> you can find a well written introduction to <code>ggplot2</code> and the <a href="https://ggplot2.tidyverse.org/">official documentation</a> also contains a lot of useful tips. It does not to be exactly the same plot but it should convey the message that both variables correlate.</p>
-<p><em>Hint: make sure to have the data in the correct (long) format! Either create it that way or you could use for example <code>pivot_longer()</code>.</em></p>
 
 
 </section>

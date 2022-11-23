@@ -215,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">Causal Inference</a>
+  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">Causality</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -631,7 +631,7 @@ Note
 <p>Now let’s see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/01_venn_diag.png" class="img-fluid figure-img" alt="Generic Venn diagram" width="450"></p>
+<p><img src="../../images/01_venn_diag.png" class="img-fluid figure-img" alt="Generic Venn diagram" width="520"></p>
 <p></p><figcaption class="figure-caption">Generic Venn diagram with three sets</figcaption><p></p>
 </figure>
 </div>
@@ -765,7 +765,7 @@ Posterior = \frac{Likelihood * Prior}{Evidence}
 <p><span class="math inline">\(P(B|A) = 0.97\)</span> and consequently <span class="math inline">\(P(\overline{B}|A) = 0.03\)</span></p>
 <p><span class="math inline">\(P(B|\overline{A}) = 0.01\)</span> and consequently <span class="math inline">\(P(\overline{B}|\overline{A}) = 0.99\)</span></p>
 <p><span class="math inline">\(P(A) = 0.04\)</span> and consequently <span class="math inline">\(P(\overline{A}) = 0.96\)</span></p>
-<p>Note, that what we are looking for is not the same as what the manufacturer states in his/her specifications. What we are looking for is <span class="math inline">\(P(\overline{A}|B\)</span> (1) and <span class="math inline">\(P(A|B)\)</span> (2) and we will need Bayes theorem to obtain those probabilities.</p>
+<p>Note, that what we are looking for is not the same as what the manufacturer states in his/her specifications. What we are looking for is <span class="math inline">\(P(\overline{A}|B)\)</span> (1) and <span class="math inline">\(P(A|B)\)</span> (2) and we will need Bayes theorem to obtain those probabilities.</p>
 <p>Let’s recall Bayes theorem:</p>
 <p><span class="math display">\[
 P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline{A})*P(\overline{A})}
