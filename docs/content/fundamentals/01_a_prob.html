@@ -393,7 +393,7 @@ P(A \cup B) = P(A) + P(B) + P(A \cap B)
 <p>with <span class="math inline">\(P(A \cap B)\)</span> being the intersection of both events, i.e.&nbsp;the probability of both studying and working. This formula is based on the <strong>addition rule</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/01_venn_excl.png" class="img-fluid figure-img" width="550"></p>
+<p><img src="../../images/01_venn_excl.png" class="img-fluid figure-img" width="650"></p>
 </figure>
 </div>
 <p>For mutually exclusive events:</p>
@@ -411,7 +411,7 @@ P(A \mid B) = \frac{P(A \cap B)}{P(B)}
 <p>It can be thought of as the probability of an event <span class="math inline">\(A\)</span> after you know that <span class="math inline">\(B\)</span> is true. Essentially, it computes the possibility of event <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, normalized by the probability of <span class="math inline">\(B\)</span> occurring. The conditional probability is crucial when talking about causality which you will later see as it for example yields probabilities for specific groups.</p>
 <p>Using the example with workers and students: without knowing exact numbers, we can almost safely assume that students are less likely to work than individuals who are not studying.</p>
 <p><span class="math display">\[
-P(working|studying) &gt; P(working|\overline{studying})
+P(working|studying) &lt; P(working|\overline{studying})
 \]</span></p>
 <p>Essentially, we are looking at probabilities restricted to a subset of the sample.</p>
 <p>Another important concept when dealing with probabilities of events is <strong>stochastic independence</strong>. In case of two events being independent, the conditional probability is equal to the probability of the event happening anyways:</p>
