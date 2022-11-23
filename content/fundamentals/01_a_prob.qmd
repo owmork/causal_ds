@@ -101,7 +101,7 @@ $$
 
 with $P(A \cap B)$ being the intersection of both events, i.e. the probability of both studying and working. This formula is based on the **addition rule**.
 
-![](/images/01_venn_excl.png){fig-align="center" width="550"}
+![](/images/01_venn_excl.png){fig-align="center" width="650"}
 
 For mutually exclusive events:
 
