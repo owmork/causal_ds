@@ -126,7 +126,7 @@ It can be thought of as the probability of an event $A$ after you know that $B$ 
 Using the example with workers and students: without knowing exact numbers, we can almost safely assume that students are less likely to work than individuals who are not studying.
 
 $$
-P(working|studying) > P(working|\overline{studying})
+P(working|studying) < P(working|\overline{studying})
 $$
 
 Essentially, we are looking at probabilities restricted to a subset of the sample.

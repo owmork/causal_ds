@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -62,6 +125,10 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -198,7 +265,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application">Application</a>
+  <ul class="collapse">
+  <li><a href="#parallel-trends" id="toc-parallel-trends" class="nav-link" data-scroll-target="#parallel-trends">Parallel trends</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a" id="toc-scenario-a" class="nav-link" data-scroll-target="#scenario-a">Scenario A</a></li>
+  <li><a href="#scenario-b" id="toc-scenario-b" class="nav-link" data-scroll-target="#scenario-b">Scenario B</a></li>
+  </ul></li>
+  <li><a href="#event-study" id="toc-event-study" class="nav-link" data-scroll-target="#event-study">Event Study</a></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a-1" id="toc-scenario-a-1" class="nav-link" data-scroll-target="#scenario-a-1">Scenario A</a></li>
+  <li><a href="#scenario-b-1" id="toc-scenario-b-1" class="nav-link" data-scroll-target="#scenario-b-1">Scenario B</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -226,11 +315,650 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><strong>This chapter will be unlocked on <u>30/11/22</u></strong>.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Another quasi-experimental method from our toolbox is the <strong>difference-in-differences (DiD)</strong> approach. It is the most popular research design in quantitative and social sciences. As the name implies, the method <strong>captures differences by observing a treatment and a control group over time</strong> to estimate causal average effects.</p>
+<p>In its simplest form, DiD compares <strong>two groups</strong> (control and treatment) <strong>at two points in time</strong> (before treatment and after) by observing if and how different both groups change. It is important to note, that both groups do not need to be equal before the treatment.</p>
+<p>By taking two differences, <strong>two different kind of biases can be avoided</strong>. First, by comparing both groups at both points in time, any external effect that affects the outcome through time plays no role as it affects both groups. Secondly, taking only the difference of change in consideration, we can disregard selection bias. Potential outcomes can differ:</p>
+<p><span class="math display">\[
+E[Y_0|D = 0] \gtreqqless E[Y_0|D = 1]
+\]</span></p>
+<p>We don’t care whether initially treatment and control group are different. We only assume that they <strong>behave similarly in absence of treatment</strong>.</p>
+<p>As can be seen in the table, the difference in outcome for the treatment group before and after treatment is <span class="math inline">\(D + T\)</span>, while for the control group it is only <span class="math inline">\(T\)</span>. The difference of these two differences then reduces to only <span class="math inline">\(D\)</span>, which is the treatment effect we want to estimate.</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 8%">
+<col style="width: 38%">
+<col style="width: 22%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Group</th>
+<th>Time</th>
+<th>Outcome</th>
+<th>1st Difference</th>
+<th>DiD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Treatment (D=1)</td>
+<td>0</td>
+<td><span class="math inline">\(Y= Y_{T=0, D=1}\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>1</td>
+<td><span class="math inline">\(Y = Y_{T=0,D=1} + T + D\)</span></td>
+<td><span class="math inline">\(T +D\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(D\)</span></td>
+</tr>
+<tr class="even">
+<td>Control (D=0)</td>
+<td>0</td>
+<td><span class="math inline">\(Y = Y_{T=0, D=0}\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>1</td>
+<td><span class="math inline">\(Y = Y_{T=0, D=0} + T\)</span></td>
+<td><span class="math inline">\(T\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>We can also break it down in our known notation:</p>
+<p><span class="math display">\[
+D = ATE = \bigg(E[Y_{D=1}|T=1] - E[Y_{D=1}|T=0] \bigg)- \bigg(E[Y_{D=0}|T=1] - E[Y_{D=0}|T=0]\bigg)
+\]</span></p>
+<p>Because there are a lot of subscripts, it can also help to write down the formula in pseudo-math:</p>
+<p><span class="math display">\[
+ATE = (Y_{Treatment, After} - Y_{Treatment, before}) - (Y_{Control, After} - Y_{Control, Before})
+\]</span></p>
+<p>Again, opposed to methods where we just know one outcome - the “after” outcome, regardless of whether a unit received or did not receive treatment - we do not have to assume that the potential outcomes <span class="math inline">\(E[Y_0|D=1] = E[Y_0|D=1]\)</span> are equal. That is a big difference, because do not have to assume that observation units are similar in all their characteristics.</p>
+<p>Instead DiD hinges on a different assumption, the <strong>parallel trends assumption.</strong> It says that, in absence of treatment for both groups, they would be expected to evolve similarly over time. In other words, we do not expect the potential outcome to be similar, but only the change of outcomes from before to after. It implies that there is no factor that has only an impact on just one of the groups. If units differ in characteristics, they are only allowed to have a constant effect. If the effect varies with time, the parallel trends assumption is violated.</p>
+</section>
+<section id="application" class="level1">
+<h1>Application</h1>
+<p>Illustrating the parallel trends assumption is very helpful. By going through two scenarios, we will look at an example where parallel trends are fulfilled and another one where it is violated.</p>
+<ul>
+<li><p><strong>Scenario A</strong>: parallel trends assumption fulfilled</p></li>
+<li><p><strong>Scenario B</strong>: parallel trends assumption violated</p></li>
+</ul>
+<p>Let’s imagine, you are manager of a company that has two stores, one of them being in City 1 and the other being in City 2. You want to test the effectiveness of a local ad campaign on sales. Therefore, you will run a campaign at the store in City 1 but not in City 2 and keep track of sales in the periods before and after the treatment.</p>
+<p>You don’t need to read follow all steps how to generate data for both scenarios, but I’ll leave it in for those who are interested.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Data Simulation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(Y\)</span> - sales</p>
+<p><span class="math inline">\(D\)</span> true treatment effect</p>
+<p><span class="math inline">\(P\)</span> is periods</p>
+<p><span class="math inline">\(S\)</span> store index</p>
+<p><span class="math inline">\(X\)</span> covariate, e.g.&nbsp;ecosystem</p>
+<p>With the function <em>generate_data()</em> we generate data with arbitrary values for the number of stores, number of observed periods, the size of the true treatment effect, the timing of treatment and level of noise in the data generating process. Data is generated for both scenarios as can be seen at the suffixes.</p>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Function to simulate DiD data</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load tidyverse package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to simulate data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>generate_data <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">S =</span> <span class="dv">2</span>, <span class="co"># number of groups</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">P =</span> <span class="dv">10</span>, <span class="co"># number of periods</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">D_size =</span> <span class="dv">1</span>, <span class="co"># effect of treatment</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">D_time =</span> <span class="cn">NULL</span>, <span class="co"># time of treatment</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_0 =</span> <span class="dv">50</span>, <span class="co"># base value for y</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="dv">1</span>, <span class="co"># standard deviations for randomly generated sequences</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">scenario =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create group period dyads</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">each =</span> P)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>P, S)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># timing and size of treatment (effect)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  delta <span class="ot">&lt;-</span> D_size</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">missing</span>(D_time)) D_time <span class="ot">&lt;-</span> P<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  after <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">ifelse</span>(p <span class="sc">&gt;</span> D_time, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create relation between independent variables and treatment (actually</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># other way round, but easier to simulate this way)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(S<span class="sc">*</span>P, s, sd)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create dependent variable ...</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... for scenario (A)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  y_a <span class="ot">&lt;-</span> y_0 <span class="sc">+</span> delta<span class="sc">*</span>s<span class="sc">*</span>after <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span><span class="sc">*</span>p <span class="sc">+</span> x1 <span class="sc">+</span> <span class="fu">rnorm</span>(S<span class="sc">*</span>P, <span class="dv">0</span>, sd)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... for scenario (B)</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  y_b <span class="ot">&lt;-</span> y_0 <span class="sc">+</span> delta<span class="sc">*</span>s<span class="sc">*</span>after <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span><span class="sc">*</span>p <span class="sc">+</span> x1 <span class="sc">+</span> s<span class="sc">*</span>x1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">*</span>p<span class="sc">*</span>x1 <span class="sc">+</span> <span class="fu">rnorm</span>(S<span class="sc">*</span>P, <span class="dv">0</span>, sd)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add variables to table</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">treat   =</span> s,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">period  =</span> p,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">after   =</span> after,</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">x1      =</span> x1,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">sales   =</span> <span class="cf">if</span> (scenario <span class="sc">==</span> <span class="st">"A"</span>) {y_a} <span class="cf">else</span> {y_b}</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return table</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We choose to generate a data set with a true treatment effect of 1 and 10 observed periods. For now, we just have one store as a treated unit and one store as a non-treated unit. Later, we will extend it to a larger number of stores per group, but for demonstration purpose, we restrict it to two stores, initially. We have 10 periods with 5 periods before and 5 after treatment. Lastly, we add a little bit of noise.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate one sample for each scenario</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>P     <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># number of periods</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>delta <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># true treatment effect</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Scenario A</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df_A <span class="ot">&lt;-</span> <span class="fu">generate_data</span>(<span class="at">P =</span> P, <span class="at">D_size =</span> delta, <span class="at">sd =</span> <span class="fl">0.01</span>, <span class="at">scenario =</span> <span class="st">"A"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Scenario B</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df_B <span class="ot">&lt;-</span> <span class="fu">generate_data</span>(<span class="at">P =</span> P, <span class="at">D_size =</span> delta, <span class="at">sd =</span> <span class="fl">0.01</span>, <span class="at">scenario =</span> <span class="st">"B"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="parallel-trends" class="level2">
+<h2 class="anchored" data-anchor-id="parallel-trends">Parallel trends</h2>
+<section id="scenario-a" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a">Scenario A</h3>
+<p>To compute an estimated treatment effect, we filter the data to the two periods just around treatment and implement the formulas as in the introduction. Not surprisingly, we get an estimate that is very close to our true treatment effect.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1.1.1] (A) Fulfillment ----</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Scenario (A)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Only show last data point before and first data point after treatment.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_A_zoom_in  <span class="ot">&lt;-</span> df_A <span class="sc">%&gt;%</span> <span class="fu">filter</span>(period <span class="sc">%in%</span> (P<span class="sc">/</span><span class="dv">2</span>)<span class="sc">:</span>(P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Manually compute differences</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Difference between treatment and control group BEFORE treatment</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>before_control_A <span class="ot">&lt;-</span> df_A_zoom_in <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">0</span>, after <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>before_treatment_A <span class="ot">&lt;-</span> df_A_zoom_in <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>, after <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>diff_before_A <span class="ot">&lt;-</span> before_treatment_A <span class="sc">-</span> before_control_A</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Difference between treatment and control group AFTER treatment</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>after_control_A <span class="ot">&lt;-</span> df_A_zoom_in <span class="sc">%&gt;%</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">0</span>, after <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>after_treatment_A <span class="ot">&lt;-</span> df_A_zoom_in <span class="sc">%&gt;%</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>, after <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>diff_after_A <span class="ot">&lt;-</span> after_treatment_A <span class="sc">-</span> after_control_A</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Difference-in-differences. Unbiased estimate if parallel trends is </span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># correctly assumed and there is no hidden confounding. Estimate may vary from </span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># true treatment effect, as we also include some noise in the data generating </span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># process.</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>diff_diff_A <span class="ot">&lt;-</span> diff_after_A <span class="sc">-</span> diff_before_A</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Estimate: %.2f, True Effect: %.2f"</span>, diff_diff_A, delta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Estimate: 1.05, True Effect: 1.00"</code></pre>
+</div>
+</div>
+<p>Looking at the last period before and the first period after treatment, the impact of treatment can clearly be seen. The dashed line represents the counterfactual value for the treated group, i.e.&nbsp;the value it would have if it had not been treated. This value is not observed, but by the parallel trends assumptions, it would have developed like the value for the untreated group.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Plots in this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Generating the plots for this chapter is a bit tricky as they contain a lot of annotations and other extensions. I left the code for those who want to replicate it. But you do not worry if you cannot reproduce them.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Plot parallel trends assumption</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute counterfactual sales for treated group</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cf_treat_A <span class="ot">&lt;-</span> df_A[<span class="sc">!</span>df_A<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"sales"</span>] <span class="sc">+</span> diff_before_A</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_A[df_A<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"sales_cf"</span>] <span class="ot">&lt;-</span> cf_treat_A</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add to zoomed in table</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df_A_zoom_in <span class="ot">&lt;-</span> df_A_zoom_in <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(df_A)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot DiD with parallel trends assumption</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_A_zoom_in, <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> sales, <span class="at">color =</span> <span class="fu">as.factor</span>(treat))) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Geographic elements</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> P<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">5</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>]) <span class="sc">+</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_A_zoom_in <span class="sc">%&gt;%</span> <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> sales_cf),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">3</span>], <span class="at">alpha =</span> .<span class="dv">8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"segment"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>), <span class="at">xend =</span> (P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> after_treatment_A, <span class="at">yend =</span> after_treatment_A <span class="sc">-</span> diff_diff_A,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">4</span>], <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"label"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.9</span>, </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> after_treatment_A <span class="sc">-</span> (diff_diff_A <span class="sc">/</span> <span class="dv">2</span>), </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Treatment effect"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.7</span>, </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> before_control_A <span class="sc">+</span> <span class="fl">1.1</span><span class="sc">*</span>diff_before_A <span class="sc">+</span> .<span class="dv">1</span>, </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Counterfactual"</span>, <span class="at">size =</span> <span class="dv">4</span>, </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">angle =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Custom scaling and legend</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span><span class="st">""</span>, <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="fl">5.5</span>, <span class="dv">6</span>),</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Before</span><span class="sc">\n</span><span class="st"> Treatment"</span>, </span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Treatment"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"After</span><span class="sc">\n</span><span class="st"> Treatment"</span>)) <span class="sc">+</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Control Group"</span>, <span class="st">"Treatment Group"</span>)) <span class="sc">+</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T)) <span class="sc">+</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scenario A:</span><span class="sc">\n</span><span class="st">Parallel Trends Assumption"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07_did_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p></p><figcaption class="figure-caption">If parallel trends assumption can be assumed, treatment effect is valid. Counterfactual line shows how outcome would have been evolved in absence of treatment.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="scenario-b" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b">Scenario B</h3>
+<p>Repeating the steps for scenario B yields an unexpected result. The estimated treatment effect is different from what we would have expected.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1.1.2] (B) Violation ----</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Scenario (B)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Only show last data point before and first data point after treatment.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df_B_zoom_in  <span class="ot">&lt;-</span> df_B <span class="sc">%&gt;%</span> <span class="fu">filter</span>(period <span class="sc">%in%</span> (P<span class="sc">/</span><span class="dv">2</span>)<span class="sc">:</span>(P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Manually compute differences</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Difference between treatment and control group BEFORE treatment</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>before_control_B <span class="ot">&lt;-</span> df_B_zoom_in <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">0</span>, after <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>before_treatment_B <span class="ot">&lt;-</span> df_B_zoom_in <span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>, after <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>diff_before_B <span class="ot">&lt;-</span> before_treatment_B <span class="sc">-</span> before_control_B</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Difference between treatment and control group AFTER treatment</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>after_control_B <span class="ot">&lt;-</span> df_B_zoom_in <span class="sc">%&gt;%</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">0</span>, after <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>after_treatment_B <span class="ot">&lt;-</span> df_B_zoom_in <span class="sc">%&gt;%</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>, after <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>diff_after_B <span class="ot">&lt;-</span> after_treatment_B <span class="sc">-</span> after_control_B</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Difference-in-differences. Unbiased estimate if parallel trends is </span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># correctly assumed and there is no hidden confounding. Estimate varies from </span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># true treatment effect due to confounding and added noise.</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>diff_diff_B <span class="ot">&lt;-</span> diff_after_B <span class="sc">-</span> diff_before_B</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Estimate: %.2f, True Effect: %.2f"</span>, diff_diff_B, delta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Estimate: 1.23, True Effect: 1.00"</code></pre>
+</div>
+</div>
+<p>Again, the picture is very similar. Having only four data points, treatment before and after and control before and after, there is no way to test the parallel trends assumption which leaves room for doubt. So how can we check whether we made a mistake or the parallel trends assumption is violated?</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Plot parallel trends assumption</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute counterfactual sales for treated group</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cf_treat_B <span class="ot">&lt;-</span> df_B[<span class="sc">!</span>df_B<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"sales"</span>] <span class="sc">+</span> diff_before_B</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df_B[df_B<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"sales_cf"</span>] <span class="ot">&lt;-</span> cf_treat_B</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add to zoomed in table</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df_B_zoom_in <span class="ot">&lt;-</span> df_B_zoom_in <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(df_B)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot DiD with parallel trends assumption</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_B_zoom_in, <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> sales, <span class="at">color =</span> <span class="fu">as.factor</span>(treat))) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Geographic elements</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> P<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">5</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>]) <span class="sc">+</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_B_zoom_in <span class="sc">%&gt;%</span> <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> sales_cf),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">3</span>], <span class="at">alpha =</span> .<span class="dv">8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"segment"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>), <span class="at">xend =</span> (P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> after_treatment_B, <span class="at">yend =</span> after_treatment_B <span class="sc">-</span> diff_diff_B,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">4</span>], <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"label"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.9</span>, </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> after_treatment_B <span class="sc">-</span> (diff_diff_B <span class="sc">/</span> <span class="dv">2</span>), </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Treatment effect"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.7</span>, </span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> before_control_B <span class="sc">+</span> <span class="fl">1.1</span><span class="sc">*</span>diff_before_B <span class="sc">+</span> .<span class="dv">1</span>, </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Counterfactual"</span>, <span class="at">size =</span> <span class="dv">4</span>, </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">angle =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Custom scaling and legend</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span><span class="st">""</span>, <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="fl">5.5</span>, <span class="dv">6</span>),</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Before</span><span class="sc">\n</span><span class="st"> Treatment"</span>, </span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Treatment"</span>,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"After</span><span class="sc">\n</span><span class="st"> Treatment"</span>)) <span class="sc">+</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Control Group"</span>, <span class="st">"Treatment Group"</span>)) <span class="sc">+</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T)) <span class="sc">+</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scenario B:</span><span class="sc">\n</span><span class="st">Parallel Trends Assumption"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07_did_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p></p><figcaption class="figure-caption">If parallel trends assumption can be assumed, treatment effect is valid. Counterfactual line shows how outcome would have been evolved in absence of treatment.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="event-study" class="level2">
+<h2 class="anchored" data-anchor-id="event-study">Event Study</h2>
+<p>Many researchers therefore try to increase the validity of their results by providing an event study. Comparing trends before treatment across treatment and control group, it should show that there was no difference. <strong>Because if there was no difference before treatment, why should there be difference after the treatment (if not for the treatment?</strong></p>
+<p>However, event studies cannot provide full certainty about the parallel trends assumption. There still might be other unobserved factors that could affect the treatment. But still, it is a good way to argue that treatment and control group are comparable.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code: Event Study A</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1.2] Event study ----</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># To provide evidence of the credibility in assuming parallel trends, </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># researchers often perform an event study, if possible. Instead of only</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># looking at the last period before and the first period after treatment,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># further periods are included to examine the validity of the parallel trends</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># assumption and the treatment effect estimate.</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># [1.2.1] (A) Fulfillment ----</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Zoom out and show that parallel trend assumption is fulfilled in scenario (a)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute difference in control group</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>diff_control_A <span class="ot">&lt;-</span> after_control_A <span class="sc">-</span> before_control_A</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot event study</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ev_stdy_A <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_A, <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> sales, <span class="at">color =</span> <span class="fu">as.factor</span>(treat))) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> P<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">5</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>]) <span class="sc">+</span> </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_A <span class="sc">%&gt;%</span> <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>, period <span class="sc">&gt;=</span> P<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> sales_cf),</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">3</span>], <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"segment"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>), <span class="at">xend =</span> (P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> after_treatment_A, <span class="at">yend =</span> after_treatment_A <span class="sc">-</span> diff_diff_A,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">4</span>], <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Custom scaling and legend</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span>P) <span class="sc">+</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Control Group"</span>, <span class="st">"Treatment Group"</span>)) <span class="sc">+</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T)) <span class="sc">+</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scenario A</span><span class="sc">\n</span><span class="st">Event Study"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code: Event Study B</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1.2.2] (B) Violation----</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Zoom out and show that parallel trend assumption is violated in scenario (b)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute difference in treatment group</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Before treatment</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>diff_control_B <span class="ot">&lt;-</span> after_control_B <span class="sc">-</span> before_control_B</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Increase from t0 to before treatment</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>init_treatment_B <span class="ot">&lt;-</span> df_B <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>, period <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sales)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>diff_treatment_B <span class="ot">&lt;-</span>  (before_treatment_B <span class="sc">-</span> init_treatment_B) <span class="sc">/</span> (P<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot event study</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>ev_stdy_B <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_B, <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> sales, <span class="at">color =</span> <span class="fu">as.factor</span>(treat))) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> P<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> .<span class="dv">5</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">5</span>]) <span class="sc">+</span> </span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_B <span class="sc">%&gt;%</span> <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>, period <span class="sc">&gt;=</span> P<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> sales_cf),</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">2</span>], <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"segment"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">xend =</span> P,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> before_treatment_B,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">yend =</span> before_treatment_B <span class="sc">+</span> (P<span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span>(diff_treatment_B),</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Estimated treatment effect</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"segment"</span>, <span class="at">x =</span> (P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>), <span class="at">xend =</span> (P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> after_treatment_B, <span class="at">yend =</span> after_treatment_B <span class="sc">-</span> diff_diff_B,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>           <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">4</span>], <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Custom scaling and legend</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name   =</span> <span class="st">"Period"</span>, <span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span>P) <span class="sc">+</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Sales"</span>) <span class="sc">+</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Control Group"</span>, <span class="st">"Treatment Group"</span>)) <span class="sc">+</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T)) <span class="sc">+</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scenario B</span><span class="sc">\n</span><span class="st">Event Study"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07_did_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">For treatment and control group, we see the same trend over time. This lends credibility to the parallel trends assumption and consequently, to the validity of the causal treatment effect.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07_did_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Other than in scenario A, the parallel trends assumption does not seem to hold. The estimated treatment effect is larger than the actual treatment effect. This is due to different trends in both groups. The treatment group has a more positive trend even without treatment and the groups would have further diverged after treatment (see dashed red line). The difference between the dashed red and dashed blue line is attributable to this trend and should not be part of the treatment effect.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="modeling" class="level2">
+<h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
+<p>A more typical situation is usually that there is more than one unit in the treatment and control group. You could e.g.&nbsp;imagine that you are managing more than two stores and are implementing an ad campaign in a specific region.</p>
+<p>To simulate such a scenario, we generate data for 3’000 stores that are split evenly into two regions. In one region, the ad campaign will be run (treatment region) and in the other there will be no campaign (control region). The variable relationships as defined in the previous section still hold.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1.4] Linear regression ----</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Now assume that there are more than two stores and treatment is performed</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g. in a specific region which are, depending on scenario (A) and (B) </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># different.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a bunch of samples and combine in one table. Here, we choose a higher</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># standard deviation.</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>n_stores <span class="ot">&lt;-</span> <span class="fl">3e+3</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scenario A</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>df_A_lm  <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span>n_stores, <span class="cf">function</span>(R) {</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate_data</span>(<span class="at">sd =</span> <span class="dv">1</span>, <span class="at">scenario =</span> <span class="st">"A"</span>)}) <span class="sc">%&gt;%</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(period <span class="sc">%in%</span> (P<span class="sc">/</span><span class="dv">2</span>)<span class="sc">:</span>(P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Scenario B</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>df_B_lm  <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span>n_stores, <span class="cf">function</span>(R) {</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate_data</span>(<span class="at">sd =</span> <span class="dv">1</span>, <span class="at">scenario =</span> <span class="st">"B"</span>)}) <span class="sc">%&gt;%</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(period <span class="sc">%in%</span> (P<span class="sc">/</span><span class="dv">2</span>)<span class="sc">:</span>(P<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="scenario-a-1" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a-1">Scenario A</h3>
+<p>So how do we compute the average treatment effect? Previously in this chapter, we just used basic math calculations (particularly subtraction). But there is an easier way: we can use regression again. This is because the average treatment effect is the coefficient of the interaction of group and time.</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 * Period_i + \beta_2 * Treatment_i + \beta_3 * (Time_i * Treatment_i) + \epsilon_i
+\]</span></p>
+<p><span class="math inline">\(Time\)</span> indicates whether the period is before or after the treatment and <span class="math inline">\(Treatment\)</span> whether an observation was treated or not. Then, the coefficient we are interested in is <span class="math inline">\(\beta_3\)</span>, because its term is only active for the treated group after treatment.</p>
+<p>!!! x1: maybe purchase power in region</p>
+<p>For scenario A, we can see that there is no need to adjust for the covariate <span class="math inline">\(x1\)</span>. If you check the formulas again, your will notice that <span class="math inline">\(x1\)</span> has a constant and time-invariant effect on sales and therefore it does not violate the paralell trends assumption.</p>
+<p>Including or leaving out <span class="math inline">\(x1\)</span> in the regression yields the a similar unbiased estimate (close to defined true size) for our variable of interest <span class="math inline">\(store:after\)</span>, the parameter of interest.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1.4.1] (A) ----</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (a): Due to the construction of the data set, we expect interaction</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># coefficient to be significant as well as the covariate and period. However, as</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the covariate does not have a time-varying effect, it is not a confounder and</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># interaction coefficient should be unbiased even if not adjusting for the</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># covariate.</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(sales <span class="sc">~</span> treat<span class="sc">*</span>after , <span class="at">data =</span> df_A_lm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = sales ~ treat * after, data = df_A_lm)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-5.176 -0.952  0.002  0.956  6.392 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  50.9610     0.0257 1981.43   &lt;2e-16 ***
+treat         1.0372     0.0364   28.52   &lt;2e-16 ***
+after         0.2642     0.0364    7.26    4e-13 ***
+treat:after   0.9813     0.0514   19.08   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.4 on 11996 degrees of freedom
+Multiple R-squared:  0.284, Adjusted R-squared:  0.284 
+F-statistic: 1.58e+03 on 3 and 11996 DF,  p-value: &lt;2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(sales <span class="sc">~</span> treat<span class="sc">*</span>after <span class="sc">+</span> x1, <span class="at">data =</span> df_A_lm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = sales ~ treat * after + x1, data = df_A_lm)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-3.947 -0.680  0.000  0.673  4.204 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 50.98128    0.01821 2800.25   &lt;2e-16 ***
+treat        0.03914    0.02732    1.43     0.15    
+after        0.22876    0.02575    8.88   &lt;2e-16 ***
+x1           0.98721    0.00903  109.31   &lt;2e-16 ***
+treat:after  0.97808    0.03641   26.86   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1 on 11995 degrees of freedom
+Multiple R-squared:  0.641, Adjusted R-squared:  0.641 
+F-statistic: 5.36e+03 on 4 and 11995 DF,  p-value: &lt;2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="scenario-b-1" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b-1">Scenario B</h3>
+<p>In scenario B, the effect of <em>x1</em> is different because it has a time-varying effect. Therefore it violates the parallel trends assumption, leading to a biased estimate if <em>x1</em> is not included (e.g.&nbsp;because it is unobserved).</p>
+<p>Because we constructed the data set ourselves, we are able to see that the bias in fact is quite large and the treatment effect seems to include the actual treatment effect plus the effect of <em>x1</em>. Even with including <span class="math inline">\(x1\)</span> and as a main effect and moderator, we cannot fully reconstruct the true treatment effect.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1.4.2] (B) ----</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (b): Due to the construction of the data set, we expect interaction coefficient</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to be significant and accurate only when adjusting for the time-varying effect</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># of the covariate and main effects for period and covariate.</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(sales <span class="sc">~</span> treat<span class="sc">*</span>after, <span class="at">data =</span> df_B_lm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = sales ~ treat * after, data = df_B_lm)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-15.025  -2.331   0.008   2.293  16.433 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  51.0835     0.0643  794.08   &lt;2e-16 ***
+treat         3.6321     0.0910   39.92   &lt;2e-16 ***
+after         0.0682     0.0910    0.75     0.45    
+treat:after   1.4315     0.1287   11.13   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.5 on 11996 degrees of freedom
+Multiple R-squared:  0.287, Adjusted R-squared:  0.287 
+F-statistic: 1.61e+03 on 3 and 11996 DF,  p-value: &lt;2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(sales <span class="sc">~</span> treat<span class="sc">*</span>after <span class="sc">+</span> after<span class="sc">*</span>x1 <span class="sc">+</span> treat<span class="sc">*</span>x1, <span class="at">data =</span> df_B_lm)) <span class="co"># best</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = sales ~ treat * after + after * x1 + treat * x1, 
+    data = df_B_lm)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-4.084 -0.682  0.001  0.679  4.348 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 51.00199    0.01818 2804.68  &lt; 2e-16 ***
+treat        0.00336    0.03012    0.11     0.91    
+after        0.16597    0.02571    6.45  1.1e-10 ***
+x1           2.63804    0.01591  165.81  &lt; 2e-16 ***
+treat:after  1.00018    0.04063   24.62  &lt; 2e-16 ***
+after:x1     0.36083    0.01823   19.80  &lt; 2e-16 ***
+treat:x1     1.03128    0.01823   56.57  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1 on 11993 degrees of freedom
+Multiple R-squared:  0.943, Adjusted R-squared:  0.943 
+F-statistic: 3.31e+04 on 6 and 11993 DF,  p-value: &lt;2e-16</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>DiD is a useful quasi-experimental method that relies on the parallel trends assumption which is untestable. We can’t prove it but try to justify it by for example showing prior trends. If both groups were evolving similarly before the treatment, that supports the plausibility and appropriateness of using DiD.</p>
+<p>Additionally, there are many extensions to the simple DiD approach we have not discussed here like the synthetic control method, that is able to deal with one treated and multiple untreated groups. By matching and weighting the untreated groups, a synthetic group is composed, that is similar in the lead up to the treatment period. It shares similarities with what we have done in the matching chapter.</p>
+</section>
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
+<p>Imagine, you are manager of a large health provider that manages many hospitals and you want to test how a new admission procedure affects patient satisfaction. You randomly selected 18 hospitals that introduced the new admission procedure and compare them to 28 other hospitals that did not introduce the method. For both groups of hospitals you collected data from before and after the introduction. The data you have collected is from patient surveys where they were asked how satisfied they are.</p>
+<p>Load the data from the file <code>hospdd.rds</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Then, perform a difference-in-differences analysis by</p>
+<ol type="1">
+<li><p>Manually computing the mean satisfaction for treated and control hospitals before and after the treatment. Helpful functions could be <code>filter()</code>, <code>pull()</code> and basic arithmetic operations.</p></li>
+<li><p>Using a linear regression to compute the estimate. Also, include group and time fixed effects in the regression, i.e.&nbsp;one regressor for each month and one regressor for each hospital: Consider, whether you want to include them as</p>
+<ul>
+<li><p><code>month + hospital</code> or as</p></li>
+<li><p><code>as.factor(month) + as.factor(hospital)</code></p></li>
+</ul>
+<p>and explain what the difference is.</p></li>
+</ol>
 
 
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Data and example from: <a href="https://www.stata.com/new-in-stata/difference-in-differences-DID-DDD/" class="uri">https://www.stata.com/new-in-stata/difference-in-differences-DID-DDD/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -400,7 +400,7 @@ Let's also save the data.
 #| eval: false
 
 # Save data set
-saveRDS(df, "../../datasets/02_reg/health_ins.rds")
+saveRDS(df, "../../datasets/health_ins.rds")
 ```
 
 If you don't want to create the data yourself, you could instead download it from [here](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm). All data sets that you are going to need for replicating examples and solving the assignments is stored there.
@@ -418,8 +418,8 @@ Reading/saving commands for other file formats are for example
 ```{r}
 #| eval: false
 
-# Read data set
-df <- readRDS("../../datasets/02_reg/health_ins.rds")
+# Read data set. Check what folder/path your data is in. 
+df <- readRDS("../../datasets/health_ins.rds")
 ```
 
 Often, you will deal with large data sets that do not fit on a single page and thus are not easy comprehensible. To still get a good understanding, there are some functions to get an idea of how your data looks like.

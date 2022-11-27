@@ -630,7 +630,7 @@ Info
 <p>Let’s also save the data.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data set</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(df, <span class="st">"../../datasets/02_reg/health_ins.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(df, <span class="st">"../../datasets/health_ins.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you don’t want to create the data yourself, you could instead download it from <a href="https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm">here</a>. All data sets that you are going to need for replicating examples and solving the assignments is stored there.</p>
 <p>Loading data is generally referred to as “reading” the data and can be done for a variety of formats. One format, that is particularly convenient in <code>R</code> is the <code>.rds</code> format. An <code>.rds</code> file can be read with <code>readRDS(path)</code> and saved with <code>saveRDS(df, path)</code>. Note that the <code>path</code> argument depends on where you want to save an object or where you want to load it from. It is probably different from the path I used (by the way, <code>..</code> moves you a one folder upwards).</p>
@@ -652,8 +652,8 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data set</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../../datasets/02_reg/health_ins.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data set. Check what folder/path your data is in. </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../../datasets/health_ins.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Often, you will deal with large data sets that do not fit on a single page and thus are not easy comprehensible. To still get a good understanding, there are some functions to get an idea of how your data looks like.</p>
 <p>Most data scientists start by using the <code>head()</code> command, which returns the first part of the table and shows you the data structure. Also, if something is wrong with your data, because you did not load it correctly or headers do not fit the data, you were able to see it here already.</p>
