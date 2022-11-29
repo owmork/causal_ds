@@ -930,3 +930,10 @@ Load the data `membership.rds`. Then,
     2.  Nearest-Neighbor Matching.
 
     3.  Inverse Probability Weighting.
+    
+::: callout-warning
+## How to submit your solutions!
+
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+:::
+

@@ -167,6 +167,12 @@ What is the sum of all four probabilities?
 
 *Hint: Check [here](https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg), if you are not sure what is shown in the probability tree.*
 
+::: callout-warning
+## How to submit your solutions!
+
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+:::
+
 ## **Set Theory**
 
 Another useful tool to visualize the occurrence and relationship between events are Venn diagrams building on set theory. A very simple one we actually already used above to illustrate the difference of mutually exclusive and non-mutually exclusive events.
@@ -409,3 +415,9 @@ Compute
 and fill the gaps in the following sentence:
 
 *These results show that in case the alarm is triggered, there is still a possibility of about \_\_% that the product is flawless and in only \_\_% of cases the product is faulty.*
+
+::: callout-warning
+## How to submit your solutions!
+
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+:::

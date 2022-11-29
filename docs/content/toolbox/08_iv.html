@@ -160,6 +160,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link active" href="../../content/index.html" aria-current="page">
  <span class="menu-text">Content</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../submission/submission.html">
+ <span class="menu-text">Submission</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
@@ -526,7 +530,7 @@ Y_i = \beta_0 +\beta_1\widehat{D_i} +\epsilon_i
 <p>Lower cases indicate single observations, so <span class="math inline">\(i\)</span> indicates for example the row in our data set. What is important to note, is that in the second stage, we do not use <span class="math inline">\(D_i\)</span>, but instead <span class="math inline">\(\widehat{D_i}\)</span>. The hat indicates, that these are fitted values from the first stage.</p>
 <p>We can do 2SLS manually in <code>R</code>, but for reasons I will get to later, it is recommended to use libraries built to run 2SLS. However, for purpose of explanation, we’ll do it also manually here.</p>
 <p><strong>First stage:</strong> As already discussed, regress treatment variable on instrument and obtain the fitted model. The model coefficient returned by the model summary should be significant, otherwise there is reason to doubt the relevance and validity of the instrument. You can also look at the F-statistic, which should be above 10.</p>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -661,6 +665,19 @@ F-statistic:  488 on 1 and 5998 DF,  p-value: &lt;2e-16</code></pre>
 <li><p>Compute the naive, biased estimate.</p></li>
 <li><p>Compute the IV estimate using 2SLS.</p></li>
 </ol>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+How to submit your solutions!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
+</div>
+</div>
 
 
 </section>

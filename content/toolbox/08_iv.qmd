@@ -296,7 +296,7 @@ We can do 2SLS manually in `R`, but for reasons I will get to later, it is recom
 
 **First stage:** As already discussed, regress treatment variable on instrument and obtain the fitted model. The model coefficient returned by the model summary should be significant, otherwise there is reason to doubt the relevance and validity of the instrument. You can also look at the F-statistic, which should be above 10.
 
-::: callout-warning
+::: callout-tip
 ## Use linear regression
 
 Although `program` is a binary variable, we use linear regression instead of logistic regression. Otherwise, 2SLS does not provide correct results. A linear regression predicting binary outcomes is called **linear probability model (LPM)**.
@@ -374,3 +374,11 @@ After a while you collect data on users' activity and also if they were encourag
 2.  Compute the naive, biased estimate.
 
 3.  Compute the IV estimate using 2SLS.
+
+
+::: callout-warning
+## How to submit your solutions!
+
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+:::
+

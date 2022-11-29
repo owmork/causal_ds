@@ -275,3 +275,10 @@ In this chapter, there is no typical assignment but we will use it to get famili
 Having read this chapter, you have already understood the risk of confusing correlation with causation. On the internet, you can find many examples of spurious correlations. Spurious correlations are correlations that appear to be causal but are in fact not. The reason could be that there is a confounding factor or that two variables happen to be statistically associated just by coincidence. A [list of particularly obvious spurious](https://www.tylervigen.com/spurious-correlations) correlations has been compiled by Tyler Virgen. Have a look at them!
 
 Then, try to replicate one of these graphs in R using `ggplot2`. [Here](https://meghan.rbind.io/slides/neair/neair.html#/ggplot2) you can find a well written introduction to `ggplot2` and the [official documentation](https://ggplot2.tidyverse.org/) also contains a lot of useful tips. It does not to be exactly the same plot but it should convey the message that both variables correlate.
+
+::: callout-warning
+## How to submit your solutions!
+
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+:::
+

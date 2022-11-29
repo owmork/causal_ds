@@ -641,3 +641,9 @@ Implicitly, DAGs always base on some form of counterfactual reasoning as we pres
 3)  Compare the coefficients and find a possible explanation.
 
 4)  Plot the data. You'll find a similar plot in this chapter, that you can copy some lines from.
+
+::: callout-warning
+## How to submit your solutions!
+
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+:::

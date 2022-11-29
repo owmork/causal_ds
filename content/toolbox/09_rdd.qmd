@@ -406,3 +406,9 @@ For the first assignment, use the data from the just discussed application (`cou
 Now consider a different past campaign. For a limited amount of time, for purchases with a total amount of more than 30€ you offered free shipping. The data can be seen in `shipping.rds`. Have a look at the variable `purchase_amount` and argue whether it could generally be used as a running variable with a cut-off at 30€.
 
 3.  Use a plot to confirm your argument.
+
+::: callout-warning
+## How to submit your solutions!
+
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+:::

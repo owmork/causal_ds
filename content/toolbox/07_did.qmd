@@ -220,7 +220,7 @@ sprintf("Estimate: %.2f, True Effect: %.2f", diff_diff_A, delta)
 
 Looking at the last period before and the first period after treatment, the impact of treatment can clearly be seen. The dashed line represents the counterfactual value for the treated group, i.e. the value it would have if it had not been treated. This value is not observed, but by the parallel trends assumptions, it would have developed like the value for the untreated group.
 
-::: callout-warning
+::: callout-tip
 ## Plots in this chapter
 
 Generating the plots for this chapter is a bit tricky as they contain a lot of annotations and other extensions. I left the code for those who want to replicate it. But you do not worry if you cannot reproduce them.
@@ -537,3 +537,11 @@ Load the data from the file `hospdd.rds`[^1]. Then, perform a difference-in-diff
     -   `as.factor(month) + as.factor(hospital)`
 
     and explain what the difference is.
+    
+    
+::: callout-warning
+## How to submit your solutions!
+
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+:::
+

@@ -14,36 +14,42 @@ course-logo: images/icon_cds_text.png
 
 ------------------------------------------------------------------------
 
-::: course_description
+## Course description
+
+::: {style="background-color: #0F2231; border-radius: .25rem; padding: 15px"}
 **Distinguishing causal relationships from simple correlation** is what commonly used approaches in business analytics often fall short of. In this course, we will provide you with the **skill set to answer questions like**
 
 -   *what happens to* $Y$ *if we do* $X$*?*
 
 -   *was it* $X$ *that caused* $Y$ *to change?*
 
-Introducing you to **causal inference with the help of data science** will allow you to **carry out state-of-the-art causal analyses** by yourself and **extrapolate causal knowledge** **across different business contexts and various management areas**.
+Introducing you to **causal inference with the help of data science** will allow you to **carry out state-of-the-art causal analyses** by yourself and **extrapolate causal knowledge** **across different business contexts and various management areas.**
 :::
 
-------------------------------------------------------------------------
+## Website Structure
+
+::: {style="background-color: #0F2231; border-radius: .25rem; padding: 15px"}
+Browse all the class content, assignments and examples by going to [**Content**](https://owmork.github.io/causal_ds/content/). For instruction how to pass the course go to [**Submission**](https://owmork.github.io/causal_ds/submission/submission.html). If you have problems regarding the content, solving the assignments or any other questions, use the chat icon to directly go to our [**Mattermost discussion channel**](https://communicating.tuhh.de/w-11-students/channels/discussion).
+:::
 
 ::: grid
-::: g-col-6
-## INSTRUCTOR
+::: {.g-col-6 style="border-radius: .25rem; padding: 15px"}
+## Instructor
 
-{{< fa user >}} Oliver Mork
+{{< fa user >}}   Oliver Mork
 
-{{< fa envelope >}} oliver.mork@tuhh.de
+{{< fa envelope >}}   oliver.mork@tuhh.de
 
-{{< fa university >}} https://www.startupengineer.io/
+{{< fa university >}}   StartupEngineer
 :::
 
-::: g-col-6
-## COURSE DETAILS
+::: {.g-col-6 style="border-radius: .25rem; padding: 15px"}
+## Course Details
 
-{{< fa calendar-alt >}} 23.11. / 30.11. / 07.12.
+{{< fa calendar-alt >}}   23.11. / 30.11. / 07.12.
 
-{{< fa clock >}} 09:00 - 17:00
+{{< fa clock >}}   09:00 - 17:00
 
-{{< fa location-dot >}} HS28 - 1.006
+{{< fa location-dot >}}   HS28 - 1.006
 :::
 :::
