@@ -414,7 +414,7 @@ Compute
 
 and fill the gaps in the following sentence:
 
-*These results show that in case the alarm is triggered, there is still a possibility of about \_\_% that the product is flawless and in only \_\_% of cases the product is faulty.*
+*These results show that in case the alarm is triggered, there is a possibility of about \_\_% that the product is flawless and a probability of \_\_% that the product is faulty.*
 
 ::: callout-warning
 ## How to submit your solutions!

@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="dcterms.date" content="2022-11-23">
-
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Probability Theory</title>
 <style>
 code{white-space: pre-wrap;}
@@ -86,8 +83,8 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
@@ -104,8 +101,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -123,26 +119,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="../../styles.css">
+}</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="../../styles.css">
 </head>
-
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/icon_cds_text.png" alt="" class="navbar-logo">
-    </a>
+    <img src="../../images/icon_cds_text.png" alt="" class="navbar-logo"></a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
@@ -152,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
@@ -170,26 +156,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+<div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title">Probability Theory</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-    <div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
@@ -201,8 +181,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link active">Probability Theory</a>
   </div>
@@ -228,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Toolbox</a>
@@ -236,8 +216,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">Randomized Controlled Trials</a>
   </div>
@@ -263,38 +243,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability">Probability</a>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li>
+<a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability">Probability</a>
   <ul class="collapse">
-  <li><a href="#basic-rules-of-probability" id="toc-basic-rules-of-probability" class="nav-link" data-scroll-target="#basic-rules-of-probability"><strong>Basic rules of probability</strong></a></li>
+<li><a href="#basic-rules-of-probability" id="toc-basic-rules-of-probability" class="nav-link" data-scroll-target="#basic-rules-of-probability"><strong>Basic rules of probability</strong></a></li>
   <li><a href="#probability-tree" id="toc-probability-tree" class="nav-link" data-scroll-target="#probability-tree"><strong>Probability Tree</strong></a></li>
   <li><a href="#assignment-1" id="toc-assignment-1" class="nav-link" data-scroll-target="#assignment-1">Assignment 1</a></li>
   <li><a href="#set-theory" id="toc-set-theory" class="nav-link" data-scroll-target="#set-theory"><strong>Set Theory</strong></a></li>
-  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><strong>Bayes Theorem</strong></a>
+  <li>
+<a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><strong>Bayes Theorem</strong></a>
   <ul class="collapse">
-  <li><a href="#math" id="toc-math" class="nav-link" data-scroll-target="#math">Math</a></li>
+<li><a href="#math" id="toc-math" class="nav-link" data-scroll-target="#math">Math</a></li>
   <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><strong>Application</strong></a></li>
   <li><a href="#assignment-2" id="toc-assignment-2" class="nav-link" data-scroll-target="#assignment-2">Assignment 2</a></li>
-  </ul></li>
-  </ul></li>
   </ul>
-</nav>
+</li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block">Probability Theory</h1>
 </div>
 
@@ -314,10 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
+</header><section id="introduction" class="level1"><h1>Introduction</h1>
 <p>Before we dive into topics of causal inference, we review some basic concepts of probability and statistics. All methods that we will use later in this course are based on statistical models and these require probability theory. But we will keep it as short as possible as our focus and learning goal lies more on applications and coding than on the theoretical part.</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -332,12 +306,9 @@ Assignments
 <p>Please note: in this chapter, there are two assignments in between. In the other chapters, you’ll usually find the assignments at the end.</p>
 </div>
 </div>
-</section>
-<section id="probability" class="level1">
-<h1>Probability</h1>
+</section><section id="probability" class="level1"><h1>Probability</h1>
 <p>First, we will review some basic concepts of probability theory.</p>
-<section id="basic-rules-of-probability" class="level2">
-<h2 class="anchored" data-anchor-id="basic-rules-of-probability"><strong>Basic rules of probability</strong></h2>
+<section id="basic-rules-of-probability" class="level2"><h2 class="anchored" data-anchor-id="basic-rules-of-probability"><strong>Basic rules of probability</strong></h2>
 <p>Consider the most simple example: flipping coins. We define the flip of a coin as a <strong>random variable</strong> as we don’t know the outcome. To express our uncertainty, we make us of probability theory.</p>
 <p>Flipping the coin, we will see how the coin has landed and our random variable can take on of the <strong>two possible events</strong> <span class="math inline">\(\{H, T\} \subseteq \Omega\)</span>. It will be either <em>Head</em> or <em>Tail</em>.</p>
 <p>So we have already defined two terms: random variable and events. Now what is a probability? A <strong>probability is always linked to an event</strong> typically denoted by a capital letter, here either <span class="math inline">\(H\)</span> and <span class="math inline">\(T\)</span>, and expresses <strong>how likely this event is to happen</strong>. Probabilities are always between 0 and 1 and for flipping the coin, as long as it is a fair coin (which we assume), the probabilities are</p>
@@ -396,8 +367,7 @@ P(A \cup B) = P(A) + P(B) + P(A \cap B)
 \]</span></p>
 <p>with <span class="math inline">\(P(A \cap B)\)</span> being the intersection of both events, i.e.&nbsp;the probability of both studying and working. This formula is based on the <strong>addition rule</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/01_venn_excl.png" class="img-fluid figure-img" width="650"></p>
+<figure class="figure"><p><img src="../../images/01_venn_excl.png" class="img-fluid figure-img" width="650"></p>
 </figure>
 </div>
 <p>For mutually exclusive events:</p>
@@ -426,20 +396,15 @@ P(A \mid B) = P(A)
 <p><span class="math display">\[
 P(A \cap B) = P(A) \ P(B)
 \]</span></p>
-</section>
-<section id="probability-tree" class="level2">
-<h2 class="anchored" data-anchor-id="probability-tree"><strong>Probability Tree</strong></h2>
+</section><section id="probability-tree" class="level2"><h2 class="anchored" data-anchor-id="probability-tree"><strong>Probability Tree</strong></h2>
 <p>An intuitive way to think about (conditional) probabilities is a probability tree. Branches from one node always sum to <span class="math inline">\(1\)</span> in probability as one (and only one) of the events has to happen. The probability of two consecutive events is obtained by multiplying the probabilities.</p>
 <p>Consider the following example: you are project manager and based on your are interested in th probability of a project being delivered on time. Based on your experience, you know that whether a project is on time depends on whether there is a change in scope. Based on your historical data about past projects, you come up with the following tree.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/01_tree.png" class="img-fluid figure-img" width="450"></p>
+<figure class="figure"><p><img src="../../images/01_tree.png" class="img-fluid figure-img" width="450"></p>
 <p></p><figcaption class="figure-caption">Probability tree</figcaption><p></p>
 </figure>
 </div>
-</section>
-<section id="assignment-1" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-1">Assignment 1</h2>
+</section><section id="assignment-1" class="level2"><h2 class="anchored" data-anchor-id="assignment-1">Assignment 1</h2>
 <p>Define being on time as event <span class="math inline">\(T\)</span>, being not on time as <span class="math inline">\(\overline{T}\)</span>, having a change in scope as <span class="math inline">\(S\)</span> and having no change in scope as <span class="math inline">\(\overline{S}\)</span>. Then, compute the following probabilities:</p>
 <ul>
 <li><p><span class="math inline">\(P(T \cap S)\)</span></p></li>
@@ -462,9 +427,7 @@ How to submit your solutions!
 <p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
 </div>
 </div>
-</section>
-<section id="set-theory" class="level2">
-<h2 class="anchored" data-anchor-id="set-theory"><strong>Set Theory</strong></h2>
+</section><section id="set-theory" class="level2"><h2 class="anchored" data-anchor-id="set-theory"><strong>Set Theory</strong></h2>
 <p>Another useful tool to visualize the occurrence and relationship between events are Venn diagrams building on set theory. A very simple one we actually already used above to illustrate the difference of mutually exclusive and non-mutually exclusive events.</p>
 <p>Let’s use an example to understand the other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices, smartphones, tables and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.</p>
 <p>But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current distribution.</p>
@@ -479,7 +442,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>library()</code> loads external packages/libraries containing functions that are not built in base <code>R</code>.</p>
+<p><code><a href="https://rdrr.io/r/base/library.html">library()</a></code> loads external packages/libraries containing functions that are not built in base <code>R</code>.</p>
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
@@ -492,7 +455,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>tibble()</code> is the most convenient way to create tables. You specify column name and content and assign your <code>tibble</code> to an object to store it.</p>
+<p><code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> is the most convenient way to create tables. You specify column name and content and assign your <code>tibble</code> to an object to store it.</p>
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
@@ -531,16 +494,13 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>mutate()</code> is one of the most important functions for data manipulation in tables. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, <code>mutate(table, new_variable = existing_var / 100)</code>, which is equivalent to <code>table %&gt;% mutate(new_variable = existing_var / 100)</code>.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> is one of the most important functions for data manipulation in tables. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, <code>mutate(table, new_variable = existing_var / 100)</code>, which is equivalent to <code>table %&gt;% mutate(new_variable = existing_var / 100)</code>.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load tidyverse package</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load tidyverse package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.2 ──
 ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
 ✔ tibble  3.1.8      ✔ dplyr   1.0.10
@@ -550,27 +510,25 @@ Note
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nmber of obervations</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tibble</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>app_usage <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create user_id in increasing order</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">user_id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Randomly sample if smartphone was used</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">smartphone =</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample if tablet was used. More likely if smartphone was not used.</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">tablet =</span> <span class="fu">ifelse</span>(smartphone <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.2</span>), <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample if computer was used. More likely if tablet was not used.</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">computer =</span> <span class="fu">ifelse</span>(tablet <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># If no device has value of 1, we set smartphone to 1</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>app_usage <span class="ot">&lt;-</span> app_usage <span class="sc">%&gt;%</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smartphone =</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(smartphone, tablet, computer) <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, smartphone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Nmber of obervations</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span></span>
+<span><span class="co"># Create tibble</span></span>
+<span><span class="va">app_usage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Create user_id in increasing order</span></span>
+<span>  user_id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span>,</span>
+<span>  <span class="co"># Randomly sample if smartphone was used</span></span>
+<span>  smartphone <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fl">0.4</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Sample if tablet was used. More likely if smartphone was not used.</span></span>
+<span>  tablet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">smartphone</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Sample if computer was used. More likely if tablet was not used.</span></span>
+<span>  computer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">tablet</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># If no device has value of 1, we set smartphone to 1</span></span>
+<span><span class="va">app_usage</span> <span class="op">&lt;-</span> <span class="va">app_usage</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>smartphone <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">smartphone</span>, <span class="va">tablet</span>, <span class="va">computer</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span>, <span class="fl">1</span>, <span class="va">smartphone</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Here, we simulated some artificial data. Seeing the formulas used for constructing the data, we already know that e.g.&nbsp;customers tend not to use the app on both tablet and computer.</p>
@@ -584,12 +542,12 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To see the first lines of a table (for example a <code>tibble()</code> or a <code>data.frame()</code>, you can use the <code>head(table, n)</code> function, where <code>n</code> specifies how many rows you want to see.</p>
+<p>To see the first lines of a table (for example a <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> or a <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, you can use the <code>head(table, n)</code> function, where <code>n</code> specifies how many rows you want to see.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first ten lines</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(app_usage, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show first ten lines</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">app_usage</span>, <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -614,8 +572,8 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show column sums</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(app_usage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show column sums</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">app_usage</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user_id smartphone     tablet   computer 
     500500        589        389        226 </code></pre>
@@ -632,14 +590,14 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To access only specified columns, you can provide the location or names in square brackets or you can use the <code>select()</code> function.</p>
+<p>To access only specified columns, you can provide the location or names in square brackets or you can use the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent commands to select specific columns</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#colSums(app_usage[, 2:4])</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#colSums(app_usage[, c("smartphone", "tablet", "computer")])</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>app_usage <span class="sc">%&gt;%</span> <span class="fu">select</span>(smartphone, tablet, computer) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Equivalent commands to select specific columns</span></span>
+<span><span class="co">#colSums(app_usage[, 2:4])</span></span>
+<span><span class="co">#colSums(app_usage[, c("smartphone", "tablet", "computer")])</span></span>
+<span><span class="va">app_usage</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">smartphone</span>, <span class="va">tablet</span>, <span class="va">computer</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>smartphone     tablet   computer 
        589        389        226 </code></pre>
@@ -647,8 +605,7 @@ Note
 </div>
 <p>Now let’s see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/01_venn_diag.png" class="img-fluid figure-img" alt="Generic Venn diagram" width="520"></p>
+<figure class="figure"><p><img src="../../images/01_venn_diag.png" class="img-fluid figure-img" alt="Generic Venn diagram" width="520"></p>
 <p></p><figcaption class="figure-caption">Generic Venn diagram with three sets</figcaption><p></p>
 </figure>
 </div>
@@ -662,33 +619,32 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>which()</code> checks a condition and returns the indices.</p>
+<p><code><a href="https://rdrr.io/r/base/which.html">which()</a></code> checks a condition and returns the indices.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set of phone, tablet and computer users</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>set_phon <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>smartphone <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>set_tabl <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>tablet <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>set_comp <span class="ot">&lt;-</span> <span class="fu">which</span>(app_usage<span class="sc">$</span>computer <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># List of all sets</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sets_all <span class="ot">&lt;-</span> <span class="fu">list</span>(set_phon, set_tabl, set_comp)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load additional package for plotting Venn diagrams</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggVennDiagram)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Venn diagram</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggVennDiagram</span>(sets_all, <span class="at">category.names =</span> <span class="fu">c</span>(<span class="st">"Smartphone"</span>, <span class="st">"Tablet"</span>, <span class="st">"Computer"</span>),</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_percent_digit =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customizing appearance</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>),</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="st">"grey"</span>)) <span class="sc">+</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> .<span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Set of phone, tablet and computer users</span></span>
+<span><span class="va">set_phon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">app_usage</span><span class="op">$</span><span class="va">smartphone</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">set_tabl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">app_usage</span><span class="op">$</span><span class="va">tablet</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">set_comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">app_usage</span><span class="op">$</span><span class="va">computer</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># List of all sets</span></span>
+<span><span class="va">sets_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">set_phon</span>, <span class="va">set_tabl</span>, <span class="va">set_comp</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Load additional package for plotting Venn diagrams</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gaospecial/ggVennDiagram">ggVennDiagram</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot Venn diagram</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggVennDiagram/man/ggVennDiagram.html">ggVennDiagram</a></span><span class="op">(</span><span class="va">sets_all</span>, category.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Smartphone"</span>, <span class="st">"Tablet"</span>, <span class="st">"Computer"</span><span class="op">)</span>,</span>
+<span>              label_percent_digit <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># Customizing appearance</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span>, </span>
+<span>        panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span><span class="st">"grey"</span><span class="op">)</span>,</span>
+<span>        strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span><span class="st">"grey"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fl">.24</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01_a_prob_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><img src="01_a_prob_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -730,11 +686,8 @@ Answers
 <p><strong>Total probability rule</strong>:</p>
 <p>What is the fraction of customers using a computer?</p>
 <p><span class="math inline">\(P(C) = P(C \cap T) + P(C \cap \overline{T})\)</span></p>
-</section>
-<section id="bayes-theorem" class="level2">
-<h2 class="anchored" data-anchor-id="bayes-theorem"><strong>Bayes Theorem</strong></h2>
-<section id="math" class="level3">
-<h3 class="anchored" data-anchor-id="math">Math</h3>
+</section><section id="bayes-theorem" class="level2"><h2 class="anchored" data-anchor-id="bayes-theorem"><strong>Bayes Theorem</strong></h2>
+<section id="math" class="level3"><h3 class="anchored" data-anchor-id="math">Math</h3>
 <p>A very important theorem in probability theory is <strong>Bayes theorem</strong> that we get by reformulating the multiplication rule</p>
 <p><span class="math display">\[
 P(A ∩ B) = P(A|B)*P(B)&nbsp;\\
@@ -765,9 +718,7 @@ Posterior = \frac{Likelihood * Prior}{Evidence}
 \]</span></p>
 </div>
 </div>
-</section>
-<section id="application" class="level3">
-<h3 class="anchored" data-anchor-id="application"><strong>Application</strong></h3>
+</section><section id="application" class="level3"><h3 class="anchored" data-anchor-id="application"><strong>Application</strong></h3>
 <p>To understand how useful Bayes theorem is, let’s use an example: Imagine, you are quality assurance manager and you want to buy a new tool that automates part of the quality assurance. If the tool finds a product it considers faulty, an alarm is triggered. The seller of the tool states that if a product is faulty, the tool is 97% reliable and if the product is flawless, the test is 99% reliable. Also, from your past experience you know that 4% of your products come out with flaws.</p>
 <p>To assess the usefulness of the tool in practice you want to know the following probabilities:</p>
 <ol type="1">
@@ -787,19 +738,18 @@ Posterior = \frac{Likelihood * Prior}{Evidence}
 <p><span class="math display">\[
 P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline{A})*P(\overline{A})}
 \]</span></p>
-</section>
-<section id="assignment-2" class="level3">
-<h3 class="anchored" data-anchor-id="assignment-2">Assignment 2</h3>
+</section><section id="assignment-2" class="level3"><h3 class="anchored" data-anchor-id="assignment-2">Assignment 2</h3>
 <p>Compute</p>
 <ul>
-<li><span class="math inline">\(P(\overline{A}|B)\)</span> (1)</li>
+<li>
+<span class="math inline">\(P(\overline{A}|B)\)</span> (1)</li>
 </ul>
-<!-- -->
-<ul>
-<li><span class="math inline">\(P(A|B)\)</span> (2)</li>
+<!-- --><ul>
+<li>
+<span class="math inline">\(P(A|B)\)</span> (2)</li>
 </ul>
 <p>and fill the gaps in the following sentence:</p>
-<p><em>These results show that in case the alarm is triggered, there is still a possibility of about __% that the product is flawless and in only __% of cases the product is faulty.</em></p>
+<p><em>These results show that in case the alarm is triggered, there is a possibility of about __% that the product is flawless and a probability of __% that the product is faulty.</em></p>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -815,12 +765,7 @@ How to submit your solutions!
 </div>
 
 
-</section>
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -952,9 +897,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../../content/index.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
       </a>          
@@ -966,12 +909,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
 </footer>
-
 
 
 </body></html>
