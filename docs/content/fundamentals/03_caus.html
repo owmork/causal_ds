@@ -500,7 +500,7 @@ E[Y_1 - Y_0] &amp;= E[Y|D=1] - E[Y|D=0] \\ &amp;= E[Y_1|D=1] - E[Y_0|D=0] + E[Y_
 &amp;= \underbrace{E[Y_1 - Y_0|D=1]}_{ATT} + \underbrace{\{ E[Y_0|D=1] - E[Y_0|D=0] \}}_{BIAS}
 \end{align}
 \]</span></p>
-<p>The formula shows where the <strong>bias</strong> comes from: the <strong>difference in outcomes for both groups had they not been treated</strong>. Mathematically, it looks simple to arrive at an unbiased estimate, we just have to make sure the last part of the formula equals zero: <span class="math inline">\(E[Y_0|D=0] = E[Y_0|D=0]\)</span></p>
+<p>The formula shows where the <strong>bias</strong> comes from: the <strong>difference in outcomes for both groups had they not been treated</strong>. Mathematically, it looks simple to arrive at an unbiased estimate, we just have to make sure the last part of the formula equals zero: <span class="math inline">\(E[Y_0|D=0] = E[Y_0|D=1]\)</span></p>
 <p>But how do we achieve it in practice? How can we go from association to causation by eliminating this bias? We need <strong>treatment and control group to be comparable before treatment</strong>. By the way, this implies that the ATT is equal to the ATE and the difference in means is equal to the causal effect we want to estimate.</p>
 </section>
 <section id="outlook" class="level1">
