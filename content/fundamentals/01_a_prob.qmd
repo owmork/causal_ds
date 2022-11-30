@@ -177,7 +177,7 @@ Please see [here](https://owmork.github.io/causal_ds/submission/submission.html)
 
 Another useful tool to visualize the occurrence and relationship between events are Venn diagrams building on set theory. A very simple one we actually already used above to illustrate the difference of mutually exclusive and non-mutually exclusive events.
 
-Let's use an example to understand the other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices, smartphones, tables and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.
+Let's use an example to understand the other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices, smartphones, tablets and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.
 
 But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current distribution.
 
@@ -188,7 +188,7 @@ We simulate the collection process here. If you are interested how to do it in `
 :::
 
 ::: callout-note
-| `tibble()` is the most convenient way to create tables. You specify column name and content and assign your `tibble` to an object to store it.
+| `tibble()` is the most convenient way to create tablets. You specify column name and content and assign your `tibble` to an object to store it.
 :::
 
 ::: callout-note
@@ -200,7 +200,7 @@ We simulate the collection process here. If you are interested how to do it in `
 :::
 
 ::: callout-note
-| `mutate()` is one of the most important functions for data manipulation in tables. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, `mutate(table, new_variable = existing_var / 100)`, which is equivalent to `table %>% mutate(new_variable = existing_var / 100)`.
+| `mutate()` is one of the most important functions for data manipulation in tablets. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, `mutate(table, new_variable = existing_var / 100)`, which is equivalent to `table %>% mutate(new_variable = existing_var / 100)`.
 :::
 
 ```{r}
