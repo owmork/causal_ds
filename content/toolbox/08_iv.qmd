@@ -151,8 +151,8 @@ We can exploit the fact that the distance to training location is known. At firs
 iv_expl <- dagify(
   Y ~ D,
   Y ~ U,
-  U ~ D,
-  Z ~ D,
+  D ~ U,
+  D ~ Z,
   exposure = "D",
   latent = "U",
   outcome = "Y",

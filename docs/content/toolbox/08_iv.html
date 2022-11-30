@@ -377,8 +377,8 @@ Under what circumstances can we estimate the causal effect from <span class="mat
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>iv_expl <span class="ot">&lt;-</span> <span class="fu">dagify</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  Y <span class="sc">~</span> D,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  Y <span class="sc">~</span> U,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  U <span class="sc">~</span> D,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  Z <span class="sc">~</span> D,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  D <span class="sc">~</span> U,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  D <span class="sc">~</span> Z,</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure =</span> <span class="st">"D"</span>,</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">latent =</span> <span class="st">"U"</span>,</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="st">"Y"</span>,</span>
