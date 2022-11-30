@@ -7,8 +7,8 @@ website:
   page-navigation: true
   favicon: images/favicon_cds_16x16.png
   navbar:
-    background: "#005E73"
-    pinned: true
+    background: "#005E73E6"
+    pinned: false
     logo: images/icon_cds_text.png
     right:
       - href: index.qmd

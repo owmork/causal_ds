@@ -76,7 +76,7 @@ library(dagitty)
 
 # Omitted variable bias
 ovb <- dagify(
-  D ~ Y,
+  Y ~ D,
   Y ~ U,
   D ~ U,
   exposure = "D",
@@ -98,7 +98,7 @@ ovb_dag <- ggdag_status(ovb, text = T) +
 
 # Instrumental Variable Estimation
 iv <- dagify(
-  D ~ Y,
+  Y ~ D,
   Y ~ U,
   D ~ U,
   D ~ Z,
@@ -375,10 +375,8 @@ After a while you collect data on users' activity and also if they were encourag
 
 3.  Compute the IV estimate using 2SLS.
 
-
 ::: callout-warning
 ## How to submit your solutions!
 
 Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::
-

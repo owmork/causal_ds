@@ -59,7 +59,7 @@ output: html
 
 ![6) As a last step, when all your code needed to solve the assignment is in code chunks, you have to click `Render`, which will create a `.html` document in the same folder. This document contains your solution and will later be submitted. If you are asked to install necessary packages, you have to install them.](/images/create_new_qmd/step_6.png)
 
-For example, the document just created looks like [this](chapter_1.html). There are so many more options that you can use in `.qmd` files that we cannot cover here. However, if you are interested have a look at the [documentation](https://quarto.org/docs/computations/r.html) and check some features out. By the way, this whole website is generated based on .`qmd` files.
+For example, the document just created looks like [this](chapter_1.html). There are so many more options that you can use in `.qmd` files that we cannot cover here. However, if you are interested have a look at the [documentation](https://quarto.org/docs/get-started/hello/rstudio.html) and check some features out. By the way, this whole website is generated based on .`qmd` files.
 
 ## 3. Submit your `HTML`-files
 
