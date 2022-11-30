@@ -15,7 +15,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(fig.width = 6, fig.asp = 0.618, fig.align = "center", fig.retina = 3, out.width = "75%")
+knitr::opts_chunk$set(fig.width = 6, fig.asp = 0.618, fig.align = "center", fig.retina = 3, out.width = "75%")equ
 set.seed(11)
 options("digits" = 2, "width" = 150)
 options(dplyr.summarise.inform = FALSE)
@@ -250,7 +250,7 @@ E[Y_1 - Y_0] &= E[Y|D=1] - E[Y|D=0] \\ &= E[Y_1|D=1] - E[Y_0|D=0] + E[Y_0|D=1] -
 \end{align}
 $$
 
-The formula shows where the **bias** comes from: the **difference in outcomes for both groups had they not been treated**. Mathematically, it looks simple to arrive at an unbiased estimate, we just have to make sure the last part of the formula equals zero: $E[Y_0|D=0] = E[Y_0|D=0]$
+The formula shows where the **bias** comes from: the **difference in outcomes for both groups had they not been treated**. Mathematically, it looks simple to arrive at an unbiased estimate, we just have to make sure the last part of the formula equals zero: $E[Y_0|D=0] = E[Y_0|D=1]$
 
 But how do we achieve it in practice? How can we go from association to causation by eliminating this bias? We need **treatment and control group to be comparable before treatment**. By the way, this implies that the ATT is equal to the ATE and the difference in means is equal to the causal effect we want to estimate.
 
@@ -281,4 +281,3 @@ Then, try to replicate one of these graphs in R using `ggplot2`. [Here](https://
 
 Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::
-
