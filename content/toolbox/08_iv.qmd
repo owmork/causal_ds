@@ -149,8 +149,8 @@ We can exploit the fact that the distance to training location is known. At firs
 ```{r}
 # Instrumental Variable Estimation - Application
 iv_expl <- dagify(
-  D ~ Y,
-  U ~ Y,
+  Y ~ D,
+  Y ~ U,
   U ~ D,
   Z ~ D,
   exposure = "D",
