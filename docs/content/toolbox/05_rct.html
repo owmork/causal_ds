@@ -101,7 +101,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -355,7 +358,7 @@ E[Y_0|D=0] = E[Y_0|D=1]
 <p>Until now, we have not assigned units to treatment and control group and actually, we do not want to assign our whole population to any group. As a matter of fact, in many applications, you are just able to draw a sample from the population and almost never the whole population.</p>
 <p>Remember, randomization of treatment should achieve that we are able to interpret the average treatment effect causally and for that, both groups need to be as similar as possible. The image illustrates the randomization process. Try to think what could happen if you have just very few units in both groups. How likely is is that they are very similar regarding their characteristics? You can probably already sense that this might not be sufficient to make groups comparable.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../../images/05_rand.png" class="img-fluid figure-img" alt="Illustration of randomization process" width="350"></p>
+<figure class="figure"><p><a href="../../images/05_rand.png" class="lightbox" title="Illustration of randomization process. Sample of population is randomly divided into treatment and control group." data-gallery="quarto-lightbox-gallery-1"><img src="../../images/05_rand.png" class="img-fluid figure-img" alt="Illustration of randomization process" width="350"></a></p>
 <p></p><figcaption class="figure-caption">Illustration of randomization process. Sample of population is randomly divided into treatment and control group.</figcaption><p></p>
 </figure>
 </div>
@@ -455,7 +458,7 @@ Note
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Absolute difference of characteristics\n between groups by sample size"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="05_rct_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" title="With increasing sample size, differences between treatment and control group get smaller or are already so small, that they can be ignored." data-gallery="quarto-lightbox-gallery-2"><img src="05_rct_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">With increasing sample size, differences between treatment and control group get smaller or are already so small, that they can be ignored.</figcaption><p></p>
 </figure>
 </div>
@@ -564,26 +567,20 @@ F-statistic:  364 on 1 and 9998 DF,  p-value: &lt;2e-16</code></pre>
 <span><span class="va">compare_outcome</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="05_rct_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment." data-gallery="quarto-lightbox-gallery-3"><img src="05_rct_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment.</figcaption><p></p>
 </figure>
 </div>
-</div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="05_rct_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-2.png" class="lightbox" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment." data-gallery="quarto-lightbox-gallery-4"><img src="05_rct_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment.</figcaption><p></p>
 </figure>
 </div>
-</div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="05_rct_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-3.png" class="lightbox" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment." data-gallery="quarto-lightbox-gallery-5"><img src="05_rct_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment.</figcaption><p></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -705,19 +702,15 @@ outcome = 0.2*treatment + 0.01*treatment*age + treatment*sex + \epsilon
 <span><span class="va">exp_dag</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="05_rct_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" title="Observational study" data-gallery="quarto-lightbox-gallery-6"><img src="05_rct_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Observational study</figcaption><p></p>
 </figure>
 </div>
-</div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="05_rct_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-11-2.png" class="lightbox" title="Experimental study" data-gallery="quarto-lightbox-gallery-7"><img src="05_rct_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Experimental study</figcaption><p></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -911,7 +904,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":true,"openEffect":"zoom"});</script>
 
 
 </body></html>

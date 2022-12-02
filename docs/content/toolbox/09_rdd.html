@@ -100,7 +100,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -307,19 +310,15 @@ Important
 </div>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09_rdd_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="figure"><p><a href="09_rdd_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" title="Relationships when using full sample." data-gallery="quarto-lightbox-gallery-1"><img src="09_rdd_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Relationships when using full sample.</figcaption><p></p>
 </figure>
 </div>
-</div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09_rdd_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="figure"><p><a href="09_rdd_files/figure-html/unnamed-chunk-1-2.png" class="lightbox" title="Relationships when restricting sample to units close to cut-off." data-gallery="quarto-lightbox-gallery-2"><img src="09_rdd_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Relationships when restricting sample to units close to cut-off.</figcaption><p></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -346,7 +345,7 @@ LATE_{RDD} = E[Y_1 - Y_0| X \rightarrow c_0]
 <li><p>nonrandom heaping along running variable</p></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../../images/09_heaping.png" class="img-fluid figure-img" width="540"></p>
+<figure class="figure"><p><a href="../../images/09_heaping.png" class="lightbox" title="Example of nonrandom heaping at a marathon. There are way more individuals who finish just under 4 hours than individuals that finish just above 4 hours. Individuals seem to have a particular interest to finish just before 4 hours." data-gallery="quarto-lightbox-gallery-3"><img src="../../images/09_heaping.png" class="img-fluid figure-img" width="540"></a></p>
 <p></p><figcaption class="figure-caption">Example of nonrandom heaping at a marathon. There are way more individuals who finish just under 4 hours than individuals that finish just above 4 hours. Individuals seem to have a particular interest to finish just before 4 hours.</figcaption><p></p>
 </figure>
 </div>
@@ -406,7 +405,7 @@ LATE_{RDD} = E[Y_1 - Y_0| X \rightarrow c_0]
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09_rdd_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="09_rdd_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="09_rdd_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -432,7 +431,7 @@ LATE_{RDD} = E[Y_1 - Y_0| X \rightarrow c_0]
 <span><span class="va">compl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09_rdd_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="09_rdd_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" title="Sharp cut-off. All eligible customer were sent an coupon and not eligibles did not receive it." data-gallery="quarto-lightbox-gallery-5"><img src="09_rdd_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">Sharp cut-off. All eligible customer were sent an coupon and not eligibles did not receive it.</figcaption><p></p>
 </figure>
 </div>
@@ -454,7 +453,7 @@ LATE_{RDD} = E[Y_1 - Y_0| X \rightarrow c_0]
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.title <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09_rdd_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="09_rdd_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" title="Number of customers for given days since last purchase. As there are many customers who buy regularly and also a number of one-time purchasers, the distribution has such a decreasing curve." data-gallery="quarto-lightbox-gallery-6"><img src="09_rdd_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">Number of customers for given days since last purchase. As there are many customers who buy regularly and also a number of one-time purchasers, the distribution has such a decreasing curve.</figcaption><p></p>
 </figure>
 </div>
@@ -515,7 +514,7 @@ Window Length / 2          &lt;c     &gt;=c    P&gt;|T|
 <span><span class="va">rdd_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rddensity/man/rdplotdensity.html">rdplotdensity</a></span><span class="op">(</span><span class="va">rddd</span>, <span class="va">df</span><span class="op">$</span><span class="va">days_since_last</span>, plotN <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09_rdd_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="09_rdd_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="09_rdd_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -563,7 +562,7 @@ Window Length / 2          &lt;c     &gt;=c    P&gt;|T|
 <span><span class="va">dep_var</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09_rdd_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="09_rdd_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" title="Visual comparison of purchases after coupon allocation." data-gallery="quarto-lightbox-gallery-8"><img src="09_rdd_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">Visual comparison of purchases after coupon allocation.</figcaption><p></p>
 </figure>
 </div>
@@ -619,7 +618,7 @@ Window Length / 2          &lt;c     &gt;=c    P&gt;|T|
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dep_var_bw</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="09_rdd_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="09_rdd_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" title="Treatment effect for customers within +- 5 days." data-gallery="quarto-lightbox-gallery-9"><img src="09_rdd_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">Treatment effect for customers within +- 5 days.</figcaption><p></p>
 </figure>
 </div>
@@ -826,7 +825,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":true,"openEffect":"zoom","descPosition":"bottom"});</script>
 
 
 </body></html>

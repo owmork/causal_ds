@@ -99,7 +99,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -316,7 +319,7 @@ x %&gt;% sum()
 Error in x %&gt;% sum() : could not find function "%&gt;%"
 </code></pre>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../images/00_mattermost.png" class="img-fluid figure-img" alt="Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read." width="400"></p>
+<figure class="figure"><p><a href="../images/00_mattermost.png" class="lightbox" title="Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read." data-gallery="quarto-lightbox-gallery-1"><img src="../images/00_mattermost.png" class="img-fluid figure-img" alt="Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read." width="400"></a></p>
 <p></p><figcaption class="figure-caption">Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read.</figcaption><p></p>
 </figure>
 </div>
@@ -324,7 +327,7 @@ Error in x %&gt;% sum() : could not find function "%&gt;%"
 <p>Before we dive deep into the methods that help us to make critical data-driven business decisions, we start with a <strong>brief introduction to R</strong>, the programming language most suited to solve problems of causality. Don’t worry, if you have never heard of it! We’ll go through some very concise courses that will familiarize you with its functions very quickly. Essentially, you have to tell R what to do for you in a specific language. But step by step, first, we have to do the installation.</p>
 <p>R is only fun to use in combination with RStudio, a graphical integrated development environment (IDE) that makes the use of R more convenient and interactive. Please follow the steps as outlined in the <a href="https://rstudio-education.github.io/hopr/starting.html">instructions</a> (note, that you have to install both R and RStudio):</p>
 <p>When you have successfully installed R and RStudio, open RStudio and you should see a screen similar to this one. By the way, if you want to change the default withe theme to something else, you can do that by going to <code>Tools</code> -&gt; <code>Global options</code> -&gt; <code>Appearance</code> and switch theme in -&gt; <code>Editor theme</code>.</p>
-<p><img src="../images/00_rstudio.png" class="img-fluid"><br>
+<p><a href="../images/00_rstudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../images/00_rstudio.png" class="img-fluid"></a><br>
 RStudio is split into four panes that have the following functions:</p>
 <p><span style="background-color: #4BE806"><strong>Source Editor</strong></span>: here, you open, edit and execute programs/scripts that you have written. Code is not run immediately. If you want to run the current line of code, you just press <code>Run</code> or <code>Ctrl</code>+<code>Enter/CMD</code>+<code>Return</code>. You can also run several lines of code by highlighting them. Please note that every line starting with <code>#</code> will not be run. The use of <code>#</code> is to write comments and annotations in your code that won’t be executed.</p>
 <p><span style="background-color: #E02809"><strong>Console</strong></span>: here, you can enter commands directly and run code. Just type in your code and press Enter.</p>
@@ -533,7 +536,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":true,"selector":".lightbox"});</script>
 
 
 </body></html>

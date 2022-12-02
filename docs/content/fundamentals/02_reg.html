@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="dcterms.date" content="2022-11-23">
-
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Regression and Statistical Inference</title>
 <style>
 code{white-space: pre-wrap;}
@@ -86,8 +83,8 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
@@ -105,7 +102,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -123,26 +122,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="../../styles.css">
+}</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="../../styles.css">
 </head>
-
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/icon_cds_text.png" alt="" class="navbar-logo">
-    </a>
+    <img src="../../images/icon_cds_text.png" alt="" class="navbar-logo"></a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
@@ -152,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
@@ -170,26 +159,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+<div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title">Regression and Statistical Inference</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-    <div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
@@ -201,8 +184,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link">Probability Theory</a>
   </div>
@@ -228,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Toolbox</a>
@@ -236,8 +219,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">Randomized Controlled Trials</a>
   </div>
@@ -263,39 +246,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>Introduction</strong></a></li>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>Introduction</strong></a></li>
   <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear Regression</a></li>
-  <li><a href="#estimation" id="toc-estimation" class="nav-link" data-scroll-target="#estimation">Estimation</a>
+  <li>
+<a href="#estimation" id="toc-estimation" class="nav-link" data-scroll-target="#estimation">Estimation</a>
   <ul class="collapse">
-  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
+<li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
   <li><a href="#math" id="toc-math" class="nav-link" data-scroll-target="#math">Math</a></li>
-  </ul></li>
-  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application">Application</a>
+  </ul>
+</li>
+  <li>
+<a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application">Application</a>
   <ul class="collapse">
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+<li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
   <li><a href="#statistical-significance" id="toc-statistical-significance" class="nav-link" data-scroll-target="#statistical-significance">Statistical Significance</a></li>
   <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a></li>
   <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
-  </ul></li>
-  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block">Regression and Statistical Inference</h1>
 </div>
 
@@ -315,21 +295,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<section id="introduction" class="level1">
-<h1><strong>Introduction</strong></h1>
+</header><section id="introduction" class="level1"><h1><strong>Introduction</strong></h1>
 <p><strong>Statistical inference</strong> aims to draw conclusions about relationships between variables in the whole population. Whole population, in this context, does not necessarily mean the whole world population but instead the set of all units we want to draw conclusions about. Units could be for example all students in a country, all children in a specific institution or things like stores, restaurants etc. In the business context, we will often deal with populations that comprise customers, employees, stores and a lot of other business-related units.</p>
 <p>In practice, it is often impossible to collect data about the whole population, which is why we <strong>draw</strong> (ideally random) <strong>samples from the whole population and use statistical inference to draw conclusions about the whole population</strong> using the smaller sample. This is one main reason why we needed to introduce concepts from probability theory and statistics in the previous chapter.</p>
-</section>
-<section id="linear-regression" class="level1">
-<h1>Linear Regression</h1>
+</section><section id="linear-regression" class="level1"><h1>Linear Regression</h1>
 <p>It is undisputed that the <strong>most important method in statistical inference</strong> is the <strong>linear regression</strong>, which has been used extensively in practical and scientific applications due to its desirable mathematical properties and its convenient interpretation.</p>
 <p>In this course, we will use linear regression in combination with other methods to explain and interpret relationships and effects between random variables, in general: how does changing one variable affect another variable? There are also other purposes that linear regression could be used for, namely as prediction method. However, prediction is not the focus of this course and in fact, there are actually many other methods that surpass linear regression for prediction tasks. On the other hand, for explanation and interpretation purpose, which are fundamental for causal reasoning, linear regression is still one of the sophisticated methods.</p>
 <p>It builds upon many of the statistical concepts that were explained in the previous chapter, such as conditional expectations, variance, covariance, correlation etc. Formally, we want to explain an outcome <span class="math inline">\(Y\)</span> (also called response or dependent variable) using an explanatory variable <span class="math inline">\(X\)</span> (also called predictor or independent variable). A popular example, that has been studied extensively, is to explain the effect of smoking on lung cancer. Here, smoking is the explanatory variable <span class="math inline">\(X\)</span> and lung cancer <span class="math inline">\(Y\)</span> is the outcome.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/02_xy.png" class="img-fluid figure-img" width="470"></p>
+<figure class="figure"><p><a href="../../images/02_xy.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Cause and Effect in Regression"><img src="../../images/02_xy.png" class="img-fluid figure-img" width="470"></a></p>
 <p></p><figcaption class="figure-caption">Cause and Effect in Regression</figcaption><p></p>
 </figure>
 </div>
@@ -356,16 +330,13 @@ E(u\mid x)=0,\ \text{for all values $x$}
 E(y\mid x)=\beta_0+\beta_1x
 \]</span></p>
 <p>with <span class="math inline">\(u\)</span> being left out as it is zero on average.</p>
-</section>
-<section id="estimation" class="level1">
-<h1>Estimation</h1>
-<section id="r" class="level2">
-<h2 class="anchored" data-anchor-id="r">R</h2>
+</section><section id="estimation" class="level1"><h1>Estimation</h1>
+<section id="r" class="level2"><h2 class="anchored" data-anchor-id="r">R</h2>
 <p>We start using a simple example to get an intuition of how the linear regression is estimated and how it is implemented in <code>R</code>. For presentation purposes, we sample the data ourselves and also define the relationship between the variables.</p>
 <p>Before we start, we load the <code>R</code> package <code>tidyverse</code>, which actually is collection of several useful packages for data manipulation, visualization and other data science purposes. Throughout the course, we will almost always load it.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load tidyerse package</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load tidyerse package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We create a tibble, which is a table containing data, with two columns, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. For <span class="math inline">\(x\)</span>, we draw ten random samples from the normal distribution with a mean of 3 and a standard deviation of 1. The outcome variable <span class="math inline">\(y\)</span>, we make dependent from <span class="math inline">\(x\)</span>, i.e.&nbsp;for each unit <span class="math inline">\(i\)</span>, we create a <span class="math inline">\(y_i\)</span> as</p>
 <p><span class="math display">\[
@@ -374,21 +345,21 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 <p>where <span class="math inline">\(\epsilon_i\)</span> is random noise.</p>
 <p>Let’s have a look at how the data is presented. We have a table containing 100 rows and two columns. Each row is an observation for a different unit, which could be a person, a point in time or another kind of measurement. It is only important that the values in a particular row belong together.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simluate data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># number of observations</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tibble</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>lm_dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw from normal distribution</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># y depends on x and noise from normal distribution</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fl">0.3</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.2</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show data</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>lm_dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Simluate data</span></span>
+<span></span>
+<span><span class="co"># number of observations</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span></span>
+<span><span class="co"># Create tibble</span></span>
+<span><span class="va">lm_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  <span class="co"># draw from normal distribution</span></span>
+<span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  <span class="co"># y depends on x and noise from normal distribution</span></span>
+<span>  y <span class="op">=</span> <span class="fl">0.3</span><span class="op">*</span><span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">0</span>, <span class="fl">0.2</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Show data</span></span>
+<span><span class="va">lm_dat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -400,13 +371,12 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 </div>
 <p>A handy first step if you work with a new data set is always to plot the data in a sensible way. Dealing with two-dimensional continuous data, a scatter plot is usually the best choice.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot of x and y</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lm_dat, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Scatter plot of x and y</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">lm_dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="02_reg_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="02_reg_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -417,8 +387,7 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="02_reg_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="02_reg_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -427,14 +396,13 @@ y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="02_reg_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="02_reg_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The resulting line is highlighted in blue.</p>
-<p>If we want to mathematically compute the line in R, we have to use the <code>lm()</code> function and provide data and the assumed functional relationship as arguments. <code>lm()</code> is a function you will see a lot and it is used to fit linear models. It returns a fitted object (here: <code>lm_mod</code>), which we can interpret best when using <code>summary()</code> to show the resulting coefficients and other statistical information.</p>
+<p>If we want to mathematically compute the line in R, we have to use the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function and provide data and the assumed functional relationship as arguments. <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> is a function you will see a lot and it is used to fit linear models. It returns a fitted object (here: <code>lm_mod</code>), which we can interpret best when using <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> to show the resulting coefficients and other statistical information.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -445,14 +413,14 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>lm()</code> is a function that fits a linear model. You have to provide data and a regression equation in the form of for example <code>outcome ~ regressor_1 + regressor_2</code> or <code>outcome ~ .</code>, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call <code>summary()</code>.</p>
+<p><code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> is a function that fits a linear model. You have to provide data and a regression equation in the form of for example <code>outcome ~ regressor_1 + regressor_2</code> or <code>outcome ~ .</code>, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
 </div>
 </div>
 <p>Looking at the regression summary, we see that the line is modeled by <span class="math inline">\(y = -0.1918 + 0.3354*x\)</span>. It means that for the fitted model, an increase of one unit in <span class="math inline">\(x\)</span> is related to an 0.3354 increase in <span class="math inline">\(y\)</span>. That is relatively close to what we simulated (0.3) and deviates due to the added random noise.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model and print summary</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, lm_dat)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fit model and print summary</span></span>
+<span><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, <span class="va">lm_dat</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -476,45 +444,37 @@ F-statistic: 57.3 on 1 and 8 DF,  p-value: 6.48e-05</code></pre>
 </div>
 <p>Now, let’s check how far we are off with our predictions by plotting the regression line against the actual observations. There are two ways to to do it, by either plotting the observations <span class="math inline">\(y_i\)</span> and predictions <span class="math inline">\(\hat{y_i}\)</span> for each <span class="math inline">\(i\)</span> or plotting the residuals <span class="math inline">\(r_i = y_i - \hat{y_i}\)</span> and comparing it to the <span class="math inline">\(x\)</span>-axis.</p>
 <div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add fitted values and residuals to data</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lm_dat_fit <span class="ot">&lt;-</span> lm_dat <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y_fit =</span> <span class="fu">predict</span>(lm_mod),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">r   =</span> y <span class="sc">-</span> y_fit)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot distance of actual to fit</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lm_dat_fit, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula=</span> y <span class="sc">~</span> x, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> x, <span class="at">yend =</span> y_fit), <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Predicted observations vs actual observations"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot residuals</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lm_dat_fit, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> r)) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula=</span> y <span class="sc">~</span> x, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> x, <span class="at">yend =</span> <span class="dv">0</span>), <span class="at">color =</span> ggthemr<span class="sc">::</span><span class="fu">swatch</span>()[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residuals vs zero"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Add fitted values and residuals to data</span></span>
+<span><span class="va">lm_dat_fit</span> <span class="op">&lt;-</span> <span class="va">lm_dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>y_fit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>,</span>
+<span>         r   <span class="op">=</span> <span class="va">y</span> <span class="op">-</span> <span class="va">y_fit</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot distance of actual to fit</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">lm_dat_fit</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span>, formula<span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, se <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xend <span class="op">=</span> <span class="va">x</span>, yend <span class="op">=</span> <span class="va">y_fit</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Predicted observations vs actual observations"</span><span class="op">)</span></span>
+<span><span class="co"># Plot residuals</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">lm_dat_fit</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">r</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span>, formula<span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, se <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xend <span class="op">=</span> <span class="va">x</span>, yend <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Residuals vs zero"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="figure"><p><a href="02_reg_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="02_reg_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img"></p>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="figure"><p><a href="02_reg_files/figure-html/unnamed-chunk-7-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="02_reg_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</div>
-</section>
-<section id="math" class="level2">
-<h2 class="anchored" data-anchor-id="math">Math</h2>
+</section><section id="math" class="level2"><h2 class="anchored" data-anchor-id="math">Math</h2>
 <p>Mathematically, the best line is found by the ordinary least squares (OLS) method.</p>
 <p>Note that estimation is always done in software programs or language as it gets too complex to be solved by hand very fast. However, to get a good understanding of what is going on and what is optimized, it is worth to look at the equations and conditions.</p>
 <p>Given <span class="math inline">\(n\)</span> samples of observed pairs of dependent and independent variables <span class="math inline">\(\big\{(x_i,\ \textrm{and}\ y_i): i=1,2,\dots,n \big\}\)</span>, we plug any of them into the equation</p>
@@ -566,75 +526,70 @@ Info
 \sum_{i=1}^n \widehat{u_i}^2 =\sum_{i=1}^n (y_i - \widehat{y_i})^2                                 \\= \sum_{i=1}^n \Big(y_i-\widehat{\beta_0}-\widehat{\beta_1}x_i\Big)^2
 \]</span></p>
 <p>Again, most of the residuals won’t be zero, but on average the line going through all observations is the best fitting line with residuals being zero on average.</p>
-</section>
-</section>
-<section id="application" class="level1">
-<h1>Application</h1>
+</section></section><section id="application" class="level1"><h1>Application</h1>
 <p>Now let’s use a more complex model to learn more about how results of a linear regression can be interpreted and how statistically significant results are defined.</p>
 <p>In this application, imagine you are working at a health insurance company and your task is to estimate the annual expected cost of a (potential) customer based on his/her characteristics. Based on historical data, you want to see what characteristics affect the cost.</p>
 <p>Let’s create a synthetic data set for our application. In practice, you obviously would not need to create the data first but we have to due to the lack of real data which is generally kept under lock by insurance companies. However, the advantage of using synthetic data is that we know the data-generating process and check if our estimates are correct or if they are are biased.</p>
 <p>You don’t need to worry about how to create a synthetic data set at this point. But for those who are interested, the package <code>fabricatr</code> has some very useful functions and a very well written documentation.</p>
 <p>We simulate a couple of factors, of which some do and some does not affect the expected cost of a customer. The factors we simulate are sex, age, BMI, children, smoking, region and income.</p>
 <div class="cell" data-layout-align="center">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [0] Data ----</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate data for a multivariate linear regression. Introduction, therefore</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># disregarding causality of effects.</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Application: Health insurance company wants to estimate expected annual cost </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># of potential customer based on various characteristics such as sex, age, BMI,</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># children, smoking status, region, salary</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># empirical distributions to draw from</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>income_sample <span class="ot">&lt;-</span> <span class="fl">1e+4</span> <span class="sc">*</span> <span class="fu">rbeta</span>(<span class="fl">1e+6</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>bmi_sample <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="sc">+</span> <span class="dv">50</span> <span class="sc">*</span> <span class="fu">rbeta</span>(<span class="fl">1e+6</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># custom function to generate correlated variables based on given variable</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># and empirical sample</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>draw_custom <span class="ot">&lt;-</span> <span class="cf">function</span>(data, quantile_y) {</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(data, quantile_y)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fabricatr)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># sex, age, BMI, children, smoking status, region, salary</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">fabricate</span>(</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fl">1e+3</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign a region</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">region =</span> <span class="fu">draw_categorical</span>(<span class="at">prob =</span> <span class="fu">rep</span>(<span class="fl">0.25</span>, <span class="dv">4</span>), </span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                            <span class="at">N =</span> N,</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                            <span class="at">category_labels =</span> <span class="fu">c</span>(<span class="st">"N"</span>, <span class="st">"E"</span>, <span class="st">"S"</span>, <span class="st">"W"</span>)),</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign sex</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">draw_binary</span>(<span class="fl">0.5</span>, <span class="at">N =</span> N),</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign smoking (yes/no)</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">smoking =</span> <span class="fu">draw_binary</span>(<span class="at">prob =</span> <span class="fl">0.25</span>, <span class="at">N =</span> N),</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># age distribution (18-70): younger or older people would not sign up for an</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># insurance as they are either already insured or insured via their parents</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> (<span class="dv">100</span><span class="sc">*</span><span class="fu">rbeta</span>(<span class="dv">1000</span>, <span class="fl">1.4</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="at">to =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">70</span>)),</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate income based on age and income sample distribution</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">income =</span> <span class="fu">correlate</span>(draw_custom,</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> income_sample,</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                      <span class="at">given =</span> age,</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rho =</span> <span class="fl">0.4</span>),</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate BMI based on age and BMI sample distribution</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi =</span> <span class="fu">correlate</span>(draw_custom,</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> bmi_sample,</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>                  <span class="at">given =</span> age,</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>                  <span class="at">rho =</span> <span class="fl">0.3</span>),</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate children (yes/no) based on age</span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">children =</span> <span class="fu">draw_ordered</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(N,age, <span class="at">sd =</span> <span class="dv">20</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">35</span>)) <span class="sc">-</span> <span class="dv">1</span>,</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute expected cost based on income, smoking, bmi and age</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">expected_cost =</span> <span class="dv">100</span> <span class="sc">+</span> <span class="sc">-</span><span class="fl">0.05</span><span class="sc">*</span>income <span class="sc">+</span> <span class="dv">200</span><span class="sc">*</span>smoking <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>((bmi<span class="dv">-30</span>) <span class="sc">+</span> (bmi<span class="dv">-30</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span><span class="sc">*</span>age <span class="sc">+</span> <span class="fu">rnorm</span>(N, <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">100</span>)</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># [0] Data ----</span></span>
+<span><span class="co"># Simulate data for a multivariate linear regression. Introduction, therefore</span></span>
+<span><span class="co"># disregarding causality of effects.</span></span>
+<span><span class="co"># Application: Health insurance company wants to estimate expected annual cost </span></span>
+<span><span class="co"># of potential customer based on various characteristics such as sex, age, BMI,</span></span>
+<span><span class="co"># children, smoking status, region, salary</span></span>
+<span></span>
+<span><span class="co"># empirical distributions to draw from</span></span>
+<span><span class="va">income_sample</span> <span class="op">&lt;-</span> <span class="fl">1e+4</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fl">1e+6</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">bmi_sample</span> <span class="op">&lt;-</span> <span class="fl">12</span> <span class="op">+</span> <span class="fl">50</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fl">1e+6</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># custom function to generate correlated variables based on given variable</span></span>
+<span><span class="co"># and empirical sample</span></span>
+<span><span class="va">draw_custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">quantile_y</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">quantile_y</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://declaredesign.org/r/fabricatr/">fabricatr</a></span><span class="op">)</span></span>
+<span><span class="co"># sex, age, BMI, children, smoking status, region, salary</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://declaredesign.org/r/fabricatr/reference/fabricate.html">fabricate</a></span><span class="op">(</span></span>
+<span>  N <span class="op">=</span> <span class="fl">1e+3</span>,</span>
+<span>  <span class="co"># randomly assign a region</span></span>
+<span>  region <span class="op">=</span> <span class="fu"><a href="https://declaredesign.org/r/fabricatr/reference/draw_discrete.html">draw_categorical</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">4</span><span class="op">)</span>, </span>
+<span>                            N <span class="op">=</span> <span class="va">N</span>,</span>
+<span>                            category_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"E"</span>, <span class="st">"S"</span>, <span class="st">"W"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="co"># randomly assign sex</span></span>
+<span>  sex <span class="op">=</span> <span class="fu"><a href="https://declaredesign.org/r/fabricatr/reference/draw_discrete.html">draw_binary</a></span><span class="op">(</span><span class="fl">0.5</span>, N <span class="op">=</span> <span class="va">N</span><span class="op">)</span>,</span>
+<span>  <span class="co"># randomly assign smoking (yes/no)</span></span>
+<span>  smoking <span class="op">=</span> <span class="fu"><a href="https://declaredesign.org/r/fabricatr/reference/draw_discrete.html">draw_binary</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fl">0.25</span>, N <span class="op">=</span> <span class="va">N</span><span class="op">)</span>,</span>
+<span>  <span class="co"># age distribution (18-70): younger or older people would not sign up for an</span></span>
+<span>  <span class="co"># insurance as they are either already insured or insured via their parents</span></span>
+<span>  age <span class="op">=</span> <span class="op">(</span><span class="fl">100</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">1.4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/rescale.html">rescale</a></span><span class="op">(</span>to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">70</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="co"># generate income based on age and income sample distribution</span></span>
+<span>  income <span class="op">=</span> <span class="fu"><a href="https://declaredesign.org/r/fabricatr/reference/correlate.html">correlate</a></span><span class="op">(</span><span class="va">draw_custom</span>,</span>
+<span>                      data <span class="op">=</span> <span class="va">income_sample</span>,</span>
+<span>                      given <span class="op">=</span> <span class="va">age</span>,</span>
+<span>                      rho <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span>,</span>
+<span>  <span class="co"># generate BMI based on age and BMI sample distribution</span></span>
+<span>  bmi <span class="op">=</span> <span class="fu"><a href="https://declaredesign.org/r/fabricatr/reference/correlate.html">correlate</a></span><span class="op">(</span><span class="va">draw_custom</span>,</span>
+<span>                  data <span class="op">=</span> <span class="va">bmi_sample</span>,</span>
+<span>                  given <span class="op">=</span> <span class="va">age</span>,</span>
+<span>                  rho <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span>
+<span>  <span class="co"># generate children (yes/no) based on age</span></span>
+<span>  children <span class="op">=</span> <span class="fu"><a href="https://declaredesign.org/r/fabricatr/reference/draw_discrete.html">draw_ordered</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">N</span>,<span class="va">age</span>, sd <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>,</span>
+<span>  </span>
+<span>  <span class="co"># compute expected cost based on income, smoking, bmi and age</span></span>
+<span>  expected_cost <span class="op">=</span> <span class="fl">100</span> <span class="op">+</span> <span class="op">-</span><span class="fl">0.05</span><span class="op">*</span><span class="va">income</span> <span class="op">+</span> <span class="fl">200</span><span class="op">*</span><span class="va">smoking</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="op">(</span><span class="op">(</span><span class="va">bmi</span><span class="op">-</span><span class="fl">30</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">bmi</span><span class="op">-</span><span class="fl">30</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fl">10</span><span class="op">*</span><span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">ID</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Let’s also save the data.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data set</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(df, <span class="st">"../../datasets/health_ins.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Save data set</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"../../datasets/health_ins.rds"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you don’t want to create the data yourself, you could instead download it from <a href="https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm">here</a>. All data sets that you are going to need for replicating examples and solving the assignments is stored there.</p>
 <p>Loading data is generally referred to as “reading” the data and can be done for a variety of formats. One format, that is particularly convenient in <code>R</code> is the <code>.rds</code> format. An <code>.rds</code> file can be read with <code>readRDS(path)</code> and saved with <code>saveRDS(df, path)</code>. Note that the <code>path</code> argument depends on where you want to save an object or where you want to load it from. It is probably different from the path I used (by the way, <code>..</code> moves you a one folder upwards).</p>
@@ -650,21 +605,21 @@ Note
 <div class="callout-body-container callout-body">
 <p>Reading/saving commands for other file formats are for example</p>
 <ul>
-<li><p><code>read_csv()</code> and <code>write_csv()</code> from the <code>readr</code> package</p></li>
-<li><p><code>read_delim()</code> and <code>write_delim()</code> from the <code>readr</code> package</p></li>
+<li><p><code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> and <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> from the <code>readr</code> package</p></li>
+<li><p><code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> and <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_delim()</a></code> from the <code>readr</code> package</p></li>
 </ul>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data set. Check what folder/path your data is in. </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../../datasets/health_ins.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Read data set. Check what folder/path your data is in. </span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"../../datasets/health_ins.rds"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Often, you will deal with large data sets that do not fit on a single page and thus are not easy comprehensible. To still get a good understanding, there are some functions to get an idea of how your data looks like.</p>
-<p>Most data scientists start by using the <code>head()</code> command, which returns the first part of the table and shows you the data structure. Also, if something is wrong with your data, because you did not load it correctly or headers do not fit the data, you were able to see it here already.</p>
+<p>Most data scientists start by using the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> command, which returns the first part of the table and shows you the data structure. Also, if something is wrong with your data, because you did not load it correctly or headers do not fit the data, you were able to see it here already.</p>
 <p>Here, we see that our table consists of different column types, such as integers, doubles and factors.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first lines</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show first lines</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -674,10 +629,10 @@ Note
 </div>
 </div>
 </div>
-<p>An option not available in RStudio, but in documents like this one here, is to view a paged table by just typing in the name of the object. In RStudio, the best way to look at a table is <code>View()</code> or <code>view()</code>, which opens the table in a readable format.</p>
+<p>An option not available in RStudio, but in documents like this one here, is to view a paged table by just typing in the name of the object. In RStudio, the best way to look at a table is <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> or <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code>, which opens the table in a readable format.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show table</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show table</span></span>
+<span><span class="va">df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -687,10 +642,10 @@ Note
 </div>
 </div>
 </div>
-<p>If you have too many columns to fit on one page, you could also use <code>glimpse()</code>, which lists columns and their first values row by row.</p>
+<p>If you have too many columns to fit on one page, you could also use <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>, which lists columns and their first values row by row.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get glimpse of data</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get glimpse of data</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,000
 Columns: 8
@@ -704,15 +659,15 @@ $ children      &lt;dbl&gt; 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0
 $ expected_cost &lt;dbl&gt; 603, 631, 1006, 521, 431, 659, 761, 850, 945, 972, 454, 1026, 775, 607, 692, 504, 579, 169, 760, 806, 531, 476, 968, 835, 660,…</code></pre>
 </div>
 </div>
-<p>Similar to <code>head()</code>, it returns the general structure and data types.</p>
-<p>A command yielding a more concise description of the data is <code>summary()</code>, that besides data types also returns summary statistics. For factor (= categorical) variables, it counts the occurrences and for numeric variables (discrete, continuous) variables, it returns minimum/maximum values, median/mean and quartiles. For binary variables, the only value of interest is generally the mean, which is equal to the proportion.</p>
+<p>Similar to <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>, it returns the general structure and data types.</p>
+<p>A command yielding a more concise description of the data is <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, that besides data types also returns summary statistics. For factor (= categorical) variables, it counts the occurrences and for numeric variables (discrete, continuous) variables, it returns minimum/maximum values, median/mean and quartiles. For binary variables, the only value of interest is generally the mean, which is equal to the proportion.</p>
 <p>When we take a look at a summary of our data set, we see that it includes a variety of data types: Variables are continuous, discrete, binary/logical or even categorical/factors. Continuous variables or discrete variables have numeric values, which we have already seen in the previous example, are easy to work with when doing the needed calculus. But what about the other types?</p>
 <p>Logical variables, which take either the value <code>TRUE</code> or <code>FALSE</code> are in fact discrete, or to be more precise binary values. So you can change the value of <code>TRUE</code> to 1 and <code>FALSE</code> to 0. Then, they behave like discrete variables.</p>
 <p>For categorical variables, in R they are called factors, it is a bit more complicated. If they follow a natural order e.g.&nbsp;like <em>low, medium, high</em>, they could be coded as discrete variables as well with e.g.&nbsp;the values <span class="math inline">\(0,1,2\)</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show summary statistics: various types of variables (continuous, discrete,</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># binary/logical, categorical/factor)</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show summary statistics: various types of variables (continuous, discrete,</span></span>
+<span><span class="co"># binary/logical, categorical/factor)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">df</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> region       sex          smoking          age         income          bmi        children    expected_cost 
  N:250   Min.   :0.00   Min.   :0.00   Min.   :18   Min.   : 117   Min.   :13   Min.   :0.00   Min.   : 169  
@@ -734,16 +689,16 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To compute correlation, variance and covariance, respectively, you can use <code>cor()</code>, <code>var()</code> and <code>cov()</code>.</p>
+<p>To compute correlation, variance and covariance, respectively, you can use <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code>, <code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code> and <code><a href="https://rdrr.io/r/stats/cor.html">cov()</a></code>.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show correlation</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>region) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  Matrix<span class="sc">::</span><span class="fu">tril</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show correlation</span></span>
+<span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">region</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">Matrix</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/band.html">tril</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>7 x 7 Matrix of class "dtrMatrix"
                 sex smoking   age income   bmi children expected_cost
@@ -756,14 +711,13 @@ children      -0.05    0.01  0.45   0.15  0.09     1.00             .
 expected_cost -0.02    0.36  0.39  -0.16  0.06     0.17          1.00</code></pre>
 </div>
 </div>
-<p>Other than that, compared to our minimalist example from the previous section, there is not much we need to consider when fitting a multiple linear regression model. In fact, using the most popular <code>lm()</code> command for regression, we don’t even need to transform categorical variables ourselves. It is done automatically.</p>
-<section id="interpretation" class="level2">
-<h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
+<p>Other than that, compared to our minimalist example from the previous section, there is not much we need to consider when fitting a multiple linear regression model. In fact, using the most popular <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> command for regression, we don’t even need to transform categorical variables ourselves. It is done automatically.</p>
+<section id="interpretation" class="level2"><h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
 <p>So let’s run the first regression. We will start by using all available characteristics as independent variables. That is what you will often find in studies. All variables that are available are included in the regression. We will see in later chapters why that might be dangerous.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include all potential regressors</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>lm_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> ., <span class="at">data =</span> df)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Include all potential regressors</span></span>
+<span><span class="va">lm_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">expected_cost</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_all</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -796,9 +750,7 @@ F-statistic: 74.4 on 9 and 990 DF,  p-value: &lt;2e-16</code></pre>
 <p>There is a lot we can learn from the regression summary. For each included coefficient and the intercept, there is a row containing the estimated coefficient, its standard error, t-statistic and p-value. The names in the R summary differ a bit, but have the same meaning.</p>
 <p>The estimate is what we know as regression coefficient from before, typically denoted by <span class="math inline">\(\widehat{\beta}_i\)</span> or other Greek letters. As it is the estimated version, it has a hat. The estimated for <span class="math inline">\(\beta_i\)</span> It tells you by how much the dependent variable <span class="math inline">\(\widehat{y}\)</span> varies when a particular variable is increased by one unit while all other variables in the model are held at a constant level. A negative coefficient suggests a negative relationship, while a positive coefficient points to a positive relationship.</p>
 <p>Holding all other variables constant and deriving the effect of a single variable is often described with the effect of <span class="math inline">\(x_i\)</span> <strong>ceteris paribus</strong>, Latin for “the others equal”. It is really important to keep that in mind, as it allows to view the coefficient as an estimate of an isolated effect. Sometimes it is also expressed as <strong>controlling for the other variables</strong>.</p>
-</section>
-<section id="statistical-significance" class="level2">
-<h2 class="anchored" data-anchor-id="statistical-significance">Statistical Significance</h2>
+</section><section id="statistical-significance" class="level2"><h2 class="anchored" data-anchor-id="statistical-significance">Statistical Significance</h2>
 <p>The standard error indicates the variation around the estimated coefficient. A high standard error indicates a lot of variation and high uncertainty while low standard errors provide more confidence in the estimate.</p>
 <p>The other values are also concerned with the level of uncertainty there is in the estimation. They are related to the coefficient and standard error.</p>
 <p>Most widely used is the p-value, or probability value. It tests the so called null hypothesis against the observed data. The null hypothesis states that there is no correlation between the dependent variable <span class="math inline">\(y\)</span> and the independent variable <span class="math inline">\(x_1\)</span>. The p-value shows, based on the observed data, how likely it is that your data would have occurred just by random chance. Thus, a low p-value provides support for the claim that the alternative hypothesis is true instead of the null hypothesis. Here, the alternative hypothesis states, that there is indeed a correlation between the independent and the dependent variable.</p>
@@ -806,9 +758,9 @@ F-statistic: 74.4 on 9 and 990 DF,  p-value: &lt;2e-16</code></pre>
 <p>An estimate with a p-value less than <span class="math inline">\(\alpha\)</span> is considered statistically significant. Expressed in statistical jargon, we reject the null hypothesis of random results when the respective p-value is lower than our significance level <span class="math inline">\(\alpha\)</span>. Rejecting the null hypothesis indicates support for the alternative hypothesis (our observed estimate). Looking at the summary above, we see that <span class="math inline">\(age\)</span>, <span class="math inline">\(income\)</span>, <span class="math inline">\(bmi\)</span>, and <span class="math inline">\(smoking\)</span> are statistically significant (at different levels though, indicated by the number of stars).</p>
 <p>Another way to look at the significance of our estimates is to compute is to look at confidence intervals which derive from the estimate, standard error and the t-distribution - the same inputs as needed for p-values. A <span class="math inline">\((1-\alpha)\)</span> confidence interval has a probability of <span class="math inline">\((1-\alpha)*100 \%\)</span> to contain the true value of our estimated coefficient. That means, if we would sample <span class="math inline">\(100\)</span> times, <span class="math inline">\(\beta_i\)</span> would be contained in the sample <span class="math inline">\((1-\alpha)*100\)</span> times.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show CIs at different levels of alpha</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 0.05</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_all, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show CIs at different levels of alpha</span></span>
+<span><span class="co"># alpha = 0.05</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">lm_all</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              2.5 %  97.5 %
 (Intercept) 394.055 506.985
@@ -824,8 +776,8 @@ children    -37.819  19.302</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 0.9</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_all, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># alpha = 0.9</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">lm_all</span>, level <span class="op">=</span> <span class="fl">0.90</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                5 %    95 %
 (Intercept) 403.147 497.893
@@ -841,20 +793,17 @@ children    -33.221  14.703</code></pre>
 </div>
 </div>
 <p>An estimate whose interval is either completely positive or completely negative is <em>different from zero</em> and rejects the null hypothesis. Simply put, that means that we expect an effect in the outcome variable when we change the independent variable associated with the positive coefficient.</p>
-</section>
-<section id="model-selection" class="level2">
-<h2 class="anchored" data-anchor-id="model-selection">Model selection</h2>
+</section><section id="model-selection" class="level2"><h2 class="anchored" data-anchor-id="model-selection">Model selection</h2>
 <p>There is variety of measures to check the model fit. Some models better suit the observed data than others and it is the researchers task to find the best model for his/her data.</p>
 <p>Looking at the spread of residuals (<span class="math inline">\(\widehat{u}_i = y_i - \widehat{y}_i\)</span>) we want them to be spread evenly around zero.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram of residuals</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">res =</span> lm_all<span class="sc">$</span>residuals), <span class="fu">aes</span>(<span class="at">x =</span> res)) <span class="sc">+</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">binwidth =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"residuals"</span>, <span class="at">y =</span> <span class="st">"frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Plot histogram of residuals</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>res <span class="op">=</span> <span class="va">lm_all</span><span class="op">$</span><span class="va">residuals</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">res</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"white"</span>, alpha <span class="op">=</span> <span class="fl">0.8</span>, binwidth <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"residuals"</span>, y <span class="op">=</span> <span class="st">"frequency"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="02_reg_files/figure-html/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="02_reg_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -872,9 +821,9 @@ R^2 = \frac{\text{Explained variatoin}}{\text{Total variation}}
 <p>where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(p\)</span> the number of independent variables. This way, you can compare models and account for their scarcity.</p>
 <p>Let’s build a second regression model, where we only include variables that were statistically significant in the previous model.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include only significant regressors</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>lm_imp <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> age <span class="sc">+</span> bmi <span class="sc">+</span> smoking, <span class="at">data =</span> df)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_imp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Include only significant regressors</span></span>
+<span><span class="va">lm_imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">expected_cost</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">bmi</span> <span class="op">+</span> <span class="va">smoking</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_imp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -899,26 +848,26 @@ F-statistic:  140 on 3 and 996 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 <p>Except for <span class="math inline">\(bmi\)</span>, coefficients are very similar. We’ll look into that in just a second. But first let us compare both models with regard to <span class="math inline">\(\text{(Adjusted)} \, R^2\)</span>.</p>
-<p>To elegantly print variables in a specified format, you can use <code>sprintf()</code>.</p>
+<p>To elegantly print variables in a specified format, you can use <code><a href="https://rdrr.io/r/base/sprintf.html">sprintf()</a></code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare R^2</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Adjusted R^2: %.2f"</span>, broom<span class="sc">::</span><span class="fu">glance</span>(lm_all)<span class="sc">$</span>adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compare R^2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"Adjusted R^2: %.2f"</span>, <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">lm_all</span><span class="op">)</span><span class="op">$</span><span class="va">adj.r.squared</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adjusted R^2: 0.40"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Adjusted R^2: %.2f"</span>, broom<span class="sc">::</span><span class="fu">glance</span>(lm_imp)<span class="sc">$</span>adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"Adjusted R^2: %.2f"</span>, <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">lm_imp</span><span class="op">)</span><span class="op">$</span><span class="va">adj.r.squared</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adjusted R^2: 0.29"</code></pre>
 </div>
 </div>
 <p>Other metrics used to select the best model out of a class of models tackling the same problem (with the same data) are Akaike’s Information Criteria (AIC) and Bayesian Information Criteria (BIC). Both AIC and BIC penalize the inclusion of additional parameters. The exact computation we will disregard for now.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AIC</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"AIC: %.2f"</span>, <span class="fu">AIC</span>(lm_all))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># AIC</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"AIC: %.2f"</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">lm_all</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AIC: 13294.02"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"AIC: %.2f"</span>, <span class="fu">AIC</span>(lm_imp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"AIC: %.2f"</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">lm_imp</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AIC: 13447.79"</code></pre>
 </div>
@@ -928,13 +877,12 @@ F-statistic:  140 on 3 and 996 DF,  p-value: &lt;2e-16</code></pre>
 <p>For example, is it correct to assume a linear relationship between <span class="math inline">\(bmi\)</span> and the outcome <span class="math inline">\(expected\_cost\)</span>? One could say, that a health insurance expects higher costs for individuals with a very low and a very high BMI. We can plot both variables and see whether the graph indicates some form of non-linearity.</p>
 <p>And actually (not surprisingly, because we simulated the data ourselves), there is a non-linear relationship between the variables. As hypothesized, individuals with a low and a high BMI are expected to be more costly. However, this analysis disregards all other variables and should be just an indication. We still need to model this indicated relationship in our model.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot relationship between BMI and expected cost</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">y =</span> expected_cost)) <span class="sc">+</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Plot relationship between BMI and expected cost</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bmi</span>, y <span class="op">=</span> <span class="va">expected_cost</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_reg_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figure class="figure"><p><a href="02_reg_files/figure-html/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="02_reg_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -942,9 +890,9 @@ F-statistic:  140 on 3 and 996 DF,  p-value: &lt;2e-16</code></pre>
 <p>But can we include non-linear terms in our linear regression? In its name, there is the term “linear”, so what can we do about it?</p>
 <p>In fact, it is quite simple to include non-linear terms into the regression equation. When the relationship is assumed to be like depicted in the graph above, a squared term is usually included, i.e.&nbsp;<span class="math inline">\(bmi^2\)</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include quadratic term for BMI</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>lm_sq <span class="ot">&lt;-</span> <span class="fu">lm</span>(expected_cost <span class="sc">~</span> age <span class="sc">+</span> bmi <span class="sc">+</span> <span class="fu">I</span>(bmi<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> smoking, <span class="at">data =</span> df)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Include quadratic term for BMI</span></span>
+<span><span class="va">lm_sq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">expected_cost</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">bmi</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">bmi</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">smoking</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_sq</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -972,19 +920,13 @@ F-statistic:  704 on 4 and 995 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 <p>From the summary, we can see that including the square term significantly improves the model fit.Check for yourself the metrics <span class="math inline">\(R^2\)</span> and <span class="math inline">\(AIC\)</span> and plot the histogram of residuals.</p>
 <p>We can take from it, that it is extremely important to rely on theoretical considerations when building models.</p>
-</section>
-<section id="assumptions" class="level2">
-<h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
+</section><section id="assumptions" class="level2"><h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
 <ol type="1">
 <li><p><strong>Linearity</strong>: Relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is linear.</p></li>
 <li><p><strong>Homoscedasticity</strong>: Variance of residual is the same for any value of <span class="math inline">\(X\)</span>.</p></li>
 <li><p><strong>Independence</strong>: Observations are independent of each other. Residuals are independent of each other.</p></li>
 <li><p><strong>Normality</strong>: For any fixed value of <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> is normally distributed. Residuals of the model are normally distributed.</p></li>
-</ol>
-</section>
-</section>
-<section id="assignment" class="level1">
-<h1>Assignment</h1>
+</ol></section></section><section id="assignment" class="level1"><h1>Assignment</h1>
 <p>In the <a href="https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm">data folder</a> you find a data set <code>car_prices.rds</code>. It is slightly modified of the data set you could also find on <a href="https://www.kaggle.com/datasets/hellbuoy/car-price-prediction?datasetId=383055">Kaggle</a>, the largest data science community worldwide hosting published code and data for a whole variety of applications. Check it out if you are interested!</p>
 <p>Again, open a new <code>.R</code> script/file and name it <code>02_reg.R</code>. Then, you should accomplish the following tasks.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -1001,15 +943,17 @@ Tip
 </div>
 </div>
 <ol type="1">
-<li><p>Read the data and check the dimensions. How many rows and how many columns does the data have? You could use e.g.&nbsp;the <code>dim()</code> command.</p></li>
+<li><p>Read the data and check the dimensions. How many rows and how many columns does the data have? You could use e.g.&nbsp;the <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> command.</p></li>
 <li><p>Use appropriate commands to get a more detailed look at the data. What data types do you see? How do numbers differ from strings regarding their data type?</p></li>
 <li><p>Run a linear regression. You want to explain what factors are relevant for the pricing of a car.</p></li>
-<li><p>Choose one regressor and</p>
+<li>
+<p>Choose one regressor and</p>
 <ol type="1">
 <li><p>explain what data type it is and what values it can take on</p></li>
 <li><p>what effect is has on the price and what changing the value would have as a result</p></li>
 <li><p>whether its effect is statistically significant.</p></li>
-</ol></li>
+</ol>
+</li>
 <li><p>Add a variable <span class="math inline">\(seatheating\)</span> to the data and assign a value <code>TRUE</code> for all observations. You can use e.g.&nbsp;<code>df %&gt;% mutate(new_variable = value)</code>. Assign it to a new object and run a regression. What coefficient do you get for the new variable <span class="math inline">\(seatheating\)</span> and how can you explain it?</p></li>
 </ol>
 <div class="callout-warning callout callout-style-default callout-captioned">
@@ -1027,10 +971,7 @@ How to submit your solutions!
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1162,9 +1103,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../../content/fundamentals/01_b_stats.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Statistical Concepts</span>
       </a>          
@@ -1176,12 +1115,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
-</footer>
-
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":true});</script>
 
 
 </body></html>

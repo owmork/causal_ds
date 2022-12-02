@@ -57,5 +57,10 @@ format:
     df-print: paged
     code-link: true
 
+filters:
+ - lightbox
+lightbox:
+  match: auto
+
 editor: visual
 

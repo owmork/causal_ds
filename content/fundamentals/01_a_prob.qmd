@@ -205,6 +205,7 @@ We simulate the collection process here. If you are interested how to do it in `
 
 ```{r}
 #| code-fold: true
+#| message: false
 
 # Load tidyverse package
 library(tidyverse)
