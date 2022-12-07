@@ -500,9 +500,9 @@ Holding all other variables constant and deriving the effect of a single variabl
 
 The standard error indicates the variation around the estimated coefficient. A high standard error indicates a lot of variation and high uncertainty while low standard errors provide more confidence in the estimate.
 
-The other values are also concerned with the level of uncertainty there is in the estimation. They are related to the coefficient and standard error.
+The other values are also concerned with the level of uncertainty there is in the estimation. They are related to the coefficient and standard error. Most widely used is the p-value, or probability value. It tests the so called null hypothesis against the observed data.
 
-Most widely used is the p-value, or probability value. It tests the so called null hypothesis against the observed data. The null hypothesis states that there is no correlation between the dependent variable $y$ and the independent variable $x_1$. The p-value shows, based on the observed data, how likely it is that your data would have occurred just by random chance. Thus, a low p-value provides support for the claim that the alternative hypothesis is true instead of the null hypothesis. Here, the alternative hypothesis states, that there is indeed a correlation between the independent and the dependent variable.
+Let's take the example of the correlation between `smoking` and `expected_cost` from the regression above. The **null hypothesis** states that there is no correlation between the dependent variable `expected_cost` and the independent variable `smoking`. The p-value shows, based on the observed data, how likely it is that your data would have occurred just by random chance. Thus, a low p-value provides support for the claim that the alternative hypothesis is true instead of the null hypothesis.The alternative hypothesis states, that there is indeed a correlation between the independent and the dependent variable. Because the p-value is low, we reject the null hypothesis and the alternative hypothesis (significant correlation) is true.
 
 Statistical significance can directly be derived from the p-value and an arbitrary significance level $\alpha$. However, the most widely used level of $\alpha$ is $0.05$. Less often used are levels of $.1$, $.01$ or $.001$.
 
