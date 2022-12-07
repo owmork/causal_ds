@@ -1,7 +1,7 @@
 ---
 title: "<b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b>"
 subtitle: ""
-details: "<i>lv3060<br>Winter term 2022/2023<br>Institute of Entrepreneurship<br>TUHH</i>"
+details: "lv3060<br>Winter term 2022/2023<br>Institute of Entrepreneurship<br>TUHH"
 sidebar: false
 toc: false
 page-layout: full
@@ -33,7 +33,7 @@ Browse all the class content, assignments and examples by going to [**Content**]
 :::
 
 ::: grid
-::: {.g-col-6 style="border-radius: .25rem; padding: 15px"}
+::: {.g-col-6 style="border-radius: .25rem; padding: 15px; line-height: 2px;"}
 ## Instructor
 
 {{< fa user >}}   Oliver Mork
@@ -43,7 +43,7 @@ Browse all the class content, assignments and examples by going to [**Content**]
 {{< fa university >}}   StartupEngineer
 :::
 
-::: {.g-col-6 style="border-radius: .25rem; padding: 15px"}
+::: {.g-col-6 style="border-radius: .25rem; padding: 15px; line-height: 2px;"}
 ## Course Details
 
 {{< fa calendar-alt >}}   23.11. / 30.11. / 07.12.
