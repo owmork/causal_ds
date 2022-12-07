@@ -410,5 +410,5 @@ Now consider a different past campaign. For a limited amount of time, for purcha
 ::: callout-warning
 ## How to submit your solutions!
 
-Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::

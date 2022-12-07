@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/icon_cds_text.png" alt="" class="navbar-logo"></a>
+    <img src="../../images/icon_cds_text.svg" alt="" class="navbar-logo"></a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
@@ -327,7 +327,7 @@ ATE = ATT + \text{selection bias}
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Effect of D on Y is confounded by variation in Z. In other words, there are two paths from D to Y, one direct path and a backdoor path via Z."><img src="06_match_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" title="Effect of D on Y is confounded by variation in Z. In other words, there are two paths from D to Y, one direct path and a backdoor path via Z." data-gallery="quarto-lightbox-gallery-1"><img src="06_match_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">Effect of D on Y is confounded by variation in Z. In other words, there are two paths from D to Y, one direct path and a backdoor path via Z.</figcaption><p></p>
 </figure>
 </div>
@@ -481,17 +481,17 @@ F-statistic:  296 on 1 and 998 DF,  p-value: &lt;2e-16</code></pre>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Initial situation: one treated observation and five potential matches from the control group."><img src="06_match_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" title="Initial situation: one treated observation and five potential matches from the control group." data-gallery="quarto-lightbox-gallery-6"><img src="06_match_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Initial situation: one treated observation and five potential matches from the control group.</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-11-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="The closest match is selected to compute treatment effect."><img src="06_match_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-11-2.png" class="lightbox" title="The closest match is selected to compute treatment effect." data-gallery="quarto-lightbox-gallery-7"><img src="06_match_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">The closest match is selected to compute treatment effect.</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-11-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Several units are selected and weighted by their distance."><img src="06_match_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-11-3.png" class="lightbox" title="Several units are selected and weighted by their distance." data-gallery="quarto-lightbox-gallery-8"><img src="06_match_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Several units are selected and weighted by their distance.</figcaption><p></p>
 </figure>
 </div>
@@ -509,19 +509,14 @@ F-statistic:  296 on 1 and 998 DF,  p-value: &lt;2e-16</code></pre>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Generic DAG with matching"><img src="06_match_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Generic DAG with matching</figcaption><p></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" title="Generic DAG with matching. By fixing the level of confounder, backdoor is closed and valid estimation of causal treatment effect for that specific group at level of confounder." data-gallery="quarto-lightbox-gallery-9"><img src="06_match_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Generic DAG with matching. By fixing the level of confounder, backdoor is closed and valid estimation of causal treatment effect for that specific group at level of confounder.</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-12-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Applied to credit card example"><img src="06_match_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Applied to credit card example</figcaption><p></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-12-2.png" class="lightbox" title="Applied to credit card example. Effect of being late on settling credict card debt in the past on being late again. Confounded by size of credit card debt. It could be suspected that customers with higher debts in the past are unlikely to be financially recovered by now." data-gallery="quarto-lightbox-gallery-10"><img src="06_match_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Applied to credit card example. Effect of being late on settling credict card debt in the past on being late again. Confounded by size of credit card debt. It could be suspected that customers with higher debts in the past are unlikely to be financially recovered by now.</figcaption><p></p>
 </figure>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p>Generic form of confounder and example. By fixing the level of confounder, backdoor is closed and valid estimation of causal treatment effect for that specific group at level of confounder. Example scenario: Effect of being late on settling credict card debt in the past on being late again. Confounded by size of credit card debt. It could be suspected that customers with higher debts in the past are unlikely to be financially recovered by now.</p>
 </div>
 </div>
 </div>
@@ -539,17 +534,17 @@ F-statistic:  296 on 1 and 998 DF,  p-value: &lt;2e-16</code></pre>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Initial situation: six potential matches."><img src="06_match_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" title="Initial situation: six potential matches." data-gallery="quarto-lightbox-gallery-11"><img src="06_match_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Initial situation: six potential matches.</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-13-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Four best matches are selected."><img src="06_match_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-13-2.png" class="lightbox" title="Four best matches are selected." data-gallery="quarto-lightbox-gallery-12"><img src="06_match_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Four best matches are selected.</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-13-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Matches are only accepted if they fall into specified vicinity."><img src="06_match_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-13-3.png" class="lightbox" title="Matches are only accepted if they fall into specified vicinity." data-gallery="quarto-lightbox-gallery-13"><img src="06_match_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Matches are only accepted if they fall into specified vicinity.</figcaption><p></p>
 </figure>
 </div>
@@ -596,7 +591,7 @@ P(D_i = 1|X_i)
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="DAG showing what needs to be accounted for."><img src="06_match_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" title="DAG showing what needs to be accounted for." data-gallery="quarto-lightbox-gallery-14"><img src="06_match_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">DAG showing what needs to be accounted for.</figcaption><p></p>
 </figure>
 </div>
@@ -779,7 +774,7 @@ Discarded           0       0</code></pre>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Coarsening: each subsample should contain only similar units."><img src="06_match_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-22-1.png" class="lightbox" title="Coarsening: each subsample should contain only similar units." data-gallery="quarto-lightbox-gallery-15"><img src="06_match_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">Coarsening: each subsample should contain only similar units.</figcaption><p></p>
 </figure>
 </div>
@@ -1003,7 +998,7 @@ F-statistic: 45.9 on 1 and 9998 DF,  p-value: 1.34e-11</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-30-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Most predicted treatment probabilities are between 0.4 and 0.6. Only a few outliers."><img src="06_match_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
+<figure class="figure"><p><a href="06_match_files/figure-html/unnamed-chunk-30-1.png" class="lightbox" title="Most predicted treatment probabilities are between 0.4 and 0.6. Only a few outliers." data-gallery="quarto-lightbox-gallery-16"><img src="06_match_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <p></p><figcaption class="figure-caption">Most predicted treatment probabilities are between 0.4 and 0.6. Only a few outliers.</figcaption><p></p>
 </figure>
 </div>
@@ -1239,7 +1234,7 @@ How to submit your solutions!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
+<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to successfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
 </div>
 </div>
 
@@ -1394,7 +1389,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":true,"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});</script>
 
 
 </body></html>

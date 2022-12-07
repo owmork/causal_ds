@@ -110,7 +110,7 @@ x <- 1:6
 sum(p*x)
 ```
 
-As you might have expected, it's 3.5.
+As you might have expected, it's 3.5. In this case, we know the probabilities, but if we had not known them beforehand, what we could have done to get an estimate of the expected value is to roll the die a lot of times, store the results in an object and use the `mean()` function. It would yield an expected value close to 3.5.
 
 ::: callout-tip
 Additional rules regarding the calculation of expected values that can be useful are:
@@ -338,7 +338,7 @@ Many of the rules and concepts that you have just learned will play a crucial in
 
 # Assignments
 
-From the [data folder](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm), load the table `random_vars.rds`. It contains draws from two random variables, $age$ and $income$.
+From the [data folder](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm), load the table `random_vars.rds` (by using `table_name <- readRDS("your_download_folder/random_vars.rds")` or finding the file in the `Files` pane and selecting it). It contains draws from two random variables, `age` and `income`. By the way, after you loaded the table, you can have a look at the whole table using `View(random_vars)`.
 
 1.  For each variable, compute the following values. You can use the built-in functions or use the mathematical formulas.
     1.  expected value
@@ -362,5 +362,5 @@ From the [data folder](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm), load 
 ::: callout-warning
 ## How to submit your solutions!
 
-Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::

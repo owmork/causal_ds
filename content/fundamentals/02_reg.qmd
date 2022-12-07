@@ -642,10 +642,10 @@ You can copy parts of the code from the example. Also keep in mind, that not all
 
     3.  whether its effect is statistically significant.
 
-5.  Add a variable $seatheating$ to the data and assign a value `TRUE` for all observations. You can use e.g. `df %>% mutate(new_variable = value)`. Assign it to a new object and run a regression. What coefficient do you get for the new variable $seatheating$ and how can you explain it?
+5.  Add a variable `seatheating` to the data and assign a value `TRUE` for all observations. You can use e.g. `df %>% mutate(new_variable = value)`. Assign it to a new object and run a regression. What coefficient do you get for the new variable `seatheating` and how can you explain it?
 
 ::: callout-warning
 ## How to submit your solutions!
 
-Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::

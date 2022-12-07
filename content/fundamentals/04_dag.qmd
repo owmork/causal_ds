@@ -632,11 +632,11 @@ Implicitly, DAGs always base on some form of counterfactual reasoning as we pres
 
     Now imagine, you are working as an analyst for that company and are asked to examine the relationship between follow-up calls to the clients and their satisfaction with the product and service. Follow-up calls are voluntary and are just to help the client with possible problems and so on. Satisfaction is measured on a weekly basis by surveying the clients.
 
-    In the data, you find three variables: $satisfaction$, $follow\_ups$ and $subscription$. Perform the following steps:
+    In the data, you find three variables: `satisfaction`, `follow_ups` and `subscription`. Perform the following steps:
 
-    1.  regress $satisfaction$ on $follow\_ups$
+    1.  regress `satisfaction` on `follow_ups`
 
-    2.  regress $satisfaction$ on $follow\_ups$ and account for $subscription$
+    2.  regress `satisfaction` on `follow_ups` and account for `subscription`
 
 3)  Compare the coefficients and find a possible explanation.
 
@@ -645,5 +645,5 @@ Implicitly, DAGs always base on some form of counterfactual reasoning as we pres
 ::: callout-warning
 ## How to submit your solutions!
 
-Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::

@@ -434,11 +434,11 @@ All other tools that we will learn in the following chapters try to deal with th
 
 # Assignment
 
-Load the dataset **abtest_online.rds**. It is about a randomized experiment run by an online shop. Online shops run a lot of randomized experiments (in business context often called AB-testing), where a randomly selected website visitors are shown a slightly different website than the others. This way, new features can be tested and the final decision to implement a new feature will be based on the results of this test.
+Load the dataset `abtest_online.rds`. It is about a randomized experiment run by an online shop. Online shops run a lot of randomized experiments (in business context often called AB-testing), where a randomly selected website visitors are shown a slightly different website than the others. This way, new features can be tested and the final decision to implement a new feature will be based on the results of this test.
 
 Let's imagine the following scenario: you are running an online shop and worry about the cost of your customer service. To reduce the cost, you consider implementing a chatbot that can replace the human customer service. However, you are not sure if that could affect your sales negatively, and therefore you plan an AB-test, where a selection of users is led on a website with a chatbot (treatment group) and the other customers still turn to the human customer service (control group) in case of question. To ensure randomization, you assign treatment based on the last digit of the IP-address.
 
-There are two outcome variables, $purch$ and $amount$. The first one shows whether a customer bought and the other how much (in €) he bought. Let's use $amount$ for now.
+There are two outcome variables, `purch` and `amount`. The first one shows whether a customer bought and the other how much (in €) he bought. Let's use `amount` for now.
 
 After loading the data, perform the following steps:
 
@@ -455,5 +455,5 @@ Bonus: use $purch$ as outcome variable. Note, in that case you cannot use a line
 ::: callout-warning
 ## How to submit your solutions!
 
-Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::

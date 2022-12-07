@@ -408,10 +408,9 @@ But for ease of explanation, we'll have a look at it.
 
 ```{r}
 #| echo: false
-#| fig-cap: "Generic form of confounder and example. By fixing the level of confounder, backdoor is closed and valid estimation of causal treatment effect for that specific group at level of confounder. Example scenario: Effect of being late on settling credict card debt in the past on being late again. Confounded by size of credit card debt. It could be suspected that customers with higher debts in the past are unlikely to be financially recovered by now."
 #| fig-subcap: 
-#|   - "Generic DAG with matching"
-#|   - "Applied to credit card example"
+#|   - "Generic DAG with matching. By fixing the level of confounder, backdoor is closed and valid estimation of causal treatment effect for that specific group at level of confounder."
+#|   - "Applied to credit card example. Effect of being late on settling credict card debt in the past on being late again. Confounded by size of credit card debt. It could be suspected that customers with higher debts in the past are unlikely to be financially recovered by now."
 #| layout-ncol: 2
 
 # Generic confounder
@@ -930,10 +929,9 @@ Load the data `membership.rds`. Then,
     2.  Nearest-Neighbor Matching.
 
     3.  Inverse Probability Weighting.
-    
+
 ::: callout-warning
 ## How to submit your solutions!
 
-Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::
-
