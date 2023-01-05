@@ -530,12 +530,17 @@ Window Length / 2          &lt;c     &gt;=c    P&gt;|T|
 <span><span class="va">bw</span> <span class="op">&lt;-</span> <span class="va">c0</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Subsets below and above threshold in specified bandwidth</span></span>
-<span><span class="va">df_bw_below</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">days_since_last</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">between</span><span class="op">(</span><span class="va">bw</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">c0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df_bw_below</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">days_since_last</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">between</span><span class="op">(</span><span class="va">bw</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">c0</span><span class="op">-</span><span class="fl">1e-4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df_bw_above</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">days_since_last</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">between</span><span class="op">(</span><span class="va">c0</span>, <span class="va">bw</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Alternative way to define tables</span></span>
+<span><span class="co"># df_bw_below &lt;- df %&gt;% filter(days_since_last &gt;= bw[1], days_since_last  &lt; c0)</span></span>
+<span><span class="co"># df_bw_above &lt;- df %&gt;% filter(days_since_last &gt;= c0, days_since_last &lt;= bw[2])</span></span>
+<span></span>
 <span><span class="va">df_bw</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">df_bw_above</span>, <span class="va">df_bw_below</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">df_bw</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 326   4</code></pre>
+<pre><code>[1] 323   4</code></pre>
 </div>
 </div>
 <p>To illustrate the difference between using only a small window and all data, we plot the resulting regression lines. You can see that both approaches would lead to different results.</p>
@@ -568,7 +573,7 @@ Window Length / 2          &lt;c     &gt;=c    P&gt;|T|
 </div>
 </div>
 </div>
-<p>From the plot above, it is hard to see what the difference between observations close to the cut-off is. So what we can do is to compute to regressions, one for the observations in <span class="math inline">\([55, 65)\)</span> and another one for the observations in <span class="math inline">\([55, 65]\)</span>.</p>
+<p>From the plot above, it is hard to see what the difference between observations close to the cut-off is. So what we can do is to compute to regressions, one for the observations in <span class="math inline">\([55, 60)\)</span> and another one for the observations in <span class="math inline">\([60, 65]\)</span>.</p>
 <p>Then, using the resulting coefficients, we compute what both models predict for the cut-off value <span class="math inline">\(c0\)</span> and take the difference. The difference is the local average treatment effect (LATE).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># [3.2] Local Average treatment effect (LATE) ----</span></span>
@@ -641,19 +646,19 @@ lm(formula = purchase_after ~ days_since_last_centered + coupon,
 
 Residuals:
    Min     1Q Median     3Q    Max 
--9.128 -2.134 -0.121  2.105 10.283 
+-9.156 -2.124 -0.132  2.098 10.280 
 
 Coefficients:
                          Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)                11.075      0.366   30.29   &lt;2e-16 ***
-days_since_last_centered    0.254      0.119    2.14    0.033 *  
-couponTRUE                  8.779      0.667   13.17   &lt;2e-16 ***
+(Intercept)                11.114      0.375   29.65   &lt;2e-16 ***
+days_since_last_centered    0.264      0.121    2.18     0.03 *  
+couponTRUE                  8.715      0.680   12.82   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 3 on 323 degrees of freedom
-Multiple R-squared:  0.732, Adjusted R-squared:  0.73 
-F-statistic:  441 on 2 and 323 DF,  p-value: &lt;2e-16</code></pre>
+Residual standard error: 3.1 on 320 degrees of freedom
+Multiple R-squared:  0.731, Adjusted R-squared:  0.729 
+F-statistic:  435 on 2 and 320 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 </section></section><section id="assignment" class="level1"><h1>Assignment</h1>
@@ -825,7 +830,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":true,"closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});</script>
 
 
 </body></html>

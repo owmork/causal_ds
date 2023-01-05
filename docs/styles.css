@@ -72,3 +72,9 @@ div.callout-warning .callout-toggle::before {
 .title-block .course-meta {
   color: #9a9b9c;
 }
+
+.navbar-logo {
+  max-height: 50px;
+  width: auto;
+}
+

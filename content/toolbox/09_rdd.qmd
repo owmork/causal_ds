@@ -299,8 +299,13 @@ There is no safe rule how to best select the bandwidth, although there are algor
 bw <- c0 + c(-5, 5)
 
 # Subsets below and above threshold in specified bandwidth
-df_bw_below <- df %>% filter(days_since_last %>% between(bw[1], c0))
+df_bw_below <- df %>% filter(days_since_last %>% between(bw[1], c0-1e-4))
 df_bw_above <- df %>% filter(days_since_last %>% between(c0, bw[2]))
+
+# Alternative way to define tables
+# df_bw_below <- df %>% filter(days_since_last >= bw[1], days_since_last  < c0)
+# df_bw_above <- df %>% filter(days_since_last >= c0, days_since_last <= bw[2])
+
 df_bw <- bind_rows(df_bw_above, df_bw_below)
 dim(df_bw)
 ```
@@ -333,7 +338,7 @@ dep_var <-
 dep_var
 ```
 
-From the plot above, it is hard to see what the difference between observations close to the cut-off is. So what we can do is to compute to regressions, one for the observations in $[55, 65)$ and another one for the observations in $[55, 65]$.
+From the plot above, it is hard to see what the difference between observations close to the cut-off is. So what we can do is to compute to regressions, one for the observations in $[55, 60)$ and another one for the observations in $[60, 65]$.
 
 Then, using the resulting coefficients, we compute what both models predict for the cut-off value $c0$ and take the difference. The difference is the local average treatment effect (LATE).
 
