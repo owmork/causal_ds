@@ -719,14 +719,15 @@ outcome = 0.2*treatment + 0.01*treatment*age + treatment*sex + \epsilon
 <p>Opposed to that, in RCTs, there is no arrow from the confounder to the treatment assignment. That is because we randomized treatment and therefore, by definition, treatment selection cannot be confounded. In our example that was indicated by the covariate balance across treatment and control group.</p>
 <p>All other tools that we will learn in the following chapters try to deal with the issue of isolating causal effects in observational studies by exploiting the underlying causal mechanisms.</p>
 </section><section id="assignment" class="level1"><h1>Assignment</h1>
-<p>Load the dataset <strong>abtest_online.rds</strong>. It is about a randomized experiment run by an online shop. Online shops run a lot of randomized experiments (in business context often called AB-testing), where a randomly selected website visitors are shown a slightly different website than the others. This way, new features can be tested and the final decision to implement a new feature will be based on the results of this test.</p>
+<p>Load the dataset <code>abtest_online.rds</code>. It is about a randomized experiment run by an online shop. Online shops run a lot of randomized experiments (in business context often called AB-testing), where a randomly selected website visitors are shown a slightly different website than the others. This way, new features can be tested and the final decision to implement a new feature will be based on the results of this test.</p>
 <p>Let’s imagine the following scenario: you are running an online shop and worry about the cost of your customer service. To reduce the cost, you consider implementing a chatbot that can replace the human customer service. However, you are not sure if that could affect your sales negatively, and therefore you plan an AB-test, where a selection of users is led on a website with a chatbot (treatment group) and the other customers still turn to the human customer service (control group) in case of question. To ensure randomization, you assign treatment based on the last digit of the IP-address.</p>
-<p>There are two outcome variables, <span class="math inline">\(purch\)</span> and <span class="math inline">\(amount\)</span>. The first one shows whether a customer bought and the other how much (in €) he bought. Let’s use <span class="math inline">\(amount\)</span> for now.</p>
+<p>There are two outcome variables, <code>purch</code> and <code>amount</code>. The first one shows whether a customer bought and the other how much (in €) he bought. Let’s use <code>amount</code> for now.</p>
+<p>Other variables included are <code>mob_dev</code>being <code>TRUE</code> when a user visits the site using a mobile device and <code>pre_vis</code> indicating the number of previous visits of a particular user.</p>
 <p>After loading the data, perform the following steps:</p>
 <ol type="1">
 <li>Check whether the covariates are balanced across the groups. Use a plot to show it.</li>
 <li>Run a regression to find the effect of chatbot on sales</li>
-<li>Find subgroup-specific effects by including an interaction. Compute a CATE for one exemplary group.</li>
+<li>Find subgroup-specific effects by including an interaction. Compute a CATE for one exemplary group. A subgroup could be for example mobile users.</li>
 </ol>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -752,7 +753,7 @@ How to submit your solutions!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
+<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to successfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
 </div>
 </div>
 
@@ -904,7 +905,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":true,"openEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true,"closeEffect":"zoom"});</script>
 
 
 </body></html>

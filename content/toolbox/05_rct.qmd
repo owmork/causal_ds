@@ -440,11 +440,13 @@ Let's imagine the following scenario: you are running an online shop and worry a
 
 There are two outcome variables, `purch` and `amount`. The first one shows whether a customer bought and the other how much (in €) he bought. Let's use `amount` for now.
 
+Other variables included are `mob_dev`being `TRUE` when a user visits the site using a mobile device and `pre_vis` indicating the number of previous visits of a particular user.
+
 After loading the data, perform the following steps:
 
 1.  Check whether the covariates are balanced across the groups. Use a plot to show it.
 2.  Run a regression to find the effect of chatbot on sales
-3.  Find subgroup-specific effects by including an interaction. Compute a CATE for one exemplary group.
+3.  Find subgroup-specific effects by including an interaction. Compute a CATE for one exemplary group. A subgroup could be for example mobile users.
 
 ::: callout-tip
 Bonus: use $purch$ as outcome variable. Note, in that case you cannot use a linear regression as the outcome is either yes or no (or 1 and 0). You have to use a logistic regression using the command `glm(formula, family=binomial(link='logit'), data)`.
