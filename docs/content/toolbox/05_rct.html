@@ -721,7 +721,7 @@ outcome = 0.2*treatment + 0.01*treatment*age + treatment*sex + \epsilon
 </section><section id="assignment" class="level1"><h1>Assignment</h1>
 <p>Load the dataset <code>abtest_online.rds</code>. It is about a randomized experiment run by an online shop. Online shops run a lot of randomized experiments (in business context often called AB-testing), where a randomly selected website visitors are shown a slightly different website than the others. This way, new features can be tested and the final decision to implement a new feature will be based on the results of this test.</p>
 <p>Let’s imagine the following scenario: you are running an online shop and worry about the cost of your customer service. To reduce the cost, you consider implementing a chatbot that can replace the human customer service. However, you are not sure if that could affect your sales negatively, and therefore you plan an AB-test, where a selection of users is led on a website with a chatbot (treatment group) and the other customers still turn to the human customer service (control group) in case of question. To ensure randomization, you assign treatment based on the last digit of the IP-address.</p>
-<p>There are two outcome variables, <code>purch</code> and <code>amount</code>. The first one shows whether a customer bought and the other how much (in €) he bought. Let’s use <code>amount</code> for now.</p>
+<p>There are two outcome variables, <code>y_bin</code> and <code>y_num</code>. The first one shows whether a customer bought and the other how much (in €) he bought. Let’s use <code>y_num</code> for now.</p>
 <p>Other variables included are <code>mob_dev</code>being <code>TRUE</code> when a user visits the site using a mobile device and <code>pre_vis</code> indicating the number of previous visits of a particular user.</p>
 <p>After loading the data, perform the following steps:</p>
 <ol type="1">
@@ -905,7 +905,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true,"closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":true,"selector":".lightbox"});</script>
 
 
 </body></html>

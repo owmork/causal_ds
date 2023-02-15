@@ -438,7 +438,7 @@ Load the dataset `abtest_online.rds`. It is about a randomized experiment run by
 
 Let's imagine the following scenario: you are running an online shop and worry about the cost of your customer service. To reduce the cost, you consider implementing a chatbot that can replace the human customer service. However, you are not sure if that could affect your sales negatively, and therefore you plan an AB-test, where a selection of users is led on a website with a chatbot (treatment group) and the other customers still turn to the human customer service (control group) in case of question. To ensure randomization, you assign treatment based on the last digit of the IP-address.
 
-There are two outcome variables, `purch` and `amount`. The first one shows whether a customer bought and the other how much (in €) he bought. Let's use `amount` for now.
+There are two outcome variables, `y_bin` and `y_num`. The first one shows whether a customer bought and the other how much (in €) he bought. Let's use `y_num` for now.
 
 Other variables included are `mob_dev`being `TRUE` when a user visits the site using a mobile device and `pre_vis` indicating the number of previous visits of a particular user.
 
