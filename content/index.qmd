@@ -8,9 +8,50 @@ Welcome to "Causal Data Science for Business Analytics"!
 
 In this course, you will learn about causality in data science with a particular emphasis on business applications. Causal data science methods are increasingly recognized and developed to understand causes and effects. Moving beyond a prediction-based approach in data science, the purpose of causal methods is to understand underlying processes and mechanisms to guide strategic decision-making. Causal methods allow us to answer questions that otherwise could not be addressed.
 
-According to a large global survey[^1] conducted among data science practitioners in industry in 2020, 83% of respondents consider causal inference increasingly important for data-driven decision making. Moreover, 44% state that, in their data science projects, causal inference already is important.
+A large global survey[^1] conducted among data science practitioners in the industry in 2020 states the importance of causal data science. 83% of the respondents consider causal inference in data-driven decisions making increasingly important and 44% state that, in their data science project, causal inference already plays an important role. Additionally,
 
 [^1]: <https://www.causalscience.org/blog/causal-data-science-in-practice/>
+
+-   45% recognize the necessity to invest into causal inference in the future
+-   42% plan to intensify the training of their workforce in causal inference
+-   36% intend to hire talent in the field of causal inference
+
+While the primary goal of machine learning is typically the development of algorithms for a high prediction and classification accuracy, causal inference aims to understand and establish cause-and-effect relationships between variables.
+
+Typical applications in business therefore aim to answer questions like:
+
+-   Does a customer loyalty program actually bind customers? Or do only customers sign up that are loyal anyways?
+-   Does discount a product lead to more revenue? Or do only customers who would have bought anyways buy?
+
+Many successful companies have already recognized the advantages of causal data science. Click on the link to get more details how these companies are using tools from causal inference to generate value within their organizations.
+
+![Sample of companies involved in causal data science](/images/00_companies.png){fig-align="center"}
+
+-   **Uber** provides a [Python package](https://github.com/uber/causalml) accompanied by a [white paper](https://ieeexplore.ieee.org/document/8964199) suited for use cases such as campaign targeting optimization (identify customers most likely to respond to ad) and personalized engagement (find optimal personalized recommendation systems).
+
+-   Lacking the possibility to measure the benefit of a new tool, **AirBnB** developed a method to mimic a randomized experiment called [Artificial Counterfactual Estimation (ACE)](https://diff.blog/post/artificial-counterfactual-estimation-ace-machine-learning-based-causal-inference-at-airbnb-89562/) leveraging causal inference and machine learning.
+
+-   Data scientists at **booking.com** make use of [encouragement design and instrumental variables](https://booking.ai/encouraged-to-comply-3cd95b447a20) to examine whether property partners can be reactivated by contacting.
+
+-   At **LinkedIn**, methods from causal inference are used to extract effect estimates from observational data as randomized experiments are often not feasible. Four case studies dealing with job postings, free trials, user contributions and marketing campaigns are presented [here](https://hdsr.mitpress.mit.edu/pub/wjhth9tr/release/3).
+
+-   **Netflix** often uses A/B testing but sometimes refrains from its use in order to provide the same value to all customers. Then data scientists need to [draw on observational data](https://netflixtechblog.com/a-survey-of-causal-inference-applications-at-netflix-b62d25175e6f) and e.g. use double machine learning to study the impact of localized content (through subtitles and dubs) or introduce causal inference into recommendation models to overcome the purely associative nature.
+
+-   **Google** provides an [R package](https://cran.r-project.org/web/packages/CausalImpact/index.html) to help [inferring causal impact](https://research.google/pubs/pub41854/) from marketing campaigns on e.g. web searches, product installs or sales.
+
+-   **Meta** runs experiments to improve the user experience and reduce resource usage. [Applying methods from causal inference and machine learning](https://engineering.fb.com/2022/10/31/ml-applications/instagram-notification-management-machine-learning/), Instagram users are provided with better notifications.
+
+-   **Microsoft** brings together state-of-the-art machine learning techniques and statistics to tackle causal inference problems in its [open source ecosystem for causal machine learning](https://www.pywhy.org/).
+
+-   **Zalando** puts a focus on [experimentation and A/B-testing](https://engineering.zalando.com/posts/2021/01/experimentation-platform-part1.html) in their business decision-making.
+
+-   Data science teams at **Lyft** rely on [large causal models](https://eng.lyft.com/causal-forecasting-at-lyft-part-1-14cca6ff3d6d) to model customer decisions and driver incentives in order to manage their marketplace.
+
+-   !!! Other:
+
+    -    https://causal-machine-learning.github.io/kdd2021-tutorial/
+
+    -   https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3867326
 
 # Setup
 
@@ -25,30 +66,24 @@ If you have any questions about the class content, coding problems and other cha
 Follow these steps to join the channel:
 
 1.  Go on <https://communicating.tuhh.de/>
-
 2.  Click **Click here to sign in**
-
 3.  Click the Button **GitLab**
-
 4.  *You may need to login to GitLab with your Kerberos/LDAP data (e.g. cba1020 and your password) on the following page and/or authorize once for Mattermost to access GitLab. You may also need to accept the terms.*
-
 5.  After accessing Mattermost, join the [team W-11 students](https://communicating.tuhh.de/signup_user_complete/?id=8f44fef8tifj5rripq8zya4s7w)
-
 6.  Join [Causal Data Science Channel](https://communicating.tuhh.de/w-11-students/channels/discussion) (you might need to wait a bit, as I first have to add you)
 
-There, and in the classes of course, I will try to help you as much as possible.
+There, and in the sessions, I will try to help you as much as possible.
 
 In order to keep the discussion efficient and manageable it is necessary that we all follow some basic rules:
 
 -   Post error message: if you run into an error it is necessary that I know what the error is. Often reading the error message very carefully can also help you to understand where the problem comes from.
-
 -   Post the code that caused the error: in order to reproduce the error I need the last command that caused the error. If we need more context we will ask you for that.
-
 -   Use the formatting guidelines of Mattermost when you post code. That makes a huge difference in terms of readability. They will also be linked in the channel description. Most important is that using \`\`\` one line above and one line below your code will make it easy to read.
-
 -   Use thread function to reply to a discussion. This way a discussion can be easier read. You find the reply button on the right side of a message.
 
 Playing by these rules makes it a lot easier for everyone to follow the discussion and learn from similar problems and everyone can benefit from the discussions.
+
+See in this minimalistic example how little formatting makes your code and error easy to read.
 
 <!-- CODE (show) -->
 
@@ -63,7 +98,7 @@ Error in x %>% sum() : could not find function "%>%"
 </code></pre>
 ````
 
-![Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read.](/images/00_mattermost.png){alt="Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read." width="400"}
+![How to format your code and error when you ask for help.](/images/00_mattermost.png){width="400"}
 
 ## Installing R & RStudio IDE
 
@@ -86,15 +121,15 @@ RStudio is split into four panes that have the following functions:
 
 ## Introduction to R
 
-One last note before you start coding: **don't be intimidated by the errors, warnings and other messages** that you (and everyone else) will without doubt receive. There is no reason to panic just because you see red text in your console and in fact, what is returned will often times already help you to solve the problem.
+Before you begin coding, it's important to remember this final point: do not let the errors, warnings, and other messages that you, like everyone else, are bound to encounter intimidate you. There is no reason to panic just because you see red text in your console and in fact, what is returned will often times already help you to solve the problem and lead you onto the right track.
 
-There are [three different types]{.underline} of texts:
+There are [three different types]{.underline} of texts that communicate issues or information about the code execution:
 
 -   **Errors**: this is a legitimate error and most likely your code did not run due to the error. Many of the error messages are very concise and you will directly see what was wrong, what is missing etc. If you do not see what you did wrong at first glance, you can copy the error message and google it. It is very likely someone else has run into the same error before.
 
 -   **Warnings**: opposed to an error, your code did probably run but there could be something off. However, it is just a warning. You can check it and if you think the warning does not apply to your specific scenario, you can go on.
 
--   **Messages**: these are just friendly texts that provide you with useful information.
+-   **Messages**: these are just friendly texts that provide you with useful information. They do not need immediate attention but can provide useful supplementary information.
 
 [**Interactive Tutorials**]{.underline}**:**
 
@@ -108,9 +143,9 @@ Feel free to complete as many tutorials as you want, but for this class, the fol
 
 You need to follow two steps to use an R package:
 
-1.  **Install the package (one)**. As already mentioned, packages are not installed by default and you have to download it and add it to your library. Once you've installed it, you don't have to repeat this step.
+1.  **Once: install the package**. As already mentioned, packages are not installed by default and you have to download it and add it to your library. Once you've installed it, you don't have to repeat this step.
 
-2.  **Load the package (always)**. By default, just the base R functionality is loaded and when you want to make use of the additional features provided by a specific package, you have to load it every time you start RStudio.
+2.  **Always: load the package**. By default, just the base R functionality is loaded and when you want to make use of the additional features provided by a specific package, you have to load it every time you start RStudio.
 
 So let's do it for the package `swirl`:
 
@@ -138,13 +173,15 @@ Now, the package is loaded and we can start making use of it.
 install_course("The R Programming Environment")
 ```
 
-You just have to type `swirl()` into your console and follow the instructions! Please make sure to always use the same name. This way, you can leave the tutorial and start at the same position again later.
+You just have to type `swirl()` into your console and follow the instructions! Please make sure to always use the same name. This way, you can leave the tutorial and start at the same position again later. It's best to write it down so that you do not forget it.
 
 ```{r}
 #| eval: false
 
 swirl()
 ```
+
+Select the course you just installed: `The R Programming Environment` and start with Chapter 2. You should skip Chapter 1 because its irrelevant for you. If you accidentally selected Chapter 1, just quickly go through it and choose `No` at the last question.
 
 swirl will ask you to install packages for you that are needed for the tutorial. Please confirm when asked. If you computer is struggling with installing a package named "vctrs", please type in the following command. If you don't get such an error, you can ignore it.
 
@@ -154,7 +191,9 @@ swirl will ask you to install packages for you that are needed for the tutorial.
 install.packages("vctrs", repos = "https://packagemanager.rstudio.com/cran/latest")
 ```
 
-You don't need to submit anything from this step. Just focus on getting familiar with `R` by completing the tutorial!
+If, at some point, you want to take a break, you can leave the `swirl` course by typing `bye()` or the `Esc` key. You can return to the course by typing `swirl()` and hitting `Enter`. And remember, to use the same name you used the first time.
+
+You don't need to submit anything from this step. Just focus on getting familiar with `R` by completing the tutorial (I recommend to solve chapter 2-12)!
 
 # Assignments
 
@@ -169,15 +208,12 @@ To successfully complete the course, you also have to **register on TUNE**.
 Most of the resources I used to create this course are free. Feel free to have a look at them when you are stuck on a problem or when you are interested in learning more about a particular topic.
 
 -   Scott Cunningham, *Causal Inference: The Mixtape*, https://mixtape.scunning.com/
-
 -   Nick Huntington-Klein, *The Effect: An Introduction to Research Design and Causality*, https://theeffectbook.net/
-
 -   Matheus Facure, *Causal Inference for the Brave and True*, https://matheusfacure.github.io/python-causality-handbook
-
 -   Pearl J. Glymour M. & Jewell N. P. (2016). *Causal inference in statistics : a primer*. Wiley.
 
 # Good luck!
 
-Now, you can start browsing the class content. In total, there are nine chapters, starting with **fundamental** knowledge necessary to understand what is waiting for us in the **toolbox**, that equips you with methods specifically designed to estimate causal effects in experimental and observational data.
+Now, you can start browsing the class content. In total, there are ten chapters, starting with **fundamental** knowledge necessary to understand what is waiting for us in the **toolbox**, that equips you with methods specifically designed to estimate causal effects in experimental and observational data.
 
 Have fun!

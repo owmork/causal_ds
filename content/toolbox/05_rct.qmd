@@ -136,7 +136,7 @@ Until now, we have not assigned units to treatment and control group and actuall
 
 Remember, randomization of treatment should achieve that we are able to interpret the average treatment effect causally and for that, both groups need to be as similar as possible. The image illustrates the randomization process. Try to think what could happen if you have just very few units in both groups. How likely is is that they are very similar regarding their characteristics? You can probably already sense that this might not be sufficient to make groups comparable.
 
-![Illustration of randomization process. Sample of population is randomly divided into treatment and control group.](/images/05_rand.png){alt="Illustration of randomization process" fig-align="center" width="350"}
+![Illustration of randomization process](/images/05_rand.png){fig-align="center" width="350"}
 
 But let's try it out and see how average group characteristics develop when we change the sample size.
 

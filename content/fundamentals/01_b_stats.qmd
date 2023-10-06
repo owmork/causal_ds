@@ -1,7 +1,7 @@
 ---
 title: "Statistical Concepts"
 linktitle: "Statistical Concepts"
-date: "2022-11-23"
+date: "2023-10-16"
 output:
   blogdown::html_page:
     toc: true
@@ -43,15 +43,39 @@ ggthemr::ggthemr(cds_theme, type = "outer")
 source("../../code/dag_theme.R")
 ```
 
-Now we will talk about some statistical concepts, that are the foundation for modeling processes in both statistical and causal inference. If you sometimes prefer to see additional visual explanations, I can also recommend you to show [here](https://seeing-theory.brown.edu/basic-probability/index.html).
+Now we will talk about some statistical concepts, that are the foundation for modeling processes in both statistical and causal inference. If you sometimes prefer to see additional visual explanations, I can also recommend you to read [here](https://seeing-theory.brown.edu/basic-probability/index.html).
 
 # Random Variable
 
-For starters, let's again define what a random variable is. Often represented by letters such as $X$, a random variable has a set of values, also called sample space, of which any could be the outcome if we draw a random sample from this random variable. Think for example about a die (six possible outcomes). The likelihood of outcomes are defined by a probability distribution that assigns each outcome a probability (for a die, 1/6 for each outcome). A random variable can either take on discrete (e.g. die) or continuous values (e.g. average height of individuals).
+We already touched random variables in the last chapter but for starters, let's again define what it is. Often represented by a letter such as $X$, a random variable has a set of values, also called sample space, of which any could be the outcome if we draw a random sample from this random variable. Think for example about a die (six possible outcomes). The likelihood of outcomes are defined by a probability distribution that assigns each outcome a probability (for a die, 1/6 for each outcome). Because there is randomness and chance in the outcome, we call it a **random** variable.
+
+A random variable can either take on discrete (e.g. die) or continuous values (e.g. average height of individuals).
+
+-   **Discrete Random Variable**: it can take on a countable number of distinct values.
+
+    -   $X \in \{1, 2, 3, 4, 5, 6\}$
+
+    -   $P(X=1) = P(X=2) = … = P(X=6) = \frac{1}{6}$
+
+-   **Continuous Random Variable**: it can take on any value within a certain range or interval.
+
+    -   $X \in [10, 250]$ (size in centimeters)
+
+    -   Typically presented using cumulative distribution function returning the probability of a variable being less than or equal to a specific value: $P(X < b),$ where $b$ could be any value in the given interval.
 
 # Expected value
 
-A random variable is a real-valued function and can with more than one possible outcomes. This is why we cannot represent it as a scalar. The expected value of random variable, however, is a scalar and represents something like a "summary" of the random variable. Knowing the possible values (from the sample space) and the probability distribution, we can compute the expected value.
+A random variable is a real-valued function and has more than one possible outcome. This is why we cannot represent it as a scalar. The expected value of random variable, however, is a scalar and represents something like a "summary" of the random variable. Knowing the possible values (from the sample space) and the probability distribution, we can compute the expected value.
+
+::: callout-important
+The *expected value*, also called *population mean*, of a variable $X$ is defined as the weighted average of possible values the random variable can take, where the weight is equal to the probability of the random variable taking on a specific value.
+:::
+
+If we want to compute it for a discrete random variable, we make use of the summation operator. Considering a finite list of potential values $x_1, x_2, …, x_k$ with probabilities $p_1, p_2, …, p_k$, the expectation of $X$ can be computed by
+
+$$
+E(X) = x_1*p_1 + x_2*p_2 + ... + x_k*p_k = \sum_{j}^{k} x_i*p_i
+$$
 
 ::: callout-tip
 The summation operator $\sum$, denoted by the Greek capital Sigma is used to reduce the sum of a sequence of numbers, like sampled values from a random variable, $x_1, x_2, …, x_n$ to a shorter and more readable form
@@ -75,16 +99,6 @@ $$
 $$
 :::
 
-::: callout-important
-The *expected value*, also called *population mean*, of a variable $X$ is defined as the weighted average of possible values the random variable can take, where the weight is equal to the probability of the random variable taking on a specific value.
-:::
-
-If we want to compute it for a discrete random variable, we make use of the summation operator. Considering a finite list of potential values $x_1, x_2, …, x_k$ with probabilities $p_1, p_2, …, p_k$, the expectation of $X$ can be computed by
-
-$$
-E(X) = x_1*p_1 + x_2*p_2 + ... + x_k*p_k = \sum_{j}^{k} x_i*p_i
-$$
-
 As an example, the expected value of a roll of a fair six-sided die, i.e. all outcomes are equally probable with probability of 1/6, is:
 
 $$
@@ -101,7 +115,7 @@ Let's type in the probabilities and outcomes of rolling a die and see what the e
 
 ```{r}
 # Vector of probabilities (all equal)
-p <- rep(1/6, 6)
+p <- rep(1/6, times = 6)
 
 # Vector of possible outcomes
 x <- 1:6
@@ -110,7 +124,7 @@ x <- 1:6
 sum(p*x)
 ```
 
-As you might have expected, it's 3.5. In this case, we know the probabilities, but if we had not known them beforehand, what we could have done to get an estimate of the expected value is to roll the die a lot of times, store the results in an object and use the `mean()` function. It would yield an expected value close to 3.5.
+As you might have expected, it's 3.5. In this case, we know the probabilities, but if we had not known them beforehand, what we could have done to get an estimate of the expected value is to roll the die a lot of times, store the results in an object and use the `mean()` function. It would yield an expected value close to 3.5 (see simulation [here](https://seeing-theory.brown.edu/basic-probability/)).
 
 ::: callout-tip
 Additional rules regarding the calculation of expected values that can be useful are:
@@ -125,7 +139,7 @@ Knowing how to compute the expected value of a random variable is essential for 
 
 # Conditional Expected Value
 
-The conditional expected value is the expected value conditioned on some other value. Given the value $x$ of $X$, the expected value for $Y$ obtains as
+The conditional expected value is the expected value conditioned on some other value. Given the value $x$ for $X$, the expected value for $Y$ obtains as
 
 $$
 E[Y|X = x]
@@ -141,23 +155,34 @@ $$
 E[Y] \neq E[Y|age < 10] \neq E[Y|age >= 10]
 $$
 
+Instead of $age$, we can also choose another variable, e.g. $gender$. According to NCD[^1], the values in centimeter are as follows:
+
+[^1]: https://ourworldindata.org/human-height
+
+$$
+\begin{aligned}
+E[Y|male] &= 171 \\
+E[Y|female] &= 159
+\end{aligned}
+$$
+
+And the overall mean results as a (weighted) average between males and females.
+
 # **Variance**
+
+→ !!! Variance of Y conditional on X
 
 Before we define variance, let's see why it is important to know. On both graphs we see almost the same line (small difference because of sampling) going through the data points. It is the line that fits the data best. However, there is a difference in how the data points are distributed. On the left graph, there is high variance compared to the right graph. That means, the data is more dispersed.
 
+The data was simulated and feel free to check out how it was done. But again, you can skip this part and only follow the explanations.
+
 ::: callout-note
 | `seq(from, to, by)` or `seq(from, to, length.out)` returns a vectors with a sequence as specified by the arguments.
-:::
 
-::: callout-note
 | `rnorm(n, mean, sd)` samples values from the normal distribution. `n` specifies the number of values, `mean` and `sd` define the parameters of the normal distribution.
-:::
 
-::: callout-note
 | `map()` is a very useful function when you want to apply a function to each element of a list or a vector.
-:::
 
-::: callout-note
 | `pivot_longer()` changes the format of a table by pivoting columns into rows. To pivot rows into columns, you need `pivot_wider()`.
 :::
 
@@ -206,8 +231,6 @@ $$
 
 You might have noticed the term $(n-1)^{-1}$ is different from what you probably expected ($n^{-1}$). This is due to a correction, which at this point you should not have to worry about. However, the larger the sample is, the less important this correction is.
 
-A related measure is the standard deviation, which does not have as many desirable properties for computational purposes but is often reported after all calculations to show the spread of distribution.
-
 ```{r}
 # High variance
 var(Y_hv)
@@ -218,7 +241,7 @@ var(Y_hv)
 var(Y_lv)
 ```
 
-The **standard deviation** obtains as the square root of the variance:
+A related measure is the standard deviation, which does not have as many desirable properties for computational purposes but is often reported after all calculations to show the spread of distribution. The **standard deviation** obtains as the square root of the variance:
 
 $$
 \sigma = \sqrt{\sigma^2}
@@ -312,6 +335,69 @@ ggplot(df, aes(x = X1, y = X3)) +
   labs(title = "No correlation")
 ```
 
+```{r}
+#| echo: false
+
+# Create a data frame with correlated X and Y values
+create_corr_df <- function(n = 1e+3, correlation = 0) {
+  # Generate random X and Y data
+  X <- rnorm(n)
+  Y <- correlation * X + sqrt(1 - correlation^2) * rnorm(n)
+
+  # Create a data frame
+  df <- data.frame(x = X, y = Y) %>% add_column(sigma = correlation)
+
+  # Return data frame
+  return(df)
+}
+
+# Generate data for sequence of different degrees of correlation
+correlation_range <- seq(-1, 1, .1)
+corr_tbl <- map(correlation_range, function(c) create_corr_df(correlation = c)) %>% bind_rows()
+
+# Define as Observable JS data
+ojs_define(data = corr_tbl)
+```
+
+
+```{ojs}
+//| echo: false
+//| panel: input
+
+viewof sigma = Inputs.range(
+  [-1, 1], 
+  {value: 0, step: 0.1, label: "Degree of correlation:"}
+)
+
+```
+
+::: {.panel-tabset}
+
+## Plot
+
+```{ojs}
+//| echo: false
+
+Plot.dot(filtered, {x: "x", y: "y"}).plot()
+
+```
+
+## Data
+
+```{ojs}
+//| echo: false
+Inputs.table(filtered)
+```
+
+:::
+
+```{ojs}
+//| echo: false
+filtered = transpose(data).filter(function(corr_tbl) {
+  return sigma == corr_tbl.sigma;
+})
+```
+
 If the equality $E(XY) = E(X)E(Y)$ holds, then it implies a *covariance* of 0 between the variables $X$ and $Y$. *Covariance* is a measure of linear dependency and hence, independence implies a covariance of 0. Looking back at the formula of the variance of the sum of two random variables, it thus can be said that it is the sum of variances of both random variables plus two times their covariance.
 
 As a matter of form, the formula for the covariance of the random variables $X$ and $Y$ is
@@ -342,21 +428,16 @@ From the [data folder](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm), load 
 
 1.  For each variable, compute the following values. You can use the built-in functions or use the mathematical formulas.
     1.  expected value
-
     2.  variance
-
     3.  standard deviation
 2.  Explain, if it makes sense to compare the standard deviations.
 3.  Then, examine the relationship between both variables and compute:
     1.  covariance
-
     2.  correlation
 4.  What measure is easier to interpret? Please discuss your interpretation.
 5.  Compute the conditional expected value for:
     1.  $E[income|age <= 18]$
-
     2.  $E[income|age \in [18, 65)]$
-
     3.  $E[income|age >= 65]$
 
 ::: callout-warning

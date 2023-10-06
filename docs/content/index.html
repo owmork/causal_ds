@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Content</title>
 <style>
 code{white-space: pre-wrap;}
@@ -14,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -43,44 +47,15 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -102,7 +77,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -118,156 +94,195 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
-}</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script><link rel="stylesheet" href="../styles.css">
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
 </head>
+
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/icon_cds_text.png" alt="" class="navbar-logo"></a>
+    <img src="../images/icon_cds_text.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
-    <a class="nav-link" href="../index.html">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../content/index.html" aria-current="page">
+    <a class="nav-link active" href="../content/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../submission/submission.html">
+    <a class="nav-link" href="../submission/submission.html" rel="" target="">
  <span class="menu-text">Submission</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion" rel="" target=""><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-<div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Content</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/index.html">Introduction</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/index.html" class="sidebar-item-text sidebar-link active">Introduction</a>
+  <a href="../content/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Fundamentals</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link">Probability Theory</a>
+  <a href="../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link">Statistical Concepts</a>
+  <a href="../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">Regression and Statistical Inference</a>
+  <a href="../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression and Statistical Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">Causality</a>
+  <a href="../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causality</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link">Directed Acyclic Graphs</a>
+  <a href="../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Directed Acyclic Graphs</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Toolbox</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Toolbox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">Randomized Controlled Trials</a>
+  <a href="../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomized Controlled Trials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">Matching and Subclassification</a>
+  <a href="../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching and Subclassification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link">Difference-in-Differences</a>
+  <a href="../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Difference-in-Differences</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">Instrumental Variables</a>
+  <a href="../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instrumental Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">Regression Discontinuity</a>
+  <a href="../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Discontinuity</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
-  <li>
-<a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
-<li><a href="#mattermost" id="toc-mattermost" class="nav-link" data-scroll-target="#mattermost">Mattermost</a></li>
+  <li><a href="#mattermost" id="toc-mattermost" class="nav-link" data-scroll-target="#mattermost">Mattermost</a></li>
   <li><a href="#installing-r-rstudio-ide" id="toc-installing-r-rstudio-ide" class="nav-link" data-scroll-target="#installing-r-rstudio-ide">Installing R &amp; RStudio IDE</a></li>
   <li><a href="#introduction-to-r" id="toc-introduction-to-r" class="nav-link" data-scroll-target="#introduction-to-r">Introduction to R</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#good-luck" id="toc-good-luck" class="nav-link" data-scroll-target="#good-luck">Good luck!</a></li>
-  </ul></nav>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block">Content</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Content</h1>
 </div>
 
 
@@ -280,33 +295,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><section id="welcome" class="level1"><h1>Welcome!</h1>
+</header>
+
+<section id="welcome" class="level1">
+<h1>Welcome!</h1>
 <p>Welcome to “Causal Data Science for Business Analytics”!</p>
 <p>In this course, you will learn about causality in data science with a particular emphasis on business applications. Causal data science methods are increasingly recognized and developed to understand causes and effects. Moving beyond a prediction-based approach in data science, the purpose of causal methods is to understand underlying processes and mechanisms to guide strategic decision-making. Causal methods allow us to answer questions that otherwise could not be addressed.</p>
-<p>According to a large global survey<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> conducted among data science practitioners in industry in 2020, 83% of respondents consider causal inference increasingly important for data-driven decision making. Moreover, 44% state that, in their data science projects, causal inference already is important.</p>
-</section><section id="setup" class="level1"><h1>Setup</h1>
-<section id="mattermost" class="level2"><h2 class="anchored" data-anchor-id="mattermost">Mattermost</h2>
+<p>A large global survey<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> conducted among data science practitioners in the industry in 2020 states the importance of causal data science. 83% of the respondents consider causal inference in data-driven decisions making increasingly important and 44% state that, in their data science project, causal inference already plays an important role. Additionally,</p>
+<ul>
+<li>45% recognize the necessity to invest into causal inference in the future</li>
+<li>42% plan to intensify the training of their workforce in causal inference</li>
+<li>36% intend to hire talent in the field of causal inference</li>
+</ul>
+<p>While the primary goal of machine learning is typically the development of algorithms for a high prediction and classification accuracy, causal inference aims to understand and establish cause-and-effect relationships between variables.</p>
+<p>Typical applications in business therefore aim to answer questions like:</p>
+<ul>
+<li>Does a customer loyalty program actually bind customers? Or do only customers sign up that are loyal anyways?</li>
+<li>Does discount a product lead to more revenue? Or do only customers who would have bought anyways buy?</li>
+</ul>
+<p>Many successful companies have already recognized the advantages of causal data science. Click on the link to get more details how these companies are using tools from causal inference to generate value within their organizations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/00_companies.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Sample of companies involved in causal data science"><img src="../images/00_companies.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">Sample of companies involved in causal data science</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Uber</strong> provides a <a href="https://github.com/uber/causalml">Python package</a> accompanied by a <a href="https://ieeexplore.ieee.org/document/8964199">white paper</a> suited for use cases such as campaign targeting optimization (identify customers most likely to respond to ad) and personalized engagement (find optimal personalized recommendation systems).</p></li>
+<li><p>Lacking the possibility to measure the benefit of a new tool, <strong>AirBnB</strong> developed a method to mimic a randomized experiment called <a href="https://diff.blog/post/artificial-counterfactual-estimation-ace-machine-learning-based-causal-inference-at-airbnb-89562/">Artificial Counterfactual Estimation (ACE)</a> leveraging causal inference and machine learning.</p></li>
+<li><p>Data scientists at <strong>booking.com</strong> make use of <a href="https://booking.ai/encouraged-to-comply-3cd95b447a20">encouragement design and instrumental variables</a> to examine whether property partners can be reactivated by contacting.</p></li>
+<li><p>At <strong>LinkedIn</strong>, methods from causal inference are used to extract effect estimates from observational data as randomized experiments are often not feasible. Four case studies dealing with job postings, free trials, user contributions and marketing campaigns are presented <a href="https://hdsr.mitpress.mit.edu/pub/wjhth9tr/release/3">here</a>.</p></li>
+<li><p><strong>Netflix</strong> often uses A/B testing but sometimes refrains from its use in order to provide the same value to all customers. Then data scientists need to <a href="https://netflixtechblog.com/a-survey-of-causal-inference-applications-at-netflix-b62d25175e6f">draw on observational data</a> and e.g.&nbsp;use double machine learning to study the impact of localized content (through subtitles and dubs) or introduce causal inference into recommendation models to overcome the purely associative nature.</p></li>
+<li><p><strong>Google</strong> provides an <a href="https://cran.r-project.org/web/packages/CausalImpact/index.html">R package</a> to help <a href="https://research.google/pubs/pub41854/">inferring causal impact</a> from marketing campaigns on e.g.&nbsp;web searches, product installs or sales.</p></li>
+<li><p><strong>Meta</strong> runs experiments to improve the user experience and reduce resource usage. <a href="https://engineering.fb.com/2022/10/31/ml-applications/instagram-notification-management-machine-learning/">Applying methods from causal inference and machine learning</a>, Instagram users are provided with better notifications.</p></li>
+<li><p><strong>Microsoft</strong> brings together state-of-the-art machine learning techniques and statistics to tackle causal inference problems in its <a href="https://www.pywhy.org/">open source ecosystem for causal machine learning</a>.</p></li>
+<li><p><strong>Zalando</strong> puts a focus on <a href="https://engineering.zalando.com/posts/2021/01/experimentation-platform-part1.html">experimentation and A/B-testing</a> in their business decision-making.</p></li>
+<li><p>Data science teams at <strong>Lyft</strong> rely on <a href="https://eng.lyft.com/causal-forecasting-at-lyft-part-1-14cca6ff3d6d">large causal models</a> to model customer decisions and driver incentives in order to manage their marketplace.</p></li>
+<li><p>!!! Other:</p>
+<ul>
+<li><p>https://causal-machine-learning.github.io/kdd2021-tutorial/</p></li>
+<li><p>https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3867326</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="setup" class="level1">
+<h1>Setup</h1>
+<section id="mattermost" class="level2">
+<h2 class="anchored" data-anchor-id="mattermost">Mattermost</h2>
 <p>In the course of the next chapters, we will do a lot of coding and errors will occur all the time. That is nothing you should be afraid of and in fact, dealing with errors is an elementary component in programming in data science.</p>
 <p>In most cases, other people from around the world have had similar problems and you will find the right solution to your problem by just googling it. Two great resources to help you are <a href="https://stackoverflow.com/">StackOverflow</a> and <a href="https://community.rstudio.com/">RStudio Community</a>. Please try to do that as a first step when you run into an error.</p>
 <p>If you have any questions about the class content, coding problems and other challenges, please use our Mattermost channel, so that everyone can benefit from the discussions. Please help each other, try to answer emerging questions and actively engage in the channel. Questions, that are not directly related to the class content, can be sent to me.</p>
 <p>Follow these steps to join the channel:</p>
 <ol type="1">
-<li><p>Go on <a href="https://communicating.tuhh.de/" class="uri">https://communicating.tuhh.de/</a></p></li>
-<li><p>Click <strong>Click here to sign in</strong></p></li>
-<li><p>Click the Button <strong>GitLab</strong></p></li>
-<li><p><em>You may need to login to GitLab with your Kerberos/LDAP data (e.g.&nbsp;cba1020 and your password) on the following page and/or authorize once for Mattermost to access GitLab. You may also need to accept the terms.</em></p></li>
-<li><p>After accessing Mattermost, join the <a href="https://communicating.tuhh.de/signup_user_complete/?id=8f44fef8tifj5rripq8zya4s7w">team W-11 students</a></p></li>
-<li><p>Join <a href="https://communicating.tuhh.de/w-11-students/channels/discussion">Causal Data Science Channel</a> (you might need to wait a bit, as I first have to add you)</p></li>
+<li>Go on <a href="https://communicating.tuhh.de/" class="uri">https://communicating.tuhh.de/</a></li>
+<li>Click <strong>Click here to sign in</strong></li>
+<li>Click the Button <strong>GitLab</strong></li>
+<li><em>You may need to login to GitLab with your Kerberos/LDAP data (e.g.&nbsp;cba1020 and your password) on the following page and/or authorize once for Mattermost to access GitLab. You may also need to accept the terms.</em></li>
+<li>After accessing Mattermost, join the <a href="https://communicating.tuhh.de/signup_user_complete/?id=8f44fef8tifj5rripq8zya4s7w">team W-11 students</a></li>
+<li>Join <a href="https://communicating.tuhh.de/w-11-students/channels/discussion">Causal Data Science Channel</a> (you might need to wait a bit, as I first have to add you)</li>
 </ol>
-<p>There, and in the classes of course, I will try to help you as much as possible.</p>
+<p>There, and in the sessions, I will try to help you as much as possible.</p>
 <p>In order to keep the discussion efficient and manageable it is necessary that we all follow some basic rules:</p>
 <ul>
-<li><p>Post error message: if you run into an error it is necessary that I know what the error is. Often reading the error message very carefully can also help you to understand where the problem comes from.</p></li>
-<li><p>Post the code that caused the error: in order to reproduce the error I need the last command that caused the error. If we need more context we will ask you for that.</p></li>
-<li><p>Use the formatting guidelines of Mattermost when you post code. That makes a huge difference in terms of readability. They will also be linked in the channel description. Most important is that using ``` one line above and one line below your code will make it easy to read.</p></li>
-<li><p>Use thread function to reply to a discussion. This way a discussion can be easier read. You find the reply button on the right side of a message.</p></li>
+<li>Post error message: if you run into an error it is necessary that I know what the error is. Often reading the error message very carefully can also help you to understand where the problem comes from.</li>
+<li>Post the code that caused the error: in order to reproduce the error I need the last command that caused the error. If we need more context we will ask you for that.</li>
+<li>Use the formatting guidelines of Mattermost when you post code. That makes a huge difference in terms of readability. They will also be linked in the channel description. Most important is that using ``` one line above and one line below your code will make it easy to read.</li>
+<li>Use thread function to reply to a discussion. This way a discussion can be easier read. You find the reply button on the right side of a message.</li>
 </ul>
 <p>Playing by these rules makes it a lot easier for everyone to follow the discussion and learn from similar problems and everyone can benefit from the discussions.</p>
+<p>See in this minimalistic example how little formatting makes your code and error easy to read.</p>
 <!-- CODE (show) -->
 <pre><code class="r"> 
 ```r
@@ -319,80 +376,101 @@ x %&gt;% sum()
 Error in x %&gt;% sum() : could not find function "%&gt;%"
 </code></pre>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../images/00_mattermost.png" class="lightbox" title="Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read." data-gallery="quarto-lightbox-gallery-1"><img src="../images/00_mattermost.png" class="img-fluid figure-img" alt="Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read." width="400"></a></p>
-<p></p><figcaption class="figure-caption">Minimalistic example of how you could post an error in Mattermost. See how little formatting makes the code very nice to read.</figcaption><p></p>
+<figure class="figure">
+<p><a href="../images/00_mattermost.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="How to format your code and error when you ask for help."><img src="../images/00_mattermost.png" class="img-fluid figure-img" width="400"></a></p>
+<figcaption class="figure-caption">How to format your code and error when you ask for help.</figcaption>
 </figure>
 </div>
-</section><section id="installing-r-rstudio-ide" class="level2"><h2 class="anchored" data-anchor-id="installing-r-rstudio-ide">Installing R &amp; RStudio IDE</h2>
+</section>
+<section id="installing-r-rstudio-ide" class="level2">
+<h2 class="anchored" data-anchor-id="installing-r-rstudio-ide">Installing R &amp; RStudio IDE</h2>
 <p>Before we dive deep into the methods that help us to make critical data-driven business decisions, we start with a <strong>brief introduction to R</strong>, the programming language most suited to solve problems of causality. Don’t worry, if you have never heard of it! We’ll go through some very concise courses that will familiarize you with its functions very quickly. Essentially, you have to tell R what to do for you in a specific language. But step by step, first, we have to do the installation.</p>
 <p>R is only fun to use in combination with RStudio, a graphical integrated development environment (IDE) that makes the use of R more convenient and interactive. Please follow the steps as outlined in the <a href="https://rstudio-education.github.io/hopr/starting.html">instructions</a> (note, that you have to install both R and RStudio):</p>
 <p>When you have successfully installed R and RStudio, open RStudio and you should see a screen similar to this one. By the way, if you want to change the default withe theme to something else, you can do that by going to <code>Tools</code> -&gt; <code>Global options</code> -&gt; <code>Appearance</code> and switch theme in -&gt; <code>Editor theme</code>.</p>
-<p><a href="../images/00_rstudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../images/00_rstudio.png" class="img-fluid"></a><br>
+<p><a href="../images/00_rstudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../images/00_rstudio.png" class="img-fluid"></a><br>
 RStudio is split into four panes that have the following functions:</p>
 <p><span style="background-color: #4BE806"><strong>Source Editor</strong></span>: here, you open, edit and execute programs/scripts that you have written. Code is not run immediately. If you want to run the current line of code, you just press <code>Run</code> or <code>Ctrl</code>+<code>Enter/CMD</code>+<code>Return</code>. You can also run several lines of code by highlighting them. Please note that every line starting with <code>#</code> will not be run. The use of <code>#</code> is to write comments and annotations in your code that won’t be executed.</p>
 <p><span style="background-color: #E02809"><strong>Console</strong></span>: here, you can enter commands directly and run code. Just type in your code and press Enter.</p>
 <p><span style="background-color: #2738E4"><strong>Environment</strong></span>: here, you can see what objects (dataframes, arrays, values, functions) you have in your workspace/environment.&nbsp;</p>
 <p><span style="background-color: #9F7443"><strong>Miscellaneous</strong></span>: here, you have for example a file manager, an overview of installed and loaded packages, a plot viewer and a help tab.</p>
-</section><section id="introduction-to-r" class="level2"><h2 class="anchored" data-anchor-id="introduction-to-r">Introduction to R</h2>
-<p>One last note before you start coding: <strong>don’t be intimidated by the errors, warnings and other messages</strong> that you (and everyone else) will without doubt receive. There is no reason to panic just because you see red text in your console and in fact, what is returned will often times already help you to solve the problem.</p>
-<p>There are <u>three different types</u> of texts:</p>
+</section>
+<section id="introduction-to-r" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-r">Introduction to R</h2>
+<p>Before you begin coding, it’s important to remember this final point: do not let the errors, warnings, and other messages that you, like everyone else, are bound to encounter intimidate you. There is no reason to panic just because you see red text in your console and in fact, what is returned will often times already help you to solve the problem and lead you onto the right track.</p>
+<p>There are <u>three different types</u> of texts that communicate issues or information about the code execution:</p>
 <ul>
 <li><p><strong>Errors</strong>: this is a legitimate error and most likely your code did not run due to the error. Many of the error messages are very concise and you will directly see what was wrong, what is missing etc. If you do not see what you did wrong at first glance, you can copy the error message and google it. It is very likely someone else has run into the same error before.</p></li>
 <li><p><strong>Warnings</strong>: opposed to an error, your code did probably run but there could be something off. However, it is just a warning. You can check it and if you think the warning does not apply to your specific scenario, you can go on.</p></li>
-<li><p><strong>Messages</strong>: these are just friendly texts that provide you with useful information.</p></li>
+<li><p><strong>Messages</strong>: these are just friendly texts that provide you with useful information. They do not need immediate attention but can provide useful supplementary information.</p></li>
 </ul>
 <p><u><strong>Interactive Tutorials</strong></u><strong>:</strong></p>
 <p>But let’s no more talk about it but instead start coding because the best way to get familiar with R and to code is to just start.</p>
 <p>In the following chapters, you will learn to code along the way, but to start you will go through some very concise tutorials from the R package <code>swirl</code>. The package provides a <a href="http://swirlstats.com/scn/title.html">whole bunch of tutorials</a> in the console.</p>
 <p>Feel free to complete as many tutorials as you want, but for this class, the following tutorial is of particular use: <strong>The R Programming Environment</strong> (Chapter 2-12)</p>
-<p><code><a href="https://rdrr.io/pkg/swirl/man/swirl.html">swirl()</a></code>does not come with R by default but is an optional package. <strong>R packages</strong> are extensions of the base functionality implemented by default when you download R. Written by users around the world, packages provide additional features and are crucial for data science tasks in practice as you will later see.</p>
+<p><code>swirl()</code>does not come with R by default but is an optional package. <strong>R packages</strong> are extensions of the base functionality implemented by default when you download R. Written by users around the world, packages provide additional features and are crucial for data science tasks in practice as you will later see.</p>
 <p>You need to follow two steps to use an R package:</p>
 <ol type="1">
-<li><p><strong>Install the package (one)</strong>. As already mentioned, packages are not installed by default and you have to download it and add it to your library. Once you’ve installed it, you don’t have to repeat this step.</p></li>
-<li><p><strong>Load the package (always)</strong>. By default, just the base R functionality is loaded and when you want to make use of the additional features provided by a specific package, you have to load it every time you start RStudio.</p></li>
+<li><p><strong>Once: install the package</strong>. As already mentioned, packages are not installed by default and you have to download it and add it to your library. Once you’ve installed it, you don’t have to repeat this step.</p></li>
+<li><p><strong>Always: load the package</strong>. By default, just the base R functionality is loaded and when you want to make use of the additional features provided by a specific package, you have to load it every time you start RStudio.</p></li>
 </ol>
 <p>So let’s do it for the package <code>swirl</code>:</p>
 <p>First, we install the package. This has to be done only once. You can either choose to write your code into the source editor or directly into the console</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"swirl"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, we load the library into our current our R session.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://swirlstats.com">swirl</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, the package is loaded and we can start making use of it.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/swirl/man/install_course.html">install_course</a></span><span class="op">(</span><span class="st">"The R Programming Environment"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install_course</span>(<span class="st">"The R Programming Environment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You just have to type <code><a href="https://rdrr.io/pkg/swirl/man/swirl.html">swirl()</a></code> into your console and follow the instructions! Please make sure to always use the same name. This way, you can leave the tutorial and start at the same position again later.</p>
+<p>You just have to type <code>swirl()</code> into your console and follow the instructions! Please make sure to always use the same name. This way, you can leave the tutorial and start at the same position again later. It’s best to write it down so that you do not forget it.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/swirl/man/swirl.html">swirl</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Select the course you just installed: <code>The R Programming Environment</code> and start with Chapter 2. You should skip Chapter 1 because its irrelevant for you. If you accidentally selected Chapter 1, just quickly go through it and choose <code>No</code> at the last question.</p>
 <p>swirl will ask you to install packages for you that are needed for the tutorial. Please confirm when asked. If you computer is struggling with installing a package named “vctrs”, please type in the following command. If you don’t get such an error, you can ignore it.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"vctrs"</span>, repos <span class="op">=</span> <span class="st">"https://packagemanager.rstudio.com/cran/latest"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"vctrs"</span>, <span class="at">repos =</span> <span class="st">"https://packagemanager.rstudio.com/cran/latest"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You don’t need to submit anything from this step. Just focus on getting familiar with <code>R</code> by completing the tutorial!</p>
-</section></section><section id="assignments" class="level1"><h1>Assignments</h1>
+<p>If, at some point, you want to take a break, you can leave the <code>swirl</code> course by typing <code>bye()</code> or the <code>Esc</code> key. You can return to the course by typing <code>swirl()</code> and hitting <code>Enter</code>. And remember, to use the same name you used the first time.</p>
+<p>You don’t need to submit anything from this step. Just focus on getting familiar with <code>R</code> by completing the tutorial (I recommend to solve chapter 2-12)!</p>
+</section>
+</section>
+<section id="assignments" class="level1">
+<h1>Assignments</h1>
 <p>At the end of each chapter (the following chapters of <strong>Fundamentals</strong> and <strong>Toolbox</strong>, not the <code>swirl</code> tutorials), you will find an assignment. These assignments are related to the same chapter and with your acquired knowledge, you should be able to solve it.</p>
 <p>You have to <strong>submit your solutions to the assignments by 31/01/2023</strong> in order to pass the course. I will provide details how to submit your assignments in our second class on 30/11/2022 (and of course, also here on this website).</p>
 <p>To successfully complete the course, you also have to <strong>register on TUNE</strong>.</p>
-</section><section id="references" class="level1"><h1>References</h1>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
 <p>Most of the resources I used to create this course are free. Feel free to have a look at them when you are stuck on a problem or when you are interested in learning more about a particular topic.</p>
 <ul>
-<li><p>Scott Cunningham, <em>Causal Inference: The Mixtape</em>, https://mixtape.scunning.com/</p></li>
-<li><p>Nick Huntington-Klein, <em>The Effect: An Introduction to Research Design and Causality</em>, https://theeffectbook.net/</p></li>
-<li><p>Matheus Facure, <em>Causal Inference for the Brave and True</em>, https://matheusfacure.github.io/python-causality-handbook</p></li>
-<li><p>Pearl J. Glymour M. &amp; Jewell N. P. (2016). <em>Causal inference in statistics : a primer</em>. Wiley.</p></li>
-</ul></section><section id="good-luck" class="level1"><h1>Good luck!</h1>
-<p>Now, you can start browsing the class content. In total, there are nine chapters, starting with <strong>fundamental</strong> knowledge necessary to understand what is waiting for us in the <strong>toolbox</strong>, that equips you with methods specifically designed to estimate causal effects in experimental and observational data.</p>
+<li>Scott Cunningham, <em>Causal Inference: The Mixtape</em>, https://mixtape.scunning.com/</li>
+<li>Nick Huntington-Klein, <em>The Effect: An Introduction to Research Design and Causality</em>, https://theeffectbook.net/</li>
+<li>Matheus Facure, <em>Causal Inference for the Brave and True</em>, https://matheusfacure.github.io/python-causality-handbook</li>
+<li>Pearl J. Glymour M. &amp; Jewell N. P. (2016). <em>Causal inference in statistics : a primer</em>. Wiley.</li>
+</ul>
+</section>
+<section id="good-luck" class="level1">
+<h1>Good luck!</h1>
+<p>Now, you can start browsing the class content. In total, there are ten chapters, starting with <strong>fundamental</strong> knowledge necessary to understand what is waiting for us in the <strong>toolbox</strong>, that equips you with methods specifically designed to estimate causal effects in experimental and observational data.</p>
 <p>Have fun!</p>
 
 
-</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
 <ol>
 <li id="fn1"><p><a href="https://www.causalscience.org/blog/causal-data-science-in-practice/" class="uri">https://www.causalscience.org/blog/causal-data-science-in-practice/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -419,9 +497,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -486,6 +578,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -524,7 +702,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
       <a href="../content/fundamentals/01_a_prob.html" class="pagination-link">
@@ -533,10 +713,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":true,"selector":".lightbox"});</script>
+</footer>
+<script>var lightboxQuarto = GLightbox({"loop":true,"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});</script>
+
 
 
 </body></html>

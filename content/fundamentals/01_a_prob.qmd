@@ -55,13 +55,13 @@ Please note: in this chapter, there are two assignments in between. In the other
 
 # Probability
 
-First, we will review some basic concepts of probability theory.
+We will start by reviewing some basic concepts of probability theory, drawing probability trees, introducing set theory and applying Bayes theorem.
 
 ## **Basic rules of probability**
 
-Consider the most simple example: flipping coins. We define the flip of a coin as a **random variable** as we don't know the outcome. To express our uncertainty, we make us of probability theory.
+Consider the most simple example: flipping coins. We define the outcome of the flip of a coin as a **random variable** as we are uncertain about what side the coin lands on. To express this uncertainty, we make us of probability theory.
 
-Flipping the coin, we will see how the coin has landed and our random variable can take on of the **two possible events** $\{H, T\} \subseteq \Omega$. It will be either *Head* or *Tail*.
+After flipping the coin, we will see what side the coin has landed on and our random variable has taken on of the **two possible events** $\{H, T\} \subseteq \Omega$. It will be either *Head* or *Tail*.
 
 So we have already defined two terms: random variable and events. Now what is a probability? A **probability is always linked to an event** typically denoted by a capital letter, here either $H$ and $T$, and expresses **how likely this event is to happen**. Probabilities are always between 0 and 1 and for flipping the coin, as long as it is a fair coin (which we assume), the probabilities are
 
@@ -69,7 +69,7 @@ $$
 P(H) = P(T) = 0.5
 $$
 
-[Extreme cases]{.underline}: If an event $A$ is impossible, its probability is $P(A) = 0$ and if it is certain to occur, it is $P(A)=1)$.
+[Extreme cases]{.underline}: If an event $A$ is impossible, its probability is $P(A) = 0$ and if it is certain to occur, it is $P(A)=1$.
 
 ::: callout-important
 **Axiom 1:** Probability is a real number greater or equal to 0.
@@ -88,18 +88,24 @@ which shows two things, that the total probability is equal to 1 and that the pr
 :::
 
 ::: callout-important
-**Axiom 3:** Probability of mutually exclusive events is the sum of the probabilities.
+**Axiom 3:** Probability of mutually exclusive events is the sum of the probabilities. (Mutually exclusive: events can't happen at the same time)
 :::
 
 To understand what not mutually exclusive events are, consider events $studying$ and $working$. For a random person, we don't know what values these random variables take on. But we know the probability for the event that someone is studying or someone is working. And there are also individuals who do both or neither.
 
-Then, the probability of both events happening is calculated by
+Then, the probability of at least one of the events happening is calculated by
 
 $$
 P(A \cup B) = P(A) + P(B) + P(A \cap B)
 $$
 
 with $P(A \cap B)$ being the intersection of both events, i.e. the probability of both studying and working. This formula is based on the **addition rule**.
+
+::: callout-tip
+$\cup$ : Union, can be translated as "or".
+
+$\cap$ : Intersection, can be translated as "and".
+:::
 
 ![](/images/01_venn_excl.png){fig-align="center" width="650"}
 
@@ -123,37 +129,37 @@ $$
 
 It can be thought of as the probability of an event $A$ after you know that $B$ is true. Essentially, it computes the possibility of event $A$ and $B$, normalized by the probability of $B$ occurring. The conditional probability is crucial when talking about causality which you will later see as it for example yields probabilities for specific groups.
 
-Using the example with workers and students: without knowing exact numbers, we can almost safely assume that students are less likely to work than individuals who are not studying.
+Using the example with workers and students: without knowing exact numbers, we can assume that students are less likely to work than individuals who are not studying.
 
 $$
 P(working|studying) < P(working|\overline{studying})
 $$
 
-Essentially, we are looking at probabilities restricted to a subset of the sample.
+Essentially, we are looking at probabilities restricted to a subset of the sample, which in this comparison are the subsamples of studying persons and non-studying persons.
 
-Another important concept when dealing with probabilities of events is **stochastic independence**. In case of two events being independent, the conditional probability is equal to the probability of the event happening anyways:
-
-$$
-P(A \mid B) = P(A)
-$$
-
-A typical example of independence is to roll a die twice. The second roll does not depend on the first one and each outcome is as likely independent of the first roll. This also results in
+Another important concept when dealing with probabilities of events is **stochastic independence**. In case of two events being independent, the conditional probability is equal to the probability of the event happening anyways. Let's think of rolling a die twice (first roll $R_1$ and second roll $R_2$).
 
 $$
-P(A \cap B) = P(A) \ P(B)
+P(R_2 \mid R_1) = P(R_2)
+$$
+
+The second roll does not depend on the first one. With each roll the outcomes ${1, 2, 3, 4, 5, 6}$ have the same probability likely independent of the previous roll. If we want to compute the probability of both rolls being a $6$, we would just have to multiply the probabilities for each roll.
+
+$$
+P(R_1 = 6 \cap R_2 = 6) = P(R_1 = 6) \ P(R_2 = 6)
 $$
 
 ## **Probability Tree**
 
-An intuitive way to think about (conditional) probabilities is a probability tree. Branches from one node always sum to $1$ in probability as one (and only one) of the events has to happen. The probability of two consecutive events is obtained by multiplying the probabilities.
+Let's go back to the case where events are dependent on each other. An intuitive way to think about (conditional) probabilities is a probability tree. Branches from one node always sum to $1$ in probability as one (and only one) of the events happens. The probability of two consecutive events is obtained by multiplying the probabilities.
 
-Consider the following example: you are project manager and based on your are interested in th probability of a project being delivered on time. Based on your experience, you know that whether a project is on time depends on whether there is a change in scope. Based on your historical data about past projects, you come up with the following tree.
+Consider the following example: you are project manager and based on your are interested in the probability of a project being delivered on time. Based on your experience, you know that whether a project is on time depends on whether there is a change in scope. Using historical data about past projects, you come up with the following tree.
 
-![Probability tree](/images/01_tree.png){fig-align="center" width="450"}
+![](/images/01_tree.png){fig-align="center" width="450"}
 
-## Assignment 1
+## Assignment I
 
-Define being on time as event $T$, being not on time as $\overline{T}$, having a change in scope as $S$ and having no change in scope as $\overline{S}$. Then, compute the following probabilities:
+Define being on time as event $T$, being not on time as $\overline{T}$, having a change in scope as $S$ and having no change in scope as $\overline{S}$. Then, compute the following probabilities. (*Hint: Check [here](https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg), if you are not sure what is shown in the probability tree.)*
 
 -   $P(T \cap S)$
 
@@ -165,7 +171,9 @@ Define being on time as event $T$, being not on time as $\overline{T}$, having a
 
 What is the sum of all four probabilities?
 
-*Hint: Check [here](https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg), if you are not sure what is shown in the probability tree.*
+::: callout-tip
+With some browsers and specific operating systems, the compliment probability is not shown correctly (missing the horizontal bar above the letter). In that case it often helps to zoom in or out.
+:::
 
 ::: callout-warning
 ## How to submit your solutions!
@@ -175,31 +183,23 @@ Please see [here](https://owmork.github.io/causal_ds/submission/submission.html)
 
 ## **Set Theory**
 
-Another useful tool to visualize the occurrence and relationship between events are Venn diagrams building on set theory. A very simple one we actually already used above to illustrate the difference of mutually exclusive and non-mutually exclusive events.
+Another useful tool to visualize the occurrence and relationship between events are Venn diagrams that are based on set theory. We already used a simple one above to illustrate the difference of mutually exclusive and non-mutually exclusive events.
 
-Let's use an example to understand the other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices, smartphones, tablets and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.
+Let's use an example to understand some other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices: smartphones, tablets and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.
 
-But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current distribution.
+But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current usage distribution.
 
-We simulate the collection process here. If you are interested how to do it in `R`, check out the code. But you don't have to. And don't worry, if it looks too complicated at this point, just move on.
+Instead of using actual data, we simulate the data collection process here. If you are interested how to do it in `R`, you can expand and check out the code by clicking on `Code`. But you don't have to. And don't worry, if it looks too complicated at this point, just move on.
 
 ::: callout-note
 | `library()` loads external packages/libraries containing functions that are not built in base `R`.
-:::
 
-::: callout-note
 | `tibble()` is the most convenient way to create tablets. You specify column name and content and assign your `tibble` to an object to store it.
-:::
 
-::: callout-note
 | `ifelse(test, yes, no)` is a short function for if...else statements. The first argument is a condition that is either `TRUE` or `FALSE` and determines whether the second or third argument is returned.
-:::
 
-::: callout-note
 | `rbinom(n, size, prob)` samples `n` values from a binomial distribution of a given `size` and with given probabilities `prob`.
-:::
 
-::: callout-note
 | `mutate()` is one of the most important functions for data manipulation in tablets. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, `mutate(table, new_variable = existing_var / 100)`, which is equivalent to `table %>% mutate(new_variable = existing_var / 100)`.
 :::
 
@@ -210,7 +210,7 @@ We simulate the collection process here. If you are interested how to do it in `
 # Load tidyverse package
 library(tidyverse)
 
-# Nmber of obervations
+# Number of obervations
 n <- 1000
 
 # Create tibble
@@ -231,7 +231,7 @@ app_usage <- app_usage %>%
   mutate(smartphone = ifelse(sum(smartphone, tablet, computer) == 0, 1, smartphone))
 ```
 
-Here, we simulated some artificial data. Seeing the formulas used for constructing the data, we already know that e.g. customers tend not to use the app on both tablet and computer.
+Here, we simulated some artificial data. Seeing the formulas used for constructing the data, we already know that e.g. customers tend not to use the app on both tablet and computer. Please note that $1$ indicates usage and $0$ indicates no usage.
 
 ::: callout-note
 | To see the first lines of a table (for example a `tibble()` or a `data.frame()`, you can use the `head(table, n)` function, where `n` specifies how many rows you want to see.
@@ -245,7 +245,7 @@ head(app_usage, 10)
 A general overview of total customers per device category shows that in the smartphone category there are the most users and in the computer category there are the least.
 
 ::: callout-note
-| Summing all values by column is done by `colSums(table)`. For rows, you would use `rowSums(table)`.
+| Summing all values by column is done by `colSums(table)`. To sum rows, you can use `rowSums(table)`.
 :::
 
 ```{r}
@@ -253,7 +253,7 @@ A general overview of total customers per device category shows that in the smar
 colSums(app_usage)
 ```
 
-Summing the $user\_id$ does not make any sense. We could ignore it, but we can also just access the columns we want to sum. There are several ways.
+The sum of $user\_id$ does not really tell us anything. We could ignore it, but we can also just access the columns we want to sum. There are several ways.
 
 ::: callout-note
 | To access only specified columns, you can provide the location or names in square brackets or you can use the `select()` function.
@@ -268,7 +268,7 @@ app_usage %>% select(smartphone, tablet, computer) %>% colSums()
 
 Now let's see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.
 
-![Generic Venn diagram with three sets](/images/01_venn_diag.png){alt="Generic Venn diagram" fig-align="center" width="520"}
+![Generic Venn diagram](/images/01_venn_diag.png){fig-align="center" width="520"}
 
 ::: callout-note
 | `which()` checks a condition and returns the indices.
@@ -296,7 +296,9 @@ ggVennDiagram(sets_all, category.names = c("Smartphone", "Tablet", "Computer"),
   scale_x_continuous(expand = expansion(mult = .24))
 ```
 
-Using the Venn diagram, we are able to answer questions like the following:
+### Assignment II
+
+Using the Venn diagram above, answer the following questions.
 
 -   What is the percentage of customers using all three devices?
 
@@ -304,19 +306,15 @@ Using the Venn diagram, we are able to answer questions like the following:
 
 -   What is the percentage of customers using only one device?
 
-Try to answer these questions yourself.
+::: callout-warning
+## How to submit your solutions!
 
-::: {.callout-caution collapse="true"}
-## Answers
-
--   0.5%
-
--   7.3% + 3.3% + 8.8% + 0.5%
-
--   10% + 42.3% + 27.8%
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::
 
-We can also use the example to go through the basic probability rules defined above.
+------------------------------------------------------------------------
+
+You can also use the example to go through the basic probability rules defined above (that does not belong to the assignment anymore).
 
 **Addition rule**:
 
@@ -340,14 +338,14 @@ $P(C) = P(C \cap T) + P(C \cap \overline{T})$
 
 ### Math
 
-A very important theorem in probability theory is **Bayes theorem** that we get by reformulating the multiplication rule
+A very important theorem in probability theory is **Bayes theorem**. In fact, it has been called the most powerful rule of probability and statistics. Let's quickly go through the math. By reformulating the multiplication rule
 
 $$
 P(A ∩ B) = P(A|B)*P(B) \\
 P(B ∩ A) = P(B|A)*P(A)
 $$
 
-Using the equality of $P(A ∩ B)$ and $P(B ∩ A)$ we arrive at
+and using the equality of $P(A ∩ B)$ and $P(B ∩ A)$ we arrive at
 
 $$
 P(B|A)*P(A) = P(A|B)*P(B)
@@ -359,7 +357,11 @@ $$
 P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline{A})*P(\overline{A})}
 $$
 
-Bayes theorem expresses a conditional probability, exemplary the likelihood of $A$ occurring conditioned on $B$ having happened before.
+Bayes theorem expresses a conditional probability, exemplary the likelihood of $A$ occurring conditioned on $B$ having happened before. With the Bayes theorem you can answer questions like:
+
+-   How likely is it that it will rain, when there are clouds in the morning?
+
+-   How likely is it that an email is spam if certain keywords appear?
 
 ::: callout-tip
 You will often hear Bayes theorem in connection with the terms *updating beliefs*. You start with a prior probability $P(A)$ and collecting evidence $P(B)$ and the likelihood $P(B|A)$, you update your prior probability to get a posterior probability $P(A|B)$. That is in fact the foundation of Bayesian inference. Look it up if you want, but you won't need Bayesian inference for this course.
@@ -389,11 +391,11 @@ $B$: alarm is triggered vs. $\overline{B}$: no alarm
 
 Also, from our past experience and the producers specifications we already know some probabilities:
 
-$P(B|A) = 0.97$ and consequently $P(\overline{B}|A) = 0.03$
+$P(B|A) = 0.97$ <!--# and consequently $P(\overline{B}|A) = 0.03$ -->
 
-$P(B|\overline{A}) = 0.01$ and consequently $P(\overline{B}|\overline{A}) = 0.99$
+$P(B|\overline{A}) = 0.01$ <!--# and consequently $P(\overline{B}|\overline{A}) = 0.99$ -->
 
-$P(A) = 0.04$ and consequently $P(\overline{A}) = 0.96$
+$P(A) = 0.04$ <!--# and consequently $P(\overline{A}) = 0.96$ -->
 
 Note, that what we are looking for is not the same as what the manufacturer states in his/her specifications. What we are looking for is $P(\overline{A}|B)$ (1) and $P(A|B)$ (2) and we will need Bayes theorem to obtain those probabilities.
 
@@ -403,14 +405,11 @@ $$
 P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline{A})*P(\overline{A})}
 $$
 
-### Assignment 2
+### Assignment III
 
 Compute
 
 -   $P(\overline{A}|B)$ (1)
-
-<!-- -->
-
 -   $P(A|B)$ (2)
 
 and fill the gaps in the following sentence:
@@ -420,5 +419,5 @@ and fill the gaps in the following sentence:
 ::: callout-warning
 ## How to submit your solutions!
 
-Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::

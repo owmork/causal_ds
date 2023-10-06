@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2022-11-23">
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Probability Theory</title>
@@ -15,9 +15,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -44,43 +45,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -120,10 +91,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="../../styles.css">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar docked nav-fixed">
 
@@ -136,120 +108,139 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../content/index.html" aria-current="page">
+    <a class="nav-link active" href="../../content/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../submission/submission.html">
+    <a class="nav-link" href="../../submission/submission.html" rel="" target="">
  <span class="menu-text">Submission</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion" rel="" target=""><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-<div id="quarto-search" class="" title="Search"></div>
+<div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Probability Theory</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/fundamentals/01_a_prob.html">Fundamentals</a></li><li class="breadcrumb-item"><a href="../../content/fundamentals/01_a_prob.html">Probability Theory</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Fundamentals</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link active">Probability Theory</a>
+  <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link">Statistical Concepts</a>
+  <a href="../../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">Regression and Statistical Inference</a>
+  <a href="../../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression and Statistical Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">Causality</a>
+  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causality</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link">Directed Acyclic Graphs</a>
+  <a href="../../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Directed Acyclic Graphs</span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Toolbox</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Toolbox</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">Randomized Controlled Trials</a>
+  <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomized Controlled Trials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">Matching and Subclassification</a>
+  <a href="../../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching and Subclassification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link">Difference-in-Differences</a>
+  <a href="../../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Difference-in-Differences</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">Instrumental Variables</a>
+  <a href="../../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instrumental Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">Regression Discontinuity</a>
+  <a href="../../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Discontinuity</span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -259,14 +250,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
 <li><a href="#basic-rules-of-probability" id="toc-basic-rules-of-probability" class="nav-link" data-scroll-target="#basic-rules-of-probability"><strong>Basic rules of probability</strong></a></li>
   <li><a href="#probability-tree" id="toc-probability-tree" class="nav-link" data-scroll-target="#probability-tree"><strong>Probability Tree</strong></a></li>
-  <li><a href="#assignment-1" id="toc-assignment-1" class="nav-link" data-scroll-target="#assignment-1">Assignment 1</a></li>
-  <li><a href="#set-theory" id="toc-set-theory" class="nav-link" data-scroll-target="#set-theory"><strong>Set Theory</strong></a></li>
+  <li><a href="#assignment-i" id="toc-assignment-i" class="nav-link" data-scroll-target="#assignment-i">Assignment I</a></li>
+  <li>
+<a href="#set-theory" id="toc-set-theory" class="nav-link" data-scroll-target="#set-theory"><strong>Set Theory</strong></a>
+  <ul class="collapse">
+<li><a href="#assignment-ii" id="toc-assignment-ii" class="nav-link" data-scroll-target="#assignment-ii">Assignment II</a></li>
+  </ul>
+</li>
   <li>
 <a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><strong>Bayes Theorem</strong></a>
   <ul class="collapse">
 <li><a href="#math" id="toc-math" class="nav-link" data-scroll-target="#math">Math</a></li>
   <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><strong>Application</strong></a></li>
-  <li><a href="#assignment-2" id="toc-assignment-2" class="nav-link" data-scroll-target="#assignment-2">Assignment 2</a></li>
+  <li><a href="#assignment-iii" id="toc-assignment-iii" class="nav-link" data-scroll-target="#assignment-iii">Assignment III</a></li>
   </ul>
 </li>
   </ul>
@@ -275,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block">Probability Theory</h1>
+<h1 class="title">Probability Theory</h1>
 </div>
 
 
@@ -296,12 +292,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
 <p>Before we dive into topics of causal inference, we review some basic concepts of probability and statistics. All methods that we will use later in this course are based on statistical models and these require probability theory. But we will keep it as short as possible as our focus and learning goal lies more on applications and coding than on the theoretical part.</p>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Assignments
 </div>
 </div>
@@ -310,21 +306,21 @@ Assignments
 </div>
 </div>
 </section><section id="probability" class="level1"><h1>Probability</h1>
-<p>First, we will review some basic concepts of probability theory.</p>
+<p>We will start by reviewing some basic concepts of probability theory, drawing probability trees, introducing set theory and applying Bayes theorem.</p>
 <section id="basic-rules-of-probability" class="level2"><h2 class="anchored" data-anchor-id="basic-rules-of-probability"><strong>Basic rules of probability</strong></h2>
-<p>Consider the most simple example: flipping coins. We define the flip of a coin as a <strong>random variable</strong> as we don’t know the outcome. To express our uncertainty, we make us of probability theory.</p>
-<p>Flipping the coin, we will see how the coin has landed and our random variable can take on of the <strong>two possible events</strong> <span class="math inline">\(\{H, T\} \subseteq \Omega\)</span>. It will be either <em>Head</em> or <em>Tail</em>.</p>
+<p>Consider the most simple example: flipping coins. We define the outcome of the flip of a coin as a <strong>random variable</strong> as we are uncertain about what side the coin lands on. To express this uncertainty, we make us of probability theory.</p>
+<p>After flipping the coin, we will see what side the coin has landed on and our random variable has taken on of the <strong>two possible events</strong> <span class="math inline">\(\{H, T\} \subseteq \Omega\)</span>. It will be either <em>Head</em> or <em>Tail</em>.</p>
 <p>So we have already defined two terms: random variable and events. Now what is a probability? A <strong>probability is always linked to an event</strong> typically denoted by a capital letter, here either <span class="math inline">\(H\)</span> and <span class="math inline">\(T\)</span>, and expresses <strong>how likely this event is to happen</strong>. Probabilities are always between 0 and 1 and for flipping the coin, as long as it is a fair coin (which we assume), the probabilities are</p>
 <p><span class="math display">\[
 P(H) = P(T) = 0.5
 \]</span></p>
-<p><u>Extreme cases</u>: If an event <span class="math inline">\(A\)</span> is impossible, its probability is <span class="math inline">\(P(A) = 0\)</span> and if it is certain to occur, it is <span class="math inline">\(P(A)=1)\)</span>.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<p><u>Extreme cases</u>: If an event <span class="math inline">\(A\)</span> is impossible, its probability is <span class="math inline">\(P(A) = 0\)</span> and if it is certain to occur, it is <span class="math inline">\(P(A)=1\)</span>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -337,12 +333,12 @@ Important
 P(H \cup T) = P(H) + P(T) = 1
 \]</span></p>
 <p>which shows two things, that the total probability is equal to 1 and that the probability of mutually exclusive events is the sum of the individual probabilities.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -350,25 +346,39 @@ Important
 <p><strong>Axiom 2:</strong> Total probability is equal to 1.</p>
 </div>
 </div>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Axiom 3:</strong> Probability of mutually exclusive events is the sum of the probabilities.</p>
+<p><strong>Axiom 3:</strong> Probability of mutually exclusive events is the sum of the probabilities. (Mutually exclusive: events can’t happen at the same time)</p>
 </div>
 </div>
 <p>To understand what not mutually exclusive events are, consider events <span class="math inline">\(studying\)</span> and <span class="math inline">\(working\)</span>. For a random person, we don’t know what values these random variables take on. But we know the probability for the event that someone is studying or someone is working. And there are also individuals who do both or neither.</p>
-<p>Then, the probability of both events happening is calculated by</p>
+<p>Then, the probability of at least one of the events happening is calculated by</p>
 <p><span class="math display">\[
 P(A \cup B) = P(A) + P(B) + P(A \cap B)
 \]</span></p>
 <p>with <span class="math inline">\(P(A \cap B)\)</span> being the intersection of both events, i.e.&nbsp;the probability of both studying and working. This formula is based on the <strong>addition rule</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\cup\)</span> : Union, can be translated as “or”.</p>
+<p><span class="math inline">\(\cap\)</span> : Intersection, can be translated as “and”.</p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="../../images/01_venn_excl.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../../images/01_venn_excl.png" class="img-fluid figure-img" width="650"></a></p>
 </figure>
@@ -386,29 +396,28 @@ P(A \cap B) = P(A|B) * P(B) = P(B|A) * P(A)
 P(A \mid B) = \frac{P(A \cap B)}{P(B)}
 \]</span></p>
 <p>It can be thought of as the probability of an event <span class="math inline">\(A\)</span> after you know that <span class="math inline">\(B\)</span> is true. Essentially, it computes the possibility of event <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, normalized by the probability of <span class="math inline">\(B\)</span> occurring. The conditional probability is crucial when talking about causality which you will later see as it for example yields probabilities for specific groups.</p>
-<p>Using the example with workers and students: without knowing exact numbers, we can almost safely assume that students are less likely to work than individuals who are not studying.</p>
+<p>Using the example with workers and students: without knowing exact numbers, we can assume that students are less likely to work than individuals who are not studying.</p>
 <p><span class="math display">\[
 P(working|studying) &lt; P(working|\overline{studying})
 \]</span></p>
-<p>Essentially, we are looking at probabilities restricted to a subset of the sample.</p>
-<p>Another important concept when dealing with probabilities of events is <strong>stochastic independence</strong>. In case of two events being independent, the conditional probability is equal to the probability of the event happening anyways:</p>
+<p>Essentially, we are looking at probabilities restricted to a subset of the sample, which in this comparison are the subsamples of studying persons and non-studying persons.</p>
+<p>Another important concept when dealing with probabilities of events is <strong>stochastic independence</strong>. In case of two events being independent, the conditional probability is equal to the probability of the event happening anyways. Let’s think of rolling a die twice (first roll <span class="math inline">\(R_1\)</span> and second roll <span class="math inline">\(R_2\)</span>).</p>
 <p><span class="math display">\[
-P(A \mid B) = P(A)
+P(R_2 \mid R_1) = P(R_2)
 \]</span></p>
-<p>A typical example of independence is to roll a die twice. The second roll does not depend on the first one and each outcome is as likely independent of the first roll. This also results in</p>
+<p>The second roll does not depend on the first one. With each roll the outcomes <span class="math inline">\({1, 2, 3, 4, 5, 6}\)</span> have the same probability likely independent of the previous roll. If we want to compute the probability of both rolls being a <span class="math inline">\(6\)</span>, we would just have to multiply the probabilities for each roll.</p>
 <p><span class="math display">\[
-P(A \cap B) = P(A) \ P(B)
+P(R_1 = 6 \cap R_2 = 6) = P(R_1 = 6) \ P(R_2 = 6)
 \]</span></p>
 </section><section id="probability-tree" class="level2"><h2 class="anchored" data-anchor-id="probability-tree"><strong>Probability Tree</strong></h2>
-<p>An intuitive way to think about (conditional) probabilities is a probability tree. Branches from one node always sum to <span class="math inline">\(1\)</span> in probability as one (and only one) of the events has to happen. The probability of two consecutive events is obtained by multiplying the probabilities.</p>
-<p>Consider the following example: you are project manager and based on your are interested in th probability of a project being delivered on time. Based on your experience, you know that whether a project is on time depends on whether there is a change in scope. Based on your historical data about past projects, you come up with the following tree.</p>
+<p>Let’s go back to the case where events are dependent on each other. An intuitive way to think about (conditional) probabilities is a probability tree. Branches from one node always sum to <span class="math inline">\(1\)</span> in probability as one (and only one) of the events happens. The probability of two consecutive events is obtained by multiplying the probabilities.</p>
+<p>Consider the following example: you are project manager and based on your are interested in the probability of a project being delivered on time. Based on your experience, you know that whether a project is on time depends on whether there is a change in scope. Using historical data about past projects, you come up with the following tree.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../../images/01_tree.png" class="lightbox" title="Probability tree" data-gallery="quarto-lightbox-gallery-2"><img src="../../images/01_tree.png" class="img-fluid figure-img" width="450"></a></p>
-<p></p><figcaption class="figure-caption">Probability tree</figcaption><p></p>
+<figure class="figure"><p><a href="../../images/01_tree.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../../images/01_tree.png" class="img-fluid figure-img" width="450"></a></p>
 </figure>
 </div>
-</section><section id="assignment-1" class="level2"><h2 class="anchored" data-anchor-id="assignment-1">Assignment 1</h2>
-<p>Define being on time as event <span class="math inline">\(T\)</span>, being not on time as <span class="math inline">\(\overline{T}\)</span>, having a change in scope as <span class="math inline">\(S\)</span> and having no change in scope as <span class="math inline">\(\overline{S}\)</span>. Then, compute the following probabilities:</p>
+</section><section id="assignment-i" class="level2"><h2 class="anchored" data-anchor-id="assignment-i">Assignment I</h2>
+<p>Define being on time as event <span class="math inline">\(T\)</span>, being not on time as <span class="math inline">\(\overline{T}\)</span>, having a change in scope as <span class="math inline">\(S\)</span> and having no change in scope as <span class="math inline">\(\overline{S}\)</span>. Then, compute the following probabilities. (<em>Hint: Check <a href="https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg">here</a>, if you are not sure what is shown in the probability tree.)</em></p>
 <ul>
 <li><p><span class="math inline">\(P(T \cap S)\)</span></p></li>
 <li><p><span class="math inline">\(P(T \cap \overline{S})\)</span></p></li>
@@ -416,13 +425,25 @@ P(A \cap B) = P(A) \ P(B)
 <li><p><span class="math inline">\(P(\overline{T} \cap \overline{S})\)</span></p></li>
 </ul>
 <p>What is the sum of all four probabilities?</p>
-<p><em>Hint: Check <a href="https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg">here</a>, if you are not sure what is shown in the probability tree.</em></p>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With some browsers and specific operating systems, the compliment probability is not shown correctly (missing the horizontal bar above the letter). In that case it often helps to zoom in or out.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
 How to submit your solutions!
 </div>
 </div>
@@ -431,72 +452,24 @@ How to submit your solutions!
 </div>
 </div>
 </section><section id="set-theory" class="level2"><h2 class="anchored" data-anchor-id="set-theory"><strong>Set Theory</strong></h2>
-<p>Another useful tool to visualize the occurrence and relationship between events are Venn diagrams building on set theory. A very simple one we actually already used above to illustrate the difference of mutually exclusive and non-mutually exclusive events.</p>
-<p>Let’s use an example to understand the other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices, smartphones, tablets and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.</p>
-<p>But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current distribution.</p>
-<p>We simulate the collection process here. If you are interested how to do it in <code>R</code>, check out the code. But you don’t have to. And don’t worry, if it looks too complicated at this point, just move on.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<p>Another useful tool to visualize the occurrence and relationship between events are Venn diagrams that are based on set theory. We already used a simple one above to illustrate the difference of mutually exclusive and non-mutually exclusive events.</p>
+<p>Let’s use an example to understand some other rules mentioned above using a Venn diagram: suppose you are working in a company that has developed an application available on three different kind of devices: smartphones, tablets and computers. So far your pricing plan is very simple and you have just charged the same amount from all customers, regardless of what and how many devices they use.</p>
+<p>But now you want to review your pricing plan and evaluate whether it could make sense to offer pricing plans that differ in the device and number of maximum devices that can be used per account. So first of all you collect usage data of a random sample of 1000 customers from the last month to get an idea of the current usage distribution.</p>
+<p>Instead of using actual data, we simulate the data collection process here. If you are interested how to do it in <code>R</code>, you can expand and check out the code by clicking on <code>Code</code>. But you don’t have to. And don’t worry, if it looks too complicated at this point, just move on.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><code><a href="https://rdrr.io/r/base/library.html">library()</a></code> loads external packages/libraries containing functions that are not built in base <code>R</code>.</p>
-</div>
-</div>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <p><code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> is the most convenient way to create tablets. You specify column name and content and assign your <code>tibble</code> to an object to store it.</p>
-</div>
-</div>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <p><code>ifelse(test, yes, no)</code> is a short function for if…else statements. The first argument is a condition that is either <code>TRUE</code> or <code>FALSE</code> and determines whether the second or third argument is returned.</p>
-</div>
-</div>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <p><code>rbinom(n, size, prob)</code> samples <code>n</code> values from a binomial distribution of a given <code>size</code> and with given probabilities <code>prob</code>.</p>
-</div>
-</div>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <p><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> is one of the most important functions for data manipulation in tablets. It is used to either create or change variables/columns. You provide the column name (new or existing) and then specify how to create or change the values in that specific column. For example, <code>mutate(table, new_variable = existing_var / 100)</code>, which is equivalent to <code>table %&gt;% mutate(new_variable = existing_var / 100)</code>.</p>
 </div>
 </div>
@@ -504,7 +477,7 @@ Note
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load tidyverse package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Nmber of obervations</span></span>
+<span><span class="co"># Number of obervations</span></span>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span></span>
 <span><span class="co"># Create tibble</span></span>
@@ -525,13 +498,13 @@ Note
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>smartphone <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">smartphone</span>, <span class="va">tablet</span>, <span class="va">computer</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span>, <span class="fl">1</span>, <span class="va">smartphone</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Here, we simulated some artificial data. Seeing the formulas used for constructing the data, we already know that e.g.&nbsp;customers tend not to use the app on both tablet and computer.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<p>Here, we simulated some artificial data. Seeing the formulas used for constructing the data, we already know that e.g.&nbsp;customers tend not to use the app on both tablet and computer. Please note that <span class="math inline">\(1\)</span> indicates usage and <span class="math inline">\(0\)</span> indicates no usage.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -552,17 +525,17 @@ Note
 </div>
 </div>
 <p>A general overview of total customers per device category shows that in the smartphone category there are the most users and in the computer category there are the least.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Summing all values by column is done by <code>colSums(table)</code>. For rows, you would use <code>rowSums(table)</code>.</p>
+<p>Summing all values by column is done by <code>colSums(table)</code>. To sum rows, you can use <code>rowSums(table)</code>.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -573,13 +546,13 @@ Note
     500500        589        389        226 </code></pre>
 </div>
 </div>
-<p>Summing the <span class="math inline">\(user\_id\)</span> does not make any sense. We could ignore it, but we can also just access the columns we want to sum. There are several ways.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<p>The sum of <span class="math inline">\(user\_id\)</span> does not really tell us anything. We could ignore it, but we can also just access the columns we want to sum. There are several ways.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -599,16 +572,15 @@ Note
 </div>
 <p>Now let’s see what the Venn diagram says, which is a diagram showing the relation between sets. We can see the union, intersection differences and complements in the diagram.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../../images/01_venn_diag.png" class="lightbox" title="Generic Venn diagram with three sets" data-gallery="quarto-lightbox-gallery-3"><img src="../../images/01_venn_diag.png" class="img-fluid figure-img" alt="Generic Venn diagram" width="520"></a></p>
-<p></p><figcaption class="figure-caption">Generic Venn diagram with three sets</figcaption><p></p>
-</figure>
+<figure class="figure"><p><a href="../../images/01_venn_diag.png" class="lightbox" title="Generic Venn diagram" data-gallery="quarto-lightbox-gallery-3"><img src="../../images/01_venn_diag.png" class="img-fluid figure-img" width="520"></a></p>
+<figcaption class="figure-caption">Generic Venn diagram</figcaption></figure>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -643,34 +615,28 @@ Note
 </div>
 </div>
 </div>
-<p>Using the Venn diagram, we are able to answer questions like the following:</p>
+<section id="assignment-ii" class="level3"><h3 class="anchored" data-anchor-id="assignment-ii">Assignment II</h3>
+<p>Using the Venn diagram above, answer the following questions.</p>
 <ul>
 <li><p>What is the percentage of customers using all three devices?</p></li>
 <li><p>What is the percentage of customers using at least two devices?</p></li>
 <li><p>What is the percentage of customers using only one device?</p></li>
 </ul>
-<p>Try to answer these questions yourself.</p>
-<div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Answers
+<div class="callout-title-container flex-fill">
+How to submit your solutions!
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ul>
-<li><p>0.5%</p></li>
-<li><p>7.3% + 3.3% + 8.8% + 0.5%</p></li>
-<li><p>10% + 42.3% + 27.8%</p></li>
-</ul>
+<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to successfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
 </div>
 </div>
-</div>
-<p>We can also use the example to go through the basic probability rules defined above.</p>
+<hr>
+<p>You can also use the example to go through the basic probability rules defined above (that does not belong to the assignment anymore).</p>
 <p><strong>Addition rule</strong>:</p>
 <p>What is the percentage of customers using a smartphone, a tablet or both devices?</p>
 <p><span class="math inline">\(P(T \cup S) = P(T) + P(S) - P(T \cap S)\)</span></p>
@@ -680,14 +646,14 @@ Answers
 <p><strong>Total probability rule</strong>:</p>
 <p>What is the fraction of customers using a computer?</p>
 <p><span class="math inline">\(P(C) = P(C \cap T) + P(C \cap \overline{T})\)</span></p>
-</section><section id="bayes-theorem" class="level2"><h2 class="anchored" data-anchor-id="bayes-theorem"><strong>Bayes Theorem</strong></h2>
+</section></section><section id="bayes-theorem" class="level2"><h2 class="anchored" data-anchor-id="bayes-theorem"><strong>Bayes Theorem</strong></h2>
 <section id="math" class="level3"><h3 class="anchored" data-anchor-id="math">Math</h3>
-<p>A very important theorem in probability theory is <strong>Bayes theorem</strong> that we get by reformulating the multiplication rule</p>
+<p>A very important theorem in probability theory is <strong>Bayes theorem</strong>. In fact, it has been called the most powerful rule of probability and statistics. Let’s quickly go through the math. By reformulating the multiplication rule</p>
 <p><span class="math display">\[
 P(A ∩ B) = P(A|B)*P(B)&nbsp;\\
 P(B ∩ A) = P(B|A)*P(A)
 \]</span></p>
-<p>Using the equality of <span class="math inline">\(P(A ∩ B)\)</span> and <span class="math inline">\(P(B ∩ A)\)</span> we arrive at</p>
+<p>and using the equality of <span class="math inline">\(P(A ∩ B)\)</span> and <span class="math inline">\(P(B ∩ A)\)</span> we arrive at</p>
 <p><span class="math display">\[
 P(B|A)*P(A) = P(A|B)*P(B)
 \]</span></p>
@@ -695,13 +661,17 @@ P(B|A)*P(A) = P(A|B)*P(B)
 <p><span class="math display">\[
 P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline{A})*P(\overline{A})}
 \]</span></p>
-<p>Bayes theorem expresses a conditional probability, exemplary the likelihood of <span class="math inline">\(A\)</span> occurring conditioned on <span class="math inline">\(B\)</span> having happened before.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<p>Bayes theorem expresses a conditional probability, exemplary the likelihood of <span class="math inline">\(A\)</span> occurring conditioned on <span class="math inline">\(B\)</span> having happened before. With the Bayes theorem you can answer questions like:</p>
+<ul>
+<li><p>How likely is it that it will rain, when there are clouds in the morning?</p></li>
+<li><p>How likely is it that an email is spam if certain keywords appear?</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -724,37 +694,35 @@ Posterior = \frac{Likelihood * Prior}{Evidence}
 <p><span class="math inline">\(A\)</span>: product is faulty vs.&nbsp;<span class="math inline">\(\overline{A}\)</span>: product is flawless</p>
 <p><span class="math inline">\(B\)</span>: alarm is triggered vs.&nbsp;<span class="math inline">\(\overline{B}\)</span>: no alarm</p>
 <p>Also, from our past experience and the producers specifications we already know some probabilities:</p>
-<p><span class="math inline">\(P(B|A) = 0.97\)</span> and consequently <span class="math inline">\(P(\overline{B}|A) = 0.03\)</span></p>
-<p><span class="math inline">\(P(B|\overline{A}) = 0.01\)</span> and consequently <span class="math inline">\(P(\overline{B}|\overline{A}) = 0.99\)</span></p>
-<p><span class="math inline">\(P(A) = 0.04\)</span> and consequently <span class="math inline">\(P(\overline{A}) = 0.96\)</span></p>
+<p><span class="math inline">\(P(B|A) = 0.97\)</span> <!--# and consequently $P(\overline{B}|A) = 0.03$ --></p>
+<p><span class="math inline">\(P(B|\overline{A}) = 0.01\)</span> <!--# and consequently $P(\overline{B}|\overline{A}) = 0.99$ --></p>
+<p><span class="math inline">\(P(A) = 0.04\)</span> <!--# and consequently $P(\overline{A}) = 0.96$ --></p>
 <p>Note, that what we are looking for is not the same as what the manufacturer states in his/her specifications. What we are looking for is <span class="math inline">\(P(\overline{A}|B)\)</span> (1) and <span class="math inline">\(P(A|B)\)</span> (2) and we will need Bayes theorem to obtain those probabilities.</p>
 <p>Let’s recall Bayes theorem:</p>
 <p><span class="math display">\[
 P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline{A})*P(\overline{A})}
 \]</span></p>
-</section><section id="assignment-2" class="level3"><h3 class="anchored" data-anchor-id="assignment-2">Assignment 2</h3>
+</section><section id="assignment-iii" class="level3"><h3 class="anchored" data-anchor-id="assignment-iii">Assignment III</h3>
 <p>Compute</p>
 <ul>
 <li>
 <span class="math inline">\(P(\overline{A}|B)\)</span> (1)</li>
-</ul>
-<!-- --><ul>
 <li>
 <span class="math inline">\(P(A|B)\)</span> (2)</li>
 </ul>
 <p>and fill the gaps in the following sentence:</p>
 <p><em>These results show that in case the alarm is triggered, there is a possibility of about __% that the product is flawless and a probability of __% that the product is faulty.</em></p>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 How to submit your solutions!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
+<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to successfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
 </div>
 </div>
 
@@ -786,9 +754,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -853,6 +835,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -905,8 +973,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":true,"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox"});</script>
 
 
 </body></html>
