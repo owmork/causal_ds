@@ -24,18 +24,19 @@ website:
   sidebar:
     - title: "Contents"
       style: "docked"
-      background: "#011627"
+      background: "#112030"
       contents:
-        - text: "Introduction"
+        - text: "<b>Introduction</b>"
           file: content/index.qmd
-        - section: "Fundamentals"
+        - text: "---"
+        - section: "<b>Fundamentals</b>"
           contents:
             - content/fundamentals/01_a_prob.qmd
             - content/fundamentals/01_b_stats.qmd
             - content/fundamentals/02_reg.qmd
             - content/fundamentals/03_caus.qmd
             - content/fundamentals/04_dag.qmd
-        - section: "Toolbox"
+        - section: "<b>Toolbox</b>"
           contents:
             - content/toolbox/05_rct.qmd
             - content/toolbox/06_match.qmd

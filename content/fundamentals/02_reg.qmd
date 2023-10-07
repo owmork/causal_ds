@@ -1,7 +1,7 @@
 ---
 title: "Regression and Statistical Inference"
 linktitle: "Regression and Statistical Inference"
-date: "2022-11-23"
+date: "2023-10-16"
 output:
   blogdown::html_page:
     toc: true
@@ -45,7 +45,7 @@ source("../../code/dag_theme.R")
 
 # **Introduction**
 
-**Statistical inference** aims to draw conclusions about relationships between variables in the whole population. Whole population, in this context, does not necessarily mean the whole world population but instead the set of all units we want to draw conclusions about. Units could be for example all students in a country, all children in a specific institution or things like stores, restaurants etc. In the business context, we will often deal with populations that comprise customers, employees, stores and a lot of other business-related units.
+**Statistical inference** aims to draw conclusions about relationships between variables in the whole population. Whole population, in this context, does not necessarily mean the whole world population but instead the set of all units we want to draw conclusions about. Units could be for example all students in a country, all children in a specific institution or things like stores, restaurants etc. In the business context, we will often deal with populations that comprise customers, employees, stores or other business-related units.
 
 In practice, it is often impossible to collect data about the whole population, which is why we **draw** (ideally random) **samples from the whole population and use statistical inference to draw conclusions about the whole population** using the smaller sample. This is one main reason why we needed to introduce concepts from probability theory and statistics in the previous chapter.
 
@@ -53,9 +53,9 @@ In practice, it is often impossible to collect data about the whole population, 
 
 It is undisputed that the **most important method in statistical inference** is the **linear regression**, which has been used extensively in practical and scientific applications due to its desirable mathematical properties and its convenient interpretation.
 
-In this course, we will use linear regression in combination with other methods to explain and interpret relationships and effects between random variables, in general: how does changing one variable affect another variable? There are also other purposes that linear regression could be used for, namely as prediction method. However, prediction is not the focus of this course and in fact, there are actually many other methods that surpass linear regression for prediction tasks. On the other hand, for explanation and interpretation purpose, which are fundamental for causal reasoning, linear regression is still one of the sophisticated methods.
+In this course, we will use linear regression in combination with other methods to explain and interpret relationships and effects between random variables. In general we aim to answer the question: how does changing one variable affect another variable? There are also another purpose that linear regression could be used for, namely as a prediction method. However, prediction is not the focus of this course and in fact, there are actually many other methods that surpass linear regression for prediction tasks. On the other hand, for explanation and interpretation purpose, which are fundamental for causal reasoning, linear regression has proved to be a very suitable method.
 
-It builds upon many of the statistical concepts that were explained in the previous chapter, such as conditional expectations, variance, covariance, correlation etc. Formally, we want to explain an outcome $Y$ (also called response or dependent variable) using an explanatory variable $X$ (also called predictor or independent variable). A popular example, that has been studied extensively, is to explain the effect of smoking on lung cancer. Here, smoking is the explanatory variable $X$ and lung cancer $Y$ is the outcome.
+It builds upon many of the statistical concepts that were explained in the previous chapter, such as conditional expectations, variance, covariance, correlation etc. Formally, we want to explain an outcome $Y$ (also called response or dependent variable) using an explanatory variable $X$ (also called predictor or independent variable). A popular example, that over decades has been researched extensively, is to explain the effect of smoking on lung cancer. Here, smoking is the explanatory variable $X$ and lung cancer $Y$ is the outcome.
 
 ![Cause and Effect in Regression](/images/02_xy.png){fig-align="center" width="470"}
 
@@ -65,7 +65,7 @@ $$
 y=\beta_0+\beta_1x+u
 $$
 
-This equation represents the so called population model and the coefficients are never actually observed. We usually only have a small sample of the population and having this sample and making a few assumptions we will try to estimate values for the parameters of interest, $\beta_0$ and $\beta_1$. When dealing with causal models, $y$ is thought of as effect and $x$ as cause. $\beta_0$ is called the intercept while $\beta_1$ is known as the coefficient of the slope.
+This equation represents the so called **population model** which we could obtain if we had data about the whole population. But as already mentioned, we usually cannot observe the whole population and only have a small sample of the population. Withs this sample and a few assumptions we will try to estimate values for the parameters of interest, $\beta_0$ and $\beta_1$. When dealing with causal models, $y$ is thought of as effect and $x$ as cause. $\beta_0$ is called the intercept while $\beta_1$ is known as the coefficient of the slope.
 
 Also note, that the model does not rule out other causes by including an error term $u$, that contains all (unobserved) factors potentially affecting $y$. As we will visualize below, in the whole population, the expected value of this term is assumed to be zero (it does not mean it is zero for everyone).
 
@@ -95,6 +95,8 @@ $$
 
 with $u$ being left out as it is zero on average.
 
+In the following chapters, we will talk in detail about cases where this assumption might not hold and what approaches there are to deal with it.
+
 # Estimation
 
 ## R
@@ -108,7 +110,7 @@ Before we start, we load the `R` package `tidyverse`, which actually is collecti
 library(tidyverse)
 ```
 
-We create a tibble, which is a table containing data, with two columns, $x$ and $y$. For $x$, we draw ten random samples from the normal distribution with a mean of 3 and a standard deviation of 1. The outcome variable $y$, we make dependent from $x$, i.e. for each unit $i$, we create a $y_i$ as
+We create a tibble, which is a table containing data, with two columns, $x$ and $y$. For $x$, we draw ten random samples from the normal distribution with a mean of 3 and a standard deviation of 1. The outcome variable $y$, we make dependent on $x$, i.e. for each unit $i$, we create a $y_i$ as
 
 $$
 y_i = 0.3x_i + \epsilon_i \,\,\,\,\,,
@@ -116,7 +118,7 @@ $$
 
 where $\epsilon_i$ is random noise.
 
-Let's have a look at how the data is presented. We have a table containing 100 rows and two columns. Each row is an observation for a different unit, which could be a person, a point in time or another kind of measurement. It is only important that the values in a particular row belong together.
+Let's have a look at how the data is presented. We have a table containing 10 rows and two columns. Each row is an observation for a different unit, which could be a person, a point in time or another kind of measurement. It is only important that the values in a particular row belong together.
 
 ```{r}
 # Simluate data
@@ -148,7 +150,7 @@ An experienced analyst could already see how the variables are related. There se
 
 The goal of linear regression is now to find a line that goes through the points. But not any line, in fact, it has to be the line with the best fit. Differently put, it has to be the line that is - on average - as close to the observation points as possible.
 
-Let's have a look at some random lines.
+Let's have a look at some random lines. Please note that there is an infinite amount of lines that we could draw but we stick to lines that seem somehow realistic.
 
 ```{r}
 #| echo: false
@@ -176,18 +178,18 @@ ggplot(lm_dat, aes(x = x, y = y)) +
             alpha = .5,
             se = F, 
             color = line_color,
-            linewidth = 1) +
+            linewidth = .5) +
   # Random lines
-  geom_line(data = rlines[[1]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[2]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[3]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[4]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[5]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[6]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[7]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[8]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[9]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[10]], color = line_color, alpha = .5, linewidth = 1)
+  geom_line(data = rlines[[1]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[2]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[3]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[4]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[5]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[6]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[7]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[8]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[9]], color = line_color, alpha = .5, linewidth = .5) +
+  geom_line(data = rlines[[10]], color = line_color, alpha = .5, linewidth = .5)
 ```
 
 You can see there is an infinite amount of potential lines that could be chosen to go through the data. But only one of them is the line minimizing the sum of squares. The residual, which is the distance between the line and an observation, should be minimized. This also means that on average, the residuals are zero.
@@ -204,29 +206,30 @@ ggplot(lm_dat, aes(x = x, y = y)) +
             formula= y~x,
             alpha = .9,
             se = F, 
-            linewidth = 3) +
+            color = "#FF4F4F",
+            linewidth = 2) +
   # Random lines
-  geom_line(data = rlines[[1]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[2]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[3]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[4]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[5]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[6]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[7]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[8]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[9]], color = line_color, alpha = .5, linewidth = 1) +
-  geom_line(data = rlines[[10]], color = line_color, alpha = .5, linewidth = 1)
+  geom_line(data = rlines[[1]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[2]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[3]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[4]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[5]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[6]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[7]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[8]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[9]], color = line_color, alpha = .3, linewidth = .5) +
+  geom_line(data = rlines[[10]], color = line_color, alpha = .3, linewidth = .5)
 ```
 
-The resulting line is highlighted in blue.
+The true best line is highlighted in red.
 
-If we want to mathematically compute the line in R, we have to use the `lm()` function and provide data and the assumed functional relationship as arguments. `lm()` is a function you will see a lot and it is used to fit linear models. It returns a fitted object (here: `lm_mod`), which we can interpret best when using `summary()` to show the resulting coefficients and other statistical information.
+If we want to mathematically compute the line in R, we can use the `lm()` function and provide data and the assumed functional relationship as arguments. `lm()` is a function you will see a lot and it is used to fit linear models. It returns a fitted object (here: `lm_mod`), which we can interpret best when using `summary()` to show the resulting coefficients and other statistical information.
 
 ::: callout-note
 | `lm()` is a function that fits a linear model. You have to provide data and a regression equation in the form of for example `outcome ~ regressor_1 + regressor_2` or `outcome ~ .`, if you want to include all variables except for the outcome as regressors. To see the computed coefficients and their statistical significance, you need to call `summary()`.
 :::
 
-Looking at the regression summary, we see that the line is modeled by $y = -0.1918 + 0.3354*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.3354 increase in $y$. That is relatively close to what we simulated (0.3) and deviates due to the added random noise.
+Looking at the regression summary, we see that the line is modeled by $y = -0.1918 + 0.3354*x$. It means that for the fitted model, an increase of one unit in $x$ is related to an 0.3354 increase in $y$. That is relatively close to what we simulated (0.3). But because we added random noise in our simulation it slightly differs.
 
 ```{r}
 # Fit model and print summary
@@ -259,13 +262,15 @@ ggplot(lm_dat_fit, aes(x = x, y = r)) +
   labs(title = "Residuals vs zero")
 ```
 
+We can see that although we are not able to perfectly capture each data point, the line on average is as close as possible. We cannot get any closer as the data points deviate in both directions.
+
 ## Math
 
 Mathematically, the best line is found by the ordinary least squares (OLS) method.
 
 Note that estimation is always done in software programs or language as it gets too complex to be solved by hand very fast. However, to get a good understanding of what is going on and what is optimized, it is worth to look at the equations and conditions.
 
-Given $n$ samples of observed pairs of dependent and independent variables $\big\{(x_i,\ \textrm{and}\ y_i): i=1,2,\dots,n \big\}$, we plug any of them into the equation
+Given $n$ samples of observed pairs of dependent and independent variables $\big\{(x_i,\ \textrm{and}\ y_i): i=1,2,\dots,n \big\}$, we plug all of them into the equation
 
 $$
 y_i=\beta_0+\beta_1x_i+u_i
@@ -300,7 +305,7 @@ $$
 
 What is very interesting to see (although we actually know it from the previous chapter) is that the OLS estimate for our $\beta_1$ is defined as the covariance of $X$ and $Y$ divided by the variance of $X$. It also shows that the variance of $X$ has to be greater than zero, which means that not all values of $x_i$ can be the same. You need to observe different values to be able to estimate how $y_i$ reacts to $x_i$.
 
-$\beta_0$ follows directly by plugging $\beta_1$ into $\widehat{\beta}_0=\overline{y} - \widehat{\beta}1\overline{x}$*.* A bar above a variable always represents the sample value of that particular variable. Thus,$\beta_0$ is (as expected) constant and linear in $\beta_1$.
+$\beta_0$ follows directly by plugging $\beta_1$ into $\widehat{\beta}_0=\overline{y} - \widehat{\beta_1}\overline{x}$*.* A bar above a variable always represents the sample value of that particular variable. Thus, $\beta_0$ is (as expected) constant and linear in $\beta_1$.
 
 Knowing the equation for the regression line, we can compute fitted values $y_i$ for all $i$
 
@@ -330,7 +335,7 @@ Again, most of the residuals won't be zero, but on average the line going throug
 
 Now let's use a more complex model to learn more about how results of a linear regression can be interpreted and how statistically significant results are defined.
 
-In this application, imagine you are working at a health insurance company and your task is to estimate the annual expected cost of a (potential) customer based on his/her characteristics. Based on historical data, you want to see what characteristics affect the cost.
+In this application, imagine you work for a health insurance company and your task is to estimate the annual expected cost of a (potential) customer based on his/her characteristics. Based on historical data, you want to see what characteristics affect the cost.
 
 Let's create a synthetic data set for our application. In practice, you obviously would not need to create the data first but we have to due to the lack of real data which is generally kept under lock by insurance companies. However, the advantage of using synthetic data is that we know the data-generating process and check if our estimates are correct or if they are are biased.
 
@@ -403,9 +408,9 @@ Let's also save the data.
 saveRDS(df, "../../datasets/health_ins.rds")
 ```
 
-If you don't want to create the data yourself, you could instead download it from [here](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm). All data sets that you are going to need for replicating examples and solving the assignments is stored there.
+If you don't want to create the data yourself, you could instead download it from [here](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm). All data sets that you are going to need for replicating examples and solving the assignments are stored there.
 
-Loading data is generally referred to as "reading" the data and can be done for a variety of formats. One format, that is particularly convenient in `R` is the `.rds` format. An `.rds` file can be read with `readRDS(path)` and saved with `saveRDS(df, path)`. Note that the `path` argument depends on where you want to save an object or where you want to load it from. It is probably different from the path I used (by the way, `..` moves you a one folder upwards).
+Loading data is generally referred to as "reading" the data and can be done for a variety of formats. One format, that is particularly convenient in `R` is the `.rds` format. An `.rds` file can be read with `readRDS(path)` and saved with `saveRDS(df, path)`. Note that the `path` argument depends on where you want to save an object or where you want to load it from. It is probably different from the path I used.
 
 ::: callout-note
 Reading/saving commands for other file formats are for example
@@ -413,6 +418,8 @@ Reading/saving commands for other file formats are for example
 -   `read_csv()` and `write_csv()` from the `readr` package
 
 -   `read_delim()` and `write_delim()` from the `readr` package
+
+-   `getcwd()` will tell you what directory you are currently in. When you specify the path, you can also use your `Tab` key to see where you are. `..` moves you one folder upwards.
 :::
 
 ```{r}
@@ -422,7 +429,7 @@ Reading/saving commands for other file formats are for example
 df <- readRDS("../../datasets/health_ins.rds")
 ```
 
-Often, you will deal with large data sets that do not fit on a single page and thus are not easy comprehensible. To still get a good understanding, there are some functions to get an idea of how your data looks like.
+Often, you will deal with large data sets that do not fit on a single page and thus are not easily comprehensible. To gain a thorough understanding and check your data, you can use various functions.
 
 Most data scientists start by using the `head()` command, which returns the first part of the table and shows you the data structure. Also, if something is wrong with your data, because you did not load it correctly or headers do not fit the data, you were able to see it here already.
 
@@ -482,7 +489,7 @@ Other than that, compared to our minimalist example from the previous section, t
 
 ## Interpretation
 
-So let's run the first regression. We will start by using all available characteristics as independent variables. That is what you will often find in studies. All variables that are available are included in the regression. We will see in later chapters why that might be dangerous.
+So let's run the first regression. We will start by using all available characteristics as independent variables. That is what you will often find in studies. All variables that are available are included in the regression. Later, we will see why that might be dangerous and why we should be careful in selecting our variables.
 
 ```{r}
 # Include all potential regressors
@@ -492,23 +499,23 @@ summary(lm_all)
 
 There is a lot we can learn from the regression summary. For each included coefficient and the intercept, there is a row containing the estimated coefficient, its standard error, t-statistic and p-value. The names in the R summary differ a bit, but have the same meaning.
 
-The estimate is what we know as regression coefficient from before, typically denoted by $\widehat{\beta}_i$ or other Greek letters. As it is the estimated version, it has a hat. The estimated for $\beta_i$ It tells you by how much the dependent variable $\widehat{y}$ varies when a particular variable is increased by one unit while all other variables in the model are held at a constant level. A negative coefficient suggests a negative relationship, while a positive coefficient points to a positive relationship.
+The estimate is what we know as regression coefficient from before, typically denoted by $\widehat{\beta}$ or other Greek letters. Let's take for example $\widehat{\beta_{age}}$. As it is the estimated version, it has a hat. The estimate for $\beta_{age}$ tells you by how much the dependent variable $\widehat{y}$ varies when $age$ is increased by one unit while all other variables in the model are held at a constant level. A negative coefficient suggests a negative relationship, while a positive coefficient points to a positive relationship.
 
-Holding all other variables constant and deriving the effect of a single variable is often described with the effect of $x_i$ **ceteris paribus**, Latin for "the others equal". It is really important to keep that in mind, as it allows to view the coefficient as an estimate of an isolated effect. Sometimes it is also expressed as **controlling for the other variables**.
+Holding all other variables constant and deriving the effect of a single variable is often described with the effect (in our example of $x_{age}$) **ceteris paribus**, Latin for "the others equal". It is really important to keep that in mind, as it allows to view the coefficient as an estimate of an isolated effect. Sometimes it is also expressed as **controlling for the other variables**.
 
 ## Statistical Significance
 
-The standard error indicates the variation around the estimated coefficient. A high standard error indicates a lot of variation and high uncertainty while low standard errors provide more confidence in the estimate.
+The standard error indicates the variation around the estimated coefficient. A high standard error indicates a lot of variation and high uncertainty while low standard errors provide more confidence in the estimate. (Remember the graph from the previous chapter that showed the histogram of a random variable with different values for the standard deviation.)
 
 The other values are also concerned with the level of uncertainty there is in the estimation. They are related to the coefficient and standard error. Most widely used is the p-value, or probability value. It tests the so called null hypothesis against the observed data.
 
-Let's take the example of the correlation between `smoking` and `expected_cost` from the regression above. The **null hypothesis** states that there is no correlation between the dependent variable `expected_cost` and the independent variable `smoking`. The p-value shows, based on the observed data, how likely it is that your data would have occurred just by random chance. Thus, a low p-value provides support for the claim that the alternative hypothesis is true instead of the null hypothesis.The alternative hypothesis states, that there is indeed a correlation between the independent and the dependent variable. Because the p-value is low, we reject the null hypothesis and the alternative hypothesis (significant correlation) is true.
+Let's take the example of the correlation between `smoking` and `expected_cost` from the regression above. The **null hypothesis** states that there is no correlation between the dependent variable `expected_cost` and the independent variable `smoking`. The p-value shows, based on the observed data, how likely it is that your data would have occurred just by random chance. Thus, a low p-value provides support for the claim that the alternative hypothesis is true instead of the null hypothesis.The alternative hypothesis states, that there is indeed a correlation between the independent and the dependent variable. Because the p-value is low, we reject the null hypothesis and the alternative hypothesis (significant correlation) is true. If the previous paragraph wasn't clear to you right away, please take a moment to reread it, as it contains crucial information.
 
 Statistical significance can directly be derived from the p-value and an arbitrary significance level $\alpha$. However, the most widely used level of $\alpha$ is $0.05$. Less often used are levels of $.1$, $.01$ or $.001$.
 
 An estimate with a p-value less than $\alpha$ is considered statistically significant. Expressed in statistical jargon, we reject the null hypothesis of random results when the respective p-value is lower than our significance level $\alpha$. Rejecting the null hypothesis indicates support for the alternative hypothesis (our observed estimate). Looking at the summary above, we see that $age$, $income$, $bmi$, and $smoking$ are statistically significant (at different levels though, indicated by the number of stars).
 
-Another way to look at the significance of our estimates is to compute is to look at confidence intervals which derive from the estimate, standard error and the t-distribution - the same inputs as needed for p-values. A $(1-\alpha)$ confidence interval has a probability of $(1-\alpha)*100 \%$ to contain the true value of our estimated coefficient. That means, if we would sample $100$ times, $\beta_i$ would be contained in the sample $(1-\alpha)*100$ times.
+Another way to look at the significance of our estimates is to compute is to look at confidence intervals which derive from the estimate, standard error and the t-distribution - the same inputs as needed for p-values. A $(1-\alpha)$ confidence interval has a probability of $(1-\alpha)*100 \%$ to contain the true value of our estimated coefficient. That means, if we would sample $100$ times, $\widehat{\beta}$ would be contained in the sample $(1-\alpha)*100$ times.
 
 ```{r}
 # Show CIs at different levels of alpha
@@ -517,11 +524,11 @@ confint(lm_all, level = 0.95)
 ```
 
 ```{r}
-# alpha = 0.9
+# alpha = 0.1
 confint(lm_all, level = 0.90)
 ```
 
-An estimate whose interval is either completely positive or completely negative is *different from zero* and rejects the null hypothesis. Simply put, that means that we expect an effect in the outcome variable when we change the independent variable associated with the positive coefficient.
+An estimate whose interval is either completely positive or completely negative is *different from zero* and rejects the null hypothesis. Simply put, that means that we expect an effect in the outcome variable when we change the independent variable associated with the significant coefficient.
 
 ## Model selection
 
@@ -538,13 +545,13 @@ ggplot(tibble(res = lm_all$residuals), aes(x = res)) +
 
 We can see that the residuals are in fact almost normally distributed.
 
-After having analyzed the residuals and our assumptions we can take a look at a measure indicating the so called goodness-of-fit is $R^2$. It measures how much of the variance of the dependent variable can be explained by the independent variables. Formally:
+After having analyzed the residuals and our assumptions we can take a look at a measure indicating the so called goodness-of-fit, namely $R^2$. It measures how much of the variance of the dependent variable can be explained by the independent variables. Formally:
 
 $$
 R^2 = \frac{\text{Explained variatoin}}{\text{Total variation}}
 $$
 
-Conveniently, $R^2$ is always between 0 and 1 and a higher value indicates a better model fit. However, you have to treat the values with caution. Sometimes a very high $R^2$ can even point to a biased model while a model with a low $R^2$ can provide an adequate fit. For example, in some discipline of sciences involving human behavior like social sciences, there is inherently a greater amount of unexplained variation. Opposed to that, physical or chemical process might be easier to predict. The size of $R^2$ does also not change the interpretation of the regression coefficients.
+Conveniently, $R^2$ is always between $0$ and $1$ and a higher value indicates a better model fit. However, you have to treat the values with caution. Sometimes a very high $R^2$ can even point to a biased model while a model with a low $R^2$ can provide an adequate fit. For example, in some discipline of sciences involving human behavior like social sciences, there is inherently a greater amount of unexplained variation. Opposed to that, physical or chemical process might be easier to predict. The size of $R^2$ does also not change the interpretation of the regression coefficients.
 
 A problem with $R^2$ is that it always increases as more independent variables are included - even if they are random and have no effect at all. To correct for that behavior, it is advisable to use the $\text{Adjusted} \, R^2$. It includes a term for the number of independent variables used.
 
@@ -564,7 +571,11 @@ summary(lm_imp)
 
 Except for $bmi$, coefficients are very similar. We'll look into that in just a second. But first let us compare both models with regard to $\text{(Adjusted)} \, R^2$.
 
-| To elegantly print variables in a specified format, you can use `sprintf()`.
+::: callout-note
+To elegantly print variables in a specified format, you can use `sprintf()`.
+
+If you do not want to load a library with `library()` because you only need a few functions for a couple of times you can also use the following pattern: `package::function().`
+:::
 
 ```{r}
 # Compare R^2
@@ -572,7 +583,7 @@ sprintf("Adjusted R^2: %.2f", broom::glance(lm_all)$adj.r.squared)
 sprintf("Adjusted R^2: %.2f", broom::glance(lm_imp)$adj.r.squared)
 ```
 
-Other metrics used to select the best model out of a class of models tackling the same problem (with the same data) are Akaike's Information Criteria (AIC) and Bayesian Information Criteria (BIC). Both AIC and BIC penalize the inclusion of additional parameters. The exact computation we will disregard for now.
+Other metrics used to select the best model out of a class of models tackling the same problem (with the same data) are Akaike's Information Criteria $AIC$ and Bayesian Information Criteria $BIC$. Both $AIC$ and $BIC$ penalize the inclusion of additional parameters. The exact computation we will disregard for now.
 
 ```{r}
 # AIC
@@ -580,7 +591,7 @@ sprintf("AIC: %.2f", AIC(lm_all))
 sprintf("AIC: %.2f", AIC(lm_imp))
 ```
 
-For both criteria, the model with the lowest value is preferred.
+For both $AIC$ and $BIC$, the model with the lowest value is preferred.
 
 In many applications, it is not advisable to include all potential independent variables but to go through steps of theoretical consideration and model selection to find the best model. Throughout the course we wills stress the importance of theoretical knowledge to build valid models that allow to draw the right conclusion.
 
@@ -604,11 +615,14 @@ lm_sq <- lm(expected_cost ~ age + bmi + I(bmi^2) + smoking, data = df)
 summary(lm_sq)
 ```
 
-From the summary, we can see that including the square term significantly improves the model fit.Check for yourself the metrics $R^2$ and $AIC$ and plot the histogram of residuals.
+From the summary, we can see that including the square term significantly improves the model fit. Check for yourself the metrics $R^2$ and $AIC$ and plot the histogram of residuals.
 
-We can take from it, that it is extremely important to rely on theoretical considerations when building models.
+You should now have seen, that it is extremely important to rely on theoretical considerations when building models.
 
+::: callout-important
 ## Assumptions
+
+The following assumptions must be fulfilled for a linear regression to deliver valid results.
 
 1.  **Linearity**: Relationship between $X$ and $Y$ is linear.
 
@@ -617,6 +631,7 @@ We can take from it, that it is extremely important to rely on theoretical consi
 3.  **Independence**: Observations are independent of each other. Residuals are independent of each other.
 
 4.  **Normality**: For any fixed value of $X$, $Y$ is normally distributed. Residuals of the model are normally distributed.
+:::
 
 # Assignment
 
@@ -642,7 +657,7 @@ You can copy parts of the code from the example. Also keep in mind, that not all
 
     3.  whether its effect is statistically significant.
 
-5.  Add a variable `seatheating` to the data and assign a value `TRUE` for all observations. You can use e.g. `df %>% mutate(new_variable = value)`. Assign it to a new object and run a regression. What coefficient do you get for the new variable `seatheating` and how can you explain it?
+5.  Add a variable `seat_heating` to the data and assign a value `TRUE` for all observations. You can use e.g. `df %>% mutate(new_variable = value)`. Assign it to a new object and run a regression. What coefficient do you get for the new variable `seat_heating` and how can you explain it?
 
 ::: callout-warning
 ## How to submit your solutions!

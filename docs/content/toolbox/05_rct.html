@@ -349,7 +349,7 @@ E[Y_0|D=0] = E[Y_0|D=1]
 <p>Until now, we have not assigned units to treatment and control group and actually, we do not want to assign our whole population to any group. As a matter of fact, in many applications, you are just able to draw a sample from the population and almost never the whole population.</p>
 <p>Remember, randomization of treatment should achieve that we are able to interpret the average treatment effect causally and for that, both groups need to be as similar as possible. The image illustrates the randomization process. Try to think what could happen if you have just very few units in both groups. How likely is is that they are very similar regarding their characteristics? You can probably already sense that this might not be sufficient to make groups comparable.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../../images/05_rand.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Illustration of randomization process"><img src="../../images/05_rand.png" class="img-fluid figure-img" width="350"></a></p>
+<figure class="figure"><p><a href="../../images/05_rand.png" class="lightbox" title="Illustration of randomization process" data-gallery="quarto-lightbox-gallery-1"><img src="../../images/05_rand.png" class="img-fluid figure-img" width="350"></a></p>
 <figcaption class="figure-caption">Illustration of randomization process</figcaption></figure>
 </div>
 <p>But let’s try it out and see how average group characteristics develop when we change the sample size.</p>
@@ -448,7 +448,7 @@ Note
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Absolute difference of characteristics\n between groups by sample size"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="With increasing sample size, differences between treatment and control group get smaller or are already so small, that they can be ignored."><img src="05_rct_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" title="With increasing sample size, differences between treatment and control group get smaller or are already so small, that they can be ignored." data-gallery="quarto-lightbox-gallery-2"><img src="05_rct_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
 <figcaption class="figure-caption">With increasing sample size, differences between treatment and control group get smaller or are already so small, that they can be ignored.</figcaption></figure>
 </div>
 </div>
@@ -557,15 +557,15 @@ F-statistic:  364 on 1 and 9998 DF,  p-value: &lt;2e-16</code></pre>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment."><img src="05_rct_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment." data-gallery="quarto-lightbox-gallery-3"><img src="05_rct_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment.</figcaption></figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment."><img src="05_rct_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-2.png" class="lightbox" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment." data-gallery="quarto-lightbox-gallery-4"><img src="05_rct_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment.</figcaption></figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment."><img src="05_rct_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-8-3.png" class="lightbox" title="Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment." data-gallery="quarto-lightbox-gallery-5"><img src="05_rct_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment.</figcaption></figure>
 </div>
 </div>
@@ -689,11 +689,11 @@ outcome = 0.2*treatment + 0.01*treatment*age + treatment*sex + \epsilon
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
-<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Observational study"><img src="05_rct_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" title="Observational study" data-gallery="quarto-lightbox-gallery-6"><img src="05_rct_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Observational study</figcaption></figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
-<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-11-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Experimental study"><img src="05_rct_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="05_rct_files/figure-html/unnamed-chunk-11-2.png" class="lightbox" title="Experimental study" data-gallery="quarto-lightbox-gallery-7"><img src="05_rct_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Experimental study</figcaption></figure>
 </div>
 </div>
@@ -995,7 +995,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","loop":true,"closeEffect":"zoom","selector":".lightbox"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":true,"openEffect":"zoom","descPosition":"bottom"});</script>
 
 
 </body></html>
