@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2022-11-23">
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Difference-in-Differences</title>
@@ -15,9 +15,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -44,43 +45,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -104,7 +75,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -120,10 +92,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="../../styles.css">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar docked nav-fixed">
 
@@ -136,120 +109,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../content/index.html" aria-current="page">
+    <a class="nav-link active" href="../../content/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../submission/submission.html">
+    <a class="nav-link" href="../../submission/submission.html" rel="" target="">
  <span class="menu-text">Submission</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
-</i> 
- <span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science" rel="" target="">
+ <span class="menu-text"><iconify-icon inline="" icon="cib:mattermost" style="font-size: 1.25em;"></iconify-icon></span></a>
   </li>  
 </ul>
-<div id="quarto-search" class="" title="Search"></div>
+<div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Difference-in-Differences</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/toolbox/05_rct.html"><b>Toolbox</b></a></li><li class="breadcrumb-item"><a href="../../content/toolbox/07_did.html">Difference-in-Differences</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Introduction</b></span></a>
   </div>
 </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Fundamentals</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><b>Fundamentals</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link">Probability Theory</a>
+  <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link">Statistical Concepts</a>
+  <a href="../../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">Regression and Statistical Inference</a>
+  <a href="../../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression and Statistical Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">Causality</a>
+  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causality</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link">Directed Acyclic Graphs</a>
+  <a href="../../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Directed Acyclic Graphs</span></a>
   </div>
 </li>
       </ul>
 </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Toolbox</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><b>Toolbox</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">Randomized Controlled Trials</a>
+  <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomized Controlled Trials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">Matching and Subclassification</a>
+  <a href="../../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching and Subclassification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link active">Difference-in-Differences</a>
+  <a href="../../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Difference-in-Differences</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">Instrumental Variables</a>
+  <a href="../../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instrumental Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">Regression Discontinuity</a>
+  <a href="../../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Discontinuity</span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -280,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block">Difference-in-Differences</h1>
+<h1 class="title">Difference-in-Differences</h1>
 </div>
 
 
@@ -302,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
 <p>Another quasi-experimental method from our toolbox is the <strong>difference-in-differences (DiD)</strong> approach. It is the most popular research design in quantitative and social sciences. As the name implies, the method <strong>captures differences by observing a treatment and a control group over time</strong> to estimate causal average effects.</p>
 <p>In its simplest form, DiD compares <strong>two groups</strong> (control and treatment) <strong>at two points in time</strong> (before treatment and after) by observing if and how different both groups change. It is important to note, that both groups do not need to be equal before the treatment.</p>
-<p>By taking two differences, <strong>two different kind of biases can be avoided</strong>. First, by comparing both groups at both points in time, any external effect that affects the outcome through time plays no role as it affects both groups. Secondly, taking only the difference of change in consideration, we can disregard selection bias. Potential outcomes can differ:</p>
+<p>By taking two differences, <strong>two different kind of biases can be avoided</strong>. First, by comparing both groups at both points in time, any external effect that affects the outcome of both groups in the same way is equalized. Secondly, taking only the difference of a change in consideration, we can disregard selection bias. Potential outcomes can differ:</p>
 <p><span class="math display">\[
 E[Y_0|D = 0] \gtreqqless E[Y_0|D = 1]
 \]</span></p>
@@ -363,11 +356,11 @@ E[Y_0|D = 0] \gtreqqless E[Y_0|D = 1]
 </table>
 <p>We can also break it down in our known notation:</p>
 <p><span class="math display">\[
-D = ATE = \bigg(E[Y_{D=1}|T=1] - E[Y_{D=1}|T=0] \bigg)- \bigg(E[Y_{D=0}|T=1] - E[Y_{D=0}|T=0]\bigg)
+\delta = ATE = \bigg(E[Y_{D=1}|T=1] - E[Y_{D=1}|T=0] \bigg)- \bigg(E[Y_{D=0}|T=1] - E[Y_{D=0}|T=0]\bigg)
 \]</span></p>
 <p>Because there are a lot of subscripts, it can also help to write down the formula in pseudo-math:</p>
 <p><span class="math display">\[
-ATE = (Y_{Treatment, After} - Y_{Treatment, before}) - (Y_{Control, After} - Y_{Control, Before})
+ATE = (Y_{Treatment, After} - Y_{Treatment, Before}) - (Y_{Control, After} - Y_{Control, Before})
 \]</span></p>
 <p>Again, opposed to methods where we just know one outcome - the “after” outcome, regardless of whether a unit received or did not receive treatment - we do not have to assume that the potential outcomes <span class="math inline">\(E[Y_0|D=1] = E[Y_0|D=1]\)</span> are equal. That is a big difference, because do not have to assume that observation units are similar in all their characteristics.</p>
 <p>Instead DiD hinges on a different assumption, the <strong>parallel trends assumption.</strong> It says that, in absence of treatment for both groups, they would be expected to evolve similarly over time. In other words, we do not expect the potential outcome to be similar, but only the change of outcomes from before to after. It implies that there is no factor that has only an impact on just one of the groups. If units differ in characteristics, they are only allowed to have a constant effect. If the effect varies with time, the parallel trends assumption is violated.</p>
@@ -379,12 +372,12 @@ ATE = (Y_{Treatment, After} - Y_{Treatment, before}) - (Y_{Control, After} - Y_{
 </ul>
 <p>Let’s imagine, you are manager of a company that has two stores, one of them being in City 1 and the other being in City 2. You want to test the effectiveness of a local ad campaign on sales. Therefore, you will run a campaign at the store in City 1 but not in City 2 and keep track of sales in the periods before and after the treatment.</p>
 <p>You don’t need to read follow all steps how to generate data for both scenarios, but I’ll leave it in for those who are interested.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Data Simulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -392,10 +385,10 @@ Data Simulation
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(Y\)</span> - sales</p>
-<p><span class="math inline">\(D\)</span> true treatment effect</p>
-<p><span class="math inline">\(P\)</span> is periods</p>
-<p><span class="math inline">\(S\)</span> store index</p>
-<p><span class="math inline">\(X\)</span> covariate, e.g.&nbsp;ecosystem</p>
+<p><span class="math inline">\(D\)</span> - true treatment effect</p>
+<p><span class="math inline">\(P\)</span> - periods</p>
+<p><span class="math inline">\(S\)</span> - store index</p>
+<p><span class="math inline">\(X\)</span> - covariate, e.g.&nbsp;ecosystem</p>
 <p>With the function <em>generate_data()</em> we generate data with arbitrary values for the number of stores, number of observed periods, the size of the true treatment effect, the timing of treatment and level of noise in the data generating process. Data is generated for both scenarios as can be seen at the suffixes.</p>
 </div>
 </div>
@@ -501,12 +494,12 @@ Data Simulation
 </div>
 </div>
 <p>Looking at the last period before and the first period after treatment, the impact of treatment can clearly be seen. The dashed line represents the counterfactual value for the treated group, i.e.&nbsp;the value it would have if it had not been treated. This value is not observed, but by the parallel trends assumptions, it would have developed like the value for the untreated group.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Plots in this chapter
 </div>
 </div>
@@ -535,11 +528,11 @@ Plots in this chapter
 <span>           linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"label"</span>, x <span class="op">=</span> <span class="op">(</span><span class="va">P</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.9</span>, </span>
 <span>           y <span class="op">=</span> <span class="va">after_treatment_A</span> <span class="op">-</span> <span class="op">(</span><span class="va">diff_diff_A</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span>, </span>
-<span>           label <span class="op">=</span> <span class="st">"Treatment effect"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>           label <span class="op">=</span> <span class="st">"Treatment effect"</span>, size <span class="op">=</span> <span class="fl">3</span>, fill <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"text"</span>, x <span class="op">=</span> <span class="op">(</span><span class="va">P</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.7</span>, </span>
 <span>           y <span class="op">=</span> <span class="va">before_control_A</span> <span class="op">+</span> <span class="fl">1.1</span><span class="op">*</span><span class="va">diff_before_A</span> <span class="op">+</span> <span class="fl">.1</span>, </span>
 <span>           label <span class="op">=</span> <span class="st">"Counterfactual"</span>, size <span class="op">=</span> <span class="fl">4</span>, </span>
-<span>           angle <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>           angle <span class="op">=</span> <span class="fl">3</span>, color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Custom scaling and legend</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>name <span class="op">=</span><span class="st">""</span>, breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5.5</span>, <span class="fl">6</span><span class="op">)</span>,</span>
 <span>                     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Before\n Treatment"</span>, </span>
@@ -552,8 +545,7 @@ Plots in this chapter
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="07_did_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="If parallel trends assumption can be assumed, treatment effect is valid. Counterfactual line shows how outcome would have been evolved in absence of treatment."><img src="07_did_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
-<p></p><figcaption class="figure-caption">If parallel trends assumption can be assumed, treatment effect is valid. Counterfactual line shows how outcome would have been evolved in absence of treatment.</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">If parallel trends assumption can be assumed, treatment effect is valid. Counterfactual line shows how outcome would have been evolved in absence of treatment.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -617,11 +609,11 @@ Plots in this chapter
 <span>           linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"label"</span>, x <span class="op">=</span> <span class="op">(</span><span class="va">P</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.9</span>, </span>
 <span>           y <span class="op">=</span> <span class="va">after_treatment_B</span> <span class="op">-</span> <span class="op">(</span><span class="va">diff_diff_B</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span>, </span>
-<span>           label <span class="op">=</span> <span class="st">"Treatment effect"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>           label <span class="op">=</span> <span class="st">"Treatment effect"</span>, size <span class="op">=</span> <span class="fl">3</span>, fill <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"text"</span>, x <span class="op">=</span> <span class="op">(</span><span class="va">P</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.7</span>, </span>
 <span>           y <span class="op">=</span> <span class="va">before_control_B</span> <span class="op">+</span> <span class="fl">1.1</span><span class="op">*</span><span class="va">diff_before_B</span> <span class="op">+</span> <span class="fl">.1</span>, </span>
 <span>           label <span class="op">=</span> <span class="st">"Counterfactual"</span>, size <span class="op">=</span> <span class="fl">4</span>, </span>
-<span>           angle <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>           angle <span class="op">=</span> <span class="fl">3</span>, color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Custom scaling and legend</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>name <span class="op">=</span><span class="st">""</span>, breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5.5</span>, <span class="fl">6</span><span class="op">)</span>,</span>
 <span>                     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Before\n Treatment"</span>, </span>
@@ -633,14 +625,13 @@ Plots in this chapter
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Scenario B:\nParallel Trends Assumption"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="07_did_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="If parallel trends assumption can be assumed, treatment effect is valid. Counterfactual line shows how outcome would have been evolved in absence of treatment."><img src="07_did_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
-<p></p><figcaption class="figure-caption">If parallel trends assumption can be assumed, treatment effect is valid. Counterfactual line shows how outcome would have been evolved in absence of treatment.</figcaption><p></p>
-</figure>
+<figure class="figure"><p><a href="07_did_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Knowing the true treatment effect, we know that the estimated treatment effect is too high. But this plot can’t tell us why."><img src="07_did_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
+<figcaption class="figure-caption">Knowing the true treatment effect, we know that the estimated treatment effect is too high. But this plot can’t tell us why.</figcaption></figure>
 </div>
 </div>
 </div>
 </section></section><section id="event-study" class="level2"><h2 class="anchored" data-anchor-id="event-study">Event Study</h2>
-<p>Many researchers therefore try to increase the validity of their results by providing an event study. Comparing trends before treatment across treatment and control group, it should show that there was no difference. <strong>Because if there was no difference before treatment, why should there be difference after the treatment (if not for the treatment?</strong></p>
+<p>Hence, numerous researchers endeavor to enhance the reliability of their findings through the utilization of an event study. Comparing trends before treatment across treatment and control group, it should show that there was no difference prior to the treatment. <strong>Because if there was no difference before treatment, why should there be difference after the treatment (if not for the treatment itself)?</strong></p>
 <p>However, event studies cannot provide full certainty about the parallel trends assumption. There still might be other unobserved factors that could affect the treatment. But still, it is a good way to argue that treatment and control group are comparable.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code: Event Study A</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># [1.2] Event study ----</span></span>
@@ -717,13 +708,11 @@ Plots in this chapter
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure"><p><a href="07_did_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="For treatment and control group, we see the same trend over time. This lends credibility to the parallel trends assumption and consequently, to the validity of the causal treatment effect."><img src="07_did_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">For treatment and control group, we see the same trend over time. This lends credibility to the parallel trends assumption and consequently, to the validity of the causal treatment effect.</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">For treatment and control group, we see the same trend over time. This lends credibility to the parallel trends assumption and consequently, to the validity of the causal treatment effect.</figcaption></figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure"><p><a href="07_did_files/figure-html/unnamed-chunk-9-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Other than in scenario A, the parallel trends assumption does not seem to hold. The estimated treatment effect is larger than the actual treatment effect. This is due to different trends in both groups. The treatment group has a more positive trend even without treatment and the groups would have further diverged after treatment (see dashed red line). The difference between the dashed red and dashed blue line is attributable to this trend and should not be part of the treatment effect."><img src="07_did_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Other than in scenario A, the parallel trends assumption does not seem to hold. The estimated treatment effect is larger than the actual treatment effect. This is due to different trends in both groups. The treatment group has a more positive trend even without treatment and the groups would have further diverged after treatment (see dashed red line). The difference between the dashed red and dashed blue line is attributable to this trend and should not be part of the treatment effect.</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Other than in scenario A, the parallel trends assumption does not seem to hold. The estimated treatment effect is larger than the actual treatment effect. This is due to different trends in both groups. The treatment group has a more positive trend even without treatment and the groups would have further diverged after treatment (see dashed red line). The difference between the dashed red and dashed blue line is attributable to this trend and should not be part of the treatment effect.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -733,33 +722,36 @@ Plots in this chapter
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># [1.4] Linear regression ----</span></span>
 <span><span class="co"># Now assume that there are more than two stores and treatment is performed</span></span>
-<span><span class="co"># e.g. in a specific region which are, depending on scenario (A) and (B) </span></span>
-<span><span class="co"># different.</span></span>
+<span><span class="co"># in a specific region which is, depending on scenario (A) and (B) </span></span>
+<span><span class="co"># different to the control region.</span></span>
+<span></span>
 <span><span class="co"># Generate a bunch of samples and combine in one table. Here, we choose a higher</span></span>
 <span><span class="co"># standard deviation.</span></span>
+<span><span class="co"># We assume that we only have data from one period prior and one period after </span></span>
+<span><span class="co"># treatment.</span></span>
 <span><span class="va">n_stores</span> <span class="op">&lt;-</span> <span class="fl">3e+3</span></span>
 <span></span>
 <span><span class="co"># Scenario A</span></span>
 <span><span class="va">df_A_lm</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n_stores</span>, <span class="kw">function</span><span class="op">(</span><span class="va">R</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">generate_data</span><span class="op">(</span>sd <span class="op">=</span> <span class="fl">1</span>, scenario <span class="op">=</span> <span class="st">"A"</span><span class="op">)</span><span class="op">}</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">period</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="op">(</span><span class="va">P</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">P</span><span class="op">/</span><span class="fl">2</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Scenario B</span></span>
 <span><span class="va">df_B_lm</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n_stores</span>, <span class="kw">function</span><span class="op">(</span><span class="va">R</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">generate_data</span><span class="op">(</span>sd <span class="op">=</span> <span class="fl">1</span>, scenario <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span><span class="op">}</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">period</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="op">(</span><span class="va">P</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">P</span><span class="op">/</span><span class="fl">2</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="scenario-a-1" class="level3"><h3 class="anchored" data-anchor-id="scenario-a-1">Scenario A</h3>
 <p>So how do we compute the average treatment effect? Previously in this chapter, we just used basic math calculations (particularly subtraction). But there is an easier way: we can use regression again. This is because the average treatment effect is the coefficient of the interaction of group and time.</p>
 <p><span class="math display">\[
-y_i = \beta_0 + \beta_1 * Period_i + \beta_2 * Treatment_i + \beta_3 * (Time_i * Treatment_i) + \epsilon_i
+y_i = \beta_0 + \beta_1 * Period_i + \beta_2 * Treatment_i + \beta_3 * (Time_i \times Treatment_i) + \epsilon_i
 \]</span></p>
-<p><span class="math inline">\(Time\)</span> indicates whether the period is before or after the treatment and <span class="math inline">\(Treatment\)</span> whether an observation was treated or not. Then, the coefficient we are interested in is <span class="math inline">\(\beta_3\)</span>, because its term is only active for the treated group after treatment.</p>
-<p>!!! x1: maybe purchase power in region</p>
-<p>For scenario A, we can see that there is no need to adjust for the covariate <span class="math inline">\(x1\)</span>. If you check the formulas again, your will notice that <span class="math inline">\(x1\)</span> has a constant and time-invariant effect on sales and therefore it does not violate the paralell trends assumption.</p>
-<p>Including or leaving out <span class="math inline">\(x1\)</span> in the regression yields the a similar unbiased estimate (close to defined true size) for our variable of interest <span class="math inline">\(store:after\)</span>, the parameter of interest.</p>
+<p><span class="math inline">\(Time\)</span> indicates whether the period is before or after the treatment and <span class="math inline">\(Treatment\)</span> whether an observation belongs to the treatment group. We can interpret the estimated coefficient <span class="math inline">\(\hat\beta_1\)</span> as the time effect for both groups, it indicates how the outcome evolves without treatment. <span class="math inline">\(\hat\beta_2\)</span> represents the time-invariant level difference between groups, it is positive when the treatment group initially exhibited a higher outcome level.</p>
+<p>What we are primarily interested in is the interaction <span class="math inline">\(Time \times Treatment\)</span> and its estimate <span class="math inline">\(\hat\beta_3\)</span>. It is only active for the treatment group after the treatment (<span class="math inline">\(Time = 1\)</span>, <span class="math inline">\(Treatment=1\)</span>) and represents the average treatment effect.</p>
+<p>For scenario A, we can see that there is no need to adjust for the covariate <span class="math inline">\(x1\)</span>. You could for example think of <span class="math inline">\(x_1\)</span> as the purchase power of the respective region. If you check the formulas again, your will notice that <span class="math inline">\(x1\)</span> has a constant and time-invariant effect on sales and therefore it does not violate the parallel trends assumption.</p>
+<p>Including or leaving out <span class="math inline">\(x1\)</span> in the regression yields a very similar unbiased estimate (close to defined true size) for our variable of interest <span class="math inline">\(store:after\)</span>, the parameter of interest.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># [1.4.1] (A) ----</span></span>
 <span><span class="co"># (a): Due to the construction of the data set, we expect interaction</span></span>
@@ -816,8 +808,8 @@ F-statistic: 5.36e+03 on 4 and 11995 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 </section><section id="scenario-b-1" class="level3"><h3 class="anchored" data-anchor-id="scenario-b-1">Scenario B</h3>
-<p>In scenario B, the effect of <em>x1</em> is different because it has a time-varying effect. Therefore it violates the parallel trends assumption, leading to a biased estimate if <em>x1</em> is not included (e.g.&nbsp;because it is unobserved).</p>
-<p>Because we constructed the data set ourselves, we are able to see that the bias in fact is quite large and the treatment effect seems to include the actual treatment effect plus the effect of <em>x1</em>. Even with including <span class="math inline">\(x1\)</span> and as a main effect and moderator, we cannot fully reconstruct the true treatment effect.</p>
+<p>In scenario B, the effect of <span class="math inline">\(x_1\)</span> is different because it has a time-varying effect. Therefore it violates the parallel trends assumption, leading to a biased estimate if <span class="math inline">\(x_1\)</span> is not included (e.g.&nbsp;because it is unobserved).</p>
+<p>Because we constructed the data set ourselves, we are able to see that the bias in fact is quite large and the treatment effect seems to include the actual treatment effect plus the effect of <span class="math inline">\(x_1\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># [1.4.2] (B) ----</span></span>
 <span><span class="co"># (b): Due to the construction of the data set, we expect interaction coefficient</span></span>
@@ -846,7 +838,11 @@ Residual standard error: 3.5 on 11996 degrees of freedom
 Multiple R-squared:  0.287, Adjusted R-squared:  0.287 
 F-statistic: 1.61e+03 on 3 and 11996 DF,  p-value: &lt;2e-16</code></pre>
 </div>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">sales</span> <span class="op">~</span> <span class="va">treat</span><span class="op">*</span><span class="va">after</span> <span class="op">+</span> <span class="va">after</span><span class="op">*</span><span class="va">x1</span> <span class="op">+</span> <span class="va">treat</span><span class="op">*</span><span class="va">x1</span>, data <span class="op">=</span> <span class="va">df_B_lm</span><span class="op">)</span><span class="op">)</span> <span class="co"># best</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Only with including <span class="math inline">\(x_1\)</span> and as a main effect and moderator, we can reconstruct the true treatment effect.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Including time-varying effect</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">sales</span> <span class="op">~</span> <span class="va">treat</span><span class="op">*</span><span class="va">after</span> <span class="op">+</span> <span class="va">after</span><span class="op">*</span><span class="va">x1</span> <span class="op">+</span> <span class="va">treat</span><span class="op">*</span><span class="va">x1</span>, data <span class="op">=</span> <span class="va">df_B_lm</span><span class="op">)</span><span class="op">)</span> <span class="co"># best</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -876,7 +872,7 @@ F-statistic: 3.31e+04 on 6 and 11993 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </section></section></section><section id="conclusion" class="level1"><h1>Conclusion</h1>
 <p>DiD is a useful quasi-experimental method that relies on the parallel trends assumption which is untestable. We can’t prove it but try to justify it by for example showing prior trends. If both groups were evolving similarly before the treatment, that supports the plausibility and appropriateness of using DiD.</p>
-<p>Additionally, there are many extensions to the simple DiD approach we have not discussed here like the synthetic control method, that is able to deal with one treated and multiple untreated groups. By matching and weighting the untreated groups, a synthetic group is composed, that is similar in the lead up to the treatment period. It shares similarities with what we have done in the matching chapter.</p>
+<p>DiD is a very actively researched methods and can be extended too many scenarios: e.g.&nbsp;the synthetic control method, that is able to deal with one treated and multiple untreated groups. By matching and weighting the untreated groups, a synthetic group is composed, that is similar in the lead up to the treatment period. It shares similarities with what we have done in the matching chapter. Sometimes you also might end up with many treatment groups and variation in treatment timing. Although you have to be careful with your assumptions and specifications, such cases can also be incorporated into a DiD framework.</p>
 </section><section id="assignment" class="level1"><h1>Assignment</h1>
 <p>Imagine, you are manager of a large health provider that manages many hospitals and you want to test how a new admission procedure affects patient satisfaction. You randomly selected 18 hospitals that introduced the new admission procedure and compare them to 28 other hospitals that did not introduce the method. For both groups of hospitals you collected data from before and after the introduction. The data you have collected is from patient surveys where they were asked how satisfied they are.</p>
 <p>Load the data from the file <code>hospdd.rds</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Then, perform a difference-in-differences analysis by</p>
@@ -891,12 +887,12 @@ F-statistic: 3.31e+04 on 6 and 11993 DF,  p-value: &lt;2e-16</code></pre>
 <p>and explain what the difference is.</p>
 </li>
 </ol>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 How to submit your solutions!
 </div>
 </div>
@@ -936,9 +932,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1003,6 +1013,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1055,8 +1151,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":true,"closeEffect":"zoom","openEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true});</script>
 
 
 </body></html>

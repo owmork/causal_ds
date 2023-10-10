@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2022-11-23">
+<meta name="dcterms.date" content="2023-10-16">
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Causality</title>
 <style>
 code{white-space: pre-wrap;}
@@ -106,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/fundamentals/01_a_prob.html">Fundamentals</a></li><li class="breadcrumb-item"><a href="../../content/fundamentals/03_caus.html">Causality</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/fundamentals/01_a_prob.html"><b>Fundamentals</b></a></li><li class="breadcrumb-item"><a href="../../content/fundamentals/03_caus.html">Causality</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -117,13 +117,14 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text"><b>Introduction</b></span></a>
   </div>
 </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Fundamentals</span></a>
+ <span class="menu-text"><b>Fundamentals</b></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -161,10 +162,11 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
 </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Toolbox</span></a>
+ <span class="menu-text"><b>Toolbox</b></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -243,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 23, 2022</p>
+      <p class="date">October 16, 2023</p>
     </div>
   </div>
   
@@ -281,9 +283,9 @@ ul.task-list li input[type="checkbox"] {
 <p>But how do you ensure that this is what happened in a study or analysis task? Unfortunately, <strong>data alone is never sufficient to make causal claims</strong>. In addition, you need to have some kind of domain knowledge to <strong>make necessary (and often non-testable) assumptions</strong>. Thus, causality goes beyond statistical modeling. Using the example from above, the actual problem is not <em>Are sales high when the price is high</em>? but rather <em>What happens to our sales if we decrease/increase the price?</em>.</p>
 <p>Other questions that arise in businesses could be:</p>
 <ul>
-<li><p>Does the advertising campaign increase sales?</p></li>
-<li><p>Does a customer loyalty program reduce customer churn?</p></li>
-<li><p>Do job benefits increase the attractiveness of a company for employees?</p></li>
+<li>Does the advertising campaign increase sales?</li>
+<li>Does a customer loyalty program reduce customer churn?</li>
+<li>Do job benefits increase the attractiveness of a company for employees?</li>
 </ul>
 <p>Differences in concepts and questions that can be answered are shown by Pearl in his <strong>ladder of causation</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -322,22 +324,25 @@ Probabilistic vs Deterministic Causation
 <p>In causal inference, we are always interested in analyzing the effect of a specific variable on the <strong>outcome variable</strong>. This specific variable is called <strong>treatment variable</strong> and to understand the effect of this treatment variable, it needs to vary across <strong>observations units</strong>. Otherwise, if the treatment variable was constant across all observation units, we could not see how changing it translates to a change in the outcome. <strong>Manipulating the treatment variable is called treatment or intervention</strong>. It might remind you of a clinical setting, but in causal inference the term has a very general meaning and a treatment can be a lot of things.</p>
 <p>Applied to our example:</p>
 <ul>
-<li><p><strong>Observation unit</strong>: stores</p></li>
-<li><p><strong>Treatment variable</strong>: having parking spots (yes/no)</p></li>
-<li><p><strong>Outcome variable</strong>: sales (continuous)</p></li>
+<li>
+<strong>Observation unit</strong>: stores</li>
+<li>
+<strong>Treatment variable</strong>: having parking spots (yes/no)</li>
+<li>
+<strong>Outcome variable</strong>: sales (continuous)</li>
 </ul>
 <p>For each store <span class="math inline">\(i\)</span>, we denote whether it has parking spots with <span class="math inline">\(D_i\)</span>, the treatment assignment:</p>
 <p><span class="math display">\[
 D_i=\begin{cases}1 \ \text{if unit i received treatment}\\0 \ \text{otherwise}\\\end{cases}
 \]</span></p>
-<p>Here, we focus on a binary variable, but treatment could also be assigned for different levels or sizes (for example, the number of parking spots). But here, we just say the variable takes on a value of 1 if a unit receives the treatment and 0 if it does not. A store with <span class="math inline">\(D_i = 1\)</span> has parking spots while a store with <span class="math inline">\(D_i=0\)</span> has no parking spots.</p>
+<p>Here, we focus on a binary variable, but treatment could also be assigned for different levels or sizes (for example, the number of parking spots). But here, we just say the variable takes on a value of <span class="math inline">\(1\)</span> if a unit receives the treatment and <span class="math inline">\(0\)</span> if it does not. A store with <span class="math inline">\(D_i = 1\)</span> has parking spots while a store with <span class="math inline">\(D_i=0\)</span> has no parking spots.</p>
 <section id="fundamental-problem-of-causal-inference" class="level2"><h2 class="anchored" data-anchor-id="fundamental-problem-of-causal-inference">Fundamental Problem of Causal Inference</h2>
 <p>Now, let’s think again about the research question. How can we find out what the benefit of having parking spots is? Ideally, we would be able to compute the individual treatment effect (<span class="math inline">\(ITE\)</span>) of each store <span class="math inline">\(i\)</span>. That means, for each store, we would know what the <strong>sales</strong> would be <strong>with and without parking spots</strong>. Then we could take the difference of those two outcomes and we would know what part of the sales would be only attributable to having parking spots. This is called the <strong>individual treatment effect (</strong><span class="math inline">\(ITE\)</span><strong>):</strong></p>
 <p><span class="math display">\[
 \text{ITE}_i = Y_{i1} - Y_{i0}
 \]</span></p>
 <p><span class="math inline">\(Y_{i1}\)</span> are sales when there are parking spots at store <span class="math inline">\(i\)</span> and <span class="math inline">\(Y_{i0}\)</span> are sales when there are no parking spots at store <span class="math inline">\(i\)</span>. However, observing both outcomes is impossible.</p>
-<p>To compute the individual treatment effect we would have to know the amount of sales that would have happened in case the treatment was not assigned to e.g.&nbsp;store <span class="math inline">\(A\)</span>. Not being able to observe an observation unit in both states (= with and without treatment) is called the <strong>fundamental problem of causal inference</strong>, essentially a missing data problem.</p>
+<p>To compute the individual treatment effect we would have to know the amount of sales that would have happened if a store without parking spots had parking spotrs. Not being able to observe an observation unit in both states (= with and without treatment/parking spots) is called the <strong>fundamental problem of causal inference</strong>, essentially a missing data problem.</p>
 <p>This is why technically the outcomes <span class="math inline">\(Y_{i1}\)</span> and <span class="math inline">\(Y_{i0}\)</span> are <strong>potential outcomes</strong>. To come from potential outcomes to the <strong>observed outcome</strong>, we can use the <strong>switching equation</strong>. For example for store <span class="math inline">\(A\)</span>:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -412,8 +417,10 @@ ATU = E[Y_1 - Y_0|D = 0]
 \]</span></p>
 <p>We can already see that for the treated stores, the ones with parking spots, the treatment effect is way higher. We can show that by calculating the average treatment effect for the treated (<span class="math inline">\(D_i = 1\)</span>) and for the untreated (<span class="math inline">\(D_i=0\)</span>).</p>
 <p><span class="math display">\[
-ATT = \frac{1}{2}(28+26) = 27 \\
-ATU = \frac{1}{2}(10+4) = 7
+\begin{align}
+ATT &amp;= \frac{1}{2}(28+26) = 27 \\
+ATU &amp;= \frac{1}{2}(10+4) = 7
+\end{align}
 \]</span></p>
 <p>But again, we cannot see the table as it is shown above but instead, what we would see is the following table.</p>
 <table class="table">
@@ -481,7 +488,7 @@ E[Y_1 - Y_0] &amp;= E[Y|D=1] - E[Y|D=0] \\ &amp;= E[Y_1|D=1] - E[Y_0|D=0] + E[Y_
 </section><section id="outlook" class="level1"><h1>Outlook</h1>
 <p>The most obvious way to achieve similarity between treatment and control group is randomization. Each observation unit needs to be randomly assigned to either control or treatment group, i.e.&nbsp;in our example, we would have to physically randomize whether a store has parking spots or if it has not. The current allocation of parking spots is not random, as the stores outside the city are more likely to have parking spots. There are also other methods that do not require physical randomization which we will get to learn in the following chapters.</p>
 <p>But what you should take from this chapter is the problem of confusing statistical estimates with causal estimates. Understanding this problem is essential for understanding the need to find tools and instruments to make treatment and control groups comparable and eliminate biases.</p>
-<p>There are very few scenarios where we can actually be confident not to take measures against biases but in most cases, especially when dealing with observational data, biases will arise. In business and management science, economic actors almost always attempt to achieve some optima, which is ultimately based on their potential outcomes and thus rendering simple comparisons improper.</p>
+<p>There are very few scenarios where we can actually be confident not to take measures against biases but in most cases, especially when dealing with observational data, we have to watch out for biases. In business and management science, economic actors almost always attempt to achieve some optima, which is ultimately based on their potential outcomes and thus rendering simple comparisons inadequate.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -767,7 +774,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":true,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});</script>
 
 
 </body></html>

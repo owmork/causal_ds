@@ -49,7 +49,7 @@ Another quasi-experimental method from our toolbox is the **difference-in-differ
 
 In its simplest form, DiD compares **two groups** (control and treatment) **at two points in time** (before treatment and after) by observing if and how different both groups change. It is important to note, that both groups do not need to be equal before the treatment.
 
-By taking two differences, **two different kind of biases can be avoided**. First, by comparing both groups at both points in time, any external effect that affects the outcome through time plays no role as it affects both groups. Secondly, taking only the difference of change in consideration, we can disregard selection bias. Potential outcomes can differ:
+By taking two differences, **two different kind of biases can be avoided**. First, by comparing both groups at both points in time, any external effect that affects the outcome of both groups in the same way is equalized. Secondly, taking only the difference of a change in consideration, we can disregard selection bias. Potential outcomes can differ:
 
 $$
 E[Y_0|D = 0] \gtreqqless E[Y_0|D = 1] 
@@ -70,13 +70,13 @@ As can be seen in the table, the difference in outcome for the treatment group b
 We can also break it down in our known notation:
 
 $$
-D = ATE = \bigg(E[Y_{D=1}|T=1] - E[Y_{D=1}|T=0] \bigg)- \bigg(E[Y_{D=0}|T=1] - E[Y_{D=0}|T=0]\bigg)
+\delta = ATE = \bigg(E[Y_{D=1}|T=1] - E[Y_{D=1}|T=0] \bigg)- \bigg(E[Y_{D=0}|T=1] - E[Y_{D=0}|T=0]\bigg)
 $$
 
 Because there are a lot of subscripts, it can also help to write down the formula in pseudo-math:
 
 $$
-ATE = (Y_{Treatment, After} - Y_{Treatment, before}) - (Y_{Control, After} - Y_{Control, Before})
+ATE = (Y_{Treatment, After} - Y_{Treatment, Before}) - (Y_{Control, After} - Y_{Control, Before})
 $$
 
 Again, opposed to methods where we just know one outcome - the "after" outcome, regardless of whether a unit received or did not receive treatment - we do not have to assume that the potential outcomes $E[Y_0|D=1] = E[Y_0|D=1]$ are equal. That is a big difference, because do not have to assume that observation units are similar in all their characteristics.
@@ -100,13 +100,13 @@ You don't need to read follow all steps how to generate data for both scenarios,
 
 $Y$ - sales
 
-$D$ true treatment effect
+$D$ - true treatment effect
 
-$P$ is periods
+$P$ - periods
 
-$S$ store index
+$S$ - store index
 
-$X$ covariate, e.g. ecosystem
+$X$ - covariate, e.g. ecosystem
 
 With the function *generate_data()* we generate data with arbitrary values for the number of stores, number of observed periods, the size of the true treatment effect, the timing of treatment and level of noise in the data generating process. Data is generated for both scenarios as can be seen at the suffixes.
 :::
@@ -252,11 +252,11 @@ ggplot(df_A_zoom_in, aes(x = period, y = sales, color = as.factor(treat))) +
            linetype = "dashed", color = ggthemr::swatch()[4], linewidth = 1) +
   annotate(geom = "label", x = (P/2) + 0.9, 
            y = after_treatment_A - (diff_diff_A / 2), 
-           label = "Treatment effect", size = 3) +
+           label = "Treatment effect", size = 3, fill = ggthemr::swatch()[4]) +
   annotate(geom = "text", x = (P/2) + 0.7, 
            y = before_control_A + 1.1*diff_before_A + .1, 
            label = "Counterfactual", size = 4, 
-           angle = 3) +
+           angle = 3, color = ggthemr::swatch()[3]) +
   # Custom scaling and legend
   scale_x_continuous(name ="", breaks=c(5, 5.5, 6),
                      labels = c("Before\n Treatment", 
@@ -312,7 +312,7 @@ Again, the picture is very similar. Having only four data points, treatment befo
 #| code-fold: true
 #| code-summary: "Plot parallel trends assumption"
 #| message: false
-#| fig-cap: "If parallel trends assumption can be assumed, treatment effect is valid. Counterfactual line shows how outcome would have been evolved in absence of treatment."
+#| fig-cap: "Knowing the true treatment effect, we know that the estimated treatment effect is too high. But this plot can't tell us why."
 
 # Compute counterfactual sales for treated group
 cf_treat_B <- df_B[!df_B$treat == 1, "sales"] + diff_before_B
@@ -334,11 +334,11 @@ ggplot(df_B_zoom_in, aes(x = period, y = sales, color = as.factor(treat))) +
            linetype = "dashed", color = ggthemr::swatch()[4], linewidth = 1) +
   annotate(geom = "label", x = (P/2) + 0.9, 
            y = after_treatment_B - (diff_diff_B / 2), 
-           label = "Treatment effect", size = 3) +
+           label = "Treatment effect", size = 3, fill = ggthemr::swatch()[4]) +
   annotate(geom = "text", x = (P/2) + 0.7, 
            y = before_control_B + 1.1*diff_before_B + .1, 
            label = "Counterfactual", size = 4, 
-           angle = 3) +
+           angle = 3, color = ggthemr::swatch()[3]) +
   # Custom scaling and legend
   scale_x_continuous(name ="", breaks=c(5, 5.5, 6),
                      labels = c("Before\n Treatment", 
@@ -352,7 +352,7 @@ ggplot(df_B_zoom_in, aes(x = period, y = sales, color = as.factor(treat))) +
 
 ## Event Study
 
-Many researchers therefore try to increase the validity of their results by providing an event study. Comparing trends before treatment across treatment and control group, it should show that there was no difference. **Because if there was no difference before treatment, why should there be difference after the treatment (if not for the treatment?**
+Hence, numerous researchers endeavor to enhance the reliability of their findings through the utilization of an event study. Comparing trends before treatment across treatment and control group, it should show that there was no difference prior to the treatment. **Because if there was no difference before treatment, why should there be difference after the treatment (if not for the treatment itself)?**
 
 However, event studies cannot provide full certainty about the parallel trends assumption. There still might be other unobserved factors that could affect the treatment. But still, it is a good way to argue that treatment and control group are comparable.
 
@@ -453,10 +453,13 @@ To simulate such a scenario, we generate data for 3'000 stores that are split ev
 ```{r}
 # [1.4] Linear regression ----
 # Now assume that there are more than two stores and treatment is performed
-# e.g. in a specific region which are, depending on scenario (A) and (B) 
-# different.
+# in a specific region which is, depending on scenario (A) and (B) 
+# different to the control region.
+
 # Generate a bunch of samples and combine in one table. Here, we choose a higher
 # standard deviation.
+# We assume that we only have data from one period prior and one period after 
+# treatment.
 n_stores <- 3e+3
 
 # Scenario A
@@ -477,16 +480,16 @@ df_B_lm  <- lapply(1:n_stores, function(R) {
 So how do we compute the average treatment effect? Previously in this chapter, we just used basic math calculations (particularly subtraction). But there is an easier way: we can use regression again. This is because the average treatment effect is the coefficient of the interaction of group and time.
 
 $$
-y_i = \beta_0 + \beta_1 * Period_i + \beta_2 * Treatment_i + \beta_3 * (Time_i * Treatment_i) + \epsilon_i
+y_i = \beta_0 + \beta_1 * Period_i + \beta_2 * Treatment_i + \beta_3 * (Time_i \times Treatment_i) + \epsilon_i
 $$
 
-$Time$ indicates whether the period is before or after the treatment and $Treatment$ whether an observation was treated or not. Then, the coefficient we are interested in is $\beta_3$, because its term is only active for the treated group after treatment.
+$Time$ indicates whether the period is before or after the treatment and $Treatment$ whether an observation belongs to the treatment group. We can interpret the estimated coefficient $\hat\beta_1$ as the time effect for both groups, it indicates how the outcome evolves without treatment. $\hat\beta_2$ represents the time-invariant level difference between groups, it is positive when the treatment group initially exhibited a higher outcome level.
 
-!!! x1: maybe purchase power in region
+What we are primarily interested in is the interaction $Time \times Treatment$ and its estimate $\hat\beta_3$. It is only active for the treatment group after the treatment ($Time = 1$, $Treatment=1$) and represents the average treatment effect.
 
-For scenario A, we can see that there is no need to adjust for the covariate $x1$. If you check the formulas again, your will notice that $x1$ has a constant and time-invariant effect on sales and therefore it does not violate the paralell trends assumption.
+For scenario A, we can see that there is no need to adjust for the covariate $x1$. You could for example think of $x_1$ as the purchase power of the respective region. If you check the formulas again, your will notice that $x1$ has a constant and time-invariant effect on sales and therefore it does not violate the parallel trends assumption.
 
-Including or leaving out $x1$ in the regression yields the a similar unbiased estimate (close to defined true size) for our variable of interest $store:after$, the parameter of interest.
+Including or leaving out $x1$ in the regression yields a very similar unbiased estimate (close to defined true size) for our variable of interest $store:after$, the parameter of interest.
 
 ```{r}
 # [1.4.1] (A) ----
@@ -501,9 +504,9 @@ summary(lm(sales ~ treat*after + x1, data = df_A_lm))
 
 ### Scenario B
 
-In scenario B, the effect of *x1* is different because it has a time-varying effect. Therefore it violates the parallel trends assumption, leading to a biased estimate if *x1* is not included (e.g. because it is unobserved).
+In scenario B, the effect of $x_1$ is different because it has a time-varying effect. Therefore it violates the parallel trends assumption, leading to a biased estimate if $x_1$ is not included (e.g. because it is unobserved).
 
-Because we constructed the data set ourselves, we are able to see that the bias in fact is quite large and the treatment effect seems to include the actual treatment effect plus the effect of *x1*. Even with including $x1$ and as a main effect and moderator, we cannot fully reconstruct the true treatment effect.
+Because we constructed the data set ourselves, we are able to see that the bias in fact is quite large and the treatment effect seems to include the actual treatment effect plus the effect of $x_1$.
 
 ```{r}
 # [1.4.2] (B) ----
@@ -511,6 +514,12 @@ Because we constructed the data set ourselves, we are able to see that the bias 
 # to be significant and accurate only when adjusting for the time-varying effect
 # of the covariate and main effects for period and covariate.
 summary(lm(sales ~ treat*after, data = df_B_lm))
+```
+
+Only with including $x_1$ and as a main effect and moderator, we can reconstruct the true treatment effect.
+
+```{r}
+# Including time-varying effect
 summary(lm(sales ~ treat*after + after*x1 + treat*x1, data = df_B_lm)) # best
 ```
 
@@ -518,7 +527,7 @@ summary(lm(sales ~ treat*after + after*x1 + treat*x1, data = df_B_lm)) # best
 
 DiD is a useful quasi-experimental method that relies on the parallel trends assumption which is untestable. We can't prove it but try to justify it by for example showing prior trends. If both groups were evolving similarly before the treatment, that supports the plausibility and appropriateness of using DiD.
 
-Additionally, there are many extensions to the simple DiD approach we have not discussed here like the synthetic control method, that is able to deal with one treated and multiple untreated groups. By matching and weighting the untreated groups, a synthetic group is composed, that is similar in the lead up to the treatment period. It shares similarities with what we have done in the matching chapter.
+DiD is a very actively researched methods and can be extended too many scenarios: e.g. the synthetic control method, that is able to deal with one treated and multiple untreated groups. By matching and weighting the untreated groups, a synthetic group is composed, that is similar in the lead up to the treatment period. It shares similarities with what we have done in the matching chapter. Sometimes you also might end up with many treatment groups and variation in treatment timing. Although you have to be careful with your assumptions and specifications, such cases can also be incorporated into a DiD framework.
 
 # Assignment
 

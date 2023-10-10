@@ -45,7 +45,7 @@ source("../../code/dag_theme.R")
 
 # **Introduction**
 
-**Statistical inference** aims to draw conclusions about relationships between variables in the whole population. Whole population, in this context, does not necessarily mean the whole world population but instead the set of all units we want to draw conclusions about. Units could be for example all students in a country, all children in a specific institution or things like stores, restaurants etc. In the business context, we will often deal with populations that comprise customers, employees, stores or other business-related units.
+**Statistical inference** aims to draw conclusions about **relationships between variables** in the whole population. Whole population, in this context, does not necessarily mean the whole world population but instead the set of all units we want to draw conclusions about. Units could be for example all students in a country, all children in a specific institution or things like stores, restaurants etc. In the business context, we will often deal with populations that comprise customers, employees, stores or other business-related units.
 
 In practice, it is often impossible to collect data about the whole population, which is why we **draw** (ideally random) **samples from the whole population and use statistical inference to draw conclusions about the whole population** using the smaller sample. This is one main reason why we needed to introduce concepts from probability theory and statistics in the previous chapter.
 

@@ -1,7 +1,7 @@
 ---
 title: "Causality"
 linktitle: "Causality"
-date: "2022-11-23"
+date: "2023-10-16"
 output:
   blogdown::html_page:
     toc: true
@@ -88,9 +88,7 @@ But how do you ensure that this is what happened in a study or analysis task? Un
 Other questions that arise in businesses could be:
 
 -   Does the advertising campaign increase sales?
-
 -   Does a customer loyalty program reduce customer churn?
-
 -   Do job benefits increase the attractiveness of a company for employees?
 
 Differences in concepts and questions that can be answered are shown by Pearl in his **ladder of causation**.
@@ -136,9 +134,7 @@ In causal inference, we are always interested in analyzing the effect of a speci
 Applied to our example:
 
 -   **Observation unit**: stores
-
 -   **Treatment variable**: having parking spots (yes/no)
-
 -   **Outcome variable**: sales (continuous)
 
 For each store $i$, we denote whether it has parking spots with $D_i$, the treatment assignment:
@@ -147,7 +143,7 @@ $$
 D_i=\begin{cases}1 \ \text{if unit i received treatment}\\0 \ \text{otherwise}\\\end{cases} 
 $$
 
-Here, we focus on a binary variable, but treatment could also be assigned for different levels or sizes (for example, the number of parking spots). But here, we just say the variable takes on a value of 1 if a unit receives the treatment and 0 if it does not. A store with $D_i = 1$ has parking spots while a store with $D_i=0$ has no parking spots.
+Here, we focus on a binary variable, but treatment could also be assigned for different levels or sizes (for example, the number of parking spots). But here, we just say the variable takes on a value of $1$ if a unit receives the treatment and $0$ if it does not. A store with $D_i = 1$ has parking spots while a store with $D_i=0$ has no parking spots.
 
 ## Fundamental Problem of Causal Inference
 
@@ -159,7 +155,7 @@ $$
 
 $Y_{i1}$ are sales when there are parking spots at store $i$ and $Y_{i0}$ are sales when there are no parking spots at store $i$. However, observing both outcomes is impossible.
 
-To compute the individual treatment effect we would have to know the amount of sales that would have happened in case the treatment was not assigned to e.g. store $A$. Not being able to observe an observation unit in both states (= with and without treatment) is called the **fundamental problem of causal inference**, essentially a missing data problem.
+To compute the individual treatment effect we would have to know the amount of sales that would have happened if a store without parking spots had parking spotrs. Not being able to observe an observation unit in both states (= with and without treatment/parking spots) is called the **fundamental problem of causal inference**, essentially a missing data problem.
 
 This is why technically the outcomes $Y_{i1}$ and $Y_{i0}$ are **potential outcomes**. To come from potential outcomes to the **observed outcome**, we can use the **switching equation**. For example for store $A$:
 
@@ -212,8 +208,10 @@ $$
 We can already see that for the treated stores, the ones with parking spots, the treatment effect is way higher. We can show that by calculating the average treatment effect for the treated ($D_i = 1$) and for the untreated ($D_i=0$).
 
 $$
-ATT = \frac{1}{2}(28+26) = 27 \\
-ATU = \frac{1}{2}(10+4) = 7
+\begin{align}
+ATT &= \frac{1}{2}(28+26) = 27 \\
+ATU &= \frac{1}{2}(10+4) = 7
+\end{align}
 $$
 
 But again, we cannot see the table as it is shown above but instead, what we would see is the following table.
@@ -260,7 +258,7 @@ The most obvious way to achieve similarity between treatment and control group i
 
 But what you should take from this chapter is the problem of confusing statistical estimates with causal estimates. Understanding this problem is essential for understanding the need to find tools and instruments to make treatment and control groups comparable and eliminate biases.
 
-There are very few scenarios where we can actually be confident not to take measures against biases but in most cases, especially when dealing with observational data, biases will arise. In business and management science, economic actors almost always attempt to achieve some optima, which is ultimately based on their potential outcomes and thus rendering simple comparisons improper.
+There are very few scenarios where we can actually be confident not to take measures against biases but in most cases, especially when dealing with observational data, we have to watch out for biases. In business and management science, economic actors almost always attempt to achieve some optima, which is ultimately based on their potential outcomes and thus rendering simple comparisons inadequate.
 
 ::: {.callout-tip icon="false"}
 ## If you're interested: evolution of causal inference.

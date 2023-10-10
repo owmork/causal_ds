@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2022-10-01">
+<meta name="dcterms.date" content="2023-10-16">
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Directed Acyclic Graphs</title>
 <style>
 code{white-space: pre-wrap;}
@@ -15,9 +15,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -44,43 +45,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -90,7 +61,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/toolbox/05_rct.html" rel="next">
 <link href="../../content/fundamentals/03_caus.html" rel="prev">
 <link href="../../images/favicon_cds_16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -104,7 +74,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -120,10 +91,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="../../styles.css">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar docked nav-fixed">
 
@@ -136,120 +108,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title"><b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b></span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../content/index.html" aria-current="page">
+    <a class="nav-link active" href="../../content/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../submission/submission.html">
+    <a class="nav-link" href="../../submission/submission.html" rel="" target="">
  <span class="menu-text">Submission</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion"><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
-</i> 
- <span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science" rel="" target="">
+ <span class="menu-text"><iconify-icon inline="" icon="cib:mattermost" style="font-size: 1.25em;"></iconify-icon></span></a>
   </li>  
 </ul>
-<div id="quarto-search" class="" title="Search"></div>
+<div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Directed Acyclic Graphs</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/fundamentals/01_a_prob.html"><b>Fundamentals</b></a></li><li class="breadcrumb-item"><a href="../../content/fundamentals/04_dag.html">Directed Acyclic Graphs</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../../content/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Introduction</b></span></a>
   </div>
 </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Fundamentals</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><b>Fundamentals</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link">Probability Theory</a>
+  <a href="../../content/fundamentals/01_a_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link">Statistical Concepts</a>
+  <a href="../../content/fundamentals/01_b_stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">Regression and Statistical Inference</a>
+  <a href="../../content/fundamentals/02_reg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression and Statistical Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">Causality</a>
+  <a href="../../content/fundamentals/03_caus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Causality</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link active">Directed Acyclic Graphs</a>
+  <a href="../../content/fundamentals/04_dag.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Directed Acyclic Graphs</span></a>
   </div>
 </li>
       </ul>
 </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Toolbox</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><b>Toolbox</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">Randomized Controlled Trials</a>
+  <a href="../../content/toolbox/05_rct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomized Controlled Trials</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">Matching and Subclassification</a>
+  <a href="../../content/toolbox/06_match.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching and Subclassification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link">Difference-in-Differences</a>
+  <a href="../../content/toolbox/07_did.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Difference-in-Differences</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">Instrumental Variables</a>
+  <a href="../../content/toolbox/08_iv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instrumental Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">Regression Discontinuity</a>
+  <a href="../../content/toolbox/09_rdd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression Discontinuity</span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -284,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block">Directed Acyclic Graphs</h1>
+<h1 class="title">Directed Acyclic Graphs</h1>
 </div>
 
 
@@ -295,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 1, 2022</p>
+      <p class="date">October 16, 2023</p>
     </div>
   </div>
   
@@ -304,44 +296,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
 
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
-<p>We have already learned that correlation and causation can easily be confused. Now, we will define concepts and acquire tools that help us in developing credible identification strategies to separate correlation from causation. One essential part is <strong>graphically modeling your theoretical knowledge</strong> about the data-generating process.</p>
-<p>In causal inference, <strong>directed acylic graphs</strong> (<strong>DAGs)</strong> do the graphic modeling part. They are the foundation of any analysis strategy and moreover communicate your research plan.</p>
-<p>DAGs show what variables are important for your analysis and how you think they are related. Information to draw a DAG can come things like:</p>
+<p>We have already learned that correlation and causation can easily be confused. Now, we will define concepts and acquire tools that help us to develop credible identification strategies to separate correlation from causation. One essential part is <strong>graphically modeling your theoretical knowledge</strong> about the data-generating process.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data-generating process (DGP) refers to the underlying mechanisms that generate the data we observe. It represents real-world processes that produce the data points we analyze.</p>
+</div>
+</div>
+<p>In causal inference, <strong>directed acylic graphs</strong> (<strong>DAGs)</strong> do the graphic modeling part. They are the foundation of any analysis strategy and communicate your research plan.</p>
+<p>DAGs show what variables are important for your analysis and how you think they are related. Information to draw a DAG can come from things like:</p>
 <ul>
-<li><p>Domain knowledge</p></li>
-<li><p>State-of-the art theory</p></li>
-<li><p>Plausible assumptions and hypotheses</p></li>
-<li><p>Observations and experiences</p></li>
-<li><p>Conversations with experts</p></li>
+<li>Domain knowledge</li>
+<li>State-of-the art theory</li>
+<li>Plausible assumptions and hypotheses</li>
+<li>Observations and experiences</li>
+<li>Conversations with experts</li>
 </ul>
 <p>A DAG should map what you know about the phenomena you are studying into a visual representation. By deciding how to draw your graph you have to ask yourself:</p>
 <ul>
-<li><p>Between what variables do you think is <strong>a causal relationship</strong>?</p></li>
-<li><p>Between what variables there is <strong>no causal relationship</strong>?</p></li>
+<li>Between what variables do you think is <strong>a causal relationship</strong>?</li>
+<li>Between what variables there is <strong>no causal relationship</strong>?</li>
 </ul>
 <p>Besides being helpful in guiding your analysis and identification strategy, DAGs also show your research design to your audience.</p>
-<p>A simple example of a DAG could be the effect of having an university degree on future salary: at first, it might be intuitive to say that future salary increases when you get an university degree.</p>
+<p>A simple example of a DAG could be the effect of having a university degree on future salary: at first, it might be intuitive to say that future salary increases when you get an university degree.</p>
 <div>
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.dagitty.net">dagitty</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/malcolmbarrett/ggdag">ggdag</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-causal/ggdag">ggdag</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># without confounder</span></span>
-<span><span class="va">schooling_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span><span class="va">schooling_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">salary</span> <span class="op">~</span> <span class="va">uni_degree</span>,</span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>uni_degree <span class="op">=</span> <span class="fl">1</span>, salary <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
 <span>                y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>uni_degree <span class="op">=</span> <span class="fl">1</span>, salary <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">schooling_1</span>, use_labels <span class="op">=</span> <span class="st">"name"</span>, text <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">schooling_1</span>, use_labels <span class="op">=</span> <span class="st">"name"</span>, text <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span>
 <span><span class="co"># with confounder</span></span>
-<span><span class="va">schooling_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span><span class="va">schooling_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">uni_degree</span> <span class="op">~</span> <span class="va">ability</span>,</span>
 <span>  <span class="va">salary</span> <span class="op">~</span> <span class="va">ability</span>,</span>
 <span>  <span class="va">salary</span> <span class="op">~</span> <span class="va">uni_degree</span>,</span>
@@ -350,11 +355,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">schooling_2</span>, use_labels <span class="op">=</span> <span class="st">"name"</span>, text <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">schooling_2</span>, text <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/repel.html">geom_dag_label_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
@@ -368,13 +374,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>But zooming out and thinking about why a university degree is correlated with higher salaries could lead you to the idea that both university degree and salary are influenced by individuals’ ability. People who are more capable tend to go to university and will be more successful in their later career regardless of the university degree.</p>
+<p>But zooming out and thinking about why a university degree is correlated with higher salaries could lead you to the conclusion that both university degree and salary are influenced by individuals’ ability. People who are more capable tend to go to university and will be more successful in their later career regardless of the university degree.</p>
 <p>It is very likely that the truth is that both ability and university degree are factors for future salary, but just to get your assumptions clear and guide you in your research strategy, DAGs are of a great benefit.</p>
 </section><section id="notation" class="level1"><h1>Notation</h1>
 <p>Let’s have a look at a generic DAG to dive into the notation.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Confounder</span></span>
-<span><span class="va">confounding</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span><span class="va">confounding</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">X</span> <span class="op">~</span> <span class="va">Z</span>,</span>
 <span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">Z</span>,</span>
 <span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">X</span>,</span>
@@ -383,11 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">confounding</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">confounding</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="04_dag_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -413,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One element is a chain of random variables where the causal effect flows in one direction.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Chain</span></span>
-<span><span class="va">chain</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span><span class="va">chain</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">Z</span>,</span>
 <span>  <span class="va">Z</span> <span class="op">~</span> <span class="va">X</span>,</span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Y <span class="op">=</span> <span class="fl">3</span>, Z <span class="op">=</span> <span class="fl">2</span>, X <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
@@ -421,11 +427,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">chain</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">chain</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="04_dag_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -435,24 +441,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>An example of such a causal mechanism (page 37, Pearl) could be the effect of work hours on training and training on race time. In the DAG, the variables would be:</p>
 <ul>
-<li><p><span class="math inline">\(X\)</span>: work hours</p></li>
-<li><p><span class="math inline">\(Z\)</span>: training</p></li>
-<li><p><span class="math inline">\(Y\)</span>: race time</p></li>
+<li>
+<span class="math inline">\(X\)</span>: work hours</li>
+<li>
+<span class="math inline">\(Z\)</span>: training</li>
+<li>
+<span class="math inline">\(Y\)</span>: race time</li>
 </ul>
 <p>This mechanism is also sometimes called mediation, because <span class="math inline">\(Z\)</span> mediates the effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>.</p>
 <p>In terms of dependencies,</p>
 <ul>
-<li><p><span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>: dependent, as indicated by the arrow.</p></li>
-<li><p><span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span>: dependent, as indicated by the arrow.</p></li>
-<li><p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: dependent, as indicated by the arrow (going through <span class="math inline">\(Z\)</span>).</p></li>
-<li><p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> conditional on <span class="math inline">\(Z\)</span>: independent, because when we condition on the training amount, that means we hold training amount fixed at a particular level, then there is no effect from work hours to race time as there is no direct effect, but only an effect through the amount of training. In other words, for individuals that differ in the hours they work but still have the same amount of training, there is no association between working hours and race time.</p></li>
+<li>
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>: dependent, as indicated by the arrow. If you work longer hours, you can train less.</li>
+<li>
+<span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span>: dependent, as indicated by the arrow. If you train more, your race time improves.</li>
+<li>
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: dependent, as indicated by the arrow (going through <span class="math inline">\(Z\)</span>). More work leads to less training and worse race time.</li>
+<li>
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> conditional on <span class="math inline">\(Z\)</span>: independent, because when we condition on the training amount, that means we hold training amount fixed at a particular level, then there is no effect from work hours to race time as there is no direct effect, but only an effect through the amount of training. In other words, for individuals that differ in the hours they work but still have the same amount of training, there is no association between working hours and race time.</li>
 </ul>
 <p><strong>Rule:</strong> <em>Two variables,</em> <span class="math inline">\(X\)</span> <em>and</em> <span class="math inline">\(Y\)</span><em>, are conditionally independent given</em> <span class="math inline">\(Z\)</span><em>, if there is only one unidirectional path between</em> <span class="math inline">\(X\)</span> <em>and</em> <span class="math inline">\(Y\)</span> <em>and</em> <span class="math inline">\(Z\)</span> <em>is any set of variables that intercepts that path.</em></p>
 </section><section id="fork" class="level2"><h2 class="anchored" data-anchor-id="fork">Fork</h2>
 <p>Another mechanism is the fork, also called common cause.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fork</span></span>
-<span><span class="va">fork</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span><span class="va">fork</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">X</span> <span class="op">~</span> <span class="va">Z</span>,</span>
 <span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">Z</span>,</span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Y <span class="op">=</span> <span class="fl">3</span>, Z <span class="op">=</span> <span class="fl">2</span>, X <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
@@ -460,11 +473,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">fork</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">fork</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="04_dag_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -474,21 +487,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The reason it is called common cause is that, as depicted above, both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are caused by <span class="math inline">\(Z\)</span>.</p>
 <p>To illustrate it, consider the following scenario: <span class="math inline">\(Z\)</span> represents the temperature in a particular town and <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> represent ice cream sales and number of crimes in that same town, respectively.</p>
+<ul>
+<li>
+<span class="math inline">\(X\)</span>: ice cream sales</li>
+<li>
+<span class="math inline">\(Z\)</span>: temperature</li>
+<li>
+<span class="math inline">\(Y\)</span>: number of crimes</li>
+</ul>
 <p>Then, you could hypothesize that with increasing temperature people start to eat and buy more ice cream and also more crimes will happen as more people are outside which presents a greater opportunity for crime. Therefore ice cream sales and number of crimes tend to behave similarly in terms of direction and magnitude, they correlate.</p>
 <p>However, there is no reason to assume there is a causal relationship between ice cream sales and the number of crimes.</p>
 <p>Again, let’s check in term of dependencies:</p>
 <ul>
-<li><p><span class="math inline">\(Z\)</span> and <span class="math inline">\(X\)</span>: dependent, as indicated by arrow.</p></li>
-<li><p><span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span>: dependent, as indicated by arrow.</p></li>
-<li><p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: dependent, as both are influenced by <span class="math inline">\(Z\)</span>. <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> change both with variation in <span class="math inline">\(Z\)</span>.</p></li>
-<li><p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> conditional on <span class="math inline">\(Z\)</span>: independent, as for a fixed level of temperature, there is no association anymore.</p></li>
+<li>
+<span class="math inline">\(Z\)</span> and <span class="math inline">\(X\)</span>: dependent, as indicated by arrow. Higher temperature leads to more ice cream sales.</li>
+<li>
+<span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span>: dependent, as indicated by arrow. Higher temperature leads to more crimes.</li>
+<li>
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: dependent, as both are influenced by <span class="math inline">\(Z\)</span>. <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> change both with variation in <span class="math inline">\(Z\)</span>. Variation in temperature affects ice cream sales and number of crimes simultaneously.</li>
+<li>
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> conditional on <span class="math inline">\(Z\)</span>: independent, as for a fixed level of temperature, there is no association anymore.</li>
 </ul>
 <p><strong>Rule:</strong> <em>If variable</em> <span class="math inline">\(Z\)</span> <em>is a common cause of variables</em> <span class="math inline">\(X\)</span> <em>and</em> <span class="math inline">\(Y\)</span>, and there is only one path between <span class="math inline">\(X\)</span> <em>and</em> <span class="math inline">\(Y\)</span>, then <span class="math inline">\(X\)</span> <em>and</em> <span class="math inline">\(Y\)</span><em>are independent conditional on X.</em></p>
 </section><section id="collision" class="level2"><h2 class="anchored" data-anchor-id="collision">Collision</h2>
 <p>The last mechanism is the collision, which is also called common effect.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Collider</span></span>
-<span><span class="va">collider</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span><span class="va">collider</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">Z</span> <span class="op">~</span> <span class="va">X</span>,</span>
 <span>  <span class="va">Z</span> <span class="op">~</span> <span class="va">Y</span>,</span>
 <span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Y <span class="op">=</span> <span class="fl">3</span>, Z <span class="op">=</span> <span class="fl">2</span>, X <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
@@ -496,11 +521,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">collider</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">collider</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="04_dag_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -511,29 +536,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It is the reflection of the fork and both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have a common effect on the collision node <span class="math inline">\(Z\)</span>.</p>
 <p>This time, as we are already used to it, we will start to list the dependencies and then use an example for illustration:</p>
 <ul>
-<li><p><span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>: dependent, as indicated by arrow.</p></li>
-<li><p><span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>: dependent, as indicated by arrow.</p></li>
-<li><p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: independent, there is no path between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p></li>
-<li><p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> conditional on <span class="math inline">\(Z\)</span>: dependent.</p></li>
+<li>
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>: dependent, as indicated by arrow.</li>
+<li>
+<span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>: dependent, as indicated by arrow.</li>
+<li>
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: independent, there is no path between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</li>
+<li>
+<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> conditional on <span class="math inline">\(Z\)</span>: dependent.</li>
 </ul>
 <p>A popular way to illustrate the common effect, especially the last dependency, is to take an example that is related to Berkson’s paradox.</p>
 <p>For example, imagine the variables to be:</p>
 <ul>
-<li><p><span class="math inline">\(X\)</span>: attractiveness</p></li>
-<li><p><span class="math inline">\(Y\)</span>: talent</p></li>
-<li><p><span class="math inline">\(Z\)</span>: celebrity</p></li>
+<li>
+<span class="math inline">\(X\)</span>: attractiveness</li>
+<li>
+<span class="math inline">\(Y\)</span>: talent</li>
+<li>
+<span class="math inline">\(Z\)</span>: celebrity</li>
 </ul>
 <p>First of all, in the general population, there is no correlation between attractiveness and talent (3rd dependency). Second, being either attractive or having a talent will help you to become a celebrity (1st and 2nd dependency).</p>
 <p>But what about the last dependency? Why are attractiveness and talent suddenly correlated when conditioned on e.g.&nbsp;being a celebrity? That is because when you know someone is a celebrity and has no talent, the likelihood that he/she is attractive increases because otherwise he/she would likely not be a celebrity. Vice versa, if you know someone is a celebrity and is not attractive, he/she is probably talented in some form.</p>
 <p><strong>Rule:</strong> <em>If a variable</em> <span class="math inline">\(Z\)</span> <em>is the collision node between two variables</em> <span class="math inline">\(X\)</span> <em>and</em> <span class="math inline">\(Y\)</span>, and there is only one path between <span class="math inline">\(X\)</span> <em>and</em> <span class="math inline">\(Y\)</span>, then <span class="math inline">\(X\)</span> <em>and</em> <span class="math inline">\(Y\)</span> <em>are unconditionally independent but are dependent conditional on</em> <span class="math inline">\(Z\)</span> <em>(and any descendants of</em> <span class="math inline">\(Z\)</span>)<em>.</em></p>
 </section></section><section id="causal-identification" class="level1"><h1>Causal Identification</h1>
-<p>You might wonder why we put such an emphasis on the dependencies in the previous sections. In fact, to isolate causal effects it is crucial to know how to interpret DAGs based on the dependence structure. Understanding what paths between what variables can bias effects is maybe the most important concept of causal inference.</p>
+<p>You might wonder why we put such an emphasis on the dependencies in the previous sections. In fact, to isolate causal effects it is crucial to know how to interpret DAGs based on the dependence structure. Understanding what paths between what variables can bias effects might be the most important concept of causal inference.</p>
 <p>Again, to understand the theory we will rely on simple examples and you will see a lot of similarities to the section above.</p>
 <section id="confounding" class="level2"><h2 class="anchored" data-anchor-id="confounding">Confounding</h2>
 <p>A very common problem when trying to prove causal effects is confounding.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Confounder</span></span>
-<span><span class="va">confounding</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span><span class="va">confounding</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">X</span> <span class="op">~</span> <span class="va">Z</span>,</span>
 <span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">Z</span>,</span>
 <span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">X</span>,</span>
@@ -545,11 +577,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">confounding</span>, use_labels <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">confounding</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/repel.html">geom_dag_label_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">label</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="04_dag_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -571,10 +604,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>However, the main problem is that in many cases you might not be able to block the path for two different reasons:</p>
 <ul>
 <li><p>You are aware of the confounder, but you did not collect data for it</p></li>
-<li><p>You are not aware of the confounder (and probably did not collect data for it)</p></li>
+<li><p>You are not aware of the confounder (and probably did not collect data for it either)</p></li>
 </ul>
 <p>This stresses the importance of theoretical knowledge about the phenomenon you are researching. Without it, it is very unlikely that you can prove truly causal effects. The risk of not paying attention to confounders gets clear when we look at graphs visualizing an example of Simpson’s paradox: accounting for a third variable reverses the sign of correlation.</p>
-<p>We can illustrate it with an imaginary example. Let’s assume you want to measure how a specific characteristic affects salary. So you start to collect data about both variables, throw them into a regression and your result tells you that there is a positive correlation. But what happens if you take the education level into account? You can see how the lines show a positive correlation on the left and a negative correlation on the right. When you include a third variable, the relationship reverses.</p>
+<p>We can illustrate it with an imaginary example. Let’s assume you want to measure how a specific characteristic affects salary. So you start to collect data about both variables, throw them into a regression and your result tells you that there is a positive correlation. But what happens if you take the education level into account? You can see how the lines show a positive correlation on the left and a negative correlations on the right. Including a third variable, namely the confounder, the relationship reverses.</p>
 <p>It is neither wrong or right to always include or exclude variables, but it depends on the application and question you want to answer. This is why causal reasoning is so important.</p>
 <div>
 <details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Simpson's paradox ----</span></span>
@@ -631,7 +664,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You probably noticed that the confounding example was related to the common cause in the previous section. The next example is related to the common effect mechanism.</p>
 <div class="cell" data-layout-align="center">
 <details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Collider   </span></span>
-<span><span class="va">collider</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span><span class="va">collider</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">Z</span> <span class="op">~</span> <span class="va">X</span>,</span>
 <span>  <span class="va">Z</span> <span class="op">~</span> <span class="va">Y</span>,</span>
 <span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">X</span>,</span>
@@ -643,11 +676,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">collider</span>, use_labels <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">collider</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/node_point.html">geom_dag_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_text.html">geom_dag_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/repel.html">geom_dag_label_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">label</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="04_dag_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -662,7 +696,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This case (collider) is different to the case before (confounding), where conditioning was the correct solution. But <strong>if you have a collider in you DAG, make sure not to condition on it</strong> as it creates a dependence between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. You “open” a backdoor path that was closed before, just due to the presence of the collider.</p>
 <p>Collider bias often arises when your sample is not very representative of the population you are making claims about. How that could change your result can be seen in an example Berkson’s paradox. While there is no correlation for the whole population, for smaller subgroups there are. And therefore, it is crucial that you clearly state what effect you are interested in.</p>
 <div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Berkson's paradox ----</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Berkson's paradox ----</span></span>
 <span></span>
 <span><span class="co"># Simulate data</span></span>
 <span><span class="co"># number of observations</span></span>
@@ -699,7 +733,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co"># Plot both</span></span>
 <span><span class="va">berk_not_cond</span></span>
 <span><span class="va">berk_cond</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel">
+</details><div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="04_dag_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img"></a></p>
@@ -713,18 +747,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section></section><section id="simulating-interventions" class="level1"><h1>Simulating interventions</h1>
-<p>As you could see in the previous sections, DAGs help us to find out, in a non-technical but graphical way, how we are able to isolate the causal estimate we are interested in. And not explicitly stating our understanding of the data-generating process can easily lead us to wrong conclusions.</p>
+<p>As you could see in the previous sections, DAGs help us to find out, in a non-technical but graphical way, how we are able to isolate the causal estimate we are interested in. Without explicitly stating our understanding of the data-generating process we can easily come up with wrong conclusions.</p>
 <section id="d-separation" class="level2"><h2 class="anchored" data-anchor-id="d-separation">d-separation</h2>
 <p>One concept, that we have not named yet but implicitly used, is <strong>d-separation</strong>. If an effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is d-separated, there is no statistical association that can flow between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> except for the direct effect. In fact, d-separation determines conditional independence.</p>
 <p>D-separation formalizes what we have already learned when going through the tree types of association.</p>
-<p>Practically (<a href="http://bayes.cs.ucla.edu/BOOK-2K/d-sep.html" class="uri">http://bayes.cs.ucla.edu/BOOK-2K/d-sep.html</a>) , it is easier to define the opposite, <strong>d-connection</strong>:</p>
+<p>Practically<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, it is easier to define the opposite, <strong>d-connection</strong>:</p>
 <ul>
 <li><p><strong>Rule 1:</strong> unconditional separation: <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are d-connected if there is an unblocked path between them. (As an example, imagine a confounder, that is not conditioned on.)</p></li>
 <li><p><strong>Rule 2:</strong> blocking by conditioning: <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are d-connected, conditioned on a set of <span class="math inline">\(Z\)</span> nodes, if there is a collider-free path between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> that traverses no member. (Think of a mediated effect that takes away parts from the direct effect.)</p></li>
 <li><p><strong>Rule 3</strong>: conditioning on colliders: If a collider is a member of conditioning set <span class="math inline">\(Z\)</span>, or has a descendant in <span class="math inline">\(Z\)</span>, then it no longer blocks any path that traces this collider. (Image the collider example in the previous section.)</p></li>
 </ul>
-<p>!!! MAYBE CHANGE TO <a href="https://de.wikipedia.org/wiki/D-Separation#:~:text=d%2DSeparation%20ist%20ein%20Begriff,die%20Separation%20in%20ungerichteten%20Graphen.">https://de.wikipedia.org/wiki/D-Separation</a></p>
-<p>Knowing these rules and having mapped our assumptions into the DAG allows us to treat observational data like experimental data and simulate interventions as we would have conducted an experiment. However, it is not a silver bullet as in many cases data availability will stop you from isolating the causal effect. For example, if you do not observer a confounder, you cannot control for it. All empirical work requires theory and with observational data we need to be extra careful to make sure to actually extract the effects we are interested in.</p>
+<!--# !!! MAYBE CHANGE TO https://de.wikipedia.org/wiki/D-Separation --><p>Knowing these rules and having mapped our assumptions into the DAG allows us to treat observational data like experimental data and simulate interventions as we would have conducted an experiment. However, it is not a silver bullet as in many cases data availability will stop you from isolating the causal effect. For example, if you do not observer a confounder, you cannot control for it. All empirical work requires theory and with observational data we need to be extra careful to make sure to actually extract the effects we are interested in.</p>
 </section><section id="backdoorfrontdoor-criterion" class="level2"><h2 class="anchored" data-anchor-id="backdoorfrontdoor-criterion">Backdoor/Frontdoor Criterion</h2>
 <p>Special cases that are derived from d-separation rules are the backdoor and frontdoor criterion/adjustment.</p>
 <p>To satisfy the backdoor criterion, we have to make sure all backdoors are closed, which, as already mentioned, differs for confounders and colliders.</p>
@@ -737,7 +770,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>a chain or a fork whose middle <strong>node is in</strong> <span class="math inline">\(Z\)</span></p></li>
 <li><p>a <strong>collider</strong> that is not conditioned on, which means it is <strong>not in</strong> <span class="math inline">\(Z\)</span></p></li>
 </ul>
-<p>The frontdoor criterion, which is actually a consecutive application of the backdoor criterion, is a bit more complicated and we will leave it out for now, but in a the section about instrumental variables we will deal with it extensively.</p>
+<p>The frontdoor criterion, which is actually a consecutive application of the backdoor criterion, is a bit more complicated and we will leave it out for now, but in the chapter about instrumental variables we will deal with it extensively.</p>
 </section><section id="algorithms-to-identify-causally-valid-estimates" class="level2"><h2 class="anchored" data-anchor-id="algorithms-to-identify-causally-valid-estimates">Algorithms to identify causally valid estimates</h2>
 <p>If DAGs become more complex because there are a lot of variables that are somehow related, we can make use of algorithms to check all the rules for us.</p>
 <p>One application to help in such cases is <a href="http://dagitty.net/dags.html#" class="uri">http://</a><a href="http://dagitty.net/dags.html#" class="uri" title="dagitty">dagitty</a><a href="http://dagitty.net/dags.html#" class="uri">.net/dags.html</a>, where you can draw your DAG, define what is the treatment and outcome, which variables are observed and unobserved and many other things. Then it will show you what kind of adjustment is necessary to estimate the causal effect of interest.</p>
@@ -751,7 +784,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.dagitty.net">dagitty</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/malcolmbarrett/ggdag">ggdag</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-causal/ggdag">ggdag</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create DAG from dagitty</span></span>
 <span><span class="va">dag_model</span> <span class="op">&lt;-</span> <span class="st">'dag {</span></span>
@@ -772,10 +805,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="st">}</span></span>
 <span><span class="st">'</span></span>
 <span><span class="co"># draw DAG</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/status.html">ggdag_status</a></span><span class="op">(</span><span class="va">dag_model</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/status.html">ggdag_status</a></span><span class="op">(</span><span class="va">dag_model</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span>, color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Disable the legend</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="04_dag_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -783,7 +816,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>Let’s check what paths there are from treatment <span class="math inline">\(D\)</span> to <span class="math inline">\(Y\)</span>. Of course, there is a direct path (the causal path) and there are two other paths, of which one is closed.</p>
+<p>Let’s check what paths there are from treatment <span class="math inline">\(D\)</span> to <span class="math inline">\(Y\)</span>. Of course, there is a direct path (the causal path) and there are two other paths, one of which is closed.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># find all paths</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/dagitty/man/paths.html">paths</a></span><span class="op">(</span><span class="va">dag_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -795,10 +828,10 @@ $open
 [1]  TRUE FALSE  TRUE</code></pre>
 </div>
 </div>
-<p>We can also plot the open paths. One path is already blocked by a collider (remember: we do not want to open that path).</p>
+<p>We can also plot the open paths. One path is already blocked by a collider (remember: we do not want to condition on a collider).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot paths</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/paths.html">ggdag_paths</a></span><span class="op">(</span><span class="va">dag_model</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/paths.html">ggdag_paths</a></span><span class="op">(</span><span class="va">dag_model</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -815,12 +848,12 @@ $open
 <pre><code>{ Z1 }</code></pre>
 </div>
 </div>
-<p>A very concise summary plot is returned by the function <code><a href="https://rdrr.io/pkg/ggdag/man/adjustment_sets.html">ggdag_adjustment_set()</a></code>, which shows what needs to be adjusted, the open paths and the whole DAG.</p>
+<p>A very concise summary plot is returned by the function <code><a href="https://r-causal.github.io/ggdag/reference/adjustment_sets.html">ggdag_adjustment_set()</a></code>, which shows what needs to be adjusted, the open paths and the whole DAG.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot adjustment sets</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/adjustment_sets.html">ggdag_adjustment_set</a></span><span class="op">(</span><span class="va">dag_model</span>, shadow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/adjustment_sets.html">ggdag_adjustment_set</a></span><span class="op">(</span><span class="va">dag_model</span>, shadow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_dag_cds</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggdag/man/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://r-causal.github.io/ggdag/reference/geom_dag_edges.html">geom_dag_edges</a></span><span class="op">(</span>edge_color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="04_dag_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="04_dag_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -840,31 +873,34 @@ $open
 <li>
 <p>Load the data file <code>customer_sat.rds</code>. A company sells a SaaS (Software as a service) to business clients that chose to subscribe to one of the three subscription levels, <em>Starter</em>, <em>Premium</em> or <em>Elite</em>, which provide different features at different price points (more storage and other capabilities). <em>Starter</em> has the least functionality, while <em>Elite</em> includes the most features.</p>
 <p>Now imagine, you are working as an analyst for that company and are asked to examine the relationship between follow-up calls to the clients and their satisfaction with the product and service. Follow-up calls are voluntary and are just to help the client with possible problems and so on. Satisfaction is measured on a weekly basis by surveying the clients.</p>
-<p>In the data, you find three variables: <span class="math inline">\(satisfaction\)</span>, <span class="math inline">\(follow\_ups\)</span> and <span class="math inline">\(subscription\)</span>. Perform the following steps:</p>
+<p>In the data, you find three variables: <code>satisfaction</code>, <code>follow_ups</code> and <code>subscription</code>. Perform the following steps:</p>
 <ol type="1">
-<li><p>regress <span class="math inline">\(satisfaction\)</span> on <span class="math inline">\(follow\_ups\)</span></p></li>
-<li><p>regress <span class="math inline">\(satisfaction\)</span> on <span class="math inline">\(follow\_ups\)</span> and account for <span class="math inline">\(subscription\)</span></p></li>
+<li><p>regress <code>satisfaction</code> on <code>follow_ups</code></p></li>
+<li><p>regress <code>satisfaction</code> on <code>follow_ups</code> and account for <code>subscription</code></p></li>
 </ol>
 </li>
 <li><p>Compare the coefficients and find a possible explanation.</p></li>
 <li><p>Plot the data. You’ll find a similar plot in this chapter, that you can copy some lines from.</p></li>
 </ol>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 How to submit your solutions!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
+<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to successfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
 </div>
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p><a href="http://bayes.cs.ucla.edu/BOOK-2K/d-sep.html" class="uri">http://bayes.cs.ucla.edu/BOOK-2K/d-sep.html</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -891,9 +927,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -958,6 +1008,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1002,16 +1138,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/toolbox/05_rct.html" class="pagination-link">
-        <span class="nav-page-text">Randomized Controlled Trials</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":true,"descPosition":"bottom","openEffect":"zoom","selector":".lightbox"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":true,"openEffect":"zoom"});</script>
 
 
 </body></html>

@@ -192,8 +192,7 @@ A related measure is the standard deviation, which does not have as many desirab
 
 $$
 \sigma = \sqrt{\sigma^2}
-$$
-Take a look at this interactive histogram. You can set the mean (or: expected value) and the standard deviation. See how a high standard deviation leads to larger proportions of the data being far away from the expected value.
+$$ Take a look at this interactive histogram. You can set the mean (or: expected value) and the standard deviation. See how a high standard deviation leads to larger proportions of the data being far away from the expected value.
 
 ```{ojs}
 //| echo: false
@@ -234,11 +233,9 @@ Plot.plot({
 In R, we can compute variance and standard deviation with the following commands.
 
 ::: callout-note
-
 | `rnorm(n, mean, sd)` samples values from the normal distribution. `n` specifies the number of values, `mean` and `sd` define the parameters of the normal distribution.
 
 | To compute variance and standard deviation, use `var()` and `sd()`, respectively.
-
 :::
 
 ```{r}
@@ -248,7 +245,6 @@ X_high_var <- rnorm(1e+4, mean = 0, sd = 10)  # high variance
 print(paste("Low variance case. Variance =", var(X_low_var), "Standard deviation =", sd(X_low_var)))
 print(paste("High variance case. Variance =", var(X_low_var), "Standard deviation =", sd(X_low_var)))
 ```
-
 
 ::: callout-tip
 A useful and convenient properties of the variance is that constants have a variance of 0. But if you want to scale a random variable by a constant factor of $a$, then the variance will increase by $a^2$.
@@ -348,7 +344,7 @@ sd_filtered = transpose(sd_data).filter(function(sd_tbl) {
 
 # Covariance and Correlation
 
-Two more important concepts to understand variability in data are the related concepts of covariance and correlation. Covariance determines the relationship between two or more random variables, i.e. how they behave to each other. For example, when the weather is hot, there are more ice cream sales, so these two random variables move in the same direction. Others do not have any statistical association or move into opposite direction. A high, positive covariance indicates that two random variables move into the same direction, a high, negative covariance means that two random variables move in opposite directions. 
+Two more important concepts to understand variability in data are the related concepts of covariance and correlation. Covariance determines the relationship between two or more random variables, i.e. how they behave to each other. For example, when the weather is hot, there are more ice cream sales, so these two random variables move in the same direction. Others do not have any statistical association or move into opposite direction. A high, positive covariance indicates that two random variables move into the same direction, a high, negative covariance means that two random variables move in opposite directions.
 
 If you remember the rules of probability theory from the previous chapter, you won't be surprised that if the equality $E(XY) = E(X)E(Y)$ holds, it implies a *covariance* of 0 between the variables $X$ and $Y$. *Covariance* is a measure of linear dependency and hence, independence implies a covariance of 0. Looking back at the formula of the variance of the sum of two random variables, we can define the variance of a sum of two random variables as sum of the individual variances of both random variables plus two times their covariance.
 
@@ -362,8 +358,7 @@ But, similar to variance, the interpretation of a covariance is not very easy an
 
 $$
 \text{Corr}(X,Y) = \dfrac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}
-$$
-The *correlation* is a standardized measure and is by construction bound between -1 and 1. High values in magnitude (close to 1 or -1) indicate a very strong linear relationship, while the direction of this relationship is represented by the algebraic sign.
+$$ The *correlation* is a standardized measure and is by construction bound between -1 and 1. High values in magnitude (close to 1 or -1) indicate a very strong linear relationship, while the direction of this relationship is represented by the algebraic sign.
 
 ```{r}
 #| echo: false

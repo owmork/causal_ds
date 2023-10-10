@@ -78,3 +78,15 @@ div.callout-warning .callout-toggle::before {
   width: auto;
 }
 
+.navbar {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar {
+  color: #9a9b9c;
+}
+
+.nav-link {
+  font-size: .875rem;
+}

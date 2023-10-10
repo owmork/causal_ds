@@ -1,7 +1,7 @@
 ---
 title: "Matching and Subclassification"
 linktitle: "Matching and Subclassification"
-date: "2022-11-23"
+date: "2023-10-16"
 output:
   blogdown::html_page:
     toc: true
@@ -45,7 +45,7 @@ source("../../code/dag_theme.R")
 
 # Problem
 
-Almost always, the problem we are trying to solve in causal inference relates to the **fundamental problem of causal inference**, the fact that we cannot observe two states for one particular observation unit, e.g. we cannot see how a person's health status changes after taking a specific drug and after not taking the same drug. Consequently, we cannot know the individual treatment effect.
+Almost always, the problem we are trying to solve in causal inference relates to the **fundamental problem of causal inference**, the fact that we cannot observe two states for one particular observation unit, e.g. we cannot see how a person's health status after taking a specific drug and after not taking the same drug. Consequently, we cannot know the individual treatment effect.
 
 Thus, we said we can make use of averages and try to estimate the average treatment effect by taking the difference between a group of treated observation units and a group of untreated observation units. Written in a formula, we can present it as
 
@@ -58,7 +58,7 @@ Assuming that individuals (or other kinds of observation units) were randomly as
 But the estimate hinges on the assumption that both groups are comparable, formally
 
 $$
-E[Y_0|D=0] = E[Y_1|D=0]
+E[Y_0|D=0] = E[Y_0|D=1]
 $$
 
 which we cannot test but in randomized settings we have good reason to believe it to be true. Under these circumstances, average treatment effect ($ATE$) and the average treatment effect on the treated ($ATT$) are equal.
@@ -152,7 +152,7 @@ model_better1_fitted <- expand_grid(education = seq(8, 30, 0.1),
   broom::augment(model_better1, newdata = .)
 ```
 
-Just imagine your measuring an arbitrary outcome and an arbitrary treatment confounded by years of education. When we plot the initial situation we see that for a low level of education and for a high level of education there are no treated observations. In causal inference lingo, treatment assignment is not independent from other factors, it is endogenous.
+Just imagine your measuring an arbitrary outcome and an arbitrary treatment confounded by years of education. When we plot the initial situation we see that for a low level of education and for a high level of education there are no treated observations. In causal inference lingo, **treatment assignment** is not independent from other factors, it is **endogenous**.
 
 ```{r}
 #| echo: false
@@ -166,7 +166,7 @@ ggplot(all_data, aes(x = education, y = outcome, color = treatment)) +
         legend.margin = margin(t = 0, b = 0))
 ```
 
-When we plot a line through all blue and red points, respectively and check the difference between the two lines, we see that there is substantial difference between both groups. This difference is what we would get when we run a regression on all points. It indicates a positive treatment effect.
+When we plot one line through all blue and one line through all red points and check the difference between the two lines, we see that there is substantial difference between both groups. This difference is what we would get as a treatment effect when we run a regression on all points. It indicates a positive treatment effect as the red line is above the blue line.
 
 ```{r}
 #| echo: false
@@ -187,7 +187,7 @@ ggplot(all_data, aes(x = education, y = outcome, color = treatment)) +
         legend.margin = margin(t = 0, b = 0))
 ```
 
-However, the lines clearly don't fit the data very well because there does not seem to be a linear relationship. To account for non-linearities, you can introduce e.g. square terms to the regression, here $Z^2$ or $education^2$, respectively. Then, the fit improves, in particular for the untreated data points. But what happened to the treatment effect? Now there is negative treatment effect smaller in magnitude than the previous positive treatment effect. We already see that the estimate is highly dependent on the choice of our particular model. This is why we should always put a lot of consideration into choosing the right model (which is not necessarily the one with the largest or most desired treatment effect).
+However, the lines clearly don't fit the data very well because there does not seem to be a linear relationship. To account for non-linearities, you can introduce e.g. square terms to the regression, here $Z^2$ or $education^2$, respectively. Then, the fit improves, in particular for the untreated data points. But what happened to the treatment effect? There is still a positive treatment effect but now smaller in magnitude than the previous treatment effect. We already see that the estimate is highly dependent on the choice of our particular model. This is why we should always put a lot of consideration into choosing the right model (which is not necessarily the one with the largest or most desired treatment effect).
 
 ```{r}
 #| echo: false
@@ -211,7 +211,7 @@ ggplot(all_data, aes(x = education, y = outcome, fill = treatment, color = treat
         legend.margin = margin(t = 0, b = 0))
 ```
 
-But we still have not really dealt with the fact that there are some regions where there are only units from one group. So let's think about what we would have to do to adjust for the confounder $Z$. Ideally, we would like to compare treated and control group in an area where both groups are present. So the lower and upper region should actually be left out. Only where there is overlap of both groups, we can compare apples with apples. Focusing only on this (somewhat arbitrary) data points and drawing the lines and curves for both specifications of the regression, we get another different result. Now it seems, that there is no effect at all.
+But we still have not really dealt with the fact that there are some regions where there are only units from one group. So let's think about what we would have to do to adjust for the confounder $Z$. Ideally, we would like to compare treated and control group in an area where both groups are present. So the lower and upper region should actually be left out. Only where there is overlap of both groups, we can compare apples with apples. Focusing only on this (somewhat arbitrary) data points and drawing the lines and curves for both specifications of the regression, we get another different result. Now it seems, that there is a really small (probably ignorable) negative effect.
 
 ```{r}
 #| echo: false
@@ -233,13 +233,13 @@ ggplot(all_data, aes(x = education, y = outcome, fill = treatment, color = treat
         legend.margin = margin(t = 0, b = 0))
 ```
 
-So, how do we know what units to select, especially when there is more than one dimension? We will explore some techniques in the following sections but the short answer is: we need to create a balance for vales of all confounding variables treatment and control group, i.e. treatment and control group should be as similar as possible. And of course, we also need to assume, that all confounding variables are observed.
+So, how do we know what units to select, especially when there is more than one dimension? We will explore some techniques in the following sections but the short answer is: we need to create a balance for values of all confounding variables treatment and control group, i.e. treatment and control group should be as similar as possible. And of course, we also need to assume, that all confounding variables are observed.
 
 # Subclassification Estimator
 
-Although not often used in practice, the subclassification estimator is an intuitive way of thinking about matching comparable observations and thereby controlling for confounders.
+Although rarely used in practice, the subclassification estimator is an intuitive way of thinking about matching comparable observations and thereby controlling for confounders.
 
-Essentially, the subclassification estimator **estimates local treatment effects withing small groups that share the same values for (confounding) covariates**. Sometimes, values does not need to be the same but only similar, e.g. for continuous variables like age it is very unlikely to find another observation unit with the exact same birthday, so you would define e.g. a birthyear. By only comparing observations in a small subgroup as defined by the covariates, conditional independence is ensured as there is no variation in the confounding variable.
+Essentially, the subclassification estimator **estimates local treatment effects withing small groups that share the same values for (confounding) covariates**. Sometimes, values does not need to be the same but only similar, e.g. for continuous variables like age it is very unlikely to find another observation unit with the exact same birthday, so you would define e.g. a birthyear. By only comparing observations in a small subgroup as defined by the covariates, conditional independence is ensured as there is **no variation in the confounding variable**.
 
 Imagine, that a treatment was not randomly assigned for women and men and sex also plays a role for the outcome as well. One imaginary example could be the effect of a trainee program on later salary that was advertised more heavily to women and therefore more women participated. And being a women might also have an impact on salary. Then, we have the situation of a confounding variable, sex, and to control for it, we estimate a treatment effect for women and a treatment effect for men and average the effects weighted by the respective subsample size.
 
@@ -250,8 +250,8 @@ To check how that affects the estimated treatment effect we can simulate some da
 n <- 1e+3
 
 # Variables
-Z <- rbernoulli(n, 0.5) # 0 => Male, 1 => Female
-D <- rbernoulli(n, p = if_else(Z, 0.65, 0.35)) # 1 => Treat, 0 => Control
+Z <- rbinom(n, 1, 0.5) # 0 => Male, 1 => Female
+D <- rbinom(n, 1, p = if_else(as.logical(Z), 0.65, 0.35)) # 1 => Treat, 0 => Control
 Y <- 0.2*D - 0.2*Z + rnorm(n, 5, 0.1) # => Salary
 
 # Create tibble
@@ -262,7 +262,11 @@ df <- tibble(
 )
 ```
 
-$Z$ (= sex) is the confounder, $D$ (= participation in program) is the treatment and $Y$ (salary) is the outcome. As you can see both $D$ and $Y$ are related to $Z$ and $Y$ is influenced by both $D$ and $Z$. But we are only interested in the effect of $D$ on $Z$ and want to isolate it. From the commands, we know that the true causal effect of $D$ on $Y$ is 0.2.
+-   $D = participation$
+-   $Z = sex$
+-   $Y = salary$
+
+As you can see both $D$ and $Y$ are related to $Z$ and $Y$ is influenced by both $D$ and $Z$. But we are only interested in isolating the effect of $D$ on $Y$. From the commands, we know that the true causal effect of $D$ on $Y$ is 0.2.
 
 Let's see what a naive comparison would return, where we would just compare average salary of the individuals who have participated in the trainee program are compared to the individuals who have not participated.
 
@@ -279,14 +283,14 @@ E_1 <- mean(df[df$D==T, ]$Y) # treatment group
 E_1 - E_0
 ```
 
-A simpler way to compute it would be:
+It is generally more convenient to use the `lm()` command.
 
 ```{r}
 # Regression of Y on D
 summary(lm(Y ~ D, df))
 ```
 
-Due to confounding, the naive comparison cannot reconstruct our implemented treatment effect (defined when we simulated the outcome variable) and is off. We should get closer if we account for confounding by taking averages treatment effects for men and women separately.
+Due to confounding, the naive comparison cannot reconstruct our implemented treatment effect (= 0.2, defined when we simulated the outcome variable) and is off. We should get closer if we account for confounding by taking averages treatment effects for men and women separately.
 
 ```{r}
 # Subclassification estimator (subclasses: Z = 0 and Z = 1)
@@ -308,7 +312,7 @@ This way, we have closed the backdoor and are able to retrieve the causal effect
 
 # Matching as a Concept
 
-In the previous section, observations from treatment and control group were required to have equal covariates. But matching can also take other forms that are less strict. Generally, we are trying to select observations in the control group that are similar to those in the treated group. To do so, we need to define what similar means. By enforcing treatment and control group to have little variation in the matching variable, we close the backdoor. When the backdoor variable does not vary or varies only very little, it cannot induce changes in treatment and outcome. So, when we suppress this variation in the backdoor variable, we can interpret the effect from treatment to outcome as causal.
+In the previous section, observations from treatment and control group were required to have equal covariates. But matching can also take other forms that are less strict. Generally, we are trying to select **observations in the control group** that are **similar to those in the treated group**. To do so, we need to define what similar means. By enforcing treatment and control group to have **little variation in the matching variables**, we **close the backdoors**. When the backdoor variable does not vary or varies only very little, it cannot induce changes in treatment and outcome. So, when we suppress this variation in the backdoor variable, we can interpret the effect from treatment to outcome as causal.
 
 There are many ways and methods to conduct this and we will go through some of them. But let's first define matching conceptually.
 
@@ -320,7 +324,7 @@ Matching methods can be classified into [two main approaches]{.underline}: match
 
 1.  **Distance**: observations are similar if they have similar covariates (or more specific: similar values for the matching variables). This approach minimizes the distance between observations in treatment and control group based on their covariate values.
 
-2.  **Propensity**: observations are similar if they are equally likely to be treated, i.e. matching variables are used to compute how likely an observation is to be in treatment group, regardless whether it actually is in the treatment or control group.
+2.  **Propensity**: observations are similar if they are equally likely to be treated, i.e. matching variables are used to build a prediction model of how likely an observation is to be in treatment group, regardless whether it actually is in the treatment or control group.
 
 As you can also see in the plot, another difference across methods is whether observations are compared to matches, which classify other observations as either in our out or compared to matched weighted samples, where each observation obtains a different weight depending on how close they are. For matches, you have to decide how many to include or what the worst acceptable match is while for matched weighted samples you need to decide how weights decay with distance.
 
@@ -330,8 +334,8 @@ As you can also see in the plot, another difference across methods is whether ob
 #| fig-asp: 1.1
 #| fig-cap: 
 #|   - "Initial situation: one treated observation and five potential matches from the control group."
-#|   - "The closest match is selected to compute treatment effect."
-#|   - "Several units are selected and weighted by their distance."
+#|   - "The closest match is selected to compute treatment effect. Match is indicated by color of data point."
+#|   - "Several units are selected and weighted by their distance. Weight is indicated by size of data point."
 
 # Create tibble of potential matches with two variables, in/out and weight
 df <- tibble(
@@ -395,22 +399,22 @@ p3
 
 We can now outline a structure for the [**general process of matching**]{.underline} that applies to all methods.
 
-1.  First, it starts with some kind of preprocessing, which is a "manual" part, where you use all information about the causal mechanisms that you have. Essentially, it forces you to look at the DAG you can draw based on all your theoretical knowledge and thoughts, and particularly what you know about the treatment assignment. In observational studies, this will leave you with a sample that is different from your raw sample. In randomized studies, it might be the same as you do not have to for example close a backdoor path.
+1.  First, it starts with some kind of preprocessing, which is a "manual" part, where you use all information about the causal mechanisms that you have. Essentially, it forces you to look at the DAG you can draw based on all your theoretical knowledge and thoughts, and particularly what you know about the treatment assignment. In randomized studies, you do not have to take any preprocessing steps.
 2.  Then, using this preprocessed data you can build your model to estimate the treatment effect.
 
 Now, let's look at some methods in detail and afterwards get more application-oriented.
 
 ## Single Matching Variable
 
-Probably the most simple method, though rarely applied in practice, is matching on a single variable. Its rare use in practice is due to the fact that matching on a single variable is only applicable if there is only one backdoor path that can be closed by this matching variable.
+The most simple scenario would be to match on a single variable. In practice, it is rare that only one variable is a potential confounder but for the purpose of practice, we'll start with this scenario. Consider a scenario where you are employed by a bank and need to make a decision regarding whether to issue a credit card to a customer who has previously experienced credit difficulties.
 
-But for ease of explanation, we'll have a look at it.
+Let's delve into specific methods in depth, and then transition towards a more practical application-focused approach.
 
 ```{r}
 #| echo: false
 #| fig-subcap: 
 #|   - "Generic DAG with matching. By fixing the level of confounder, backdoor is closed and valid estimation of causal treatment effect for that specific group at level of confounder."
-#|   - "Applied to credit card example. Effect of being late on settling credict card debt in the past on being late again. Confounded by size of credit card debt. It could be suspected that customers with higher debts in the past are unlikely to be financially recovered by now."
+#|   - "Applied to credit card example. Effect of being late on settling credict card debt in the past on being late again. Confounded by size of credit card debt. It could be suspected that customers with higher debts in the past are unlikely to be financially recovered by now. Therefore, we have to condition on the level of the previous bill."
 #| layout-ncol: 2
 
 # Generic confounder
@@ -439,31 +443,30 @@ example_confounder <- dagify(
   labels = list(D = "Being late previously", Y = "Being late next month", Z = "")
 )
 
-ggdag(example_confounder, use_labels = "label") +
-  annotate("text", x = 1.5, y = 1, label = "Size of previous bill\n equal to 5000$") +
+ggdag(example_confounder) +
+  annotate("text", x = 1.5, y = 1, label = "Size of previous bill\n equal to 500$") +
   theme_dag_cds() +
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
-  geom_dag_edges(edge_color = "white")
+  geom_dag_edges(edge_color = "white") +
+  geom_dag_label_repel(aes(label = label))
 ```
 
 ## (Coarsened) Exact Matching
 
-When you think of the previous credit card example, two things could come up in your mind:
+When you think of the previous credit card example, you might have asked yourself:
 
--   How likely is it that when fixing a continuous variable such as previous bill, we can find matching treatment and control observations?
+*How likely is it that when fixing a continuous variable such as previous bill, we can find matching treatment and control observations? I.e. we have a treated and an untreated observation with exactly the same previous bill.*
 
--   How do we control for more than one variable?
+It is in fact very unlikely, and to address this issue we rely on coarsening continuous variables. That means, we create different levels/bins for the size of the previous bill, which could be for example: 1-50€, 51-250€, 251-1000€ and so on. This increases the likelihood of finding matches substantially. However, we also lose a bit of precision. In general: the wider the bins, the more matches but the less precision.
 
-To address the first issue we can coarsen continuous variables. That means, we create different levels/bins for the size of the previous bill, which could be for example: 1-50€, 51-250€, 251-1000€ and so on. This increases the likelihood of finding matches substantially. However, we also lose a bit of precision. In general: the wider the bins, the more matches but the less precision.
-
-If there is more than one backdoor, we can also match on more than one variable. Matched observations need to correspond on all variables that are selected as matching variables.
-
-Especially if matching on a single variable, there might be more than one match for a particular observation. In this case, you would weight the matches. On the other hand, especially if trying to find (coarsened) exact matches on multiple variables, some observations might not be matched at all. That's a situation where nearest-neighbor matching comes in handy.
+Now, however, there might be even more than one match for a particular observation. In this case, you could compute an average or weight the matches based on their distance to the focal observation.
 
 ## Nearest-Neighbor Matching
 
-It is less strict than exact matching as it does not require observations to match exactly in all (coarsened) variables. Instead, the distance between observations is computed using distance measures such as the distance or the Euclidean distance.
+Distance also plays a crucial role when taking more than one matching variable into account. Let's add the variable $age$ and plot the two dimensions.
+
+Less less strict than exact or coarsened matching, matching on distance finds observations that are close. The distance between observations is computed using distance measures such as the distance or the Euclidean distance and close matches are identified e.g. by nearest-neighbor matching or by using kernel weights.
 
 ```{r}
 #| echo: false
@@ -478,42 +481,42 @@ It is less strict than exact matching as it does not require observations to mat
 
 # Create tibble of potential matches with two variables, in/out and weight
 df <- tibble(
-x1 = c(0.5, 2.2, 2, 4.5, 4.2, 1),
-x2 = c(3.4, 3, 4.5, 2.1, 0.8, 1),
+previous_bill = c(0.5, 2.2, 2, 4.5, 4.2, 1)*100,
+age = c(3.4, 3, 4.5, 2.1, 0.8, 1)*10,
 m  = as.factor(c(1, 1, 1, 1, 0, 0))
 )
 
 # Create focal point
 treated <- tibble(
-  x1 = 2.2,
-  x2 = 4.1
+  previous_bill = 2.2*100,
+  age = 4.1*10
 )
 
 # Initial situation
-p1 <- ggplot(df, aes(x = x1, y = x2)) +
+p1 <- ggplot(df, aes(x = previous_bill, y = age)) +
   geom_point(size = 4) +
-    geom_point(aes(x = treated$x1, treated$x2),
+    geom_point(aes(x = treated$previous_bill, treated$age),
              pch = 23, size = 7, color = "white", fill= ggthemr::swatch()[5]) +
-  coord_cartesian(xlim = c(0, 6),
-                  ylim = c(0, 6)) +
+  coord_cartesian(xlim = c(0, 6*100),
+                  ylim = c(0, 6*10)) +
   theme(legend.position = "none") +
   labs(title = "Initial situation")
 
 # In/Out matching
-p2 <- ggplot(filter(df, m==1), aes(x = x1, y = x2)) +
+p2 <- ggplot(filter(df, m==1), aes(x = previous_bill, y = age)) +
   geom_point(data = filter(df, m == 0), color = "grey", alpha = .42, size = 4) +
   geom_point(size = 7, color = ggthemr::swatch()[3]) +
-    geom_point(aes(x = treated$x1, treated$x2),
+    geom_point(aes(x = treated$previous_bill, treated$age),
              pch = 23, size = 7, color = "white", fill = ggthemr::swatch()[5]) +
-  coord_cartesian(xlim = c(0, 6),
-                  ylim = c(0, 6)) +
+  coord_cartesian(xlim = c(0, 6*100),
+                  ylim = c(0, 6*10)) +
   theme(legend.position = "none") +
   labs(title = "Nearest-Neighbor: k = 4") 
 
 # Compute distance based on Euclidean distance
 euclidean <- function(a, b) sqrt(sum((a - b)^2))
 distance <- lapply(1:nrow(df), function(row) {
-  vec_df <- c(df$x1[row], df$x2[row])
+  vec_df <- c(df$previous_bill[row], df$age[row])
   vec_tr <- as_vector(treated)
   
   euclidean(vec_df, vec_tr)
@@ -521,14 +524,14 @@ distance <- lapply(1:nrow(df), function(row) {
 df$w <- 1/distance
 
 # Weighted by distance
-p3 <- ggplot(df, aes(x = x1, y = x2, size = w, color = m)) +
-  geom_point(color = c(rep(ggthemr::swatch()[3], 3), rep("grey", 3))) +
-  geom_point(aes(x = treated$x1, treated$x2),
-             pch = 23, size = 7, color = "white", fill= ggthemr::swatch()[5]) +
-  coord_cartesian(xlim = c(0, 6),
-                  ylim = c(0, 6)) +
-  ggforce::geom_circle(aes(x0 = 2.2, y0 = 4.1, r = 1.85),
+p3 <- ggplot(df, aes(x = previous_bill, y = age, size = w, color = m)) +
+  ggforce::geom_ellipse(aes(x0 = 2.2*100, y0 = 4.1*10, a = 185, b = 18.5, angle = 0),
                        color = alpha("white", 0.7), linetype = "solid", lwd = 0.4) + 
+  geom_point(color = c(rep(ggthemr::swatch()[3], 3), rep("grey", 3))) +
+  geom_point(aes(x = treated$previous_bill, treated$age),
+             pch = 23, size = 7, color = "white", fill= ggthemr::swatch()[5]) +
+  coord_cartesian(xlim = c(0, 6*100),
+                  ylim = c(0, 6*10)) +
   theme(legend.position = "none") +
   labs(title = "Using kernel weight")
 
@@ -538,19 +541,19 @@ p2
 p3
 ```
 
-For two observations, a scalar is returned calculated from the distances of all matching variables. Based on that value, $k$ matching observations are selected to build the control group.
+Using nearest-neighbor matching, for each two observations, a scalar is returned calculated from the distances of all matching variables. Based on that value, $k$ matching observations are selected to build the control group. If $k \neq 1$, you also have to decide whether to weight the control observations on their distance. Weighting the observations makes the approach less sensitive to the choice of $k$ because less importance observations are down-weighted. Eventually the weights goes to zero.
 
-If $k \neq 1$, you also have to decide whether to weight the control observations on their distance. Weighting the observations makes the approach less sensitive to the choice of $k$ because less importance observations are down-weighted. Eventually the weights goes to zero.
+Kernel weights are similar but define a vicinity observations have to fall into.
 
 ## Propensity score
 
 With an increasing number of matching variables nearest-neighbors matching becomes unfeasible, as well. To reduce the dimensionality onto one dimension, for each observation a propensity score can be computed. The propensity score expresses the estimated probability of treatment. In absence of selection bias, propensity scores should be very similar across treatment and control group. Thinking back to our probability chapter, the propensity score is:
 
 $$
-P(D_i = 1|X_i)
+P(D_i = 1|\mathbf{X}_i)
 $$
 
-We'll discuss how to use it later in detail but essentially, we exploit that there are units in the treatment group that were unlikely to be treated and vice versa. The most recommended method that uses propensity scores as matching input is called **inverse probability weighting** and weights each observation is weighted by the inverse of the probability for its own treatment status. Simply put, atypical observations receive a high weight, so if you were actually treated which was unlikely based on your covariates, you receive a high weight.
+We'll discuss how to use it later in detail but essentially, we exploit that there are units in the treatment group that were unlikely to be treated and vice versa. The most recommended method that uses propensity scores as matching input is called **inverse probability weighting** and weights each observation by the inverse of the probability for its own treatment status. Simply put, atypical observations receive a high weight, so if you were actually treated which was unlikely based on your covariates, you receive a high weight.
 
 # Application
 
@@ -584,12 +587,13 @@ dag_model <- 'dag {
 }'
 
 # DAG with adjustment sets (and custom layout)
-ggdag_adjustment_set(dag_model, shadow = T, use_labels = "name", text = F) +
+ggdag_adjustment_set(dag_model, shadow = T, text = F) +
   guides(color = "none") +  # Turn off legend
-  theme_dag_cds() +
-  geom_dag_point(color = ggthemr::swatch()[2]) +
+  theme_dag_cds() + # custom layout (can be left out)
+  geom_dag_point(color = ggthemr::swatch()[2]) + # custom color, can take any color
   geom_dag_text(color = NA) +
-  geom_dag_edges(edge_color = "white")
+  geom_dag_edges(edge_color = "white") +
+  geom_dag_label_repel(aes(label = name))
 ```
 
 ```{r}
@@ -636,7 +640,9 @@ Let's load the data (you probably have to change the path) and have a glance at 
 
 # Read data
 df <- readRDS("../../datasets/health_program.rds")
+```
 
+```{r}
 # Show data 
 df
 ```
@@ -657,11 +663,11 @@ model_naive <- lm(sick_days ~ health_program, data = df)
 summary(model_naive)
 ```
 
-But we suspect that treatment assignment was not random, so let's see if we can improve the validity of our estimation using matching.
+The naive estimate is far off. But we already suspected that treatment assignment was not random, so let's see if we can improve the validity of our estimation using matching procedures.
 
 ## (Coarsened) Exact Matching
 
-Again, in case of exact matching, only observations that share the same values in (coarsened) matching variables are matched in. To perform Coarsened Exact Matching (CEM) you can use the `MatchIt` package in R. If you do not specify how to coarsen the data, it will be done automatically based on an algorithm. Other than that, we provide a formula containing our treatment dependent on the matching variables, the data, what method to use (`'cem'` = Coarsened Exact Matching) and what estimate we are interested in.
+Again, in case of exact matching, only observations that share the same values in (coarsened) matching variables are matched in. To perform Coarsened Exact Matching (CEM) you can use the `MatchIt` package in R. We provide a formula containing our treatment dependent on the matching variables, the data, what method to use (`'cem'` = Coarsened Exact Matching) and what estimate we are interested in. Please note we regress the treatment on the matching variables. The outcome variable is not included at this stage.
 
 ```{r}
 # Load 'MatchIt' library
@@ -675,7 +681,7 @@ cem <- matchit(health_program ~ age + sick_days_before,
                estimand = 'ATE')
 ```
 
-Using the `summary()` function we can check how well balanced the covariates are compared to before. In this case, they are almost perfectly balanced.
+Using the `summary()` function we can check how well balanced the covariates are compared to before. The balance before is titled *Summary of Balance for All Data* and after *Summary of Balance for Matched Data.* In this case, they are almost perfectly balanced after matching.
 
 ```{r}
 # Covariate balance
@@ -693,9 +699,9 @@ model_cem <- lm(sick_days ~ health_program, data = df_cem, weights = weights)
 summary(model_cem)
 ```
 
-Instead of letting the algorithm decide how to coarsen the data, we can also provide custom cut-points. Let's do that and check if we can create matched data as balanced as by the algorithm.
+Looking at our matching command `matchit()` you might have noticed that we did not specify any cut points to perform the coarsened matching. Instead the `MatchIt` module took care of that in the background. But we can also choose to specify cut points.
 
-We'll see that we are able to decrease the imbalance, but not to the same degree as the algorithm did it.
+We'll see that we are able to decrease the imbalance, but not to the same degree as the algorithm did it. Feel free to check out if you can get any closer.
 
 ```{r}
 # Custom coarsening
@@ -711,10 +717,10 @@ cem_coars <- matchit(health_program ~ age + sick_days_before,
 summary(cem_coars)
 ```
 
-We can also visualize the subsamples and see how data points are weighted. Weights depend on how many treated and control units there are in a specific subsample. You can see that in the top-right corner, for example. From the plot we can also see that the cut-points are too broad as matches could be way closer.
+We can also visualize the subsamples and see how data points are weighted. Weights depend on how many treated and control units there are in a specific subsample. You can see that in the top-right corner, for example. From the plot we can also see that the cut-points specified by us are too broad as matches could be way closer.
 
 ```{r}
-#| fig-cap: "Coarsening: each subsample should contain only similar units."
+#| fig-cap: "Coarsening: each subsample only contains similar units. If there are just a few treated observations, the toal weight of control units is lower for a specific subsample."
 
 # Use matched data
 df_cem_coars <- match.data(cem_coars)
@@ -732,7 +738,7 @@ ggplot(df_cem_coars, aes(x = age, y = sick_days_before,
   theme(legend.position = "none")
 ```
 
-With custom coarsening, we again get another coefficient. It could indicate that this way, backdoors are not properly closed.
+With custom coarsening, we again get another coefficient. It could indicate that this way, backdoors are not properly closed because we our cut points were defined too broadly.
 
 ```{r}
 # (2) Estimation
@@ -752,8 +758,8 @@ Again, we use `MatchIt` to conduct the matching process. We just have to change 
 # replace: one-to-one or one-to-many matching
 nn <- matchit(health_program ~ age + sick_days_before,
               data = df,
-              method = "nearest",
-              distance = "mahalanobis",
+              method = "nearest", # changed
+              distance = "mahalanobis", # changed
               replace = T)
 
 # Covariate Balance
@@ -776,7 +782,7 @@ summary(model_nn)
 
 With exact matching and nearest-neighbor matching you quickly run into the curse of dimensionality as your number of covariates grows. If you want to find matches based on very few dimensions, you are way more likely to find them as opposed to matches on a high number of dimensions, where it is very likely that you actually don't find any matches at all.
 
-Regarding exact matching, consider for example the situation with two covariates with each five different values. Then any observations will fall into one of 25 different cells that are given by the covariate value grid. And now imagine ten covariates with three different values: it already creates \~60k cells, which increases the likelihood of a cell being populated by only one or zero observations substantially. Then, estimation of treatment effects is not possible for many of the observations.
+Regarding exact matching, consider for example the situation with two covariates with each five distinct values. Then any observations will fall into one of 25 different cells that are given by the covariate value grid. And now imagine ten covariates with three different values: it already creates \~60k cells, which increases the likelihood of a cell being populated by only one or zero observations substantially. Then, estimation of treatment effects is not possible for many of the observations.
 :::
 
 ## Inverse Probability weighting
@@ -804,13 +810,13 @@ For each observation we can compute a probability and add it to a table. It is i
 df_aug <- df %>% mutate(propensity = predict(model_prop, type = "response"))
 ```
 
-Having obtained the propensity score, you could again measure distances like described above and select matches. In fact, that is widely used matching method, known as **propensity score matching**. However, there are several reasons why this is not a good identification strategy[^1], mainly, because same propensity score does not imply that observations have the same covariate values and this could actually increase the imbalance. Note, however, that same covariate values indeed imply the same propensity score.
+Having obtained the propensity score, you could again measure distances like described above and select matches. In fact, that is widely used matching method, known as **propensity score matching**. However, there are several reasons why this is not a good identification strategy[^1], mainly, because same propensity score does not imply that observations have the same covariate values and this could actually increase the imbalance. Note, however, that vice versa, covariate values indeed imply the same propensity score.
 
 [^1]: <https://gking.harvard.edu/publications/why-propensity-scores-should-not-be-used-formatching>
 
 ### Weighting by Propensity Score
 
-Instead **inverse probability weighting (IPW)** has proven to be a more precise method, particularly when the sample is large enough. So what do we do with the probability/propensity scores in IPW? We use the propensity score of an observation unit to in- or decrease its weights and thereby make some observations more important than others. The weight obtains as
+Instead **inverse probability weighting (IPW)** has proven to be a more precise method, particularly when the sample is large enough. So what do we do with the probability/propensity scores in IPW? We use the propensity score of an observation unit to increase or decrease its weights and thereby make some observations more important than others. The weight obtains as
 
 $$
 w_i = \frac{D_i}{\pi_i} + \frac{(1-D_i)}{(1-\pi_i)}
@@ -832,7 +838,7 @@ Imagine a case of an old employee with a very bad initial health status who chos
 
 Compared to that, what weight would a young and healthy person that choose to participate in the program obtain? Let's say his/her probability of participating would be 0.2. Then, his/her weight would be $w_i = \frac{1}{0.2} = 5$. So we see, he/she would obtain a significantly higher weight.
 
-In general, IPW upweights atypical observations, like a young and healthy person deciding to participate, higher than typical observations. The same applies for both treatment and control group.
+In general, IPW weights atypical observations, like a young and healthy person deciding to participate, higher than typical observations. The same applies for both treatment and control group.
 
 Running a linear regression with weights as provided by IPW yields a coefficient not as precise as the ones obtained by previous matching procedures.
 
@@ -847,6 +853,8 @@ summary(model_ipw)
 A reason for that could be that there are some extreme and very atypical observations with either very high or low probabilities. Those observations than get a very high weight.
 
 ```{r}
+#| message: false
+#| warning: false
 #| fig-cap: "Most predicted treatment probabilities are between 0.4 and 0.6. Only a few outliers."
 
 # Plot histogram of estimated propensities
@@ -893,7 +901,7 @@ To obtain valid estimates with any matching estimator, we still need to fulfill 
 
 -   **Conditional Independence**: all backdoors needs to be closed so it has to be ensured that all confounders are in the set of matching variables.
 
--   **Common Support: for** treated units, there need to exist appropriate control units. Without a substantial overlap in the distribution of matching variables or the propensity score, estimating causal effects is impossible.
+-   **Common Support: for** treated units, there need to exist appropriate control units. Without a substantial overlap in the distribution of matching variables for treatment and control group or for the propensity score, estimating causal effects is impossible.
 
 Parts of these assumptions can be checked by looking at the balance of covariates, e.g. with `summary()` and the `MatchIt` package or with base `R` functions. If the degree balance is not satisfactory, you can change parameters of your matching method and do a new iteration until you are confident to have a good balance between treatment and control.
 
@@ -917,7 +925,7 @@ But how does it compare to using a simple linear regression? In one of the previ
 
 # Assignment
 
-Imagine, the following situation. You are running an online store and you one year ago, you introduced a plus membership to bind customers to your store and increase revenue. The plus memberships comes at a small cost for the customers, which is why not all of the customers subscribed. Now you want to examine whether binding customers by this membership program in fact increases your sales with subscribed customers. But of course, there are potentially confounding variables such as `age`, `sex` or `pre_avg_purch` (previous average purchases).
+Imagine, the following situation. You are running an online store and one year ago, you introduced a plus membership to bind customers to your store and increase revenue. The plus memberships comes at a small cost for the customers, which is why not all of the customers subscribed. Now you want to examine whether binding customers by this membership program in fact increases your sales with subscribed customers. But of course, there are potentially confounding variables such as `age`, `sex` or `pre_avg_purch` (previous average purchases).
 
 Load the data `membership.rds`. Then,
 
@@ -925,9 +933,7 @@ Load the data `membership.rds`. Then,
 2.  Compute a naive estimate of the average treatment effect.
 3.  Use the following matching methods to obtain more precise estimates:
     1.  (Coarsened) Exact Matching.
-
     2.  Nearest-Neighbor Matching.
-
     3.  Inverse Probability Weighting.
 
 ::: callout-warning

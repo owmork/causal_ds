@@ -1,7 +1,7 @@
 ---
 title: "Instrumental Variables"
 linktitle: "Instrumental Variables"
-date: "2022-11-23"
+date: "2023-10-16"
 output:
   blogdown::html_page:
     toc: true
@@ -55,11 +55,11 @@ IV can be illustrated using DAGs. On the left, there is a potential initial situ
 
 As you can see on the right, now $D$ mediates between an instrument $Z$ and outcome $Y$. There is no direct path between $Z$ and $Y$ and therefore $Z$ affects $Y$ **only through** $D$. For the instrument validity, there are a few assumptions that need to be fulfilled, which we discuss later in detail but summarizing, we need
 
--   **Relevance**: $Z \rightarrow D, \,\,\, Cor(Z,D) \neq 0$ (testable)
+-   **Relevance**: $Z \rightarrow D, \,\,\, Cor(Z,D) \neq 0$ \[**testable**\]. The instrument $Z$ needs to have an impact on the treatment $D$.
 
--   **Excludability**: $Z \rightarrow D \rightarrow Y,\,\, Z \not\to Y, \,\,\, Cor(Z, Y|D) =0$ (partly testable)
+-   **Excludability**: $Z \rightarrow D \rightarrow Y,\,\, Z \not\to Y, \,\,\, Cor(Z, Y|D) =0$ \[**partly testable**\]. The instrument $Z$ influences the outcome $Y$ only through the treatment variable $D$.
 
--   **Exogeneity:** $U \not\to Z, \,\,\, Cor(Z, U)=0$ (not testable)
+-   **Exogeneity:** $U \not\to Z, \,\,\, Cor(Z, U)=0$ \[**not testable**\]. The unobserved confounder $U$ is uncorrelated with the instrument $Z$.
 
 ```{r}
 #| echo: false
@@ -127,7 +127,7 @@ iv_dag
 
 # Application
 
-To go through the requirements in-depth and to explain how to estimate the effects, we'll go through an example.
+To delve deeply into the requirements and provide a detailed explanation of how to estimate the effects, let's take an example for illustration.
 
 Let us imagine the following situation. You are manager of a company that allows its workers to work remotely from any location. Now you want to implement a **voluntary training program to improve the skills of your workforce**. Other than the general work, training programs are held in a number of locations on-site. To measure the effect of your training program on a worker's output, you are able to collect
 
@@ -168,12 +168,13 @@ ggdag(iv_expl, text = T) +
   theme_dag_cds() + 
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
-  geom_dag_edges(edge_color = "white")
+  geom_dag_edges(edge_color = "white") +
+  geom_dag_label_repel(aes(label = label))
 ```
 
-For an instrument to be valid, there are [five requirements that need to be met]{.underline}:
+To establish the validity of an instrument, [five prerequisites must be satisfied]{.underline}:
 
-1.  **Stable unit treatment value assumption**: Potential outcomes for a unit do not vary with treatments assigned to other units. Note that it does not mean that treatment assignment is independent across units. For example, if a worker participates in training because his/her colleague does so, it is not a violation of the assumption.
+1.  **Stable unit treatment value assumption**: Potential outcomes for a unit do not vary with treatments assigned to other units. Note that it does not mean that treatment assignment is independent across units. For example, if a worker participates in training because his/her colleague does so, it is not a violation of the assumption. A violation only occurs when the participation of a colleague affects one's own outcome.
 
 2.  **Independence assumption**: There is no confounding between instrument $Z$ and treatment $D$ and also no confounding between $Z$ and outcome $Y$. In our application, it means there is no factor that both influences the proximity to the closest training location and program participation or worker efficiency. If we want to think of a potential violation, we could imagine more motivated workers living closer to a training location (e.g. if the headquarter is a training location) and thus, there would be confounding between $Z$ and both treatment assignment and outcome.
 
@@ -181,7 +182,7 @@ For an instrument to be valid, there are [five requirements that need to be met]
 
 4.  **Instrument relevance**: There should be a correlation of $Z$ and $D$. The stronger the association, the more powerful an instrument is. We will later check the correlation between both variables (in the so called "first stage").
 
-5.  **Monotonicity assumption**: Instrument (weakly) operates in same direction, i.e. it might be the case, that the instrument does not affect all units, but for all units that are affected are affected in the same direction.
+5.  **Monotonicity assumption**: Instrument (weakly) operates in same direction, i.e. it might be the case, that the instrument does not affect all units, but for all units that are affected the effect goes in the same direction.
 
 Using the framework below, monotonicity is satisfied, if there are no defiers. Let's define what defiers are. In general, there are four types of observation units with regard to their value of $Z$ and $D$.
 
@@ -197,7 +198,7 @@ If all of the assumptions are satisfied, we are able to estimate the average tre
 
 ## Exploration
 
-For the sake of explanation, we generate a synthetic data set with the variables $Z$, $D$ and $Y$ as defined above. We also include the unobserved variable $U$. This way, we can better explain where the bias comes from and how it affects the estimated treatment effect. The true treatment effect, which is the direct effect of $D$ on $Y$, is set to 1. We also add some random noise, so relationships are not perfect and what you will see is closer to reality.
+For the sake of explanation, we generate a synthetic data set with the variables $Z$, $D$ and $Y$ as defined above. We also include the unobserved variable $U$. This way, we can better explain where the bias comes from and how it affects the estimated treatment effect. The true treatment effect, which is the direct effect of $D$ on $Y$, is set to $1$. We also add some random noise, so relationships are not perfect and what you will see is closer to reality.
 
 ```{r}
 #| include: false
@@ -214,7 +215,7 @@ prop_score <- motivation - distance + rnorm(n) %>% scales::rescale()
 # Generate a 0/1 variable using the propensity score
 program <- ifelse(prop_score >= median(prop_score), 1, 0)
 # Y -> Outcome: Work efficiency (KPI)
-kpi_score <- program + motivation + rnorm(n)
+kpi_score <- program + motivation + rnorm(n, sd = .2)
 # Add variables to tibble
 df <- tibble(
   distance   = distance,
@@ -229,26 +230,26 @@ df <- tibble(
 df
 ```
 
-From the table, you already have an idea what the data structure and types look like. But when developing our analysis strategy, we are mainly interested in relationships between the variables, so let's have a look at the correlation matrix. Some requirements for a valid IV strategy can already be checked with it. Please also note, that we include $U$ here, but in general, you do not observe $U$, which was the reason why we need to use IV in the first place. It is just for the purpose of explanation that we include it here.
-
-From the correlation matrix, we can take a few important insights. There is a significant negative correlation between distance and program participation, which is also called **first-stage** and confirms the **relevance of our instrument**. The distance to the next training location does affect decision to participate in a training. This is assumption (4) from above.
-
-Having a synthetic data set, we can also see that our instrument is uncorrelated with the unobserved variable motivation, which means there is no confounding as stated in assumption (2). Usually, however, we would not be able to test this assumption due to an unobservable variable not being observed. Moreover, there could be additional confounders. With merely statistical concepts, we cannot prove that the effect of $Z$ on $Y$ goes only through $D$. We have to argue why that is the case.
+From the table, you already have an idea what the data structure and types look like. But when developing our analysis strategy, we are mainly interested in relationships between the variables, so let's have a look at the correlation matrix. It is a first step in assesing certain prerequisites for a valid IV strategy. Please also note, that we include $U$ here, but in general, you do not observe $U$, which was the reason why we need to use IV in the first place. It is just for the purpose of explanation that we include it here.
 
 ```{r}
 # Correlation matrix
 cor(df) %>% round(2)
 ```
 
+From the correlation matrix, we can take a few important insights. There is a significant negative correlation between distance and program participation, which is also called **first-stage** and confirms the **relevance of our instrument**. The distance to the next training location does affect decision to participate in a training. This is assumption (4) from above.
+
+Having a synthetic data set, we can also see that our instrument is uncorrelated with the unobserved variable motivation, which means there is no confounding as stated in assumption (2). Usually, however, we would not be able to test this assumption due to an unobservable variable not being observed. Moreover, there could be additional confounders. With merely statistical concepts, we cannot prove that the effect of $Z$ on $Y$ goes only through $D$. We have to argue why that is the case.
+
 Corresponding to our DAG, we also see that both program participation and KPI are correlated with the (unobserved) motivation, which thus opens another path between treatment and outcome. Being unable to close this path, we actually need an instrument in this situation.
 
-In general, it is very useful to also plot the data to check relationships between variables. It confirms what we have seen in the correlation matrix.
+Additionally to relying on a correlation matrix, it could be very useful to also plot the data to check relationships between variables.
 
 ## Modeling
 
 ### Confounding
 
-When you plausibly argued that your instrument is valid, you would usually perform **2SLS**, short for **Two Stage Least Squares**. We'll come to that shortly, but because we have all the data, we can also check what the bias would be in case we would not use an instrument and ignore the confounder.
+When you plausibly argue that your instrument is valid, you would usually perform **2SLS**, short for **Two Stage Least Squares**. We'll come to that shortly, but because we have all the data, we can also check what the bias would be in case we would not use an instrument and ignore the confounder.
 
 Remember, the true treatment effect is 1 in this case. Therefore, when we regress $Y$ on $D$ and $U$, we should be able to recover this effect. And when you look at the regression output, in fact, we do. It is not exactly equal 1, but that is due to sampling noise.
 
@@ -262,9 +263,9 @@ model_full <- lm(kpi ~ program + motivation, data = df)
 summary(model_full)
 ```
 
-But what would happen if we ignored the confounder $motivation$ and only regress $Y$ on $D$? We do not close the backdoor path and consequently, the effect is overestimated.
+But what would happen if we ignored the confounder $U$ (motivation) and only regress $Y$ (KPI/efficiency) on $D$ (program participation)? We do not close the backdoor path and consequently, the effect is overestimated.
 
-We can see that the coefficient for program participation is higher than expected, i.e. it has an upward bias. This is because, it takes some of the variation that is actually attributable to motivation into the coefficient of program participation. This confirms the need to include an instrument to model causal effects when there is no way to include the confounder.
+We can see that the coefficient for program participation is higher than expected, i.e. it has an upward bias. This is because, it takes some of the variation that is actually attributable to motivation into the coefficient of program participation. More motivatd employees are more likely to participate in the program and have higher outcomes even without participation. This confirms the need to include an instrument to model causal effects when there is no way to include the confounder.
 
 ```{r}
 # Modeling the data without the unobservable variable, i.e. only including 
@@ -290,7 +291,7 @@ $$
 Y_i = \beta_0 +\beta_1\widehat{D_i} +\epsilon_i
 $$
 
-Lower cases indicate single observations, so $i$ indicates for example the row in our data set. What is important to note, is that in the second stage, we do not use $D_i$, but instead $\widehat{D_i}$. The hat indicates, that these are fitted values from the first stage.
+Lower cases indicate single observations, so $i$ indicates for example the row in our data set. What is important to note, is that in the second stage, we do not use $D_i$, but instead $\widehat{D_i}$. The hat indicates that these are fitted values from the first stage.
 
 We can do 2SLS manually in `R`, but for reasons I will get to later, it is recommended to use libraries built to run 2SLS. However, for purpose of explanation, we'll do it also manually here.
 

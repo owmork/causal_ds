@@ -1,7 +1,7 @@
 ---
 title: "Randomized Controlled Trials"
 linktitle: "Randomized Controlled Trials"
-date: "2022-11-23"
+date: "2023-10-16"
 output:
   blogdown::html_page:
     toc: true
@@ -47,13 +47,13 @@ source("../../code/dag_theme.R")
 
 Let's recall the **fundamental problem of causal inference**: we are not able to observe individual treatment effects. Only one potential outcome can be observed because there is only one state of the world.
 
-Arguably, the most promising way to deal with this problem is randomization of the observation units and in particular randomized experiments, also known as randomized controlled trials (RCTs). Due to their statistical rigor and simplicity, RCTs are called the **gold standard of causal inference**.
+But that does not mean we have to give up. There are ways to estimate the treatment effect and arguably, the most promising way to deal with this problem is randomization of the observation units and in particular randomized experiments, also known as randomized controlled trials (RCTs). Due to their statistical rigor and simplicity, RCTs are called the **gold standard of causal inference**.
 
-RCTs do not solve the fundamental problem of only observing one potential outcome but instead **treatment and control group are randomized** such that both groups are expected to be almost equal. Having similar groups that either received or not received treatment, we can calculate a valid causal estimate, the **Average Treatment Effect (ATE)**. But it is only due to the randomization of observation units (e.g. individuals) that we are able to interpret it causally. If you remember the example with parking spots from a previous chapter, the computed $ATE$ can also return invalid estimates.
+RCTs do not solve the fundamental problem of only observing one potential outcome but instead **treatment and control group are randomized** such that both groups are expected to be almost equal. Having similar groups that either received or not received treatment, we can calculate a valid causal estimate, the **Average Treatment Effect (ATE)**. But it is only due to the randomization of observation units (e.g. individuals) that we are able to interpret it causally. If you remember the example with parking spots from a previous chapter, the computed $ATE$ can also return invalid estimates if units are not randomized.
 
 # Estimation
 
-Let's go into detail what needs to be ensured for a valid estimation, how to randomize treatment objects and how perform estimation.
+Let's go into detail what needs to be ensured for a valid estimation, how to randomize treatment objects and how to estimate the average treatment effect.
 
 ## Identification
 
@@ -71,7 +71,7 @@ This is where we exploit randomization. We can actually **ensure** that there is
 
 This way, **both groups will be very similar on average**, both in observed and in unobserved characteristics. They will **only differ in their treatment status and possibly in the observed outcome**, which makes the estimation of a causal effect possible.
 
-Please make sure, that you understand the formula correctly. It does not mean that there is no treatment effect. The (potential) outcome under $D=0$ or $D=1$ is not affected by whether a particular observation unit does or does not receive the treatment. However, the observed outcome $Y_i$ might depend on $D_i$, and in fact, that is the effect we are interested in.
+Please make sure, that you understand the formula correctly. It does not mean that there is no treatment effect. It means the (potential) outcome under $D=0$ or $D=1$ is not affected by whether a particular observation unit does or does not receive the treatment. However, the observed outcome $Y_i$ might depend on $D_i$, and in fact, that is the effect we are interested in.
 
 A related way to express it is
 
@@ -125,14 +125,64 @@ n <- 1e+4
 # Create population with two characteristics
 X <- tibble(
   age = runif(n, 18, 65), # draw random values from uniform distribution
-  sex = rbinom(n, 1, 0.5) # draw random values from binomial distribution
+  sex = rbinom(n, 1, 0.5), # draw random values from binomial distribution
+  id = 1:n
 )
 
 # Show table
 X
 ```
 
-Until now, we have not assigned units to treatment and control group and actually, we do not want to assign our whole population to any group. As a matter of fact, in many applications, you are just able to draw a sample from the population and almost never the whole population.
+```{r}
+df <- tibble(X, D = rbinom(n, 1, .5))
+df_plot <- df %>%
+  mutate(sex = 100*sex) %>% 
+  pivot_longer(cols = c("age", "sex"))
+
+ojs_define(data = df_plot)
+```
+
+```{ojs}
+//| echo: false
+//| panel: input
+
+viewof N = Inputs.range(
+  [10, 10000], 
+  {value: 10, step: 10, label: "Number of individuals:"}
+)
+
+```
+
+```{ojs}
+//| echo: false
+//| panel: center
+
+// https://observablehq.com/@mattiasvillani/confidence-interval-for-a-proportion
+
+theme = ({
+  style: "background-color: #0F2231",
+  fill: "#00C1D4"
+})
+
+Plot.plot({
+  ...theme,
+  facet: {data: filtered, x: "name"},
+  grid: true,
+  color: {legend: true},
+  marks: [
+    Plot.boxY(filtered, {x: "D", y: "value", fill: "#00C1D4", fillOpacity: .4})
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+filtered = transpose(data).filter(function(df) {
+  return N >= df.id;
+})
+```
+
+Until now, we have not assigned units to treatment and control group and actually, we do not want to assign our whole population into treatment and non-treatment. As a matter of fact, in many applications, you are just able to draw a sample from the population and almost never the whole population.
 
 Remember, randomization of treatment should achieve that we are able to interpret the average treatment effect causally and for that, both groups need to be as similar as possible. The image illustrates the randomization process. Try to think what could happen if you have just very few units in both groups. How likely is is that they are very similar regarding their characteristics? You can probably already sense that this might not be sufficient to make groups comparable.
 
@@ -250,10 +300,11 @@ df_out <- df %>%
   mutate(outcome = 0.2*treatment 
          + 0.01*treatment*age 
          + treatment*sex 
-         + rnorm(ss_selected, 2, 3))
+         + rnorm(ss_selected, 2, 3),
+         outcome = 10 * outcome)
 ```
 
-So far, we have just looked at the covariate balance but have not included the outcome variable. Let's do that now. In the background we simulated the outcome after treatment and added the column `outcome` to our table.
+So far, we have just looked at the covariate balance but have not included the outcome variable. Let's do that now. In the background I simulated the outcome after treatment and added the column `outcome` to our table.
 
 ```{r}
 # Show data with outcome variable
@@ -285,16 +336,21 @@ One way to present your results to your audience could be a boxplot that on the 
 
 ```{r}
 #| layout-nrow: 1
-#| fig-cap: "Treatment and control group are similar regarding their characteristics but for the outcome, they are different. Due to the similarity in characteristics, we can ascribe this difference to the treatment."
+#| fig-cap: 
+#|   - "Treatment and control group overlap regarding average age."
+#|   - "Treatment and control have similar proportion in terms of gender."
+#|   - "Differences in outcome can therefore be ascribed to treatment variable."
 
-# Plot independent and and depdent difference
+
+# Plot independent and and dependent difference
 # age (independent)
 compare_age <- 
   ggplot(df_out, 
          aes(x = treatment, 
              y = age, 
              color = as.factor(treatment))) +
-  stat_summary(geom = "pointrange", 
+  stat_summary(geom = "errorbar", 
+               width = .5,
                fun.data = "mean_se", 
                fun.args = list(mult=1.96),
                show.legend = F) +
@@ -306,7 +362,8 @@ compare_sex <-
          aes(x = treatment, 
              y = sex, 
              color = as.factor(treatment))) +
-  stat_summary(geom = "pointrange", 
+  stat_summary(geom = "errorbar", 
+               width = .5,
                fun.data = "mean_se", 
                fun.args = list(mult=1.96),
                show.legend = F) +
@@ -318,7 +375,8 @@ compare_outcome <-
          aes(x = treatment, 
              y = outcome, 
              color = as.factor(treatment))) +
-  stat_summary(geom = "pointrange", 
+  stat_summary(geom = "errorbar", 
+               width = .5,
                fun.data = "mean_se", 
                fun.args = list(mult=1.96),
                show.legend = F) +
@@ -332,7 +390,7 @@ compare_outcome
 
 But why did we not include $age$ and $sex$ into our regression? Because they are similarly distributed across both groups it should not change the treatment effect. But still, they might have an impact on the outcome, as well. Although being similarly distributed in both groups, they can still vary within each group. So let's see what happens if we include them.
 
-Both regressors turn out to be significant. However, as expected, the treatment effect is almost unchanged.
+Both regressors turn out to be significant. However, as expected, the treatment effect is almost unchanged. If there had not been a covariate balance between the two groups, our treatment effect would have been biased.
 
 ```{r}
 # Include other regressors
@@ -344,7 +402,7 @@ summary(lm_all)
 
 The significance of $age$ and $sex$ could also indicate that there are different treatment effects across different levels of both covariates. Then, a so called interaction/moderation effect would be covered behind the statistical coefficients.
 
-A moderation effect expresses different strengths of the treatment for different subgroups. For example older women might benefit relatively more from the treatment and younger males relatively less.
+A moderation effect expresses different strengths of the treatment for different subgroups. For example older people might benefit relatively more from the treatment than younger people. And women might benefit more from treatment compared to men.
 
 In `R`, we include interaction effects by using either using a product `x1*x2` or a colon `x1:x2`. In fact, when we do that, the interactions are significant and the treatment effect changes substantially.
 
@@ -361,26 +419,29 @@ Note also that $R^2$ has increased with each addition to the regression. But why
 As the data is simulated, we can check what the true data-generating process is and based on that evaluate what regression equation provides the best solution. Check for yourself what model should be used.
 
 $$
-outcome = 0.2*treatment + 0.01*treatment*age + treatment*sex + \epsilon
+outcome = 2*treatment + 0.1*treatment*age + 10*treatment*sex + \epsilon
 $$
 
-Again, it shows how crucial theoretical knowledge of the phenomenon you are studying is. Imagine a situation with a high number of regressors. Testing out all potential variables as moderators requires some effort and might even lead to results just due to chance. You should therefore plan your research design and hypotheses beforehand. As a matter of fact, many scientific publications therefore have to define a [pre-analysis plan](https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist).
+Again, it shows how crucial theoretical knowledge of the phenomenon you are studying is. Imagine a situation with a high number of regressors. Testing out all potential variables as moderators requires some effort and might even lead to results just due to chance. You should therefore plan your research design and hypotheses beforehand. As a matter of fact, many scientific publications therefore have to define a pre-analysis plan[^1].
+
+[^1]: https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist
 
 # Conclusion
 
-In this chapter, you should have learned the benefits of randomization. So why not just always randomize treatment objects and make causal claims afterwards? Although there are some fields like medicine, particularly drug trials, that almost fully rely on randomized controlled trials. Other fields, however, cannot rely on RCTs due to a variety of reasons.
+In this chapter, you should have learned the benefits of randomization. So why not just always randomize treatment objects and make causal claims afterwards? Although there are some fields like medicine, particularly drug trials, that almost fully rely on randomized controlled trials, other fields cannot rely on RCTs due to a variety of reasons.
 
-For example in social sciences conducting RCTs can be problematic due to high cost or for ethical reasons. One example would be researching the effect of smoking during pregnancy on success of the child later in life. It is clearly unethical to dictate some women to smoke during pregnancy as we already know that it will very likely do damage to both mother and children and we are not interested in the direction of the effect but rather in the magnitude.
+For example in social sciences conducting RCTs can be problematic due to high cost or for ethical reasons. One example would be researching the effect of smoking during pregnancy on success of the child later in life or the effect of marriage on wages. It is clearly unethical to dictate some women to smoke during pregnancy as we already know that it will very likely do damage to both mother and children and we are not interested in the direction of the effect but rather in the magnitude. Also, we cannot randomly tell people to get married for obvious reasons.
 
 Another example would be the effect of implementing a minimum wage on some employees. While the result is not obvious in this case, it is still not fair to pay minimum wage only to a selection of the workforce as it substantially affects their life.
 
 Also, many government programs like e.g. unemployment insurance cannot given only to a random sample of people to identify the effect.
 
-In business context, you are also interested in analyzing past data, that has not been collected using randomized settings. In such cases, researchers need to rely on observational studies to estimate effects. Using our graphical language introduced in the previous chapters, let's illustrate the difference between observational studies and DAGs.
+Additionally, in business context, you are also interested in analyzing past data, that has not been collected using randomized settings. In such cases, researchers need to rely on observational studies to estimate effects. Using our graphical language introduced in the previous chapters, let's illustrate the difference between observational studies and DAGs.
 
 ```{r}
 #| message: false
 #| layout-nrow: 1
+#| code-fold: true
 #| fig-cap:
 #|  - "Observational study"
 #|  - "Experimental study"
@@ -426,9 +487,9 @@ obs_dag
 exp_dag
 ```
 
-Observational studies are based only on what a researches observes as opposed to experimental studies where a researcher actively intervenes. In observational studies, one large issue (not the only one) is confounding by other variables. Confounding falsifies our estimate in case we do not control for this variable. Because in many times, we don't know confounders or they are unobserved, estimates from observational studies always rely on additional assumptions and domain knowledge that randomized experiments do not require.
+**Observational studies** are based only on **what a researcher observes** as opposed to **experimental studies** **where a researcher actively intervenes**. In observational studies, one large issue (not the only one) is confounding by other variables. Confounding falsifies our estimate in case we do not control for this variable. Because in many times, we don't know confounders or they are unobserved, estimates from observational studies always rely on additional assumptions and domain knowledge that randomized experiments do not require.
 
-Opposed to that, in RCTs, there is no arrow from the confounder to the treatment assignment. That is because we randomized treatment and therefore, by definition, treatment selection cannot be confounded. In our example that was indicated by the covariate balance across treatment and control group.
+Opposed to that, in RCTs, there is no arrow from the confounder to the treatment assignment. That is because we randomized treatment and therefore, by construction, treatment selection cannot be confounded. In our example that was indicated by the covariate balance across treatment and control group.
 
 All other tools that we will learn in the following chapters try to deal with the issue of isolating causal effects in observational studies by exploiting the underlying causal mechanisms.
 

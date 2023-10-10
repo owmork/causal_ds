@@ -7,7 +7,7 @@ website:
   page-navigation: true
   favicon: images/favicon_cds_16x16.png
   navbar:
-    background: "#005E73E6"
+    background: "#323e4dE6"
     pinned: false
     logo: images/icon_cds_text.png
     right:
@@ -17,10 +17,9 @@ website:
         file: content/index.qmd
       - text: Submission
         file: submission/submission.qmd
-      - icon: chat-left-text-fill
-        href: https://communicating.tuhh.de/w-11-students/channels/discussion
-        aria-label: Mattermost
-  
+      - text: "{{< iconify cib mattermost size=lg >}}"
+        href: https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science
+
   sidebar:
     - title: "Contents"
       style: "docked"
@@ -36,6 +35,7 @@ website:
             - content/fundamentals/02_reg.qmd
             - content/fundamentals/03_caus.qmd
             - content/fundamentals/04_dag.qmd
+        - text: "---"
         - section: "<b>Toolbox</b>"
           contents:
             - content/toolbox/05_rct.qmd
