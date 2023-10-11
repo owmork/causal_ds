@@ -20,7 +20,6 @@ course-logo: images/icon_cds_text.png
 **Distinguishing causal relationships from simple correlation** is what commonly used approaches in business analytics often fall short of. In this course, we will provide you with the **skill set to answer questions like**
 
 -   *what happens to* $Y$ *if we do* $X$*?*
-
 -   *was it* $X$ *that caused* $Y$ *to change?*
 
 Introducing you to **causal inference with the help of data science** will allow you to **carry out state-of-the-art causal analyses** by yourself and **extrapolate causal knowledge** **across different business contexts and various management areas.**
@@ -29,7 +28,7 @@ Introducing you to **causal inference with the help of data science** will allow
 ## Website Structure
 
 ::: {style="background-color: #0F2231; border-radius: .25rem; padding: 15px"}
-Browse all the class content, assignments and examples by going to [**Content**](https://owmork.github.io/causal_ds/content/). For instruction how to pass the course go to [**Submission**](https://owmork.github.io/causal_ds/submission/submission.html). If you have problems regarding the content, solving the assignments or any other questions, use the chat icon to directly go to our [**Mattermost discussion channel**](https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science).
+Browse all the class content, assignments and examples by going to [**Content**](content/). For instruction how to pass the course go to [**Submission**](submission/submission.qmd). If you have problems regarding the content, solving the assignments or any other questions, use the chat icon to directly go to our [**Mattermost discussion channel**](https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science).
 :::
 
 ::: grid
@@ -40,16 +39,16 @@ Browse all the class content, assignments and examples by going to [**Content**]
 
 {{< fa envelope >}}   oliver.mork\@tuhh.de
 
-{{< fa university >}}   StartupEngineer
+{{< fa university >}}   [StartupEngineer](https://www.startupengineer.io/)
 :::
 
 ::: {.g-col-6 style="border-radius: .25rem; padding: 15px; line-height: 2px;"}
 ## Course Details
 
-{{< fa calendar-alt >}}   23.11. / 30.11. / 07.12.
+{{< fa calendar-alt >}}   06.11. / 27.11. / 18.12.
 
 {{< fa clock >}}   09:00 - 17:00
 
-{{< fa location-dot >}}   HS28 - 1.006
+{{< fa location-dot >}}   Q - 1.121
 :::
 :::

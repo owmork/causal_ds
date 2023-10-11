@@ -374,7 +374,9 @@ After a while you collect data on users' activity and also if they were encourag
 
 2.  Compute the naive, biased estimate.
 
-3.  Compute the IV estimate using 2SLS.
+3.  For the assumptions that can be (partly) tested, check whether they are satisfied by either computing correlations or drawing plots. Argue whether instrumental variable estimation is an adequate procedure.
+
+4.  Compute the IV estimate using 2SLS and compare it to the naive estimate. Would you consider the naive estimate biased, and if yes, does it have an upward or downward bias?
 
 ::: callout-warning
 ## How to submit your solutions!

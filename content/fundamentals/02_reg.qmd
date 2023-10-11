@@ -140,10 +140,20 @@ lm_dat
 
 A handy first step if you work with a new data set is always to plot the data in a sensible way. Dealing with two-dimensional continuous data, a scatter plot is usually the best choice.
 
+::: callout-note
+`ggplot2` is a data visualization package that comes with `tidyverse`. There are also base `R` graphics, but `ggplot2` allows you to modify components with way more options. In its most basic form, the grammar works as follows:
+
+1.  Provide the data: `ggplot(data, …)`
+
+2.  Define aesthetics: `ggplot(data, aes(x = x, y = y)`
+
+3.  Add geometric objects: e.g. `+ geom_bar()`
+:::
+
 ```{r}
 # Scatter plot of x and y
 ggplot(lm_dat, aes(x = x, y = y)) + 
-  geom_point(size = 3, alpha = 0.8)
+  geom_point(size = 3, alpha = 0.8) # change size and opacity of points
 ```
 
 An experienced analyst could already see how the variables are related. There seems to be a positive correlation between $X$ and $Y$. However, it not a perfect correlation and there is a certain degree of noise, meaning that not all points lie on an imaginary line.

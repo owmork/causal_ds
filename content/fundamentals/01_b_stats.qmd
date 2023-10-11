@@ -418,7 +418,12 @@ Many of the rules and concepts that you have just learned will play a crucial in
 
 # Assignments
 
-From the [data folder](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm), load the table `random_vars.rds` (by using `table_name <- readRDS("your_download_folder/random_vars.rds")` or finding the file in the `Files` pane and selecting it). It contains draws from two random variables, `age` and `income`. By the way, after you loaded the table, you can have a look at the whole table using `View(random_vars)`.
+Load the table `random_vars.rds`. You can either
+
+-   run the command: `random_vars <- readRDS("your_download_folder/random_vars.rds")`
+-   or find the file in the `Files` pane and select it.
+
+After you load the table, get an overview of what it contains with `View(random_vars)`.
 
 1.  For each variable, compute the following values. You can use the built-in functions or use the mathematical formulas.
     1.  expected value
@@ -433,6 +438,10 @@ From the [data folder](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm), load 
     1.  $E[income|age <= 18]$
     2.  $E[income|age \in [18, 65)]$
     3.  $E[income|age >= 65]$
+
+::: callout-tip
+In the introduction you learned how to filter data. There are different ways, you could either use base R or `tidyverse`.
+:::
 
 ::: callout-warning
 ## How to submit your solutions!

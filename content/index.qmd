@@ -49,7 +49,7 @@ Many successful companies have already recognized the advantages of causal data 
 
 -   !!! Other:
 
-    -    https://causal-machine-learning.github.io/kdd2021-tutorial/
+    -   https://causal-machine-learning.github.io/kdd2021-tutorial/
 
     -   https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3867326
 
@@ -195,13 +195,15 @@ If, at some point, you want to take a break, you can leave the `swirl` course by
 
 You don't need to submit anything from this step. Just focus on getting familiar with `R` by completing the tutorial (I recommend to solve chapter 2-12)!
 
+::: callout-note
+Whenever you want to find out more about a command or you have difficulties understanding what it does, you can click on it and a help page will show up.
+:::
+
 # Assignments
 
 At the end of each chapter (the following chapters of **Fundamentals** and **Toolbox**, not the `swirl` tutorials), you will find an assignment. These assignments are related to the same chapter and with your acquired knowledge, you should be able to solve it.
 
-You have to **submit your solutions to the assignments by 31/01/2023** in order to pass the course. I will provide details how to submit your assignments in our second class on 30/11/2022 (and of course, also here on this website).
-
-To successfully complete the course, you also have to **register on TUNE**.
+You have to **submit your solutions to the assignments by 31/12/2023** in order to pass the course. You can find more detailed information on how to submit under the tab [Submission](https://owmork.github.io/causal_ds/submission/submission.html). To successfully complete the course, you also have to **register on TUNE**.
 
 # References
 

@@ -1,7 +1,7 @@
 ---
 title: "Probability Theory"
 linktitle: "Probability Theory"
-date: "2022-11-23"
+date: "2023-10-16"
 output:
   blogdown::html_page:
     toc: true
@@ -159,7 +159,9 @@ Consider the following example: you are project manager and based on your are in
 
 ## Assignment I
 
-Define being on time as event $T$, being not on time as $\overline{T}$, having a change in scope as $S$ and having no change in scope as $\overline{S}$. Then, compute the following probabilities. (*Hint: Check [here](https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg), if you are not sure what is shown in the probability tree.)*
+Define being on time as event $T$, being not on time as $\overline{T}$, having a change in scope as $S$ and having no change in scope as $\overline{S}$. (*Hint: Check [here](https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg), if you are not sure what is shown in the probability tree.)*
+
+Then, compute the following probabilities and the sum of all four probabilities.
 
 -   $P(T \cap S)$
 
@@ -168,8 +170,6 @@ Define being on time as event $T$, being not on time as $\overline{T}$, having a
 -   $P(\overline{T} \cap S)$
 
 -   $P(\overline{T} \cap \overline{S})$
-
-What is the sum of all four probabilities?
 
 ::: callout-tip
 With some browsers and specific operating systems, the compliment probability is not shown correctly (missing the horizontal bar above the letter). In that case it often helps to zoom in or out.

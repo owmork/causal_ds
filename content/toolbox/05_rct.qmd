@@ -111,7 +111,7 @@ In practice, randomization is done automatically by software programs but to get
 
 In fact, that is already a special case because the probability of being treated and being not treated is 50% for both cases. But treatment probabilities could also take different values for a variety of reasons, for example because treatment is costly. However, you need to ensure that both groups are large enough to be comparable in order to fulfill the independence assumption.
 
-Let's see what that means. We assume that we have a population of 10'000 individuals which we want to learn something about. Using `runif()` and `rbinom()`, we synthetically generate this population with random values for the characteristics $age$ and $sex$.
+Let's see what that means. We assume that we have a population of 1'000 individuals which we want to learn something about. Using `runif()` and `rbinom()`, we synthetically generate this population with random values for the characteristics $age$ and $sex$ and we also assign each individual to either treatment or control group.
 
 ```{r}
 #| message: false
@@ -120,7 +120,7 @@ Let's see what that means. We assume that we have a population of 10'000 individ
 library(tidyverse)
 
 # Define population size
-n <- 1e+4 
+n <- 1e+4
 
 # Create population with two characteristics
 X <- tibble(
@@ -129,17 +129,39 @@ X <- tibble(
   id = 1:n
 )
 
-# Show table
-X
+# Add randomly generated treatment variable
+df <- tibble(X, treat = rbinom(n, 1, .5))
+df
 ```
 
-```{r}
-df <- tibble(X, D = rbinom(n, 1, .5))
-df_plot <- df %>%
-  mutate(sex = 100*sex) %>% 
-  pivot_longer(cols = c("age", "sex"))
+Remember, randomization of treatment should achieve that we are able to interpret the average treatment effect causally and for that, both groups need to be as similar as possible. The image illustrates the randomization process. Try to think what could happen if you have just very few units in both groups. How likely is is that they are very similar regarding their characteristics? You can probably already sense that this might not be sufficient to make groups comparable.
 
-ojs_define(data = df_plot)
+![Illustration of randomization process](/images/05_rand.png){fig-align="center" width="350"}
+
+But let's try it out and see how average group characteristics develop when we change the sample size.
+
+```{r}
+#| include: false
+
+# Compute cumulative mean and standard error 
+df_stats <- map(seq(10, 1e+4, 10), function(i) {
+  df[1:i, ] %>%
+    mutate(sex = 100*sex) %>% 
+    pivot_longer(cols = c("age", "sex"), names_to = "variable") %>% 
+    group_by(treat, variable) %>% 
+    summarise(
+      mean = mean(value), 
+      se = sd(value) / sqrt(i),
+      .groups = "drop"
+    ) %>% 
+    ungroup() %>% 
+    add_column(N = i)
+}) %>%
+  bind_rows() %>% 
+  mutate(treat = if_else(treat==0, "control", "treatment")) %>%
+  mutate(ci_l = mean - qnorm(.975)*se, ci_h = mean + qnorm(.975)*se)
+
+ojs_define(data = df_stats)
 ```
 
 ```{ojs}
@@ -157,150 +179,50 @@ viewof N = Inputs.range(
 //| echo: false
 //| panel: center
 
-// https://observablehq.com/@mattiasvillani/confidence-interval-for-a-proportion
-
 theme = ({
   style: "background-color: #0F2231",
-  fill: "#00C1D4"
 })
+
+mutable yDomain = [10, 100]
 
 Plot.plot({
   ...theme,
-  facet: {data: filtered, x: "name"},
+  facet: {data: filtered, x: "variable"},
   grid: true,
   color: {legend: true},
   marks: [
-    Plot.boxY(filtered, {x: "D", y: "value", fill: "#00C1D4", fillOpacity: .4})
-  ]
+    Plot.dot(filtered, {x: "treat", y: "mean", stroke: "#00C1D4", tickSize: 1, fill: "#00C1D4"}),
+    Plot.tickY(filtered, {x: "treat", y: "ci_l", stroke: "#00C1D4"}),
+    Plot.tickY(filtered, {x: "treat", y: "ci_h", stroke: "#00C1D4"}),
+    Plot.ruleX(filtered, {x: "treat", y1: "ci_l", y2: "ci_h", stroke: "#00C1D4"})
+  ],
+  y: {domain: yDomain}
 })
 ```
 
 ```{ojs}
 //| echo: false
 filtered = transpose(data).filter(function(df) {
-  return N >= df.id;
+  return N === df.N;
 })
 ```
 
-Until now, we have not assigned units to treatment and control group and actually, we do not want to assign our whole population into treatment and non-treatment. As a matter of fact, in many applications, you are just able to draw a sample from the population and almost never the whole population.
-
-Remember, randomization of treatment should achieve that we are able to interpret the average treatment effect causally and for that, both groups need to be as similar as possible. The image illustrates the randomization process. Try to think what could happen if you have just very few units in both groups. How likely is is that they are very similar regarding their characteristics? You can probably already sense that this might not be sufficient to make groups comparable.
-
-![Illustration of randomization process](/images/05_rand.png){fig-align="center" width="350"}
-
-But let's try it out and see how average group characteristics develop when we change the sample size.
-
-In R, it is very easy to generate a random vector that we can use for randomization. Here, we want to have a random vector that contains either 1 (treatment group) or 0 (control group) with a treatment probability of 50%. We can make use of the `rbinom()` function that can randomly generate outcomes of a Bernoulli trial, which you can just imagine as flipping the coin $n$ times.
-
-As we have 10'000 people in our population, we will vary sample sizes from 10 to 10'000 to understand the impact sample size has.
-
-::: callout-note
-To perform the same step multiple times with just one variable changing (in this case: sample size), we can use `for` loops. First we have to define what to iterate through (a vector of sample sizes). Then, we initialize a few list that we store objects in that are created during an iteration:
-
--   `avg_tbl_age_lst()`: To store average age for specific sample size
-
--   `avg_tbl_sex_lst()`: To store average sex (proportion) for specific sample size
-
--   `tbl_sampled_lst()`: To store actual table for sample size (for later use)
-
-To store data from an iteration, we assign it to a list by accessing the list with two square brackets: `lst[["name"]] <- object_to_store`.
-
-There are several other ways to do it (even without loops). But `for` loops are an intuitive way and often times sufficient. You can read more about `for` loops [here](https://www.r-bloggers.com/2015/12/how-to-write-the-first-for-loop-in-r/).
-:::
-
-```{r}
-# Define vector of sample sizes
-sss <- c(10, 50, 500, seq(1000, 1e+4, 500))
-
-# Create empty lists to store average tables in
-avg_tbl_age_lst <- list()
-avg_tbl_sex_lst <- list()
-tbl_sampled_lst <- list()
-
-# Iterate through sample sizes
-# ... for sample size in sample sizes ...
-for (ss in sss) {
-  # sample from population
-  X_sampled <- sample_n(X, ss)
-  
-  # perform random assignment
-  D <- rbinom(ss, 1, 0.5)
-  
-  # combine characteristics and assignment in one table
-  tbl_sampled <- X_sampled %>% mutate(treatment = D)
-  
-  # store in list
-  tbl_sampled_lst[[paste(ss)]] <- tbl_sampled
-  
-  # get average characteristics ...
-  # ... for age
-  avg_tbl_age <- tbl_sampled %>%
-    group_by(treatment) %>%
-    summarise(mean_age = mean(age)) %>% 
-    ungroup %>% 
-    add_column(sample_size = ss,
-               variable = "age") %>% 
-    pivot_wider(names_from = treatment,
-                names_prefix = "D_",
-                values_from = mean_age) %>% 
-    mutate(delta_abs = abs(D_1 - D_0),
-           delta_rel = delta_abs/D_0)
-  
-  # store table in list
-  avg_tbl_age_lst[[paste(ss)]] <- avg_tbl_age
-  
-  # ... for sex
-  avg_tbl_sex <- tbl_sampled %>%
-    group_by(treatment) %>%
-    summarise(mean_sex = mean(sex)) %>% 
-    ungroup %>% 
-    add_column(sample_size = ss,
-               variable = "sex") %>% 
-    pivot_wider(names_from = treatment,
-                names_prefix = "D_",
-                values_from = mean_sex) %>% 
-    mutate(delta_abs = abs(D_1 - D_0),
-           delta_rel = delta_abs/D_0)
-  
-  # store table in list
-  avg_tbl_sex_lst[[paste(ss)]] <- avg_tbl_sex
-}
-```
-
-As you can see in the plot below, group average characteristics converge with increasing sample size. The more units are assigned to either group, the less differences are between the groups and thus, the independence assumption, stating that groups only differ by their treatment status, is fulfilled. But although you need a minimum amount of units, there is not much improvement after increasing the sample size way beyond that (also, the difference is already really small).
-
-```{r}
-#| fig-cap: "With increasing sample size, differences between treatment and control group get smaller or are already so small, that they can be ignored."
-
-# Combine tables to one larger table
-avg_age <- avg_tbl_age_lst %>% bind_rows()
-avg_sex <- avg_tbl_sex_lst %>% bind_rows()
-avgs_tbl <- avg_age %>% bind_rows(avg_sex)
-
-# Plot convergence
-ggplot(avgs_tbl, aes(x = sample_size, y = delta_abs)) +
-  geom_line() +
-  facet_wrap(~variable, scales = "free") +
-  labs(x = "Sample size", y = "Absolute difference") +
-  ggtitle("Absolute difference of characteristics\n between groups by sample size")
-```
+As you can see in the plots, group average characteristics converge with increasing sample size. The more units are assigned to either group, the less differences are between the groups and thus, the independence assumption, stating that groups only differ by their treatment status, is fulfilled. But although you need a minimum amount of units, there is not much improvement after increasing the sample size way beyond that (also, the difference is already really small).
 
 ## Average Treatment Effect
 
-Just because we can, let's just use all of them. That means there should be about \~5'000 units per group. There are many suggested rules and guidelines to choose the right sample size, but for now, we will disregard it as our data is simulated and therefore, we do not have any data problems.
+Just because we can, we use the whole sample. That means there should be about \~500 units per group. There are many suggested rules and guidelines to choose the right sample size, but for now, we will disregard it as our data is simulated and therefore, we do not have any data problems.
 
 ```{r}
 #| include: false
 
 # Sample selection ----
-ss_selected <- 1e+4
-df <- tbl_sampled_lst[[paste(ss_selected)]]
 # DO NOT INCLUDE
 df_out <- df %>%
-  mutate(outcome = 0.2*treatment 
-         + 0.01*treatment*age 
-         + treatment*sex 
-         + rnorm(ss_selected, 2, 3),
+  mutate(outcome = 0.2*treat 
+         + 0.01*treat*age 
+         + treat*sex 
+         + rnorm(n, 0, .5),
          outcome = 10 * outcome)
 ```
 
@@ -320,7 +242,7 @@ Let's compute the average outcome per group. We see that there seems to be a dif
 ```{r}
 # Group by treatment group and compute average outcome
 df_out %>% 
-  group_by(treatment) %>% 
+  group_by(treat) %>% 
   summarise(mean_outcome = mean(outcome))
 ```
 
@@ -328,7 +250,7 @@ Generally, it is recommendable to use a linear regression to get an estimate of 
 
 ```{r}
 # Compute ATE with linear regression
-lm_ate <- lm(outcome ~ treatment, data = df_out)
+lm_ate <- lm(outcome ~ treat, data = df_out)
 summary(lm_ate)
 ```
 
@@ -346,9 +268,9 @@ One way to present your results to your audience could be a boxplot that on the 
 # age (independent)
 compare_age <- 
   ggplot(df_out, 
-         aes(x = treatment, 
+         aes(x = treat, 
              y = age, 
-             color = as.factor(treatment))) +
+             color = as.factor(treat))) +
   stat_summary(geom = "errorbar", 
                width = .5,
                fun.data = "mean_se", 
@@ -359,9 +281,9 @@ compare_age <-
 # sex (independent)
 compare_sex <- 
   ggplot(df_out, 
-         aes(x = treatment, 
+         aes(x = treat, 
              y = sex, 
-             color = as.factor(treatment))) +
+             color = as.factor(treat))) +
   stat_summary(geom = "errorbar", 
                width = .5,
                fun.data = "mean_se", 
@@ -372,9 +294,9 @@ compare_sex <-
 # outcome (dependent)
 compare_outcome <- 
   ggplot(df_out, 
-         aes(x = treatment, 
+         aes(x = treat, 
              y = outcome, 
-             color = as.factor(treatment))) +
+             color = as.factor(treat))) +
   stat_summary(geom = "errorbar", 
                width = .5,
                fun.data = "mean_se", 
@@ -394,7 +316,7 @@ Both regressors turn out to be significant. However, as expected, the treatment 
 
 ```{r}
 # Include other regressors
-lm_all <- lm(outcome ~ treatment + age + sex, data = df_out)
+lm_all <- lm(outcome ~ treat + age + sex, data = df_out)
 summary(lm_all)
 ```
 
@@ -410,7 +332,7 @@ Note, that now the treatment effect differs for everyone dependent on their age 
 
 ```{r}
 # Include interaction
-lm_mod <- lm(outcome ~ treatment * age + treatment * sex, data = df_out)
+lm_mod <- lm(outcome ~ treat * age + treat * sex, data = df_out)
 summary(lm_mod)
 ```
 
@@ -419,7 +341,7 @@ Note also that $R^2$ has increased with each addition to the regression. But why
 As the data is simulated, we can check what the true data-generating process is and based on that evaluate what regression equation provides the best solution. Check for yourself what model should be used.
 
 $$
-outcome = 2*treatment + 0.1*treatment*age + 10*treatment*sex + \epsilon
+outcome = 2*treat + 0.1*treat*age + 10*treat*sex + \epsilon
 $$
 
 Again, it shows how crucial theoretical knowledge of the phenomenon you are studying is. Imagine a situation with a high number of regressors. Testing out all potential variables as moderators requires some effort and might even lead to results just due to chance. You should therefore plan your research design and hypotheses beforehand. As a matter of fact, many scientific publications therefore have to define a pre-analysis plan[^1].
@@ -495,24 +417,23 @@ All other tools that we will learn in the following chapters try to deal with th
 
 # Assignment
 
-Load the dataset `abtest_online.rds`. It is about a randomized experiment run by an online shop. Online shops run a lot of randomized experiments (in business context often called AB-testing), where a randomly selected website visitors are shown a slightly different website than the others. This way, new features can be tested and the final decision to implement a new feature will be based on the results of this test.
+Load the dataset `abtest_online.rds`. It contains data about a randomized experiment run by an online shop. E-commerce websites frequently conduct numerous randomized experiments, commonly referred to as AB testing in a business context. In these experiments, a subset of randomly chosen website visitors is presented with a slightly altered version of the site, while others see the standard version. This approach enables the testing of new features, and the decision to implement a new feature is contingent on the outcomes derived from these tests.
 
-Let's imagine the following scenario: you are running an online shop and worry about the cost of your customer service. To reduce the cost, you consider implementing a chatbot that can replace the human customer service. However, you are not sure if that could affect your sales negatively, and therefore you plan an AB-test, where a selection of users is led on a website with a chatbot (treatment group) and the other customers still turn to the human customer service (control group) in case of question. To ensure randomization, you assign treatment based on the last digit of the IP-address.
+Consider this situation: You operate an online store and are concerned about the expenses associated with your customer service. To cut costs, you contemplate introducing a chatbot as a substitute for human customer service. However, you're uncertain whether this change might have a detrimental impact on your sales. Consequently, you intend to conduct an AB test. In this test, a portion of users will be directed to a website equipped with a chatbot (*treatment group*), while the remaining customers will still interact with human customer service (*control group*) if they have questions. To ensure randomization, you'll allocate the treatment based on the last digit of each user's IP address.
 
-There are two outcome variables, `y_bin` and `y_num`. The first one shows whether a customer bought and the other how much (in €) he bought. Let's use `y_num` for now.
+There are two outcome variables, `purchase` and `purchase_amount`. The first one shows whether a customer bought and the other how much (in €) he bought. First, let's use `purchase_amount`.
 
-Other variables included are `mob_dev`being `TRUE` when a user visits the site using a mobile device and `pre_vis` indicating the number of previous visits of a particular user.
+Other variables included are `mobile_device` being `TRUE` when a user visits the site using a mobile device and `previous_visits` indicating the number of previous visits of a particular user.
 
 After loading the data, perform the following steps:
 
 1.  Check whether the covariates are balanced across the groups. Use a plot to show it.
-2.  Run a regression to find the effect of chatbot on sales
+2.  Run a regression to find the effect of chatbot on sales.
 3.  Find subgroup-specific effects by including an interaction. Compute a CATE for one exemplary group. A subgroup could be for example mobile users.
+4.  It's not only of interest how much customers buy but also if the buy at all. Then, the dependent variable is binary (either 0 or 1) instead of continuous and the model of choice is the logistic regression. Use the outcome variable `purchase` and run a logistic regression. The coefficients are not as easily interpretable as before. Look it up and interpret the coefficient for `chatbot`.
 
 ::: callout-tip
-Bonus: use $purch$ as outcome variable. Note, in that case you cannot use a linear regression as the outcome is either yes or no (or 1 and 0). You have to use a logistic regression using the command `glm(formula, family=binomial(link='logit'), data)`.
-
-**This bonus task is not an assignment you have to submit, but feel free to do it!**
+Use the command `glm(formula, family=binomial(link='logit'), data)`.
 :::
 
 ::: callout-warning

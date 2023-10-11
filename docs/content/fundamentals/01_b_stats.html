@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../submission/submission.html" rel="" target="">
+    <a class="nav-link" href="../../submission/submission_new.html" rel="" target="">
  <span class="menu-text">Submission</span></a>
   </li>  
   <li class="nav-item">
@@ -686,7 +686,13 @@ Note
 </section><section id="conclusion" class="level1"><h1>Conclusion</h1>
 <p>Many of the rules and concepts that you have just learned will play a crucial in the upcoming chapters. Their understanding will guide you through and let you understand why we need to put a particular emphasis on causality, how we can isolate causal effects and build the foundation for many methods from our toolbox.</p>
 </section><section id="assignments" class="level1"><h1>Assignments</h1>
-<p>From the <a href="https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm">data folder</a>, load the table <code>random_vars.rds</code> (by using <code>table_name &lt;- readRDS("your_download_folder/random_vars.rds")</code> or finding the file in the <code>Files</code> pane and selecting it). It contains draws from two random variables, <code>age</code> and <code>income</code>. By the way, after you loaded the table, you can have a look at the whole table using <code>View(random_vars)</code>.</p>
+<p>Load the table <code>random_vars.rds</code>. You can either</p>
+<ul>
+<li>run the command: <code>random_vars &lt;- readRDS("your_download_folder/random_vars.rds")</code>
+</li>
+<li>or find the file in the <code>Files</code> pane and select it.</li>
+</ul>
+<p>After you load the table, get an overview of what it contains with <code>View(random_vars)</code>.</p>
 <ol type="1">
 <li>For each variable, compute the following values. You can use the built-in functions or use the mathematical formulas.
 <ol type="1">
@@ -711,6 +717,19 @@ Note
 </ol>
 </li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the introduction you learned how to filter data. There are different ways, you could either use base R or <code>tidyverse</code>.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -983,7 +1002,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+    <div class="nav-footer-left">lv3060 WiSe 23/24: Causal Data Science for Business Analytics</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

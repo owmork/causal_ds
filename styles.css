@@ -90,3 +90,11 @@ div.callout-warning .callout-toggle::before {
 .nav-link {
   font-size: .875rem;
 }
+
+.panel-caption {
+  color: #9a9b9c;
+}
+
+.figure-caption {
+  color: #9a9b9c;
+}

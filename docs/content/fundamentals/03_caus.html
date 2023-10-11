@@ -41,7 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -92,10 +93,9 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../submission/submission.html" rel="" target="">
  <span class="menu-text">Submission</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion" rel="" target=""><i class="bi bi-chat-left-text-fill" role="img" aria-label="Mattermost">
-</i> 
- <span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science" rel="" target="">
+ <span class="menu-text"><iconify-icon inline="" icon="cib:mattermost" style="font-size: 1.25em;"></iconify-icon></span></a>
   </li>  
 </ul>
 <div class="quarto-navbar-tools">
@@ -258,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Data science has gained extreme popularity in the last years and particularly in the field of machine learning, a large number of new methods and algorithms has been developed. Many of the methods are built to perform well at prediction tasks like predicting whether a customer is likely to churn, natural language processing (extracting sentiments, translating etc.), guiding self-driving cars, recognizing objects and many other applications. Those algorithms belong to the category of supervised learning and are highly data-driven (on historical data) and optimized to predict as accurate as possible. Due to increased computing power, these models have proven to be very successful in many contexts.</p>
 <p>However, there are many other <strong>contexts, where prediction is not the main focus but instead making sense of the data, understanding mechanism and processes</strong> or guiding decisions and policies plays the most important role. For example, you are not only interested in whether a customer is likely to churn, but you want to know why he/she is likely to churn. Then, we find ourselves in the realm of causality. Here, many of the newer methods are likely to fail due to their prediction-centric structure.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../../images/03_pred_expl.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Difference between Prediction and Explanation"><img src="../../images/03_pred_expl.png" class="img-fluid figure-img" width="480"></a></p>
+<figure class="figure"><p><a href="../../images/03_pred_expl.png" class="lightbox" title="Difference between Prediction and Explanation" data-gallery="quarto-lightbox-gallery-1"><img src="../../images/03_pred_expl.png" class="img-fluid figure-img" width="480"></a></p>
 <figcaption class="figure-caption">Difference between Prediction and Explanation</figcaption></figure>
 </div>
 <p>Instead of throwing a lot of data to a black box searching for patterns between independent variables and outcome to get a model that predicts very well, in this course, we will try to <strong>understand characteristics of the data-generating process, i.e.&nbsp;the system of cause and effect and extract useful information from the data</strong>. That is what science is about, explaining why things are happening.</p>
@@ -503,9 +503,9 @@ If you’re interested: evolution of causal inference.
 </div>
 </div>
 </section><section id="assignment" class="level1"><h1>Assignment</h1>
-<p>In this chapter, there is no typical assignment but we will use it to get familiar with plotting functions in <code>R</code>.</p>
-<p>Having read this chapter, you have already understood the risk of confusing correlation with causation. On the internet, you can find many examples of spurious correlations. Spurious correlations are correlations that appear to be causal but are in fact not. The reason could be that there is a confounding factor or that two variables happen to be statistically associated just by coincidence. A <a href="https://www.tylervigen.com/spurious-correlations">list of particularly obvious spurious</a> correlations has been compiled by Tyler Virgen. Have a look at them!</p>
-<p>Then, try to replicate one of these graphs in R using <code>ggplot2</code>. <a href="https://meghan.rbind.io/slides/neair/neair.html#/ggplot2">Here</a> you can find a well written introduction to <code>ggplot2</code> and the <a href="https://ggplot2.tidyverse.org/">official documentation</a> also contains a lot of useful tips. It does not to be exactly the same plot but it should convey the message that both variables correlate.</p>
+<p>In this chapter, there is no typical assignment but we will use it to get familiar with plotting functions in <code>R</code>, in particular <code>ggplot2</code>. We’ll need them in the following chapters, so feel free to play around and get used to the syntax. You can also check out the graphs from the previous chapter.</p>
+<p>Having read this chapter, you have already understood the risk of confusing correlation with causation. On the internet, you can find many examples of spurious correlations. Spurious correlations are correlations that appear to be causal but are in fact not. The reason could be that there is a confounding factor or that two variables happen to be statistically associated just by coincidence.</p>
+<p>Do some internet research and find a spurious correlation. Then, try to replicate it in R using <code>ggplot2</code>. <a href="https://meghan.rbind.io/slides/neair/neair.html#/ggplot2">Here</a> you can find a well written introduction to <code>ggplot2</code> written by Megan Hall and the <a href="https://ggplot2.tidyverse.org/reference/index.html">official documentation</a> also contains a lot of useful tips. It does not to be exactly the same plot but it should convey the message that both variables correlate.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -766,7 +766,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Winter term 2022/2023 - Causal Data Science for Business Analytics</div>   
+    <div class="nav-footer-left">lv3060 WiSe 23/24: Causal Data Science for Business Analytics</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -774,7 +774,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":true,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"loop":true,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});</script>
 
 
 </body></html>

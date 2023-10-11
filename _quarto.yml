@@ -16,7 +16,7 @@ website:
       - text: Content
         file: content/index.qmd
       - text: Submission
-        file: submission/submission.qmd
+        file: submission/submission_new.qmd
       - text: "{{< iconify cib mattermost size=lg >}}"
         href: https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science
 
@@ -46,7 +46,7 @@ website:
     - title: "Home"
 
   page-footer: 
-    left: "Winter term 2022/2023 - Causal Data Science for Business Analytics" 
+    left: "lv3060 WiSe 23/24: Causal Data Science for Business Analytics" 
 
 format:
   html:
