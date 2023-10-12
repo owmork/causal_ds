@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Submission via GitHub Classroom</title>
+<title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Submission of the Assignments</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -98,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Content</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../submission/submission_new.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../submission/submission.html" rel="" target="">
  <span class="menu-text">Submission</span></a>
   </li>  
   <li class="nav-item">
@@ -121,13 +155,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#github-desktop" id="toc-github-desktop" class="nav-link" data-scroll-target="#github-desktop">GitHub Desktop</a></li>
-  <li><a href="#publishing-your-journal" id="toc-publishing-your-journal" class="nav-link" data-scroll-target="#publishing-your-journal">Publishing your journal</a></li>
-  <li><a href="#check-your-website" id="toc-check-your-website" class="nav-link" data-scroll-target="#check-your-website">Check your website</a></li>
-  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <ul class="collapse">
+  <li><a href="#create-r-project" id="toc-create-r-project" class="nav-link" data-scroll-target="#create-r-project">1. Create <code>R</code> Project</a></li>
+  <li><a href="#create-a-new-.qmd" id="toc-create-a-new-.qmd" class="nav-link" data-scroll-target="#create-a-new-.qmd">2. Create a new <code>.qmd</code></a></li>
+  <li><a href="#submit-your-html-files" id="toc-submit-your-html-files" class="nav-link" data-scroll-target="#submit-your-html-files">3. Submit your <code>HTML</code>-files</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -136,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Submission via GitHub Classroom</h1>
+<h1 class="title">Submission of the Assignments</h1>
 </div>
 
 
@@ -153,119 +186,110 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="instructions" class="level1">
 <h1>Instructions</h1>
-<p>To submit your assignments, you will create your own Quarto<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> journal that you upload to GitHub<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. GitHub is is a hosting platform for so called repositories, which typically consists of data and code.</p>
-<p>You will write your solutions including your code in <code>.qmd</code> (Quarto) documents that can run and knit R code. You will publish these <code>.qmd</code> files using Quarto and GitHub to create your own password-protected website.</p>
-<p>In the following I will guide your through the necessary steps.</p>
+<p>To submit your solutions to the problem set, you’ll have to run your code in <code>.qmd</code> (quarto markdown format) and render your files to HTML-files.</p>
+<p>I’ll guide you through the necessary steps.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Don’t worry!
+Your solutions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Your solutions don’t need to be completely free from errors but I should be able to recognize that you understand the core concepts and attempt to solve the assignments. Please make sure, that your code is running and generating output.</p>
+<p>Your solutions don’t need to be completely free from errors but you should have an attempt at each assignment. Please make sure, that your code is running and generating output.</p>
 </div>
 </div>
-</section>
-<section id="github" class="level1">
-<h1>GitHub</h1>
-<ol type="1">
-<li><p><a href="https://github.com">Create a free GitHub account</a>. If you already have a GitHub account, you can skip this step.</p></li>
-<li><p><a href="https://desktop.github.com">Download and install GitHub Desktop</a> and connect it to your account. GitHub Desktop is a graphical user interface, which allows you to sync your local code changes with your online repository.</p></li>
-<li><p>Check if <code>git</code> is installed on your system. It should already be the case but you can check it by opening <code>RStudio</code>, going to the terminal pane and entering <code>which git</code>. It should output the file path to <code>git</code> on your system. If you don’t get the expected result, <a href="https://git-scm.com/downloads">download and install git</a>.</p></li>
-<li><p><a href="https://classroom.github.com/a/x9U_PBSb">Accept the assignment.</a> and follow through the steps to enter the virtual classroom. <a href="../images/github_accept_assignment.png" class="lightbox" title="Accept the assignment." data-gallery="quarto-lightbox-gallery-1"><img src="../images/github_accept_assignment.png" class="img-fluid" alt="Accept the assignment."></a></p></li>
-</ol>
-<p>By the way, <a href="https://tuhhstartupengineers.github.io/quarto_cds/">this</a> is what your journal is going to look like (without content). So let’s get your journal running.</p>
-</section>
-<section id="quarto" class="level1">
-<h1>Quarto</h1>
-<p>Quarto is a scientific publishing tool that allows R, Python, Julia and Observable JS users to create dynamic documents, websites, books and more. In fact, the whole course website is created using Quarto. In case you downloaded RStudio for this course, you do not need to install Quarto anymore. If you have an older RStudio version, you might have to download an install it or update to a new RStudio version.</p>
-</section>
-<section id="github-desktop" class="level1">
-<h1>GitHub Desktop</h1>
-<p>Open GitHub Desktop and follow the steps depicted in the screenshots.</p>
-<ol type="1">
-<li>Sign into your account.</li>
-</ol>
-<p><a href="../images/github_desktop/github_desktop_01_signin.png" class="lightbox" title="Sign in to your account (1/4)." data-gallery="github-desktop"><img src="../images/github_desktop/github_desktop_01_signin.png" class="img-fluid" alt="Sign in to your account (1/4)."></a> <a href="../images/github_desktop/github_desktop_02_signin.png" class="lightbox" title="Sign in to your account (2/4)." data-gallery="github-desktop"><img src="../images/github_desktop/github_desktop_02_signin.png" class="img-fluid" alt="Sign in to your account (2/4)."></a></p>
-<p><a href="../images/github_desktop/github_desktop_03_configure.png" class="lightbox" title="Sign in to your account (3/4)." data-gallery="github-desktop"><img src="../images/github_desktop/github_desktop_03_configure.png" class="img-fluid" alt="Sign in to your account (3/4)."></a> <a href="../images/github_desktop/github_desktop_04_finish.png" class="lightbox" title="Sign in to your account (4/4)." data-gallery="github-desktop"><img src="../images/github_desktop/github_desktop_04_finish.png" class="img-fluid" alt="Sign in to your account (4/4)."></a></p>
-<ol start="2" type="1">
-<li>Now you have to clone your repository. Until now, your repository is online hosted on GitHub, but of course, you need a local version to add your solutions and code to your repository. Select <code>Clone Repository</code> and select your repo (should be <code>TUHHStartupEngineers-Classroom/cdsba-YourUserName</code>). Then select the local path, where you want your repo stored in your file system. !!! update</li>
-</ol>
+<section id="create-r-project" class="level2">
+<h2 class="anchored" data-anchor-id="create-r-project">1. Create <code>R</code> Project</h2>
+<p>To conveniently organize your files, scripts and data sets you should use an <code>R</code> project. It helps keeping all files in the same place without the hustle of moving files and changing paths all the time. To create a new project just follow the steps. I am working on macOS, but it should be very similar on other operating systems.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/github_desktop/github_desktop_05_clone.png" class="lightbox" title="Clone your repository." data-gallery="github-desktop"><img src="../images/github_desktop/github_desktop_05_clone.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Clone your repository.</figcaption>
+<p><a href="../images/create_new_project/step_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="1) File -> New Project"><img src="../images/create_new_project/step_1.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">1) <code>File</code> -&gt; <code>New Project</code></figcaption>
 </figure>
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/create_new_project/step_2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="2) New Directory. If you already have a folder that you would to be the project directory, you can click Existing Directory."><img src="../images/create_new_project/step_2.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">2) <code>New Directory</code>. If you already have a folder that you would to be the project directory, you can click <code>Existing Directory</code>.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/create_new_project/step_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="3) New Project"><img src="../images/create_new_project/step_3.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">3) <code>New Project</code></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/create_new_project/step_4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="4) Specify the directory and give your project a name (whatever you like, I chose Causal_Data_Science. Then click on Create Project."><img src="../images/create_new_project/step_4.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">4) Specify the directory and give your project a name (whatever you like, I chose <em>Causal_Data_Science</em>. Then click on <code>Create Project</code>.</figcaption>
+</figure>
+</div>
+<p>Now, you will see that in your folder, there is a file with the file extension <code>.Rproj</code>. This is your project file that contains information about the location of your directory and other project settings. Every time you want to open your project, just click on it and it will open <code>RStudio</code> and your project.</p>
 </section>
-<section id="publishing-your-journal" class="level1">
-<h1>Publishing your journal</h1>
-<p>To publish your journal, you need to go into <code>Settings</code> on your journal repository. Note that your repository is located in your account on github.com and should have an address following the pattern: https://tuhhstartupengineers-classroom.github.io/cdsba-YourUserName/, where YourUserName is replaced by your name.</p>
-<ol type="1">
-<li>Find <code>Pages</code> in the menu on the left and make sure the source <strong>GitHub Action</strong> is set.</li>
-</ol>
+<section id="create-a-new-.qmd" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-new-.qmd">2. Create a new <code>.qmd</code></h2>
+<p>Now that you have set up a project, it should be already open. You can check that by looking at the top right and see if you see the name of your project. If not you have to open it.</p>
+<p>In this section, I’ll show you how to create a <code>.qmd</code> documents. These documents can generate various kinds of output documents to present your results like PDF, HTML, Word etc. We will focus on HTML documents. These will contain all your code needed to solve the assignments and will also display the results.</p>
+<p>So, let’s see what we have to do.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/github_publishing/github_pages_settings_01_action.png" class="lightbox" title="Set GitHub Action." data-gallery="github-publishing"><img src="../images/github_publishing/github_pages_settings_01_action.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Set GitHub Action.</figcaption>
+<p><a href="../images/create_new_qmd/step_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="1) Because your project is open, you are in your project folder. Here, you can now create a new .qmd file by clicking on New Blank File and Quarto Doc."><img src="../images/create_new_qmd/step_1.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">1) Because your project is open, you are in your project folder. Here, you can now create a new <code>.qmd</code> file by clicking on <code>New Blank File</code> and <code>Quarto Doc</code>.</figcaption>
 </figure>
 </div>
-<ol start="2" type="1">
-<li>Now you are going to set a password in order to protect your journal. Select <code>Secrets and variables</code> and <code>Action</code> and click on the green field <code>New repository secret</code>.</li>
-</ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/github_publishing/github_pages_settings_02_secret_01.png" class="lightbox" title="Set repository secret (1/2)." data-gallery="github-publishing"><img src="../images/github_publishing/github_pages_settings_02_secret_01.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Set repository secret (1/2).</figcaption>
+<p><a href="../images/create_new_qmd/step_2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="2) Name the file accordingly, for example chapter_1.qmd for the assignments you have to submit in chapter 1."><img src="../images/create_new_qmd/step_2.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">2) Name the file accordingly, for example <code>chapter_1.qmd</code> for the assignments you have to submit in chapter 1.</figcaption>
 </figure>
 </div>
-<ol start="3" type="1">
-<li>The name has to be <code>WEBSITE_TOKEN</code>. The value for secret will be you password for your website that you will be later asked to submit to me, who will be able to see it in clear text. Regarding your password:</li>
-</ol>
-<ul>
-<li><strong>DO NOT USE ONE OF YOUR STANDARD PASSWORDS</strong></li>
-<li><strong>DO NOT USE SPACES OR QUOTATION MARKS WITHIN YOUR PASSWORD</strong></li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/github_publishing/github_pages_settings_02_secret_02.png" class="lightbox" title="Set repository secret (2/2)." data-gallery="github-publishing"><img src="../images/github_publishing/github_pages_settings_02_secret_02.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Set repository secret (2/2).</figcaption>
+<p><a href="../images/create_new_qmd/step_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="3) First, to define what output format you want to have and to give your document a title, insert a YAML Block. Please make sure that you have activated the Visual editor (instead of Source). This one is easier to handle and gives you a preview of what your final document will look like."><img src="../images/create_new_qmd/step_3.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">3) First, to define what output format you want to have and to give your document a title, insert a <code>YAML Block</code>. Please make sure that you have activated the <code>Visual</code> editor (instead of <code>Source)</code>. This one is easier to handle and gives you a preview of what your final document will look like.</figcaption>
 </figure>
 </div>
-<p>Let’s make the first edit to your repository. Later, you will add all your solutions and code but for now, let’s just make a simple change.</p>
-<ol type="1">
-<li><p>First, move to the local folder where you chose to save the repository. Open the <code>lab_journal.Rproj</code> file. This should automatically open RStudio, and your current working environment will be inside this project. That means everything you save will be auto saved to this folder (unless you tell RStudio to save something somewhere else. Have a look at the files tab in the bottom right hand corner. Most files you click will be opened up as text files in the RStudio editor. For each chapter there is a journal you should open and edit.</p></li>
-<li><p>Open a <code>.qmd</code> file in the <em>Content/01_journal</em> folder. Make a minor change and save the file. Then click on <code>Render</code>. That compiles your website. The website should be built. After the website is built, you should be able to see it in the RStudio browser (viewer pane in the bottom right corner). There is a little button that allows you to pop the website into your default web-browser. This way you can look at the website in your browser.</p></li>
-<li><p>Open GitHub Desktop (if it is not still open). You should see something similar to the image below. You can see what you changed in the <code>.qmd</code> and the accompanied <code>html</code> should be different as well.</p></li>
-</ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/github_desktop/github_desktop_06_commit.png" class="lightbox" title="Commit" data-gallery="github-commit-push"><img src="../images/github_desktop/github_desktop_06_commit.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Commit</figcaption>
+<p><a href="../images/create_new_qmd/step_4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="4) Modify your YAML Block as shown in the picture. Below, you can start writing regular text which can be formatted with Format. Other elements can be inserted with Insert. The button, where the mouse is located creates a code chunk which is used to run code."><img src="../images/create_new_qmd/step_4.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">4) Modify your <code>YAML Block</code> as shown in the picture. Below, you can start writing regular text which can be formatted with <code>Format</code>. Other elements can be inserted with <code>Insert</code>. The button, where the mouse is located creates a code chunk which is used to run code.</figcaption>
 </figure>
 </div>
-<ol start="4" type="1">
-<li>Now you still need to push your changes to GitHub. First, commit your changes at the left bottom by providing a short description of what you have changed and click on <code>Commit to Master</code>. Now you can push to origin (you might have to fetch changes beforehand).</li>
-</ol>
+<p>You can just copy an example of a YAML block from here. Please note that you still have to <code>Insert</code> a block and then copy the code from below between the lines.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>YAML_block_example</strong></pre>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Chapter 1 - Assignment"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/github_desktop/github_desktop_07_push.png" class="lightbox" title="Push" data-gallery="github-commit-push"><img src="../images/github_desktop/github_desktop_07_push.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">Push</figcaption>
+<p><a href="../images/create_new_qmd/step_5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="5) Just like in your R scripts, you can run code in these chunks. Note that it is common practice to only have one output per chunk (for example a plot or a result). Just create a new chunk for the next output. To run your code and check if it works, there are several options on the top right of each chunk or at the top right of the source editor."><img src="../images/create_new_qmd/step_5.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">5) Just like in your <code>R</code> scripts, you can run code in these chunks. Note that it is common practice to only have one output per chunk (for example a plot or a result). Just create a new chunk for the next output. To run your code and check if it works, there are several options on the top right of each chunk or at the top right of the source editor.</figcaption>
 </figure>
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/create_new_qmd/step_6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="6) As a last step, when all your code needed to solve the assignment is in code chunks, you have to click Render, which will create a .html document in the same folder. This document contains your solution and will later be submitted. If you are asked to install necessary packages, you have to install them."><img src="../images/create_new_qmd/step_6.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">6) As a last step, when all your code needed to solve the assignment is in code chunks, you have to click <code>Render</code>, which will create a <code>.html</code> document in the same folder. This document contains your solution and will later be submitted. If you are asked to install necessary packages, you have to install them.</figcaption>
+</figure>
+</div>
+<p>For example, the document just created looks like <a href="chapter_1.html">this</a>. There are so many more options that you can use in <code>.qmd</code> files that we cannot cover here. However, if you are interested have a look at the <a href="https://quarto.org/docs/get-started/hello/rstudio.html">documentation</a> and check some features out. By the way, this whole website is generated based on .<code>qmd</code> files.</p>
 </section>
-<section id="check-your-website" class="level1">
-<h1>Check your website</h1>
-<p>Go onto your website. You find the URL under <code>Settings</code> -&gt; <code>Pages</code> and check if everything worked. Select <code>Remember Me</code> to avoid entering the password every time.</p>
-</section>
-<section id="submission" class="level1">
-<h1>Submission</h1>
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfoGOtB5uO6CKtDbH6a6cq_0xP9eVYA56HTy6pjWCQ9mH-Ynw/viewform?embedded=true" width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
-<p>Submit your journal URL and password via the following form. If you do not submit your information, we won't be able to evaluate your assignments.</p>
+<section id="submit-your-html-files" class="level2">
+<h2 class="anchored" data-anchor-id="submit-your-html-files">3. Submit your <code>HTML</code>-files</h2>
+<p>When you have generated all your <code>.html</code> document, you’ll see them in your project folder. Check if all of your code has run and all your output is shown correctly. If you have any problems, please don’t hesitate to ask in class or in the Mattermost channel.</p>
+<p>Please move them to one one folder that you name: <em>cds_YourKerberosID</em>, for example: <em>cds_cxy0428</em>, if your KerberosID is <em>cxy0428</em>.</p>
+<p>Then, proceed by going to the <a href="https://e-learning.tuhh.de/studip/dispatch.php/course/details?sem_id=211435ea94025bf71a4d72557e8a5087&amp;again=yes">StudIP course for this class</a> and click on the files tab. There you’ll find a folder called <strong>Submission</strong>. In this folder you have to upload your final folder with your HTML-files. Don’t forget to name it correctly so I can match it with you.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -277,24 +301,18 @@ Summary: How to successfully submit
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Write your solutions down in a <code>.qmd</code> file and render.</li>
-<li>Commit and push your changes to your GitHub</li>
-<li>Fill out the form.</li>
+<li>Write your solutions down in a <code>.qmd</code> file and render an HTML document with the YAML-block as given above.</li>
+<li>Put all your HTML-documents in one folder and name it: <em>cds_YourKerberosID</em>, for example: <em>cds_cxy0428</em>. Convert your folder to an archive file format (<code>.zip</code>, <code>.rar</code>, <code>.gz</code> etc.).</li>
+<li>Upload your compressed folder to StudIP (Folder: <strong>Submission</strong>)</li>
 </ol>
 </div>
 </div>
 
 
 </section>
+</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>https://quarto.org/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>https://github.com/<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -540,7 +558,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":true});</script>
+<script>var lightboxQuarto = GLightbox({"loop":true,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});</script>
 
 
 

@@ -1,0 +1,78 @@
+---
+title: "Submission of the Assignments"
+---
+
+# Instructions
+
+To submit your solutions to the problem set, you'll have to run your code in `.qmd` (quarto markdown format) and render your files to HTML-files.
+
+I'll guide you through the necessary steps.
+
+::: callout-tip
+## Your solutions
+
+Your solutions don't need to be completely free from errors but you should have an attempt at each assignment. Please make sure, that your code is running and generating output.
+:::
+
+## 1. Create `R` Project
+
+To conveniently organize your files, scripts and data sets you should use an `R` project. It helps keeping all files in the same place without the hustle of moving files and changing paths all the time. To create a new project just follow the steps. I am working on macOS, but it should be very similar on other operating systems.
+
+![1) `File` -\> `New Project`](/images/create_new_project/step_1.png){fig-align="center"}
+
+![2) `New Directory`. If you already have a folder that you would to be the project directory, you can click `Existing Directory`.](/images/create_new_project/step_2.png){fig-align="center"}
+
+![3) `New Project`](/images/create_new_project/step_3.png){fig-align="center"}
+
+![4) Specify the directory and give your project a name (whatever you like, I chose *Causal_Data_Science*. Then click on `Create Project`.](/images/create_new_project/step_4.png){fig-align="center"}
+
+Now, you will see that in your folder, there is a file with the file extension `.Rproj`. This is your project file that contains information about the location of your directory and other project settings. Every time you want to open your project, just click on it and it will open `RStudio` and your project.
+
+## 2. Create a new `.qmd`
+
+Now that you have set up a project, it should be already open. You can check that by looking at the top right and see if you see the name of your project. If not you have to open it.
+
+In this section, I'll show you how to create a `.qmd` documents. These documents can generate various kinds of output documents to present your results like PDF, HTML, Word etc. We will focus on HTML documents. These will contain all your code needed to solve the assignments and will also display the results.
+
+So, let's see what we have to do.
+
+![1) Because your project is open, you are in your project folder. Here, you can now create a new `.qmd` file by clicking on `New Blank File` and `Quarto Doc`.](/images/create_new_qmd/step_1.png){fig-align="center"}
+
+![2) Name the file accordingly, for example `chapter_1.qmd` for the assignments you have to submit in chapter 1.](/images/create_new_qmd/step_2.png){fig-align="center"}
+
+![3) First, to define what output format you want to have and to give your document a title, insert a `YAML Block`. Please make sure that you have activated the `Visual` editor (instead of `Source)`. This one is easier to handle and gives you a preview of what your final document will look like.](/images/create_new_qmd/step_3.png)
+
+![4) Modify your `YAML Block` as shown in the picture. Below, you can start writing regular text which can be formatted with `Format`. Other elements can be inserted with `Insert`. The button, where the mouse is located creates a code chunk which is used to run code.](/images/create_new_qmd/step_4.png)
+
+You can just copy an example of a YAML block from here. Please note that you still have to `Insert` a block and then copy the code from below between the lines.
+
+``` {.yaml filename="YAML_block_example"}
+title: "Chapter 1 - Assignment"
+toc: true
+format:
+  html:
+    embed-resources: true
+output: html
+```
+
+![5) Just like in your `R` scripts, you can run code in these chunks. Note that it is common practice to only have one output per chunk (for example a plot or a result). Just create a new chunk for the next output. To run your code and check if it works, there are several options on the top right of each chunk or at the top right of the source editor.](/images/create_new_qmd/step_5.png){fig-align="center"}
+
+![6) As a last step, when all your code needed to solve the assignment is in code chunks, you have to click `Render`, which will create a `.html` document in the same folder. This document contains your solution and will later be submitted. If you are asked to install necessary packages, you have to install them.](/images/create_new_qmd/step_6.png)
+
+For example, the document just created looks like [this](chapter_1.html). There are so many more options that you can use in `.qmd` files that we cannot cover here. However, if you are interested have a look at the [documentation](https://quarto.org/docs/get-started/hello/rstudio.html) and check some features out. By the way, this whole website is generated based on .`qmd` files.
+
+## 3. Submit your `HTML`-files
+
+When you have generated all your `.html` document, you'll see them in your project folder. Check if all of your code has run and all your output is shown correctly. If you have any problems, please don't hesitate to ask in class or in the Mattermost channel.
+
+Please move them to one one folder that you name: *cds_YourKerberosID*, for example: *cds_cxy0428*, if your KerberosID is *cxy0428*.
+
+Then, proceed by going to the [StudIP course for this class](https://e-learning.tuhh.de/studip/dispatch.php/course/details?sem_id=211435ea94025bf71a4d72557e8a5087&again=yes) and click on the files tab. There you'll find a folder called **Submission**. In this folder you have to upload your final folder with your HTML-files. Don't forget to name it correctly so I can match it with you.
+
+::: callout-important
+## Summary: How to successfully submit
+
+1.  Write your solutions down in a `.qmd` file and render an HTML document with the YAML-block as given above.
+2.  Put all your HTML-documents in one folder and name it: *cds_YourKerberosID*, for example: *cds_cxy0428*. Convert your folder to an archive file format (`.zip`, `.rar`, `.gz` etc.).
+3.  Upload your compressed folder to StudIP (Folder: **Submission**)
+:::
