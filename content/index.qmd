@@ -47,11 +47,12 @@ Many successful companies have already recognized the advantages of causal data 
 
 -   Data science teams at **Lyft** rely on [large causal models](https://eng.lyft.com/causal-forecasting-at-lyft-part-1-14cca6ff3d6d) to model customer decisions and driver incentives in order to manage their marketplace.
 
+```{=html}
 <!--
 -   https://causal-machine-learning.github.io/kdd2021-tutorial/
 -   https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3867326
 -->
-
+```
 # Setup
 
 ## Mattermost
@@ -200,9 +201,9 @@ Whenever you want to find out more about a command or you have difficulties unde
 
 # Assignments
 
-At the end of each chapter (the following chapters of **Fundamentals** and **Toolbox**, not the `swirl` tutorials), you will find an assignment. These assignments are related to the same chapter and with your acquired knowledge, you should be able to solve it.
+At the end of each chapter (the following chapters of **Fundamentals** and **Toolbox**, not the `swirl` tutorials), you will find an assignment. These assignments are related to the same chapter and with your acquired knowledge, you should be able to solve it. For some assignments you have to load data which can be found [here](../data/data.html).
 
-You have to **submit your solutions to the assignments by 31/12/2023** in order to pass the course. You can find more detailed information on how to submit under the tab [Submission](https://owmork.github.io/causal_ds/submission/submission.html). To successfully complete the course, you also have to **register on TUNE**.
+You have to **submit your solutions to the assignments by 31/12/2023** in order to pass the course. You can find more detailed information on how to submit under the tab [Submission](../submission/submission.html). To successfully complete the course, you also have to **register on TUNE**.
 
 # References
 

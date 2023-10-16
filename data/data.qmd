@@ -1,0 +1,11 @@
+---
+title: "Data"
+---
+
+::: assignment
+Here you can download the data for your assignments:
+
+-   [**download all files**](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm/download "Download all data for the assignments.")
+-   [**download individual files**](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm)
+
+:::

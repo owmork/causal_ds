@@ -17,6 +17,8 @@ website:
         file: content/index.qmd
       - text: Submission
         file: submission/submission.qmd
+      - text: Data
+        file: data/data.qmd
       - text: "{{< iconify cib mattermost size=lg >}}"
         href: https://communicating.tuhh.de/w-11-students/channels/cdsba_w23
 
