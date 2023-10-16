@@ -1,7 +1,7 @@
 ---
 title: "Probability Theory"
 linktitle: "Probability Theory"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -159,6 +159,7 @@ Consider the following example: you are project manager and based on your are in
 
 ## Assignment I
 
+::: assignment
 Define being on time as event $T$, being not on time as $\overline{T}$, having a change in scope as $S$ and having no change in scope as $\overline{S}$. (*Hint: Check [here](https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg), if you are not sure what is shown in the probability tree.)*
 
 Then, compute the following probabilities and the sum of all four probabilities.
@@ -170,6 +171,7 @@ Then, compute the following probabilities and the sum of all four probabilities.
 -   $P(\overline{T} \cap S)$
 
 -   $P(\overline{T} \cap \overline{S})$
+:::
 
 ::: callout-tip
 With some browsers and specific operating systems, the compliment probability is not shown correctly (missing the horizontal bar above the letter). In that case it often helps to zoom in or out.
@@ -178,7 +180,7 @@ With some browsers and specific operating systems, the compliment probability is
 ::: callout-warning
 ## How to submit your solutions!
 
-Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
+Please see [here](https://owmork.github.io/causal_ds/submission/submission.html) how you have to successfully submit your solutions. I would recommend you to solve the assignments first in `.R` scripts and in the end convert them to the required format as explained in the submission instructions.
 :::
 
 ## **Set Theory**
@@ -298,6 +300,7 @@ ggVennDiagram(sets_all, category.names = c("Smartphone", "Tablet", "Computer"),
 
 ### Assignment II
 
+::: assignment
 Using the Venn diagram above, answer the following questions.
 
 -   What is the percentage of customers using all three devices?
@@ -305,6 +308,7 @@ Using the Venn diagram above, answer the following questions.
 -   What is the percentage of customers using at least two devices?
 
 -   What is the percentage of customers using only one device?
+:::
 
 ::: callout-warning
 ## How to submit your solutions!
@@ -407,6 +411,7 @@ $$
 
 ### Assignment III
 
+::: assignment
 Compute
 
 -   $P(\overline{A}|B)$ (1)
@@ -415,6 +420,7 @@ Compute
 and fill the gaps in the following sentence:
 
 *These results show that in case the alarm is triggered, there is a possibility of about \_\_% that the product is flawless and a probability of \_\_% that the product is faulty.*
+:::
 
 ::: callout-warning
 ## How to submit your solutions!

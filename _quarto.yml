@@ -18,7 +18,7 @@ website:
       - text: Submission
         file: submission/submission.qmd
       - text: "{{< iconify cib mattermost size=lg >}}"
-        href: https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science
+        href: https://communicating.tuhh.de/w-11-students/channels/cdsba_w23
 
   sidebar:
     - title: "Contents"
@@ -63,5 +63,5 @@ filters:
 lightbox:
   match: auto
 
-editor: visual
+editor: source
 

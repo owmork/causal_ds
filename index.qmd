@@ -1,7 +1,7 @@
 ---
 title: "<b>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS</b>"
 subtitle: ""
-details: "lv3060<br>Winter term 2022/2023<br>Institute of Entrepreneurship<br>TUHH"
+details: "lv3060<br>Winter term 2023/2024<br>Institute of Entrepreneurship<br>TUHH"
 sidebar: false
 toc: false
 page-layout: full
@@ -28,7 +28,7 @@ Introducing you to **causal inference with the help of data science** will allow
 ## Website Structure
 
 ::: {style="background-color: #0F2231; border-radius: .25rem; padding: 15px"}
-Browse all the class content, assignments and examples by going to [**Content**](content/). For instruction how to pass the course go to [**Submission**](submission/submission.qmd). If you have problems regarding the content, solving the assignments or any other questions, use the chat icon to directly go to our [**Mattermost discussion channel**](https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science).
+Browse all the class content, assignments and examples by going to [**Content**](content/). For instruction how to pass the course go to [**Submission**](submission/submission.qmd). If you have problems regarding the content, solving the assignments or any other questions, use the chat icon to directly go to our [**Mattermost discussion channel**](https://communicating.tuhh.de/w-11-students/channels/cdsba_w23).
 :::
 
 ::: grid

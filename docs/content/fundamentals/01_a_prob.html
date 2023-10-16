@@ -127,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Submission</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science" rel="" target="">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/cdsba_w23" rel="" target="">
  <span class="menu-text"><iconify-icon inline="" icon="cib:mattermost" style="font-size: 1.25em;"></iconify-icon></span></a>
   </li>  
 </ul>
@@ -418,6 +418,7 @@ P(R_1 = 6 \cap R_2 = 6) = P(R_1 = 6) \ P(R_2 = 6)
 </figure>
 </div>
 </section><section id="assignment-i" class="level2"><h2 class="anchored" data-anchor-id="assignment-i">Assignment I</h2>
+<div class="assignment">
 <p>Define being on time as event <span class="math inline">\(T\)</span>, being not on time as <span class="math inline">\(\overline{T}\)</span>, having a change in scope as <span class="math inline">\(S\)</span> and having no change in scope as <span class="math inline">\(\overline{S}\)</span>. (<em>Hint: Check <a href="https://en.wikipedia.org/wiki/Tree_diagram_%28probability_theory%29#/media/File:Probability_tree_diagram.svg">here</a>, if you are not sure what is shown in the probability tree.)</em></p>
 <p>Then, compute the following probabilities and the sum of all four probabilities.</p>
 <ul>
@@ -426,6 +427,7 @@ P(R_1 = 6 \cap R_2 = 6) = P(R_1 = 6) \ P(R_2 = 6)
 <li><p><span class="math inline">\(P(\overline{T} \cap S)\)</span></p></li>
 <li><p><span class="math inline">\(P(\overline{T} \cap \overline{S})\)</span></p></li>
 </ul>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -449,7 +451,7 @@ How to submit your solutions!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to sucessfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
+<p>Please see <a href="https://owmork.github.io/causal_ds/submission/submission.html">here</a> how you have to successfully submit your solutions. I would recommend you to solve the assignments first in <code>.R</code> scripts and in the end convert them to the required format as explained in the submission instructions.</p>
 </div>
 </div>
 </section><section id="set-theory" class="level2"><h2 class="anchored" data-anchor-id="set-theory"><strong>Set Theory</strong></h2>
@@ -617,12 +619,14 @@ Note
 </div>
 </div>
 <section id="assignment-ii" class="level3"><h3 class="anchored" data-anchor-id="assignment-ii">Assignment II</h3>
+<div class="assignment">
 <p>Using the Venn diagram above, answer the following questions.</p>
 <ul>
 <li><p>What is the percentage of customers using all three devices?</p></li>
 <li><p>What is the percentage of customers using at least two devices?</p></li>
 <li><p>What is the percentage of customers using only one device?</p></li>
 </ul>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -704,6 +708,7 @@ Posterior = \frac{Likelihood * Prior}{Evidence}
 P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline{A})*P(\overline{A})}
 \]</span></p>
 </section><section id="assignment-iii" class="level3"><h3 class="anchored" data-anchor-id="assignment-iii">Assignment III</h3>
+<div class="assignment">
 <p>Compute</p>
 <ul>
 <li>
@@ -713,6 +718,7 @@ P(A|B) = \frac{P(B|A)*P(A)}{P(B)} = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|\overline
 </ul>
 <p>and fill the gaps in the following sentence:</p>
 <p><em>These results show that in case the alarm is triggered, there is a possibility of about __% that the product is flawless and a probability of __% that the product is faulty.</em></p>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -978,7 +984,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":true});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":true,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});</script>
 
 
 </body></html>

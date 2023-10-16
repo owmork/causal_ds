@@ -13,9 +13,9 @@ To submit your assignments, you will create your own Quarto[^1] journal that you
 
 [^2]: https://github.com/
 
-You will write your solutions including your code in `.qmd` (Quarto) documents that can run and knit R code. You will publish these `.qmd` files using Quarto and GitHub to create your own password-protected website.
+You will write your solutions including your code in `.qmd` (Quarto) documents that can run and knit `R` code. You will publish these `.qmd` files using Quarto and GitHub to create your own password-protected website.
 
-In the following I will guide your through the necessary steps.
+In the following I will guide your through the necessary steps. Some steps might not be identical and slightly changed in the meantime, but you should be able to follow along.
 
 ::: callout-tip
 ## Don't worry!
@@ -25,38 +25,31 @@ Your solutions don't need to be completely free from errors but I should be able
 
 # GitHub
 
-1.  [Create a free GitHub account](https://github.com). If you already have a GitHub account, you can skip this step.
+1.  [**Create a free GitHub account**](https://github.com). If you already have a GitHub account, you can skip this step.
 
-2.  [Download and install GitHub Desktop](https://desktop.github.com) and connect it to your account. GitHub Desktop is a graphical user interface, which allows you to sync your local code changes with your online repository.
+2.  [**Download and install GitHub Desktop**](https://desktop.github.com) and connect it to your account (**Sign into GitHub.com**). GitHub Desktop is a graphical user interface, which allows you to sync your local code changes with your online repository.
 
 3.  Check if `git` is installed on your system. It should already be the case but you can check it by opening `RStudio`, going to the terminal pane and entering `which git`. It should output the file path to `git` on your system. If you don't get the expected result, [download and install git](https://git-scm.com/downloads).
 
-4.  [Accept the assignment.](https://classroom.github.com/a/x9U_PBSb) and follow through the steps to enter the virtual classroom. ![Accept the assignment.](/images/github_accept_assignment.png)
+4.  [**Accept the assignment**](https://classroom.github.com/a/x9U_PBSb) and follow through the steps to enter the virtual classroom. ![Accept the assignment.](/images/github_accept_assignment.png)
 
-By the way, [this](https://tuhhstartupengineers.github.io/quarto_cds/) is what your journal is going to look like (without content). So let's get your journal running.
+5.  After a while (refresh your page), you will get the link to your repository, which is currently free of any content but contains the framework to publish your journal at a later stage.
 
-# Quarto
-
-Quarto is a scientific publishing tool that allows R, Python, Julia and Observable JS users to create dynamic documents, websites, books and more. In fact, the whole course website is created using Quarto. In case you downloaded RStudio for this course, you do not need to install Quarto anymore. If you have an older RStudio version, you might have to download an install it or update to a new RStudio version.
+By the way, [this](https://tuhhstartupengineers.github.io/quarto_cds/) is what your journal is going to look like (password: *test*). So let's get your journal running.
 
 # GitHub Desktop
 
-Open GitHub Desktop and follow the steps depicted in the screenshots.
+Go back to GitHub Desktop and follow the steps depicted in the screenshots.
 
-1.  Sign into your account.
+1.  Sign into your account if you haven't done already.
 
-![Sign in to your account (1/4).](/images/github_desktop/github_desktop_01_signin.png){group="github-desktop"} ![Sign in to your account (2/4).](/images/github_desktop/github_desktop_02_signin.png){group="github-desktop"}
-
-![Sign in to your account (3/4).](/images/github_desktop/github_desktop_03_configure.png){group="github-desktop"} ![Sign in to your account (4/4).](/images/github_desktop/github_desktop_04_finish.png){group="github-desktop"}
-
-2.  Now you have to clone your repository. Until now, your repository is online hosted on GitHub, but of course, you need a local version to add your solutions and code to your repository. Select `Clone Repository` and select your repo (should be `TUHHStartupEngineers-Classroom/cdsba-YourUserName`). Then select the local path, where you want your repo stored in your file system. 
-!!! update
+2.  Now you have to clone your repository. Until now, your repository is online hosted on GitHub, but of course, you need a local version to add your solutions and code to your repository. Select `Clone Repository` or `Clone repository from the Internet` and select your repo (should be `TUHHStartupEngineers-Classroom/cdsba-YourUserName`). Then select the local path, where you want your repo stored in your file system.
 
 ![Clone your repository.](/images/github_desktop/github_desktop_05_clone.png){group="github-desktop"}
 
 # Publishing your journal
 
-To publish your journal, you need to go into `Settings` on your journal repository. Note that your repository is located in your account on github.com and should have an address following the pattern: https://tuhhstartupengineers-classroom.github.io/cdsba-YourUserName/, where YourUserName is replaced by your name.
+To publish your journal, you need to go into `Settings` on your journal repository on GitHub. Note that your repository is located in your account on github.com and should have an address following the pattern: *https://tuhhstartupengineers-classroom.github.io/cdsba-YourUserName/*, where *YourUserName* is replaced by your name.
 
 1.  Find `Pages` in the menu on the left and make sure the source **GitHub Action** is set.
 
@@ -75,29 +68,50 @@ To publish your journal, you need to go into `Settings` on your journal reposito
 
 Let's make the first edit to your repository. Later, you will add all your solutions and code but for now, let's just make a simple change.
 
-1.  First, move to the local folder where you chose to save the repository. Open the `lab_journal.Rproj` file. This should automatically open RStudio, and your current working environment will be inside this project. That means everything you save will be auto saved to this folder (unless you tell RStudio to save something somewhere else. Have a look at the files tab in the bottom right hand corner. Most files you click will be opened up as text files in the RStudio editor. For each chapter there is a journal you should open and edit.
+1.  First, on your file system, move to the local folder where you chose to save the repository. Open the `lab_journal.Rproj` file. This should automatically open RStudio, and your current working environment will be inside this project. That means everything you save will be auto saved to this folder (unless you tell RStudio to save something somewhere else. Have a look at the files tab in the bottom right hand corner. Most files you click will be opened up as text files in the RStudio editor. 
 
-2.  Open a `.qmd` file in the *Content/01_journal* folder. Make a minor change and save the file. Then click on `Render`. That compiles your website. The website should be built. After the website is built, you should be able to see it in the RStudio browser (viewer pane in the bottom right corner). There is a little button that allows you to pop the website into your default web-browser. This way you can look at the website in your browser.
+2.  For each assignment there is a `.qmd` document in the folder `content/01_journal` you should open and edit. Open one of them and make a minor change and save the file. Then click on `Render`. That compiles your website. The website should be built. After the website is built, it should either open in your default browser or you should be able to see it in the RStudio browser (viewer pane in the bottom right corner). There is a little button that allows you to pop the website into your default browser. Please note that this is only a locally published site.
 
-3.  Open GitHub Desktop (if it is not still open). You should see something similar to the image below. You can see what you changed in the `.qmd` and the accompanied `html` should be different as well.
+3.  To publish it, open GitHub Desktop (if it is not still open). You should see something similar to the image below. You can see what you changed in the `.qmd` and the accompanied `html` should be different as well. There might be a lot more changes that you expect because a lot of stuff ran in the background when rendering.
 
 ![Commit](/images/github_desktop/github_desktop_06_commit.png){group="github-commit-push"}
 
-4.  Now you still need to push your changes to GitHub. First, commit your changes at the left bottom by providing a short description of what you have changed and click on `Commit to Master`. Now you can push to origin (you might have to fetch changes beforehand).
+4.  Now you still need to push your changes to GitHub. First, commit your changes at the left bottom by providing a short description of what you have changed and click on `Commit to main`. Now you can push to origin (you might have to `Fetch origin` beforehand).
 
 ![Push](/images/github_desktop/github_desktop_07_push.png){group="github-commit-push"}
 
 # Check your website
 
-Go onto your website. You find the URL under `Settings` -\> `Pages` and check if everything worked. Select `Remember Me` to avoid entering the password every time.
+Go onto your repository you find your URL under `Settings` -\> `Pages`. Check if everything worked. Select `Remember Me` to avoid entering the password every time.
+
+# Quarto
+
+Quarto is a scientific publishing tool that allows R, Python, Julia and Observable JS users to create dynamic documents, websites, books and more. In fact, the whole course website is created using Quarto. In case you downloaded RStudio for this course, you do not need to install Quarto anymore. If you have an older RStudio version, you might have to download an install it or update to a new RStudio version. If you are familiar with `Markdown` or even `RMarkdown` you will see a lot of similarities.
+
+You can explore [Quarto’s documentation](https://quarto.org/docs/guide/) to learn more about creating documents, websites, blogs, books, slides, etc.
+
+Each page of your website is created by a q-Markdown file (`.qmd`). All website pages are plain text file that have the extension .qmd. Notice that the file contains three types of content:
+
+An (optional) YAML header surrounded by - - - at the top (there is no need in the beginning to alter it)
+
+In the code chunks, you can set different options with `#|`:
+
+* `#| eval: false` prevents running the code and include its results
+* `#| include: false` prevents code and results from appearing in the finished file. Quarto still runs the code in the chunk, and the results can be used by other chunks
+* `#| echo: false` prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures.
+* `#| message: false` prevents messages that are generated by code from appearing in the finished file.
+* `#| warning: false` prevents warnings that are generated by code from appearing in the finished.
+* `#| fig-cap``: "..." adds a caption to graphical results.
+
+See the [Quarto Cheat Sheet](https://res.cloudinary.com/dyd911kmh/image/upload/v1676540721/Marketing/Blog/Quarto_Cheat_Sheet.pdf) or the official quarto documentation for further information regarding the markdown syntax. It is necessary, that your code is formatted correctly to be evaluated.
 
 # Submission
 
-```{=html}
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfoGOtB5uO6CKtDbH6a6cq_0xP9eVYA56HTy6pjWCQ9mH-Ynw/viewform?embedded=true" width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
-```
+Submit your journal URL and password via the following form. If you do not submit your information, we won't be able to evaluate your assignments. Please fill it **out by Friday, 08/11/23**.
 
-Submit your journal URL and password via the following form. If you do not submit your information, we won\'t be able to evaluate your assignments.
+```{=html}
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfoGOtB5uO6CKtDbH6a6cq_0xP9eVYA56HTy6pjWCQ9mH-Ynw/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
+```
 
 ::: callout-important
 ## Summary: How to successfully submit

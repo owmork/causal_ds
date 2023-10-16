@@ -3,9 +3,9 @@
 CODE Blocks
 ********/
 div.cell-output {
-  background-color: #0F2231;
+  background-color: #2f3b4a59;
   border-radius: .25rem;
-  border-color: #142737;
+  border-color: #2f3b4a59;
 }
 
 /*******
@@ -69,10 +69,6 @@ div.callout-warning .callout-toggle::before {
   line-height: 22px;
 }
 
-.title-block .course-meta {
-  color: #9a9b9c;
-}
-
 .navbar-logo {
   max-height: 50px;
   width: auto;
@@ -98,3 +94,27 @@ div.callout-warning .callout-toggle::before {
 .figure-caption {
   color: #9a9b9c;
 }
+
+/* Assignment div */
+.assignment {
+  background-color: #121a1c;
+  border-radius: .5rem;
+  border: 1px solid #00C1D4;
+  padding: 0.5rem;
+}
+
+/* Logo in title banner */
+
+/* css styles */
+/*******
+.quarto-title-block .quarto-title-banner {
+  background-image: url(images/logo.svg);
+  background-size: 300px;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding-right: 250px;
+  background-origin: content-box;
+  padding-bottom: 3rem;
+}
+
+********/

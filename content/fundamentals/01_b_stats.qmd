@@ -1,7 +1,7 @@
 ---
 title: "Statistical Concepts"
 linktitle: "Statistical Concepts"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -192,7 +192,7 @@ A related measure is the standard deviation, which does not have as many desirab
 
 $$
 \sigma = \sqrt{\sigma^2}
-$$ Take a look at this interactive histogram. You can set the mean (or: expected value) and the standard deviation. See how a high standard deviation leads to larger proportions of the data being far away from the expected value.
+$$Take a look at this interactive histogram of draws from the normal distribution. You can set the mean (or: expected value) and the standard deviation. See how a high standard deviation leads to larger proportions of the data being far away from the expected value.
 
 ```{ojs}
 //| echo: false
@@ -212,6 +212,7 @@ viewof sd = Inputs.range(
 
 ```{ojs}
 //| echo: false
+//| fig-align: center
 
 mutable xDomain = [-50, 50]
 mutable yDomain = [0, 1000]
@@ -229,8 +230,6 @@ Plot.plot({
 })
 
 ```
-
-In R, we can compute variance and standard deviation with the following commands.
 
 ::: callout-note
 | `rnorm(n, mean, sd)` samples values from the normal distribution. `n` specifies the number of values, `mean` and `sd` define the parameters of the normal distribution.
@@ -264,7 +263,7 @@ which in case of independence reduces to the sum of the individual variances due
 
 # Variance of a Conditional Expected Value
 
-Let's take another look at variance but now we'll see we focus on the case of a conditional expected value - to be precise, the value of Y conditional on values of X. Playing with different values for the standard deviation in the graph below, you should notice that while the line that fits the data best (the line that is on average the closest to all data points) stays very similar, the dispersion of the data points significantly changes.
+Let's take another look at variance but now we'll see we focus on the case of a conditional expected value - to be precise, the value of Y conditional on values of X. Playing with different values for the standard deviation in the graph below, you should notice that while the line that fits the data best (the line that is on average the closest to all data points - we will talk about it more extensively in the next chapter) stays very similar, the dispersion of the data points significantly changes.
 
 ```{r}
 #| echo: false
@@ -418,6 +417,7 @@ Many of the rules and concepts that you have just learned will play a crucial in
 
 # Assignments
 
+::: assignment
 Load the table `random_vars.rds`. You can either
 
 -   run the command: `random_vars <- readRDS("your_download_folder/random_vars.rds")`
@@ -438,6 +438,7 @@ After you load the table, get an overview of what it contains with `View(random_
     1.  $E[income|age <= 18]$
     2.  $E[income|age \in [18, 65)]$
     3.  $E[income|age >= 65]$
+:::
 
 ::: callout-tip
 In the introduction you learned how to filter data. There are different ways, you could either use base R or `tidyverse`.

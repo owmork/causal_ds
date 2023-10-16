@@ -1,7 +1,7 @@
 ---
 title: "Randomized Controlled Trials"
 linktitle: "Randomized Controlled Trials"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -417,6 +417,7 @@ All other tools that we will learn in the following chapters try to deal with th
 
 # Assignment
 
+::: assignment
 Load the dataset `abtest_online.rds`. It contains data about a randomized experiment run by an online shop. E-commerce websites frequently conduct numerous randomized experiments, commonly referred to as AB testing in a business context. In these experiments, a subset of randomly chosen website visitors is presented with a slightly altered version of the site, while others see the standard version. This approach enables the testing of new features, and the decision to implement a new feature is contingent on the outcomes derived from these tests.
 
 Consider this situation: You operate an online store and are concerned about the expenses associated with your customer service. To cut costs, you contemplate introducing a chatbot as a substitute for human customer service. However, you're uncertain whether this change might have a detrimental impact on your sales. Consequently, you intend to conduct an AB test. In this test, a portion of users will be directed to a website equipped with a chatbot (*treatment group*), while the remaining customers will still interact with human customer service (*control group*) if they have questions. To ensure randomization, you'll allocate the treatment based on the last digit of each user's IP address.
@@ -431,6 +432,7 @@ After loading the data, perform the following steps:
 2.  Run a regression to find the effect of chatbot on sales.
 3.  Find subgroup-specific effects by including an interaction. Compute a CATE for one exemplary group. A subgroup could be for example mobile users.
 4.  It's not only of interest how much customers buy but also if the buy at all. Then, the dependent variable is binary (either 0 or 1) instead of continuous and the model of choice is the logistic regression. Use the outcome variable `purchase` and run a logistic regression. The coefficients are not as easily interpretable as before. Look it up and interpret the coefficient for `chatbot`.
+:::
 
 ::: callout-tip
 Use the command `glm(formula, family=binomial(link='logit'), data)`.

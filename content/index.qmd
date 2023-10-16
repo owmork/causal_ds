@@ -47,11 +47,10 @@ Many successful companies have already recognized the advantages of causal data 
 
 -   Data science teams at **Lyft** rely on [large causal models](https://eng.lyft.com/causal-forecasting-at-lyft-part-1-14cca6ff3d6d) to model customer decisions and driver incentives in order to manage their marketplace.
 
--   !!! Other:
-
-    -   https://causal-machine-learning.github.io/kdd2021-tutorial/
-
-    -   https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3867326
+<!--
+-   https://causal-machine-learning.github.io/kdd2021-tutorial/
+-   https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3867326
+-->
 
 # Setup
 
@@ -70,7 +69,7 @@ Follow these steps to join the channel:
 3.  Click the Button **GitLab**
 4.  *You may need to login to GitLab with your Kerberos/LDAP data (e.g. cba1020 and your password) on the following page and/or authorize once for Mattermost to access GitLab. You may also need to accept the terms.*
 5.  After accessing Mattermost, join the [team W-11 students](https://communicating.tuhh.de/signup_user_complete/?id=8f44fef8tifj5rripq8zya4s7w)
-6.  Join [Causal Data Science Channel](https://communicating.tuhh.de/w-11-students/channels/discussion) (you might need to wait a bit, as I first have to add you)
+6.  Join [Causal Data Science Channel](https://communicating.tuhh.de/w-11-students/channels/cdsba_w23) (you might need to wait a bit, as I first have to add you)
 
 There, and in the sessions, I will try to help you as much as possible.
 

@@ -1,7 +1,7 @@
 ---
 title: "Causality"
 linktitle: "Causality"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -268,11 +268,13 @@ The history of causal inference dates back to Splawa-Neyman (1923) who proposed 
 
 # Assignment
 
+::: assignment
 In this chapter, there is no typical assignment but we will use it to get familiar with plotting functions in `R`, in particular `ggplot2`. We'll need them in the following chapters, so feel free to play around and get used to the syntax. You can also check out the graphs from the previous chapter.
 
 Having read this chapter, you have already understood the risk of confusing correlation with causation. On the internet, you can find many examples of spurious correlations. Spurious correlations are correlations that appear to be causal but are in fact not. The reason could be that there is a confounding factor or that two variables happen to be statistically associated just by coincidence.
 
 Do some internet research and find a spurious correlation. Then, try to replicate it in R using `ggplot2`. [Here](https://meghan.rbind.io/slides/neair/neair.html#/ggplot2) you can find a well written introduction to `ggplot2` written by Megan Hall and the [official documentation](https://ggplot2.tidyverse.org/reference/index.html) also contains a lot of useful tips. It does not to be exactly the same plot but it should convey the message that both variables correlate.
+:::
 
 ::: callout-warning
 ## How to submit your solutions!

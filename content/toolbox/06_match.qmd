@@ -1,7 +1,7 @@
 ---
 title: "Matching and Subclassification"
 linktitle: "Matching and Subclassification"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -869,7 +869,9 @@ df_ipw %>%
   arrange(desc(ipw))
 ```
 
-A rule of thumb is to filter out all observations with a propensity score less than 0.15 and higher than 0.85. Doing that,the coefficient is very close to the true treatment effect.
+To avoid assigning extreme weights, a proposed best practice is to trim the sample[^2] and filter out all observations with a propensity score less than 0.15 and higher than 0.85. Doing that,the coefficient is very close to the true treatment effect.
+
+[^2]: https://onlinelibrary.wiley.com/doi/full/10.1002/sim.6607
 
 ```{r}
 # Run with high weights excluded
@@ -925,6 +927,7 @@ But how does it compare to using a simple linear regression? In one of the previ
 
 # Assignment
 
+::: assignment
 Imagine, the following situation. You are running an online store and one year ago, you introduced a plus membership to bind customers to your store and increase revenue. The plus memberships comes at a small cost for the customers, which is why not all of the customers subscribed. Now you want to examine whether binding customers by this membership program in fact increases your sales with subscribed customers. But of course, there are potentially confounding variables such as `age`, `sex` or `pre_avg_purch` (previous average purchases).
 
 Load the data `membership.rds`. Then,
@@ -935,6 +938,7 @@ Load the data `membership.rds`. Then,
     1.  (Coarsened) Exact Matching.
     2.  Nearest-Neighbor Matching.
     3.  Inverse Probability Weighting.
+:::
 
 ::: callout-warning
 ## How to submit your solutions!

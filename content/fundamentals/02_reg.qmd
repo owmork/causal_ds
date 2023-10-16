@@ -1,7 +1,7 @@
 ---
 title: "Regression and Statistical Inference"
 linktitle: "Regression and Statistical Inference"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -645,6 +645,7 @@ The following assumptions must be fulfilled for a linear regression to deliver v
 
 # Assignment
 
+::: assignment
 In the [data folder](https://cloud.tuhh.de/index.php/s/owg5GLR9FoY9Xgm) you find a data set `car_prices.rds`. It is slightly modified of the data set you could also find on [Kaggle](https://www.kaggle.com/datasets/hellbuoy/car-price-prediction?datasetId=383055), the largest data science community worldwide hosting published code and data for a whole variety of applications. Check it out if you are interested!
 
 Again, open a new `.R` script/file and name it `02_reg.R`. Then, you should accomplish the following tasks.
@@ -668,6 +669,7 @@ You can copy parts of the code from the example. Also keep in mind, that not all
     3.  whether its effect is statistically significant.
 
 5.  Add a variable `seat_heating` to the data and assign a value `TRUE` for all observations. You can use e.g. `df %>% mutate(new_variable = value)`. Assign it to a new object and run a regression. What coefficient do you get for the new variable `seat_heating` and how can you explain it?
+:::
 
 ::: callout-warning
 ## How to submit your solutions!

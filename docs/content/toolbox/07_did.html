@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2022-11-23">
+<meta name="dcterms.date" content="2023-10-16">
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Difference-in-Differences</title>
 <style>
 code{white-space: pre-wrap;}
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Submission</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science" rel="" target="">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/cdsba_w23" rel="" target="">
  <span class="menu-text"><iconify-icon inline="" icon="cib:mattermost" style="font-size: 1.25em;"></iconify-icon></span></a>
   </li>  
 </ul>
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 23, 2022</p>
+      <p class="date">October 16, 2023</p>
     </div>
   </div>
   
@@ -874,6 +874,7 @@ F-statistic: 3.31e+04 on 6 and 11993 DF,  p-value: &lt;2e-16</code></pre>
 <p>DiD is a useful quasi-experimental method that relies on the parallel trends assumption which is untestable. We can’t prove it but try to justify it by for example showing prior trends. If both groups were evolving similarly before the treatment, that supports the plausibility and appropriateness of using DiD.</p>
 <p>DiD is a very actively researched methods and can be extended too many scenarios: e.g.&nbsp;the synthetic control method, that is able to deal with one treated and multiple untreated groups. By matching and weighting the untreated groups, a synthetic group is composed, that is similar in the lead up to the treatment period. It shares similarities with what we have done in the matching chapter. Sometimes you also might end up with many treatment groups and variation in treatment timing. Although you have to be careful with your assumptions and specifications, such cases can also be incorporated into a DiD framework.</p>
 </section><section id="assignment" class="level1"><h1>Assignment</h1>
+<div class="assignment">
 <p>Imagine, you are manager of a large health provider that manages many hospitals and you want to test how a new admission procedure affects patient satisfaction. You randomly selected 18 hospitals that introduced the new admission procedure and compare them to 28 other hospitals that did not introduce the method. For both groups of hospitals you collected data from before and after the introduction. The data you have collected is from patient surveys where they were asked how satisfied they are.</p>
 <p>Load the data from the file <code>hospdd.rds</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Then, perform a difference-in-differences analysis by</p>
 <ol type="1">
@@ -887,6 +888,7 @@ F-statistic: 3.31e+04 on 6 and 11993 DF,  p-value: &lt;2e-16</code></pre>
 <p>and explain what the difference is.</p>
 </li>
 </ol>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1158,7 +1160,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":true,"openEffect":"zoom","descPosition":"bottom"});</script>
 
 
 </body></html>

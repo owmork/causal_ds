@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Submission</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science" rel="" target="">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/cdsba_w23" rel="" target="">
  <span class="menu-text"><iconify-icon inline="" icon="cib:mattermost" style="font-size: 1.25em;"></iconify-icon></span></a>
   </li>  
 </ul>
@@ -604,6 +604,7 @@ F-statistic: 8.01e+03 on 1 and 5998 DF,  p-value: &lt;2e-16</code></pre>
 <p>IV is an extremely popular research design but you have to be very careful when using it - particularly due to the fact that some of the necessary assumptions are untestable. This is why it is essential to have knowledge about the studied phenomenon to convincingly argue why the research design is valid and assumptions are plausible.</p>
 <p>Moreover you have to question yourself, whether you measure the effect you are actually interested in. As you only measure the effect for compliers, for people who are affected by the instrument, the treatment effect is a local average treatment effect (LATE). And in case of heterogeneous treatment effects across the whole population, the LATE is different from the ATE.</p>
 </section><section id="assignment" class="level1"><h1>Assignment</h1>
+<div class="assignment">
 <p>Imagine the following situation: you have developed an app and you are already having an active user base. Of course, some users are more active than other users. Also, users might use the app for different purposes. In general, user behavior likely depends on a lot of unobserved characteristics.</p>
 <p>Obviously, your goal is to keep users as long as possible on the app to maximize your ad revenues. To do that, you want to introduce a new feature and see how it affects time spent on the app. Simply comparing users who use the newly introduced feature to users who don’t would result in a biased estimate due to the unobserved confounders regarding their activity and willingness to use a new feature.</p>
 <p>Therefore, you perform a so called <strong>randomized encouragement trial</strong>, where for a random selection of users, a popup appears when opening the app and encourages these users to test new feature. The users who are not randomly selected don’t get a popup message but could also use the new feature.</p>
@@ -614,6 +615,7 @@ F-statistic: 8.01e+03 on 1 and 5998 DF,  p-value: &lt;2e-16</code></pre>
 <li><p>For the assumptions that can be (partly) tested, check whether they are satisfied by either computing correlations or drawing plots. Argue whether instrumental variable estimation is an adequate procedure.</p></li>
 <li><p>Compute the IV estimate using 2SLS and compare it to the naive estimate. Would you consider the naive estimate biased, and if yes, does it have an upward or downward bias?</p></li>
 </ol>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -882,7 +884,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":true,"closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"loop":true,"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom"});</script>
 
 
 </body></html>

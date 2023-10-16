@@ -102,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Submission</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/discussion-causal-data-science" rel="" target="">
+    <a class="nav-link" href="https://communicating.tuhh.de/w-11-students/channels/cdsba_w23" rel="" target="">
  <span class="menu-text"><iconify-icon inline="" icon="cib:mattermost" style="font-size: 1.25em;"></iconify-icon></span></a>
   </li>  
 </ul>
@@ -123,10 +123,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
   <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
   <li><a href="#github-desktop" id="toc-github-desktop" class="nav-link" data-scroll-target="#github-desktop">GitHub Desktop</a></li>
   <li><a href="#publishing-your-journal" id="toc-publishing-your-journal" class="nav-link" data-scroll-target="#publishing-your-journal">Publishing your journal</a></li>
   <li><a href="#check-your-website" id="toc-check-your-website" class="nav-link" data-scroll-target="#check-your-website">Check your website</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
   <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
   </ul>
 </nav>
@@ -154,8 +154,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="instructions" class="level1">
 <h1>Instructions</h1>
 <p>To submit your assignments, you will create your own Quarto<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> journal that you upload to GitHub<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. GitHub is is a hosting platform for so called repositories, which typically consists of data and code.</p>
-<p>You will write your solutions including your code in <code>.qmd</code> (Quarto) documents that can run and knit R code. You will publish these <code>.qmd</code> files using Quarto and GitHub to create your own password-protected website.</p>
-<p>In the following I will guide your through the necessary steps.</p>
+<p>You will write your solutions including your code in <code>.qmd</code> (Quarto) documents that can run and knit <code>R</code> code. You will publish these <code>.qmd</code> files using Quarto and GitHub to create your own password-protected website.</p>
+<p>In the following I will guide your through the necessary steps. Some steps might not be identical and slightly changed in the meantime, but you should be able to follow along.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -173,27 +173,20 @@ Don’t worry!
 <section id="github" class="level1">
 <h1>GitHub</h1>
 <ol type="1">
-<li><p><a href="https://github.com">Create a free GitHub account</a>. If you already have a GitHub account, you can skip this step.</p></li>
-<li><p><a href="https://desktop.github.com">Download and install GitHub Desktop</a> and connect it to your account. GitHub Desktop is a graphical user interface, which allows you to sync your local code changes with your online repository.</p></li>
+<li><p><a href="https://github.com"><strong>Create a free GitHub account</strong></a>. If you already have a GitHub account, you can skip this step.</p></li>
+<li><p><a href="https://desktop.github.com"><strong>Download and install GitHub Desktop</strong></a> and connect it to your account (<strong>Sign into GitHub.com</strong>). GitHub Desktop is a graphical user interface, which allows you to sync your local code changes with your online repository.</p></li>
 <li><p>Check if <code>git</code> is installed on your system. It should already be the case but you can check it by opening <code>RStudio</code>, going to the terminal pane and entering <code>which git</code>. It should output the file path to <code>git</code> on your system. If you don’t get the expected result, <a href="https://git-scm.com/downloads">download and install git</a>.</p></li>
-<li><p><a href="https://classroom.github.com/a/x9U_PBSb">Accept the assignment.</a> and follow through the steps to enter the virtual classroom. <a href="../images/github_accept_assignment.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Accept the assignment."><img src="../images/github_accept_assignment.png" class="img-fluid" alt="Accept the assignment."></a></p></li>
+<li><p><a href="https://classroom.github.com/a/x9U_PBSb"><strong>Accept the assignment</strong></a> and follow through the steps to enter the virtual classroom. <a href="../images/github_accept_assignment.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Accept the assignment."><img src="../images/github_accept_assignment.png" class="img-fluid" alt="Accept the assignment."></a></p></li>
+<li><p>After a while (refresh your page), you will get the link to your repository, which is currently free of any content but contains the framework to publish your journal at a later stage.</p></li>
 </ol>
-<p>By the way, <a href="https://tuhhstartupengineers.github.io/quarto_cds/">this</a> is what your journal is going to look like (without content). So let’s get your journal running.</p>
-</section>
-<section id="quarto" class="level1">
-<h1>Quarto</h1>
-<p>Quarto is a scientific publishing tool that allows R, Python, Julia and Observable JS users to create dynamic documents, websites, books and more. In fact, the whole course website is created using Quarto. In case you downloaded RStudio for this course, you do not need to install Quarto anymore. If you have an older RStudio version, you might have to download an install it or update to a new RStudio version.</p>
+<p>By the way, <a href="https://tuhhstartupengineers.github.io/quarto_cds/">this</a> is what your journal is going to look like (password: <em>test</em>). So let’s get your journal running.</p>
 </section>
 <section id="github-desktop" class="level1">
 <h1>GitHub Desktop</h1>
-<p>Open GitHub Desktop and follow the steps depicted in the screenshots.</p>
+<p>Go back to GitHub Desktop and follow the steps depicted in the screenshots.</p>
 <ol type="1">
-<li>Sign into your account.</li>
-</ol>
-<p><a href="../images/github_desktop/github_desktop_01_signin.png" class="lightbox" data-gallery="github-desktop" title="Sign in to your account (1/4)."><img src="../images/github_desktop/github_desktop_01_signin.png" class="img-fluid" alt="Sign in to your account (1/4)."></a> <a href="../images/github_desktop/github_desktop_02_signin.png" class="lightbox" data-gallery="github-desktop" title="Sign in to your account (2/4)."><img src="../images/github_desktop/github_desktop_02_signin.png" class="img-fluid" alt="Sign in to your account (2/4)."></a></p>
-<p><a href="../images/github_desktop/github_desktop_03_configure.png" class="lightbox" data-gallery="github-desktop" title="Sign in to your account (3/4)."><img src="../images/github_desktop/github_desktop_03_configure.png" class="img-fluid" alt="Sign in to your account (3/4)."></a> <a href="../images/github_desktop/github_desktop_04_finish.png" class="lightbox" data-gallery="github-desktop" title="Sign in to your account (4/4)."><img src="../images/github_desktop/github_desktop_04_finish.png" class="img-fluid" alt="Sign in to your account (4/4)."></a></p>
-<ol start="2" type="1">
-<li>Now you have to clone your repository. Until now, your repository is online hosted on GitHub, but of course, you need a local version to add your solutions and code to your repository. Select <code>Clone Repository</code> and select your repo (should be <code>TUHHStartupEngineers-Classroom/cdsba-YourUserName</code>). Then select the local path, where you want your repo stored in your file system. !!! update</li>
+<li><p>Sign into your account if you haven’t done already.</p></li>
+<li><p>Now you have to clone your repository. Until now, your repository is online hosted on GitHub, but of course, you need a local version to add your solutions and code to your repository. Select <code>Clone Repository</code> or <code>Clone repository from the Internet</code> and select your repo (should be <code>TUHHStartupEngineers-Classroom/cdsba-YourUserName</code>). Then select the local path, where you want your repo stored in your file system.</p></li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -204,7 +197,7 @@ Don’t worry!
 </section>
 <section id="publishing-your-journal" class="level1">
 <h1>Publishing your journal</h1>
-<p>To publish your journal, you need to go into <code>Settings</code> on your journal repository. Note that your repository is located in your account on github.com and should have an address following the pattern: https://tuhhstartupengineers-classroom.github.io/cdsba-YourUserName/, where YourUserName is replaced by your name.</p>
+<p>To publish your journal, you need to go into <code>Settings</code> on your journal repository on GitHub. Note that your repository is located in your account on github.com and should have an address following the pattern: <em>https://tuhhstartupengineers-classroom.github.io/cdsba-YourUserName/</em>, where <em>YourUserName</em> is replaced by your name.</p>
 <ol type="1">
 <li>Find <code>Pages</code> in the menu on the left and make sure the source <strong>GitHub Action</strong> is set.</li>
 </ol>
@@ -238,9 +231,9 @@ Don’t worry!
 </div>
 <p>Let’s make the first edit to your repository. Later, you will add all your solutions and code but for now, let’s just make a simple change.</p>
 <ol type="1">
-<li><p>First, move to the local folder where you chose to save the repository. Open the <code>lab_journal.Rproj</code> file. This should automatically open RStudio, and your current working environment will be inside this project. That means everything you save will be auto saved to this folder (unless you tell RStudio to save something somewhere else. Have a look at the files tab in the bottom right hand corner. Most files you click will be opened up as text files in the RStudio editor. For each chapter there is a journal you should open and edit.</p></li>
-<li><p>Open a <code>.qmd</code> file in the <em>Content/01_journal</em> folder. Make a minor change and save the file. Then click on <code>Render</code>. That compiles your website. The website should be built. After the website is built, you should be able to see it in the RStudio browser (viewer pane in the bottom right corner). There is a little button that allows you to pop the website into your default web-browser. This way you can look at the website in your browser.</p></li>
-<li><p>Open GitHub Desktop (if it is not still open). You should see something similar to the image below. You can see what you changed in the <code>.qmd</code> and the accompanied <code>html</code> should be different as well.</p></li>
+<li><p>First, on your file system, move to the local folder where you chose to save the repository. Open the <code>lab_journal.Rproj</code> file. This should automatically open RStudio, and your current working environment will be inside this project. That means everything you save will be auto saved to this folder (unless you tell RStudio to save something somewhere else. Have a look at the files tab in the bottom right hand corner. Most files you click will be opened up as text files in the RStudio editor.</p></li>
+<li><p>For each assignment there is a <code>.qmd</code> document in the folder <code>content/01_journal</code> you should open and edit. Open one of them and make a minor change and save the file. Then click on <code>Render</code>. That compiles your website. The website should be built. After the website is built, it should either open in your default browser or you should be able to see it in the RStudio browser (viewer pane in the bottom right corner). There is a little button that allows you to pop the website into your default browser. Please note that this is only a locally published site.</p></li>
+<li><p>To publish it, open GitHub Desktop (if it is not still open). You should see something similar to the image below. You can see what you changed in the <code>.qmd</code> and the accompanied <code>html</code> should be different as well. There might be a lot more changes that you expect because a lot of stuff ran in the background when rendering.</p></li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -249,7 +242,7 @@ Don’t worry!
 </figure>
 </div>
 <ol start="4" type="1">
-<li>Now you still need to push your changes to GitHub. First, commit your changes at the left bottom by providing a short description of what you have changed and click on <code>Commit to Master</code>. Now you can push to origin (you might have to fetch changes beforehand).</li>
+<li>Now you still need to push your changes to GitHub. First, commit your changes at the left bottom by providing a short description of what you have changed and click on <code>Commit to main</code>. Now you can push to origin (you might have to <code>Fetch origin</code> beforehand).</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -260,12 +253,29 @@ Don’t worry!
 </section>
 <section id="check-your-website" class="level1">
 <h1>Check your website</h1>
-<p>Go onto your website. You find the URL under <code>Settings</code> -&gt; <code>Pages</code> and check if everything worked. Select <code>Remember Me</code> to avoid entering the password every time.</p>
+<p>Go onto your repository you find your URL under <code>Settings</code> -&gt; <code>Pages</code>. Check if everything worked. Select <code>Remember Me</code> to avoid entering the password every time.</p>
+</section>
+<section id="quarto" class="level1">
+<h1>Quarto</h1>
+<p>Quarto is a scientific publishing tool that allows R, Python, Julia and Observable JS users to create dynamic documents, websites, books and more. In fact, the whole course website is created using Quarto. In case you downloaded RStudio for this course, you do not need to install Quarto anymore. If you have an older RStudio version, you might have to download an install it or update to a new RStudio version. If you are familiar with <code>Markdown</code> or even <code>RMarkdown</code> you will see a lot of similarities.</p>
+<p>You can explore <a href="https://quarto.org/docs/guide/">Quarto’s documentation</a> to learn more about creating documents, websites, blogs, books, slides, etc.</p>
+<p>Each page of your website is created by a q-Markdown file (<code>.qmd</code>). All website pages are plain text file that have the extension .qmd. Notice that the file contains three types of content:</p>
+<p>An (optional) YAML header surrounded by - - - at the top (there is no need in the beginning to alter it)</p>
+<p>In the code chunks, you can set different options with <code>#|</code>:</p>
+<ul>
+<li><code>#| eval: false</code> prevents running the code and include its results</li>
+<li><code>#| include: false</code> prevents code and results from appearing in the finished file. Quarto still runs the code in the chunk, and the results can be used by other chunks</li>
+<li><code>#| echo: false</code> prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures.</li>
+<li><code>#| message: false</code> prevents messages that are generated by code from appearing in the finished file.</li>
+<li><code>#| warning: false</code> prevents warnings that are generated by code from appearing in the finished.</li>
+<li>`#| fig-cap``: “…” adds a caption to graphical results.</li>
+</ul>
+<p>See the <a href="https://res.cloudinary.com/dyd911kmh/image/upload/v1676540721/Marketing/Blog/Quarto_Cheat_Sheet.pdf">Quarto Cheat Sheet</a> or the official quarto documentation for further information regarding the markdown syntax. It is necessary, that your code is formatted correctly to be evaluated.</p>
 </section>
 <section id="submission" class="level1">
 <h1>Submission</h1>
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfoGOtB5uO6CKtDbH6a6cq_0xP9eVYA56HTy6pjWCQ9mH-Ynw/viewform?embedded=true" width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
-<p>Submit your journal URL and password via the following form. If you do not submit your information, we won't be able to evaluate your assignments.</p>
+<p>Submit your journal URL and password via the following form. If you do not submit your information, we won’t be able to evaluate your assignments. Please fill it <strong>out by Friday, 08/11/23</strong>.</p>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfoGOtB5uO6CKtDbH6a6cq_0xP9eVYA56HTy6pjWCQ9mH-Ynw/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -540,7 +550,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":true,"openEffect":"zoom","descPosition":"bottom"});</script>
+<script>var lightboxQuarto = GLightbox({"loop":true,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});</script>
 
 
 

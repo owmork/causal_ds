@@ -1,7 +1,7 @@
 ---
 title: "Regression Discontinuity"
 linktitle: "Regression Discontinuity"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -406,6 +406,7 @@ summary(lm_bw)
 
 # Assignment
 
+::: assignment
 For the first assignment, use the data from the just discussed application (`coupon.rds`). When conducting a regression discontinuity design, one parameter that is chosen somehow arbitrarily is the bandwidth. Check how sensitive the result is to changing the bandwidth by running the analysis
 
 1.  with half the bandwidth
@@ -414,6 +415,7 @@ For the first assignment, use the data from the just discussed application (`cou
 Now consider a different past campaign. For a limited amount of time, for purchases with a total amount of more than 30€ you offered free shipping. The data can be seen in `shipping.rds`. Have a look at the variable `purchase_amount` and argue whether it could generally be used as a running variable with a cut-off at 30€.
 
 3.  Use a plot to confirm your argument.
+:::
 
 ::: callout-warning
 ## How to submit your solutions!

@@ -1,7 +1,7 @@
 ---
 title: "Difference-in-Differences"
 linktitle: "Difference-in-Differences"
-date: "2022-11-23"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -531,11 +531,10 @@ DiD is a very actively researched methods and can be extended too many scenarios
 
 # Assignment
 
+::: assignment
 Imagine, you are manager of a large health provider that manages many hospitals and you want to test how a new admission procedure affects patient satisfaction. You randomly selected 18 hospitals that introduced the new admission procedure and compare them to 28 other hospitals that did not introduce the method. For both groups of hospitals you collected data from before and after the introduction. The data you have collected is from patient surveys where they were asked how satisfied they are.
 
 Load the data from the file `hospdd.rds`[^1]. Then, perform a difference-in-differences analysis by
-
-[^1]: Data and example from: <https://www.stata.com/new-in-stata/difference-in-differences-DID-DDD/>
 
 1.  Manually computing the mean satisfaction for treated and control hospitals before and after the treatment. Helpful functions could be `filter()`, `pull()` and basic arithmetic operations.
 
@@ -546,6 +545,9 @@ Load the data from the file `hospdd.rds`[^1]. Then, perform a difference-in-diff
     -   `as.factor(month) + as.factor(hospital)`
 
     and explain what the difference is.
+:::
+
+[^1]: Data and example from: <https://www.stata.com/new-in-stata/difference-in-differences-DID-DDD/>
 
 ::: callout-warning
 ## How to submit your solutions!

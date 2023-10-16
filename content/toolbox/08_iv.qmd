@@ -1,7 +1,7 @@
 ---
 title: "Instrumental Variables"
 linktitle: "Instrumental Variables"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -362,6 +362,7 @@ Moreover you have to question yourself, whether you measure the effect you are a
 
 # Assignment
 
+::: assignment
 Imagine the following situation: you have developed an app and you are already having an active user base. Of course, some users are more active than other users. Also, users might use the app for different purposes. In general, user behavior likely depends on a lot of unobserved characteristics.
 
 Obviously, your goal is to keep users as long as possible on the app to maximize your ad revenues. To do that, you want to introduce a new feature and see how it affects time spent on the app. Simply comparing users who use the newly introduced feature to users who don't would result in a biased estimate due to the unobserved confounders regarding their activity and willingness to use a new feature.
@@ -377,6 +378,7 @@ After a while you collect data on users' activity and also if they were encourag
 3.  For the assumptions that can be (partly) tested, check whether they are satisfied by either computing correlations or drawing plots. Argue whether instrumental variable estimation is an adequate procedure.
 
 4.  Compute the IV estimate using 2SLS and compare it to the naive estimate. Would you consider the naive estimate biased, and if yes, does it have an upward or downward bias?
+:::
 
 ::: callout-warning
 ## How to submit your solutions!

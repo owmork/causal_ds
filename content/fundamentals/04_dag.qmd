@@ -1,7 +1,7 @@
 ---
 title: "Directed Acyclic Graphs"
 linktitle: "Directed Acyclic Graphs"
-date: "2023-10-16"
+date: last-modified
 output:
   blogdown::html_page:
     toc: true
@@ -89,7 +89,7 @@ schooling_1 <- dagify(
 
 # Plot DAG
 ggdag(schooling_1, use_labels = "name", text = F) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = NA) +
   geom_dag_edges(edge_color = "white")
@@ -105,7 +105,7 @@ schooling_2 <- dagify(
 
 # Plot DAG
 ggdag(schooling_2, text = F) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = NA) +
   geom_dag_edges(edge_color = "white") +
@@ -134,7 +134,7 @@ confounding <- dagify(
 
 # Plot DAG
 ggdag(confounding) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
   geom_dag_edges(edge_color = "white")
@@ -181,7 +181,7 @@ chain <- dagify(
 
 # Plot DAG
 ggdag(chain) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
   geom_dag_edges(edge_color = "white")
@@ -221,7 +221,7 @@ fork <- dagify(
 
 # Plot DAG
 ggdag(fork) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
   geom_dag_edges(edge_color = "white")
@@ -265,7 +265,7 @@ collider <- dagify(
 
 # Plot DAG
 ggdag(collider) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
   geom_dag_edges(edge_color = "white")
@@ -321,7 +321,7 @@ confounding <- dagify(
 
 # Plot DAG
 ggdag(confounding) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
   geom_dag_edges(edge_color = "white") +
@@ -423,7 +423,7 @@ collider <- dagify(
 
 # Plot DAG
 ggdag(collider) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_point(color = ggthemr::swatch()[2]) +
   geom_dag_text(color = "white") +
   geom_dag_edges(edge_color = "white") +
@@ -538,7 +538,7 @@ One application to help in such cases is [http://](http://dagitty.net/dags.html#
 
 `dagitty` is also implemented in R and combined with `ggdag` you are also able to plot your DAGs in a easy manner and obtain information needed for designing your research.
 
-First, let's just plot the DAG. When we define exposure, which is a different term for intervention or treatment, and the outcome, they are highlighted in another color.
+First, let's just plot the DAG. When we define exposure, which is a different term for intervention or treatment, and the outcome, they are highlighted in another color. When drawing the DAG yourself, you can leave out `theme_dag_cds()` as it is only a custom theme that I have defined for this website. Instead you could use other themes such as `theme_dag()`, `theme_dag_grey()`, `theme_dag_blank()` or proceed without any theme.
 
 ```{r}
 # Load packages
@@ -566,7 +566,7 @@ Z3 -> Z4
 # draw DAG
 ggdag_status(dag_model) +
   guides(fill = "none", color = "none") +  # Disable the legend
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_edges(edge_color = "white")
 ```
 
@@ -604,7 +604,7 @@ A very concise summary plot is returned by the function `ggdag_adjustment_set()`
 ```{r}
 # plot adjustment sets
 ggdag_adjustment_set(dag_model, shadow = T) +
-  theme_dag_cds() +
+  theme_dag_cds() + # custom theme, can be left out
   geom_dag_edges(edge_color = "white")
 ```
 
@@ -622,6 +622,7 @@ Implicitly, DAGs always base on some form of counterfactual reasoning as we pres
 
 # Assignment
 
+::: assignment
 1)  Think about example from previous chapter (parking spots) and draw the DAG.
 
 2)  Load the data file `customer_sat.rds`. A company sells a SaaS (Software as a service) to business clients that chose to subscribe to one of the three subscription levels, *Starter*, *Premium* or *Elite*, which provide different features at different price points (more storage and other capabilities). *Starter* has the least functionality, while *Elite* includes the most features.
@@ -637,6 +638,7 @@ Implicitly, DAGs always base on some form of counterfactual reasoning as we pres
 3)  Compare the coefficients and find a possible explanation.
 
 4)  Plot the data. You'll find a similar plot in this chapter, that you can copy some lines from.
+:::
 
 ::: callout-warning
 ## How to submit your solutions!
