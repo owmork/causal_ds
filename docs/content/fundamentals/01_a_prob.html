@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2023-10-16">
+<meta name="dcterms.date" content="2023-10-20">
 <title>CAUSAL DATA SCIENCE FOR BUSINESS ANALYTICS - Probability Theory</title>
 <style>
 code{white-space: pre-wrap;}
@@ -287,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 16, 2023</p>
+      <p class="date">October 20, 2023</p>
     </div>
   </div>
   
@@ -367,7 +367,7 @@ Important
 <p>To understand what not mutually exclusive events are, consider events <span class="math inline">\(studying\)</span> and <span class="math inline">\(working\)</span>. For a random person, we don’t know what values these random variables take on. But we know the probability for the event that someone is studying or someone is working. And there are also individuals who do both or neither.</p>
 <p>Then, the probability of at least one of the events happening is calculated by</p>
 <p><span class="math display">\[
-P(A \cup B) = P(A) + P(B) + P(A \cap B)
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
 \]</span></p>
 <p>with <span class="math inline">\(P(A \cap B)\)</span> being the intersection of both events, i.e.&nbsp;the probability of both studying and working. This formula is based on the <strong>addition rule</strong>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -390,7 +390,7 @@ Tip
 </div>
 <p>For mutually exclusive events:</p>
 <p><span class="math display">\[
-P(A \cup B) = P(A) + P(B) + P(A \cap B) = P(A) + P(B)
+P(A \cup B) = P(A) + P(B) - P(A \cap B) = P(A) + P(B)
 \]</span></p>
 <p>The aforementioned intersection <span class="math inline">\(P(A \cap B)\)</span> can be calculated by the <strong>multiplication rule</strong>,</p>
 <p><span class="math display">\[
@@ -988,7 +988,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":true});</script>
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":true,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});</script>
 
 
 </body></html>

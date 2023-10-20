@@ -96,7 +96,7 @@ To understand what not mutually exclusive events are, consider events $studying$
 Then, the probability of at least one of the events happening is calculated by
 
 $$
-P(A \cup B) = P(A) + P(B) + P(A \cap B)
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
 $$
 
 with $P(A \cap B)$ being the intersection of both events, i.e. the probability of both studying and working. This formula is based on the **addition rule**.
@@ -112,7 +112,7 @@ $\cap$ : Intersection, can be translated as "and".
 For mutually exclusive events:
 
 $$
-P(A \cup B) = P(A) + P(B) + P(A \cap B) = P(A) + P(B)
+P(A \cup B) = P(A) + P(B) - P(A \cap B) = P(A) + P(B)
 $$
 
 The aforementioned intersection $P(A \cap B)$ can be calculated by the **multiplication rule**,
